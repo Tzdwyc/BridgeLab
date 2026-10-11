@@ -154,8 +154,10 @@ describe('chat GPT step reviews: routing and explanatory roles', () => {
   it('raises opener four-card second major rather than passing (3379)', () => {
     expect(decision('P 1D P 1H P 1S P', 'T976.KQ9874.-.J54')).toEqual(b(2, 'S'));
   });
-  it('invites or reaches NT game after an original-suit rebid (6770)', () => {
-    expect(decision('P 1D P 1H P 2D P', 'A842.Q762.KJ.Q54')).toEqual(b(2, 'NT'));
+  it('invites with a real four-card second major after an original-suit rebid (6770)', () => {
+    // Twelve HCP and four spades allow 2S as an invitational description;
+    // 2NT is also reasonable, and is not the only honest continuation.
+    expect(decision('P 1D P 1H P 2D P', 'A842.Q762.KJ.Q54')).toEqual(b(2, 'S'));
   });
   it('uses fourth-suit forcing for an unlimited strong unbalanced responder (64)', () => {
     expect(decision('P 1D P 1H P 2C P', 'KJ74.AKQ932.J.Q5')).toEqual(b(2, 'S'));

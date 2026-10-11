@@ -50,7 +50,7 @@ describe('v0.3.2 reviewed public-context foundations', () => {
     ['426/5 strong jump shift instead of minimum six hearts', 'S', 'KQ.AKQ975.Q.AJ73', 'S:1H W:P N:1S E:P', '3C'],
     ['355/8 ten HCP and the public four-card spade fit invite', 'S', 'K764.QT853.J3.A8', 'W:P N:1C E:1D S:X W:P N:1S E:P', '3S'],
     ['436/8 thirteen-plus unbalanced responder describes six diamonds', 'W', 'J.AK54.AQ9863.T8', 'N:P E:1C S:P W:1H N:P E:2C S:P', '2D'],
-    ['480/7 nineteen unbalanced points cannot conceal extras in 1NT', 'S', 'AQ97.AK2.AQT62.6', 'N:P E:P S:1D W:P N:1NT E:P', '2S'],
+    ['480/7 nineteen unbalanced points describe a strong jump shift', 'S', 'AQ97.AK2.AQT62.6', 'N:P E:P S:1D W:P N:1NT E:P', '3S'],
     ['491/7 reverse plus twelve points describes four spades', 'E', 'KQ54.QJT94.J62.K', 'W:1C N:P E:1H S:P W:2D N:P', '2S'],
     ['2628/6 strong opener jump shifts with nineteen', 'E', 'AKQT5.A862.-.AQT9', 'N:P E:1S S:P W:1NT N:P', '3H'],
     ['2631/7 six-card hearts and game values continue', 'E', 'KJ9.AJT976.98.AT', 'W:1C N:P E:1H S:P W:2C N:P', '4H'],
@@ -71,7 +71,9 @@ describe('v0.3.2 reviewed public-context foundations', () => {
     ['2632/8 low-card support cannot supply phantom HCP for NT', 'W', 'AQT9.AQ.KQJ3.943', 'N:P E:P S:P W:1D N:P E:2D S:P', '3D'],
     ['minimum six-heart rebid opposite weak two hearts may stop', 'S', 'A73.Q8.T852.T843', 'S:P W:P N:1H E:P S:1NT W:P N:2H E:P', 'P'],
     ['minimum second suit with a weak two-heart false preference', 'S', 'A743.Q8.T852.T83', 'N:1H E:P S:1NT W:P N:2C E:P', '2H'],
-    ['seven-card heart preference does not imply game', 'N', 'KQ9.AKJ93.A9.A64', 'N:1H E:P S:1NT W:P N:2C E:P S:2H W:P', '2NT'],
+    // The heart preference promises only two cards. Opener has 21 actual
+    // HCP and the earlier semi-NT promised five: NT game has public 26.
+    ['seven-card heart preference permits NT game with public twenty-six HCP', 'N', 'KQ9.AKJ93.A9.A64', 'N:1H E:P S:1NT W:P N:2C E:P S:2H W:P', '3NT'],
   ])('%s', (_name, seat, hand, prefix, expected) => {
     const obs = position(seat as Seat, hand, prefix);
     expect(chooseBid(obs, 'sayc')).toEqual(call(expected));

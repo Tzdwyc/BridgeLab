@@ -1,0 +1,22 @@
+{
+  "method": "Prepared bounded target list for final-source GPT reinspection; targets are not verdicts",
+  "sourceAwaited": "Root-provided final round-three observations and source hash",
+  "targets": [
+    { "board": 623, "priorStep": 10, "purpose": "Natural weak new minor after opener 1NT; five cards, nonforcing" },
+    { "board": 858, "priorStep": 5, "purpose": "Competitive opener support can promise only three" },
+    { "board": 858, "priorStep": 7, "purpose": "Responder game continuation must not invent opener four-card support" },
+    { "board": 924, "priorStep": 10, "purpose": "Delayed technical-double reply after three enemy suits; inspect actual changed answer and length promise" },
+    { "board": 7265, "priorStep": 9, "purpose": "Lowest legal other-major Stayman invitation at 3H shows four, not five or an undefined jump" },
+    { "board": 7265, "priorStep": 11, "purpose": "Opener continuation respects the public four-card other major and avoids a fictional eight-card fit" },
+    { "board": 583, "priorStep": 7, "purpose": "Michaels advancer chooses a publicly shown major with three-card support" },
+    { "board": 4283, "priorStep": 11, "purpose": "Strong two-club original-major return retains five-card public minimum" },
+    { "board": 7194, "priorStep": 6, "purpose": "Weak-two opener raises a five-card positive minor with three-card support" },
+    { "board": 7767, "priorStep": 9, "purpose": "Passed responder's natural new minor after opener 1NT is explicitly weak and nonforcing" },
+    { "board": 4463, "priorStep": 4, "purpose": "Cheap one-level overcall advance may show four cards" },
+    { "board": 7185, "priorStep": 8, "purpose": "Natural one-level fourth-suit exception requires four real spades; inspect chooser replacement if changed" },
+    { "board": 7453, "priorStep": 7, "purpose": "Natural one-level fourth-suit exception must not claim four on an actual singleton; inspect chooser replacement if changed" },
+    { "board": 7411, "priorStep": 10, "purpose": "Three enemy suits force selection of remaining hearts without a four-card guarantee; inspect new answer" },
+    { "board": 700, "priorStep": 8, "purpose": "Passed responder excludes unpassed semi-forcing obligation; previous hover error was explicitly withdrawn" }
+  ],
+  "boundary": "Only the actual repaired or directly consequential public sequences above will be judged. No additional random corpus or second complete 40-board manual audit is implied. Changed paths are read from new observations rather than silently reusing old calls."
+}

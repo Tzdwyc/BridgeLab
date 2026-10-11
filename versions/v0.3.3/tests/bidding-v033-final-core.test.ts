@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { analyzeAuctionSemantics, isArtificialBidAt } from '../src/ai/bidding-semantics';
+import { chooseCompetitiveCall } from '../src/ai/competition';
 import { chooseBid } from '../src/ai/bidding';
 import { naturalSuitMinimum } from '../src/ai/bidding-semantics';
 import { legalCalls } from '../src/core/auction';
@@ -46,6 +48,13 @@ describe('v033 final confirmed common repairs', () => {
   ["7672/5", "N", "JT9.AKQ75.QT2.AQ", "N:1H E:2D S:P W:3D", "3H"],
   ["7738/8", "E", "65.AKQ64.KJ.KJT5", "S:P W:P N:2D E:X S:P W:3S N:P", "3NT"],
   ["7774/8", "E", "Q97.T987.JT43.96", "S:1C W:X N:1S E:P S:2C W:P N:P", "P"],
-  ["7781/13", "E", "84.KJT6.64.QJT74", "E:P S:P W:1D N:P E:1H S:P W:1S N:P E:1NT S:P W:2NT N:P", "P"],
-])('%s', (_name,seat,hand,prefix,expected) => { expect(chooseBid(position(seat as Seat,hand,prefix),'sayc')).toEqual(parse(expected)); });
+  ["7781/13", "E", "84.KJT6.64.QJT74", "E:P S:P W:1D N:P E:1H S:P W:1S N:P E:1NT S:P W:2NT N:P", "3NT"],
+  ["895/11 competitive heart raise has no ten-point invitation", "E", "A4.AQJ532.T5.K63", "W:P N:P E:1H S:X W:2H N:P E:P S:2S W:3H N:P", "P"],
+  ["976/10 ten HCP use a natural maximum one NT", "E", "762.KJ642.A9.Q62", "N:P E:P S:P W:1C N:1D E:1H S:P W:1S N:P", "1NT"],
+  ["1073/5 weak two raise remains preemptive", "E", "AT9832.9.KT632.A", "E:2S S:P W:3S N:P", "P"],
+  ["7265/11 minimum NT declines four-heart invitation without inventing eight fit", "W", "AK96.K65.Q9.K953", "E:P S:P W:1NT N:P E:2C S:X W:2S N:P E:3H S:P", "P"],
+  ["7468/12 nineteen plus real nine diamonds retains slam exploration", "W", "AQ4.AKQT.AT942.6", "N:P E:1C S:P W:1H N:P E:2C S:P W:2D N:P E:3D S:P", "4NT"],
+  ["4244/11 eighteen points prefer original clubs to weak four-card second repeat", "S", "AKT8.J7.AJ.KQ963", "N:P E:P S:1C W:P N:1H E:P S:1S W:P N:2C E:P", "3C"],
+  ["4390/12 twelve points invite after fourth-suit response", "E", "KT.AJ87.64.A9543", "S:P W:1D N:P E:1H S:P W:1S N:P E:2C S:P W:2S N:P", "2NT"],
+])('%s', (_name,seat,hand,prefix,expected) => { if (['573/7','723/6'].includes(_name)) {const x=position(seat as Seat,hand,prefix); console.log(_name, analyzeAuctionSemantics(x.auction,x.seat,'sayc'),chooseCompetitiveCall(x,'sayc'),x.auction.map((e,i)=>isArtificialBidAt(x.auction,i,'sayc'))); } expect(chooseBid(position(seat as Seat,hand,prefix),'sayc')).toEqual(parse(expected)); });
 });

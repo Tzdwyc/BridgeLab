@@ -690,7 +690,7 @@ export function naturalSuitMinimum(auction: AuctionEntry[], seat: Seat, suit: Su
       && staymanRequest.call.level === staymanPlatform.call.level + 1 && staymanAnswer?.call.level === staymanRequest.call.level
       && major(staymanAnswer.call.strain) && major(entry.call.strain) && entry.call.strain !== staymanAnswer.call.strain
       && bidValue(entry.call) - bidValue(staymanAnswer.call) <= 5 && noTrumpRangeAt(auction, staymanPlatform.index, system)) {
-      if (suit === entry.call.strain || suit === staymanAnswer.call.strain) minimum = Math.max(minimum, 4);
+      if (suit === entry.call.strain) minimum = Math.max(minimum, 4);
       if (entry.call.strain === suit) continue;
     }
     if (entry.call.strain !== suit || isArtificialBidAt(auction, entry.index, system)) continue;
@@ -719,6 +719,9 @@ export function naturalSuitMinimum(auction: AuctionEntry[], seat: Seat, suit: Su
     const original = ownPrior.find(prior => prior.call.strain !== 'NT' && !isArtificialBidAt(auction, prior.index, system));
     if (repeated) {
       if (original?.call.strain === suit) {
+        const originalWasSupport = all.some(prior => prior.index < original.index && prior.seat === partnerOf(seat)
+          && prior.call.strain === suit && !isArtificialBidAt(auction, prior.index, system));
+        if (originalWasSupport) continue;
         if ((system === 'sayc' || system === 'two-over-one') && opening?.seat === seat
           && opening.call.level === 2 && opening.call.strain === 'C') {
           // The first natural strong-club minor may come from 4441. Repeating
@@ -807,4 +810,8 @@ export function naturalSuitMinimum(auction: AuctionEntry[], seat: Seat, suit: Su
       && !ownPrior.some(prior => !isArtificialBidAt(auction, prior.index, system))) {
       minimum = Math.max(minimum, 4); continue;
     }
-  
+    minimum = Math.max(minimum, ownPrior.some(prior => !isArtificialBidAt(auction, prior.index, system))
+      || opening?.seat !== seat && entry.call.level === 1 ? 4 : 5);
+  }
+  return minimum;
+}

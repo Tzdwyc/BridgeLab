@@ -201,6 +201,7 @@ describe('v0.3.3 public meanings and Pass availability', () => {
     ['NT overcall Stayman spade answer then cheapest hearts invite', '1D 1NT P 2C P 2S P', '3H', '4+张所叫高花'],
     ['858 responder game follows competitive three-card support', '1C P 1H 1S 2H P', '4H', '开叫人三张支持'],
     ['7411 delayed double natural enemy spade choice', '1D P 1S P 2C P P X P', '2S', '对手此前虽叫过该套'],
+    ['7411 three enemy suits force remaining hearts without four', '1D P 1S P 2C P P X P', '2H', '不保证四张，也不保证点力'],
     ['long quality overcall can reduce usual strength', '1D P 1S', '2H', '六张以上好长套可按套质'],
   ])('%s', (_label, prefix, token, expected) => {
     expect(meaning(prefix, token)).toContain(expected);

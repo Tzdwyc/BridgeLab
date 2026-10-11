@@ -13,6 +13,13 @@ const major = (suit: Suit): boolean => suit === 'H' || suit === 'S';
 /** SAYC-style competitive methods shared by the natural defensive profile. */
 export function chooseCompetitiveCall(obs: BiddingObservation, system: BiddingSystem): Call | undefined {
   const { hcp, lengths, balanced } = evaluateHand(obs.hand);
+  const partnerTechnical = obs.auction.findLastIndex((entry, index) => entry.seat === partnerOf(obs.seat)
+    && isTakeoutDoubleAt(obs.auction, index));
+  if (hcp < 6 && partnerTechnical >= 0
+    && !analyzeAuctionSemantics(obs.auction, obs.seat, system).mustBid
+    && !obs.auction.some(entry => entry.seat === obs.seat && entry.call.kind === 'bid')
+    && obs.auction.slice(partnerTechnical + 1).some(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+      && entry.call.kind === 'bid')) return PASS;
   const available = (call: Call) => obs.legalCalls.some(legal => sameCall(legal, call));
   const cheapest = (strain: Strain): Bid | undefined => {
     for (let level = 1; level <= 7; level++) if (available(bid(level, strain))) return bid(level, strain);
@@ -997,4 +1004,10 @@ export function chooseCompetitiveCall(obs: BiddingObservation, system: BiddingSy
           : trumpRanks.includes(12) ? 1.5 : 1 : trumpRanks.includes(13)
             ? trumpRanks.includes(12) ? 1 : trumpRanks.length >= 2 ? 0.5 : 0 : 0;
         const defensiveTricks = quickTricks() + Math.max(0, topTrumpRun - trumpQuickTricks);
-        if (lengths[trump] >= 4 && t
+        if (lengths[trump] >= 4 && topTrumpHonors >= 2 && hasTopTrump
+          && hcp >= threshold && defensiveTricks >= requiredQuickTricks) return { kind: 'double' };
+      }
+    }
+  }
+  return undefined;
+}

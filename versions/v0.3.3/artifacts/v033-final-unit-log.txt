@@ -1,0 +1,484 @@
+
+> bridgelab@0.3.3 test
+> vitest run
+
+
+ RUN  v3.2.7 H:/Projects/Bridge/versions/v0.3.3
+
+ ✓ tests/bidding-v03-fit-rkcb.test.ts (73 tests) 85ms
+ ❯ tests/bidding-v032-foundations.test.ts (78 tests | 4 failed) 144ms
+   ✓ v0.3.2 reviewed public-context foundations > 2600/9 forced 2NT gives no guaranteed eighteen-point floor 13ms
+   ✓ v0.3.2 reviewed public-context foundations > 2623/3 thirteen-plus real six-card clubs cannot disappear over a weak jump 2ms
+   ✓ v0.3.2 reviewed public-context foundations > 3993/8 strong opener jumps in the actual four-card second suit 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 3993/10 balanced passed hand chooses NT rather than guessing spade support 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2600 fresh strong jump six spades plus two-card support place game 1ms
+   ✓ v0.3.2 reviewed public-context foundations > forced three spades over three hearts does not promise sixteen 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2631 eleven-point six hearts remain an invitation 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2631 twelve-point six hearts remain an invitation 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 3867 fifteen-point balancing hand cannot misuse eleven-fourteen NT 1ms
+   ✓ v0.3.2 reviewed public-context foundations > balancing fourteen balanced with a club stop can use 1NT 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2687 strong actual second suit survives enemy free intervention 1ms
+   × v0.3.2 reviewed public-context foundations > 3916 strong opener describes four hearts after opposing takeout and spade answer 14ms
+     → expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'bid', level: 2, strain: 'H' }
+   × v0.3.2 reviewed public-context foundations > seventeen-point reverse retains four hearts after opposing takeout 3ms
+     → expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'bid', level: 2, strain: 'H' }
+   ✓ v0.3.2 reviewed public-context foundations > 2694 negative-double hand knows game after natural minor repeat 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2720 invitation retains the four-card fit shown by negative double 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 7010 waiting diamonds cannot manufacture a phantom game fit 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 3832 natural NT game ends the weak opener initial-response feature route 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 374/5 support points survive raw four HCP 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 494/5 five hearts and two short suits support 0ms
+   ✓ v0.3.2 reviewed public-context foundations > 507/6 constructive three-card overcall support 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 518/7 twenty-one and seven hearts show game 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 426/5 strong jump shift instead of minimum six hearts 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 355/8 ten HCP and the public four-card spade fit invite 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 436/8 thirteen-plus unbalanced responder describes six diamonds 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 480/7 nineteen unbalanced points cannot conceal extras in 1NT 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 491/7 reverse plus twelve points describes four spades 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2628/6 strong opener jump shifts with nineteen 2ms
+   ✓ v0.3.2 reviewed public-context foundations > 2631/7 six-card hearts and game values continue 5ms
+   ✓ v0.3.2 reviewed public-context foundations > 2641/8 six spades and a void place game opposite public two-card balanced support 4ms
+   ✓ v0.3.2 reviewed public-context foundations > 2641 manual invitation is accepted by maximum balanced opener with two spades 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2631 manual heart invitation accepted with genuine six-two fit and support points 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2668 minor invitation is declined below the revised public game threshold 7ms
+   ✓ v0.3.2 reviewed public-context foundations > 2680 minimum club raise after enemy heart advance does not invent ten invitation points 3ms
+   ✓ v0.3.2 reviewed public-context foundations > thirteen-point minor opener declines invitation below twenty-eight support points 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2687 strong jump force survives subsequent enemy natural heart bid 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2687 responder has real eight-club fit with strong-jump original minor minimum four 1ms
+   ✓ v0.3.2 reviewed public-context foundations > forced lowest two spades over enemy two hearts does not manufacture a nineteen-point game force 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2695 minimum balanced opener escapes a passed-hand natural club response with poor fit 1ms
+   ✓ v0.3.2 reviewed public-context foundations > passed-hand natural club response opposite strong balanced opener reaches NT game 0ms
+   ✓ v0.3.2 reviewed public-context foundations > 2686/8 confirmed eight hearts and support points place game 1ms
+   ✓ v0.3.2 reviewed public-context foundations > 2688/6 negative double plus eighteen six-card hearts shows extras 0ms
+   ✓ v0.3.2 reviewed public-context foundations > 2632/8 low-card support cannot supply phantom HCP for NT 0ms
+   ✓ v0.3.2 reviewed public-context foundations > minimum six-heart rebid opposite weak two hearts may stop 9ms
+   ✓ v0.3.2 reviewed public-context foundations > minimum second suit with a weak two-heart false preference 1ms
+   ✓ v0.3.2 reviewed public-context foundations > seven-card heart preference does not imply game 1ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: 2727/6 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: 2737/5 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: 2748/6 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: spade transfer doubled 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: heart transfer doubled 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: Stayman doubled with hearts 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: Stayman doubled denying a major 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: 2NT heart transfer doubled 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: 2NT spade transfer doubled 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: 2NT Stayman doubled denial 0ms
+   ✓ v0.3.2 reviewed public-context foundations > answers artificial NT request before strength shortcuts: strong 2C natural NT platform transfer doubled 0ms
+   ✓ v0.3.2 reviewed public-context foundations > describes real strength and suits: 7010 seven clubs cannot masquerade as a second negative 1ms
+   ✓ v0.3.2 reviewed public-context foundations > describes real strength and suits: four-point five clubs are positive after strong natural spades 1ms
+   ✓ v0.3.2 reviewed public-context foundations > describes real strength and suits: natural diamonds avoid the reserved second negative over 3C 1ms
+   ✓ v0.3.2 reviewed public-context foundations > describes real strength and suits: 3832 five unsupported spades do not justify a spade game 1ms
+   ✓ v0.3.2 reviewed public-context foundations > describes real strength and suits: 3887 strong minor and full side stops show game rather than minimum 0ms
+   ✓ v0.3.2 reviewed public-context foundations > describes real strength and suits: 2635 strong doubler shows five spades and three-card support accepts 0ms
+   ✓ v0.3.2 reviewed public-context foundations > a weak six-card spade suit is described before a two-heart preference 1ms
+   ✓ v0.3.2 reviewed public-context foundations > keeps an established eight-card club fit above a five-two heart preference 1ms
+   ✓ v0.3.2 reviewed public-context foundations > invites with two hearts rather than pretending ten points are a weak preference 1ms
+   ✓ v0.3.2 reviewed public-context foundations > does not jump-raise a repeated major when responder is void in it 1ms
+   × v0.3.2 reviewed public-context foundations > recognizes a public six-card major fit before giving a minimum invitation 3ms
+     → expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'bid', level: 3, strain: 'H' }
+   ✓ v0.3.2 reviewed public-context foundations > places game after a simple major raise when the public floor already suffices 19ms
+   × v0.3.2 reviewed public-context foundations > shows an invitation after a minimum original-minor rebid with a true fit 3ms
+     → expected { kind: 'bid', level: 2, strain: 'H' } to deeply equal { kind: 'bid', level: 3, strain: 'C' }
+   ✓ v0.3.2 reviewed public-context foundations > a reverse plus twelve balanced points reaches game without assuming partner actual cards 1ms
+   ✓ v0.3.2 reviewed public-context foundations > minor-opening balanced range: KQ7.AJ4.9762.J53 -> 2NT 1ms
+   ✓ v0.3.2 reviewed public-context foundations > minor-opening balanced range: KQ7.AJ4.T762.Q53 -> 2NT 1ms
+   ✓ v0.3.2 reviewed public-context foundations > minor-opening balanced range: KQ7.AJ4.Q762.J53 -> 3NT 1ms
+   ✓ v0.3.2 reviewed public-context foundations > minor-opening balanced range: KQ7.AJ4.K762.J53 -> 3NT 13ms
+   ✓ v0.3.2 reviewed public-context foundations > minor-opening balanced range: KQ7.AJ4.A762.J53 -> 3NT 0ms
+   ✓ v0.3.2 reviewed public-context foundations > minor-opening balanced range: KQ7.AJ4.97.AJT85 -> 3NT 0ms
+   ✓ v0.3.2 reviewed public-context foundations > a twelve-point Rule20 opener can decline the new 11–12 2NT invitation 0ms
+   ✓ v0.3.2 reviewed public-context foundations > fourteen raw points accept the 11–12 2NT invitation 0ms
+ ✓ tests/bidding-v03-sayc-competition.test.ts (31 tests) 137ms
+ ✓ tests/deal-editor.test.ts (3 tests) 44ms
+ ❯ tests/bidding-model-findings.test.ts (30 tests | 1 failed) 143ms
+   ✓ model-reviewed systemic findings > does not forget the game force after a positive response to a strong suit rebid 23ms
+   ✓ model-reviewed systemic findings > does not treat artificial Unusual 2NT as a natural NT transfer platform 6ms
+   ✓ model-reviewed systemic findings > shows strong point ranges after a negative double rather than rebidding cheap NT 2ms
+   ✓ model-reviewed systemic findings > accepts a late public 18-19 NT invitation with ten points 1ms
+   ✓ model-reviewed systemic findings > chooses the available major game rather than cueing past it after a preempt double 2ms
+   ✓ model-reviewed systemic findings > continues a constructive passed-hand 2-level response with a 21-point opener 2ms
+   ✓ model-reviewed systemic findings > does not abandon a 23-point takeout double after a weak suit response to a preempt 2ms
+   ✓ model-reviewed systemic findings > balances over a preempt with a strong hand rather than silently passing 1ms
+   ✓ model-reviewed systemic findings > uses an artificial second negative rather than showing a three-card suit after strong 3D 2ms
+   ✓ model-reviewed systemic findings > rebids the original minor after the second negative without inventing a fit 4ms
+   ✓ model-reviewed systemic findings > explains a second negative as artificial rather than natural diamonds 5ms
+   ✓ model-reviewed systemic findings > does not cue the enemy diamond suit with a weak free advancer 2ms
+   ✓ model-reviewed systemic findings > answers a doubled Michaels inquiry with the real five-card minor 1ms
+   ✓ model-reviewed systemic findings > answers a forcing overcall cue even when opener doubles it 9ms
+   ✓ model-reviewed systemic findings > does not describe an enemy second suit as its own natural second suit 1ms
+   ✓ model-reviewed systemic findings > uses a transfer for a weak five-card major after a 1NT overcall 1ms
+   ✓ model-reviewed systemic findings > uses a low-minor relay rather than pretending a weak club hand is Stayman 1ms
+   ✓ model-reviewed systemic findings > records the NT-overcall transfer as an artificial forcing obligation 1ms
+   ✓ model-reviewed systemic findings > does not mistake strong 2C and Stayman 3C for a club fit 1ms
+   ✓ model-reviewed systemic findings > does not ask keycards with three points after finding a heart fit 1ms
+   ✓ model-reviewed systemic findings > stops after game with seven points opposite a strong NT transfer sequence 2ms
+   ✓ model-reviewed systemic findings > accepts a late 2NT invitation with a 19-point 5-4 opener 1ms
+   ✓ model-reviewed systemic findings > does not invite rather than force game with seventeen points 1ms
+   ✓ model-reviewed systemic findings > continues to game after a fourth-suit answer with eighteen points 1ms
+   × model-reviewed systemic findings > shows the extras instead of passing a minimum response to a reverse 32ms
+     → expected { kind: 'bid', level: 3, strain: 'H' } to deeply equal { kind: 'bid', level: 3, strain: 'NT' }
+   ✓ model-reviewed systemic findings > continues naturally after a weak jump when the opener has 21 points 2ms
+   ✓ model-reviewed systemic findings > distinguishes a direct takeout double from a later negative double 1ms
+   ✓ model-reviewed systemic findings > explains a two-card false preference as a nonforcing preference 32ms
+   ✓ model-reviewed systemic findings > explains a direct NT-overcall transfer by its target suit 3ms
+   ✓ model-reviewed systemic findings > does not invent four-card NT support in a natural NT raise explanation 1ms
+ ❯ tests/bidding-chat-review.test.ts (68 tests | 4 failed) 169ms
+   ✓ chat GPT step reviews: routing and explanatory roles > retains a real major invitation and its acceptance in a longer sequence (6956) 21ms
+   ✓ chat GPT step reviews: routing and explanatory roles > shows equal four-card majors in ascending order and avoids fictitious strength (244/3625) 2ms
+   ✓ chat GPT step reviews: routing and explanatory roles > retains the public NT range after a major search for a quantitative invitation (3616) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not leap to minor game on a weak two with only thirteen high-card points (3622) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > continues a six-card strong major after partner returns to the three-level preempt (229) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > continues descriptively when takeout jump support is below the minor-game threshold (3633) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not issue a takeout double with five enemy trumps and no unbid long suit (3634) 2ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not overcall at the two level on five small cards (6931) 1ms
+   × chat GPT step reviews: routing and explanatory roles > keeps constructive support when opponents raise before advancer acts (6917/6981) 22ms
+     → expected { kind: 'bid', level: 4, strain: 'H' } to deeply equal { kind: 'bid', level: 4, strain: 'D' }
+   ✓ chat GPT step reviews: routing and explanatory roles > shows a usable one-level major after a low-minor overcall (3690) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > reaches game with a strong stopped six-card minor instead of a minimum or invitation (244) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > preserves invitations and shape after an original major rebid (150/163/3545) 8ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers the natural second suit while keeping its one-round force (150) 3ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not force a minimum opener to overcall NT after an intervening NT bid (6903) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses real fit points and escapes a negative-double misfit (3564/6923) 7ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not invent a minor fit after a takeout double (194) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a weak-jump feature inquiry rather than treating 2NT as natural (6888) 6ms
+   ✓ chat GPT step reviews: routing and explanatory roles > continues a strong semi-forcing-NT opener jump shift with a real long major (3583) 2ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not promise six cards when a strong opener repeats after a second negative (93) 6ms
+   ✓ chat GPT step reviews: routing and explanatory roles > describes forced NT after a negative double without inventing jump strength (6802) 2ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers balancing Stayman and accepts a transfer before judging a final contract (6681/3538) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses stopped NT or a real strong side suit when opener reenters competition (3387/6797) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not reopen naturally in a suit already shown by either opponent (3514) 7ms
+   ✓ chat GPT step reviews: routing and explanatory roles > prefers a known long-major fit after a minimum NT rebid (6862) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > keeps constructive natural continuations after earlier interference (3480) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses a forcing major inquiry after NT interference with four-four majors (6872) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a first takeout double after an enemy semi-forcing NT sequence (135) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > accepts a real game based on partner redouble values (3382) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > continues an overcall with extras and a real raised major fit (3404) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a free one-level new suit after a real overcall (83/97) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not leave a later artificial enemy-suit cue as the contract (6779) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not replace partner game with an unsupported long side suit (6754) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > never asks for a trump queen it holds after 1430 (3455) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses an actual long suit over a weak two when takeout shape is absent (3451) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > responds to a negative double with a real side suit or stopped NT (3461/6802) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses the confirmed heart fit and void points after a minimum NT rebid (6679) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > raises opener four-card second major rather than passing (3379) 1ms
+   × chat GPT step reviews: routing and explanatory roles > invites or reaches NT game after an original-suit rebid (6770) 2ms
+     → expected { kind: 'bid', level: 2, strain: 'S' } to deeply equal { kind: 'bid', level: 2, strain: 'NT' }
+   ✓ chat GPT step reviews: routing and explanatory roles > uses fourth-suit forcing for an unlimited strong unbalanced responder (64) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > shows reverse strength before concealing it in the original suit (3439) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > retains an opener jump-shift game force in a longer sequence (3397) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > continues a constructive misfit after a one-level second suit (6747) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses a genuine club lead double of an artificial support cue, rather than treating it as penalty (6702) 1ms
+   × chat GPT step reviews: routing and explanatory roles > continues a strong long opener suit after a nonforcing response to a double (3408) 2ms
+     → expected { kind: 'bid', level: 2, strain: 'S' } to deeply equal { kind: 'bid', level: 3, strain: 'S' }
+   ✓ chat GPT step reviews: routing and explanatory roles > can compete again with a good seven-card major despite a semi-forcing NT response (6720) 7ms
+   ✓ chat GPT step reviews: routing and explanatory roles > uses the balancing NT range when choosing Stayman or an invitation (6681) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a one-level free response after a double (6735) 1ms
+   × chat GPT step reviews: routing and explanatory roles > reaches game after a negative double finds a real major fit (6745) 2ms
+     → expected { kind: 'bid', level: 2, strain: 'H' } to deeply equal { kind: 'bid', level: 4, strain: 'S' }
+   ✓ chat GPT step reviews: routing and explanatory roles > invites after a minimum NT reply to a negative double (3389) 2ms
+   ✓ chat GPT step reviews: routing and explanatory roles > shows a strong two-suited opener via a jump shift (3397) 11ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not turn a natural weak correction after semi-forcing NT into Stayman (43) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a free natural new suit rather than passing (6713) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > responds naturally with a stopper after an overcall (6667) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not call an enemy previously bid major as a natural overcall (3374) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not apply negative doubles to the overcalling side (6698) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > shows the long major naturally rather than using a negative double (3371) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > invites with eleven support points and avoids an unsupported artificial enemy cue (3391) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > responds in the longer major with five spades and four hearts (3392) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > shows an invitational long minor before choosing a weak preference (3376) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > escapes a void in the rebid major with a six-card side suit (3361) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not label a delayed support cue as Michaels (6702) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers Stayman before evaluating a final game contract (3333) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > accepts a transfer with a minimum NT opener (5) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > does not turn a two-card preference into an eight-card fit (2) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a balancing takeout double over a three-level preempt (3352) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > answers a takeout double of a raised suit (3339) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > explains an own doubled contract without attributing it to partner (1) 1ms
+   ✓ chat GPT step reviews: routing and explanatory roles > describes Jacoby shortness and the agreed major (3342) 1ms
+ ✓ tests/analysis.test.ts (15 tests) 202ms
+ ✓ tests/bidding-v03-threshold-matrix.test.ts (192 tests) 199ms
+ ✓ tests/play-sampler.test.ts (4 tests) 124ms
+ ✓ tests/bidding-v031-long-repairs.test.ts (94 tests) 166ms
+ ✓ tests/play-advisor-controller.test.ts (5 tests) 153ms
+ ✓ tests/play-advisor-dds.test.ts (1 test) 233ms
+ ✓ tests/third-hand.test.ts (168 tests) 557ms
+ ✓ tests/ai-persistence.test.ts (21 tests) 2065ms
+   ✓ restricted observations and basic AI > never returns an illegal call or card across complete live games  1985ms
+ ✓ tests/bidding-v031-double-audit.test.ts (6 tests) 891ms
+   ✓ v0.3.1 SAYC double classification and penalty safety > audits more than one thousand non-penalty shapes and never doubles without four trumps or minimum strength  847ms
+ ✓ tests/core.test.ts (75 tests) 64ms
+ ❯ tests/bidding-v03-semantics.test.ts (25 tests | 1 failed) 114ms
+   ✓ v0.3 public auction semantics > returns to opener's five-card major after 1M-1NT when the second suit is a singleton 22ms
+   ✓ v0.3 public auction semantics > uses false preference across 1'H'-1NT-2'C' families 1ms
+   ✓ v0.3 public auction semantics > uses false preference across 1'H'-1NT-2'D' families 1ms
+   ✓ v0.3 public auction semantics > uses false preference across 1'S'-1NT-2'C' families 3ms
+   ✓ v0.3 public auction semantics > uses false preference across 1'S'-1NT-2'D' families 1ms
+   ✓ v0.3 public auction semantics > uses false preference across 1'S'-1NT-2'H' families 1ms
+   ✓ v0.3 public auction semantics > 'sayc' gives a two-card heart preference after 1H-1S-2'C' with 6 HCP and no minor fit 1ms
+   ✓ v0.3 public auction semantics > 'sayc' gives a two-card heart preference after 1H-1S-2'C' with 9 HCP and no minor fit 1ms
+   ✓ v0.3 public auction semantics > 'sayc' gives a two-card heart preference after 1H-1S-2'D' with 8 HCP and no minor fit 1ms
+   ✓ v0.3 public auction semantics > 'two-over-one' gives a two-card heart preference after 1H-1S-2'C' with 9 HCP and no minor fit 1ms
+   ✓ v0.3 public auction semantics > 'two-over-one' gives a two-card heart preference after 1H-1S-2'D' with 7 HCP and no minor fit 3ms
+   ✓ v0.3 public auction semantics > uses the fourth suit with the reported 11-HCP shape instead of passing opener's 2C rebid 2ms
+   × v0.3 public auction semantics > passes a weak hand with a real four-card fit for opener's low rebid 16ms
+     → expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'pass' }
+   ✓ v0.3 public auction semantics > invites in NT with a balanced ten points without assuming opener has four diamonds 2ms
+   ✓ v0.3 public auction semantics > uses the 18-19 opener rebid range: the reported 8-HCP hand raises 2NT to 3NT 1ms
+   ✓ v0.3 public auction semantics > keeps a strong 2C suit sequence forcing through the artificial 3C second negative 2ms
+   ✓ v0.3 public auction semantics > does not use Stayman over 2NT below game, and never passes the artificial 3D answer 10ms
+   ✓ v0.3 public auction semantics > restores the natural 1C-1D response 4ms
+   ✓ v0.3 public auction semantics > keeps a strong-club response forcing through interference without raising artificial clubs 26ms
+   ✓ v0.3 public auction semantics > requires extras for a reverse but permits the same 2H rebid with 17 HCP 3ms
+   ✓ v0.3 public auction semantics > never treats the opponents suit as a natural five-card overcall 1ms
+   ✓ v0.3 public auction semantics > uses the latest no-trump rebid range for quantitative 4NT 2ms
+   ✓ v0.3 public auction semantics > makes a descriptive 3D raise rather than leaping to 5D in a 2/1 game force 1ms
+   ✓ v0.3 public auction semantics > answers fourth-suit and new-minor forces instead of passing 2ms
+   ✓ v0.3 public auction semantics > continues after every precision 2D shape answer instead of stopping in an artificial strain 2ms
+ ✓ tests/bidding-v031-explanations.test.ts (18 tests) 308ms
+ ✓ tests/bidding-v033-postfix-core.test.ts (68 tests) 89ms
+ ✓ tests/bidding-v03-takeout-nt.test.ts (13 tests) 36ms
+ ✓ tests/bidding-v03-game-slam.test.ts (37 tests) 36ms
+ ✓ tests/bidding-v033-core.test.ts (32 tests) 47ms
+ ✓ tests/bidding-v033-competition.test.ts (27 tests) 45ms
+ ✓ tests/bidding-v032-meanings.test.ts (88 tests) 49ms
+ ✓ tests/bidding-v032-competition.test.ts (28 tests) 56ms
+ ✓ tests/bidding-v033-meanings.test.ts (70 tests) 40ms
+ ✓ tests/version-isolation.test.ts (2 tests) 8ms
+ ✓ tests/bidding-v033-rkcb-interference.test.ts (11 tests) 28ms
+ ✓ tests/play-v03-safety.test.ts (22 tests) 8ms
+ ✓ tests/claim.test.ts (4 tests) 10ms
+ ✓ tests/bidding-notices.test.ts (4 tests) 5ms
+ ✓ tests/dds.test.ts (8 tests) 5072ms
+   ✓ CalcDDtablePBN matches all three official DDS fixed matrices with semantic seat and strain axes  1726ms
+   ✓ WASM CalcDDtablePBN agrees with 20 independent official native SolveBoardPBN calls  1609ms
+   ✓ 20 fixed WASM positions match independent official native DDS 2.9.0  533ms
+   ✓ 53-point AnalysePlay trace agrees with per-position solving including the last forced card  1024ms
+stdout | tests/stability.test.ts > 1,000 seeded random automatic boards: legal, unique, finite, correctly scored
+{"boards":1000,"completed":972,"passedOut":28,"actions":59511,"plays":50544,"maxActions":77,"aiFallbacks":0,"contracts":{"C":116,"D":116,"H":228,"S":285,"NT":227},"declarers":{"N":248,"E":236,"S":263,"W":225},"passed":true,"seedPattern":"BridgeLab-stability-v1-{1..1000}","elapsedMs":23209,"executedAt":"2026-10-11T01:54:18.047Z"}
+
+ ✓ tests/stability.test.ts (1 test) 23220ms
+   ✓ 1,000 seeded random automatic boards: legal, unique, finite, correctly scored  23218ms
+ ✓ tests/bidding-systems.test.ts (65 tests) 46618ms
+   ✓ 500 seeded complete boards per active system remain legal, finite, private and correctly owned  46531ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bidding-chat-review.test.ts > chat GPT step reviews: routing and explanatory roles > keeps constructive support when opponents raise before advancer acts (6917/6981)
+AssertionError: expected { kind: 'bid', level: 4, strain: 'H' } to deeply equal { kind: 'bid', level: 4, strain: 'D' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+    "level": 4,
+-   "strain": "D",
++   "strain": "H",
+  }
+
+ ❯ tests/bidding-chat-review.test.ts:55:54
+     53|   it('keeps constructive support when opponents raise before advancer …
+     54|     expect(decision('P P P 1S 2D 2S', 'Q87.Q92.K942.A76')).toEqual(b(3…
+     55|     expect(decision('2H 3D 3H', 'AK93.T9.K732.K87')).toEqual(b(4, 'D')…
+       |                                                      ^
+     56|   });
+     57|   it('shows a usable one-level major after a low-minor overcall (3690)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/bidding-chat-review.test.ts > chat GPT step reviews: routing and explanatory roles > invites or reaches NT game after an original-suit rebid (6770)
+AssertionError: expected { kind: 'bid', level: 2, strain: 'S' } to deeply equal { kind: 'bid', level: 2, strain: 'NT' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+    "level": 2,
+-   "strain": "NT",
++   "strain": "S",
+  }
+
+ ❯ tests/bidding-chat-review.test.ts:158:62
+    156|   });
+    157|   it('invites or reaches NT game after an original-suit rebid (6770)',…
+    158|     expect(decision('P 1D P 1H P 2D P', 'A842.Q762.KJ.Q54')).toEqual(b…
+       |                                                              ^
+    159|   });
+    160|   it('uses fourth-suit forcing for an unlimited strong unbalanced resp…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/bidding-chat-review.test.ts > chat GPT step reviews: routing and explanatory roles > continues a strong long opener suit after a nonforcing response to a double (3408)
+AssertionError: expected { kind: 'bid', level: 2, strain: 'S' } to deeply equal { kind: 'bid', level: 3, strain: 'S' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+-   "level": 3,
++   "level": 2,
+    "strain": "S",
+  }
+
+ ❯ tests/bidding-chat-review.test.ts:179:57
+    177|   });
+    178|   it('continues a strong long opener suit after a nonforcing response …
+    179|     expect(decision('P 1S X 2H P', 'AKQJ85.J7.K2.A98')).toEqual(b(3, '…
+       |                                                         ^
+    180|     const obs = position('1S X', 'Q5.KQT987.763.52');
+    181|     expect(describeCall(obs.auction, obs.seat, b(2, 'H'), 'sayc')).toC…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/bidding-chat-review.test.ts > chat GPT step reviews: routing and explanatory roles > reaches game after a negative double finds a real major fit (6745)
+AssertionError: expected { kind: 'bid', level: 2, strain: 'H' } to deeply equal { kind: 'bid', level: 4, strain: 'S' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+-   "level": 4,
+-   "strain": "S",
++   "level": 2,
++   "strain": "H",
+  }
+
+ ❯ tests/bidding-chat-review.test.ts:193:62
+    191|   });
+    192|   it('reaches game after a negative double finds a real major fit (674…
+    193|     expect(decision('P 1D 1H X P 1S P', 'KQT9.J85.J7.AQ86')).toEqual(b…
+       |                                                              ^
+    194|   });
+    195|   it('invites after a minimum NT reply to a negative double (3389)', (…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/bidding-model-findings.test.ts > model-reviewed systemic findings > shows the extras instead of passing a minimum response to a reverse
+AssertionError: expected { kind: 'bid', level: 3, strain: 'H' } to deeply equal { kind: 'bid', level: 3, strain: 'NT' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+    "level": 3,
+-   "strain": "NT",
++   "strain": "H",
+  }
+
+ ❯ tests/bidding-model-findings.test.ts:114:65
+    112|   });
+    113|   it('shows the extras instead of passing a minimum response to a reve…
+    114|     expect(decision('1C P 1S P 2H P 2S P', '8.AKJ6.K62.AKQJ8')).toEqua…
+       |                                                                 ^
+    115|   });
+    116|   it('continues naturally after a weak jump when the opener has 21 poi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/bidding-v03-semantics.test.ts > v0.3 public auction semantics > passes a weak hand with a real four-card fit for opener's low rebid
+AssertionError: expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'pass' }
+
+- Expected
++ Received
+
+  {
+-   "kind": "pass",
++   "kind": "bid",
++   "level": 3,
++   "strain": "D",
+  }
+
+ ❯ tests/bidding-v03-semantics.test.ts:83:68
+     81|   it('passes a weak hand with a real four-card fit for opener\'s low r…
+     82|     const calls = [bid(1, 'H'), PASS, bid(1, 'S'), PASS, bid(2, 'D'), …
+     83|     expect(chooseBid(observation(calls, [5, 2, 4, 2], 8), 'sayc')).toE…
+       |                                                                    ^
+     84|   });
+     85| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/bidding-v032-foundations.test.ts > v0.3.2 reviewed public-context foundations > 3916 strong opener describes four hearts after opposing takeout and spade answer
+ FAIL  tests/bidding-v032-foundations.test.ts > v0.3.2 reviewed public-context foundations > seventeen-point reverse retains four hearts after opposing takeout
+AssertionError: expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'bid', level: 2, strain: 'H' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+-   "level": 2,
+-   "strain": "H",
++   "level": 3,
++   "strain": "D",
+  }
+
+ ❯ tests/bidding-v032-foundations.test.ts:77:36
+     75|   ])('%s', (_name, seat, hand, prefix, expected) => {
+     76|     const obs = position(seat as Seat, hand, prefix);
+     77|     expect(chooseBid(obs, 'sayc')).toEqual(call(expected));
+       |                                    ^
+     78|   });
+     79| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/bidding-v032-foundations.test.ts > v0.3.2 reviewed public-context foundations > recognizes a public six-card major fit before giving a minimum invitation
+AssertionError: expected { kind: 'bid', level: 3, strain: 'D' } to deeply equal { kind: 'bid', level: 3, strain: 'H' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+    "level": 3,
+-   "strain": "H",
++   "strain": "D",
+  }
+
+ ❯ tests/bidding-v032-foundations.test.ts:123:36
+    121|   it('recognizes a public six-card major fit before giving a minimum i…
+    122|     const obs = position('N', 'JT874.43.AKJ9.Q9', 'S:1H W:P N:1S E:P S…
+    123|     expect(chooseBid(obs, 'sayc')).toEqual(bid(3, 'H'));
+       |                                    ^
+    124|   });
+    125|   it('places game after a simple major raise when the public floor alr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/bidding-v032-foundations.test.ts > v0.3.2 reviewed public-context foundations > shows an invitation after a minimum original-minor rebid with a true fit
+AssertionError: expected { kind: 'bid', level: 2, strain: 'H' } to deeply equal { kind: 'bid', level: 3, strain: 'C' }
+
+- Expected
++ Received
+
+  {
+    "kind": "bid",
+-   "level": 3,
+-   "strain": "C",
++   "level": 2,
++   "strain": "H",
+  }
+
+ ❯ tests/bidding-v032-foundations.test.ts:131:36
+    129|   it('shows an invitation after a minimum original-minor rebid with a …
+    130|     const obs = position('S', 'KQ873.AJ54.9.T85', 'N:1C E:P S:1S W:P N…
+    131|     expect(chooseBid(obs, 'sayc')).toEqual(bid(3, 'C'));
+       |                                    ^
+    132|   });
+    133|   it('a reverse plus twelve balanced points reaches game without assum…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+
+ Test Files  4 failed | 30 passed (34)
+      Tests  10 failed | 1377 passed (1387)
+   Start at  09:53:53
+   Duration  48.42s (transform 2.55s, setup 0ms, collect 10.40s, tests 81.17s, environment 8ms, prepare 18.41s)
+
+JSON report written to H:/Projects/Bridge/versions/v0.3.3/artifacts/unit-results.json

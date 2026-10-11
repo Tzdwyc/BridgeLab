@@ -1,0 +1,17 @@
+{
+  "reason": "Carry forward existing seat-integrated table layout; v0.3.2 working folder and its original delivery ZIP are left intact.",
+  "files": [
+    {
+      "file": "src/ui/App.tsx",
+      "sourceSha256": "3c974fbb47557cda44689d3c2eb7e09984dbf433b9a7c1afbabafd3aefce0c4d"
+    },
+    {
+      "file": "src/ui/App.module.css",
+      "sourceSha256": "5ceec4ee74e2984d3e2039e13996f1080e75c4939d958b644eccaeafc154946a"
+    },
+    {
+      "file": "tests/e2e/game.spec.ts",
+      "sourceSha256": "0600b8d54f21436ae5a5ac394d82b00b7e41fc2b40e02fec9c10292d5ccb3960"
+    }
+  ]
+}

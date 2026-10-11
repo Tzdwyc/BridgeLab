@@ -1,0 +1,728 @@
+{
+  "executedAt": "2026-10-11T01:53:58.719Z",
+  "nativeVersion": 20900,
+  "nativeCommit": "8d75755c8df81999557758c9757514edb94017bc",
+  "wasmPackage": "bridge-dds@1.4.0",
+  "cases": [
+    {
+      "fixture": 0,
+      "seed": "dds-fixed-0",
+      "strain": "S",
+      "declarer": "N",
+      "cursor": 0,
+      "partialTrick": 0,
+      "actor": "E",
+      "candidates": [
+        {
+          "cardId": "C3",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "C5",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D14",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D2",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D7",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D9",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H11",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H3",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H4",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H9",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S2",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S7",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S8",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 4,
+      "elapsedMs": 20.513100000000122,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 1,
+      "seed": "dds-fixed-1",
+      "strain": "H",
+      "declarer": "E",
+      "cursor": 1,
+      "partialTrick": 1,
+      "actor": "W",
+      "candidates": [
+        {
+          "cardId": "H3",
+          "declarerTricks": 3,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H13",
+          "declarerTricks": 2,
+          "loss": 1,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 3,
+      "elapsedMs": 30.622199999999793,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 2,
+      "seed": "dds-fixed-2",
+      "strain": "D",
+      "declarer": "S",
+      "cursor": 2,
+      "partialTrick": 2,
+      "actor": "E",
+      "candidates": [
+        {
+          "cardId": "S2",
+          "declarerTricks": 1,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S3",
+          "declarerTricks": 1,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S8",
+          "declarerTricks": 1,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S9",
+          "declarerTricks": 1,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 1,
+      "elapsedMs": 1.1387999999997191,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 3,
+      "seed": "dds-fixed-3",
+      "strain": "C",
+      "declarer": "W",
+      "cursor": 3,
+      "partialTrick": 3,
+      "actor": "W",
+      "candidates": [
+        {
+          "cardId": "D3",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D4",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D6",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D7",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 8,
+      "elapsedMs": 11.833000000000538,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 4,
+      "seed": "dds-fixed-4",
+      "strain": "NT",
+      "declarer": "N",
+      "cursor": 20,
+      "partialTrick": 0,
+      "actor": "N",
+      "candidates": [
+        {
+          "cardId": "C14",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "C5",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D13",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H13",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H5",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H9",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D11",
+          "declarerTricks": 8,
+          "loss": 1,
+          "optimal": false
+        },
+        {
+          "cardId": "D6",
+          "declarerTricks": 8,
+          "loss": 1,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 9,
+      "elapsedMs": 1.636000000000422,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 5,
+      "seed": "dds-fixed-5",
+      "strain": "S",
+      "declarer": "E",
+      "cursor": 21,
+      "partialTrick": 1,
+      "actor": "W",
+      "candidates": [
+        {
+          "cardId": "H12",
+          "declarerTricks": 3,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 3,
+      "elapsedMs": 0.8878000000004249,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 6,
+      "seed": "dds-fixed-6",
+      "strain": "H",
+      "declarer": "S",
+      "cursor": 22,
+      "partialTrick": 2,
+      "actor": "N",
+      "candidates": [
+        {
+          "cardId": "S5",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S6",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S7",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 4,
+      "elapsedMs": 1.2130999999999403,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 7,
+      "seed": "dds-fixed-7",
+      "strain": "D",
+      "declarer": "W",
+      "cursor": 23,
+      "partialTrick": 3,
+      "actor": "S",
+      "candidates": [
+        {
+          "cardId": "D11",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D12",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D4",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D8",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D9",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S10",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S12",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S9",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 4,
+      "elapsedMs": 0.5231000000003405,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 8,
+      "seed": "dds-fixed-8",
+      "strain": "C",
+      "declarer": "N",
+      "cursor": 36,
+      "partialTrick": 0,
+      "actor": "E",
+      "candidates": [
+        {
+          "cardId": "C9",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H12",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D7",
+          "declarerTricks": 10,
+          "loss": 2,
+          "optimal": false
+        },
+        {
+          "cardId": "D8",
+          "declarerTricks": 10,
+          "loss": 2,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 8,
+      "elapsedMs": 1.1152000000001863,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 9,
+      "seed": "dds-fixed-9",
+      "strain": "NT",
+      "declarer": "E",
+      "cursor": 37,
+      "partialTrick": 1,
+      "actor": "E",
+      "candidates": [
+        {
+          "cardId": "C10",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "C3",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "C6",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "C7",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 4,
+      "elapsedMs": 0.5072999999993044,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 10,
+      "seed": "dds-fixed-10",
+      "strain": "S",
+      "declarer": "S",
+      "cursor": 38,
+      "partialTrick": 2,
+      "actor": "W",
+      "candidates": [
+        {
+          "cardId": "D8",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "D9",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H10",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H4",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 4,
+      "elapsedMs": 0.8711999999995896,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 11,
+      "seed": "dds-fixed-11",
+      "strain": "H",
+      "declarer": "W",
+      "cursor": 39,
+      "partialTrick": 3,
+      "actor": "S",
+      "candidates": [
+        {
+          "cardId": "C13",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "C4",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H6",
+          "declarerTricks": 4,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S6",
+          "declarerTricks": 5,
+          "loss": 1,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 4,
+      "elapsedMs": 0.4882999999999811,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 12,
+      "seed": "dds-fixed-12",
+      "strain": "D",
+      "declarer": "N",
+      "cursor": 44,
+      "partialTrick": 0,
+      "actor": "W",
+      "candidates": [
+        {
+          "cardId": "D13",
+          "declarerTricks": 1,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "H11",
+          "declarerTricks": 2,
+          "loss": 1,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 1,
+      "elapsedMs": 0.6570999999994456,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 13,
+      "seed": "dds-fixed-13",
+      "strain": "C",
+      "declarer": "E",
+      "cursor": 45,
+      "partialTrick": 1,
+      "actor": "W",
+      "candidates": [
+        {
+          "cardId": "H5",
+          "declarerTricks": 3,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S14",
+          "declarerTricks": 2,
+          "loss": 1,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 3,
+      "elapsedMs": 0.9110000000000582,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 14,
+      "seed": "dds-fixed-14",
+      "strain": "NT",
+      "declarer": "S",
+      "cursor": 46,
+      "partialTrick": 2,
+      "actor": "S",
+      "candidates": [
+        {
+          "cardId": "S10",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 9,
+      "elapsedMs": 0.4094999999997526,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 15,
+      "seed": "dds-fixed-15",
+      "strain": "S",
+      "declarer": "W",
+      "cursor": 47,
+      "partialTrick": 3,
+      "actor": "S",
+      "candidates": [
+        {
+          "cardId": "H4",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        },
+        {
+          "cardId": "S12",
+          "declarerTricks": 9,
+          "loss": 1,
+          "optimal": false
+        }
+      ],
+      "declarerTricks": 8,
+      "elapsedMs": 0.36569999999937863,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 16,
+      "seed": "dds-fixed-16",
+      "strain": "H",
+      "declarer": "N",
+      "cursor": 48,
+      "partialTrick": 0,
+      "actor": "E",
+      "candidates": [
+        {
+          "cardId": "S6",
+          "declarerTricks": 3,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 3,
+      "elapsedMs": 0.023499999999330612,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 17,
+      "seed": "dds-fixed-17",
+      "strain": "D",
+      "declarer": "E",
+      "cursor": 49,
+      "partialTrick": 1,
+      "actor": "S",
+      "candidates": [
+        {
+          "cardId": "S9",
+          "declarerTricks": 9,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 9,
+      "elapsedMs": 0.016899999999623105,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 18,
+      "seed": "dds-fixed-18",
+      "strain": "C",
+      "declarer": "S",
+      "cursor": 50,
+      "partialTrick": 2,
+      "actor": "N",
+      "candidates": [
+        {
+          "cardId": "D12",
+          "declarerTricks": 7,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 7,
+      "elapsedMs": 0.01569999999992433,
+      "heapBytes": 18939904,
+      "matched": true
+    },
+    {
+      "fixture": 19,
+      "seed": "dds-fixed-19",
+      "strain": "NT",
+      "declarer": "W",
+      "cursor": 51,
+      "partialTrick": 3,
+      "actor": "N",
+      "candidates": [
+        {
+          "cardId": "D13",
+          "declarerTricks": 8,
+          "loss": 0,
+          "optimal": true
+        }
+      ],
+      "declarerTricks": 8,
+      "elapsedMs": 0.01419999999961874,
+      "heapBytes": 18939904,
+      "matched": true
+    }
+  ]
+}

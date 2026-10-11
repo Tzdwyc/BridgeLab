@@ -1,0 +1,33 @@
+Resolving dependencies...
+Downloading packages...
+* async 2.13.1 (was 2.13.1)
+* boolean_selector 2.1.2 (was 2.1.2)
+* characters 1.4.1 (was 1.4.1)
+* clock 1.1.2 (was 1.1.2) (1.1.3 available)
+* collection 1.19.1 (was 1.19.1)
+* fake_async 1.3.3 (was 1.3.3)
+* flutter_lints 6.0.0 (was 6.0.0)
+* leak_tracker 11.0.2 (was 11.0.2)
+* leak_tracker_flutter_testing 3.0.10 (was 3.0.10)
+* leak_tracker_testing 3.0.2 (was 3.0.2)
+* lints 6.1.0 (was 6.1.0)
+* matcher 0.12.19 (was 0.12.19) (0.12.20 available)
+* material_color_utilities 0.13.0 (was 0.13.0) (0.13.1 available)
+* meta 1.17.0 (was 1.17.0) (1.19.0 available)
+* path 1.9.1 (was 1.9.1)
+* plugin_platform_interface 2.1.8 (was 2.1.8)
+* source_span 1.10.2 (was 1.10.2)
+* stack_trace 1.12.1 (was 1.12.1) (1.12.2 available)
+* stream_channel 2.1.4 (was 2.1.4)
+* string_scanner 1.4.1 (was 1.4.1)
+* term_glyph 1.2.2 (was 1.2.2)
+* test_api 0.7.10 (was 0.7.10) (0.7.15 available)
+* vector_math 2.2.0 (was 2.2.0) (2.4.3 available)
+* vm_service 15.3.0 (was 15.3.0)
+* webview_flutter 4.14.1 (was 4.14.1)
+* webview_flutter_android 4.12.0 (was 4.12.0) (4.14.1 available)
+* webview_flutter_platform_interface 2.15.1 (was 2.15.1)
+* webview_flutter_wkwebview 3.25.1 (was 3.25.1) (3.27.0 available)
+Changed 28 dependencies!
+9 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.

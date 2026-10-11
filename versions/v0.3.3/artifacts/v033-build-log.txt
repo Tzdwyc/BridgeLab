@@ -1,0 +1,32 @@
+
+> bridgelab@0.3.3 build
+> node scripts/prepare-dds.mjs && tsc -b && vite build
+
+DDS WASM loader prepared with memory diagnostics
+vite v7.3.7 building client environment for production...
+transforming...
+[plugin vite:resolve] Module "module" has been externalized for browser compatibility, imported by "H:/Projects/Bridge/versions/v0.3.3/src/analysis/vendor/dds.mjs". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin vite:resolve] Module "module" has been externalized for browser compatibility, imported by "H:/Projects/Bridge/versions/v0.3.3/src/analysis/vendor/dds.mjs". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+✓ 72 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/manifest.webmanifest                          0.49 kB
+dist/index.html                                    0.80 kB │ gzip:   0.51 kB
+dist/assets/worker-DuxcIqkF.js                   502.03 kB
+dist/assets/play-advisor-worker-DozMqHBH.js      514.33 kB
+dist/assets/index-DRr4K6_q.css                    68.78 kB │ gzip:  13.90 kB
+dist/assets/workbox-window.prod.es5-BBnX5xw4.js    5.75 kB │ gzip:   2.36 kB
+dist/assets/index-DMd6nNlI.js                    528.50 kB │ gzip: 157.41 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.99s
+
+PWA v1.3.0
+mode      generateSW
+precache  16 entries (1589.97 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-778a14ff.js

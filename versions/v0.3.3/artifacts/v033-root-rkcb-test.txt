@@ -1,0 +1,15 @@
+
+> bridgelab@0.3.3 test
+> vitest run --run tests/bidding-v033-rkcb-interference.test.ts
+
+
+ RUN  v3.2.7 H:/Projects/Bridge/versions/v0.3.3
+
+ ✓ tests/bidding-v033-rkcb-interference.test.ts (7 tests) 11ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  08:53:35
+   Duration  802ms (transform 187ms, setup 0ms, collect 229ms, tests 11ms, environment 0ms, prepare 169ms)
+
+JSON report written to H:/Projects/Bridge/versions/v0.3.3/artifacts/unit-results.json

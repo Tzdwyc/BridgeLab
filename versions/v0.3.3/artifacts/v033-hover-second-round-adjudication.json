@@ -1,0 +1,641 @@
+{
+  "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363",
+  "reviewer": "v033-meanings",
+  "method": "GPT manually classified every meaning-error row from the three frozen reviews. This serializer preserves those decisions; categories are work dispositions, not final correctness verdicts.",
+  "rows": [
+    {
+      "reviewer": "root",
+      "board": 4595,
+      "step": 10,
+      "frozenReason": "Transfer invitation accepted with three trumps; tooltip loses partner five-card promise.",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "root",
+      "board": 4615,
+      "step": 7,
+      "frozenReason": "Four actual diamonds do not meet the five-card public rebid promise; competitive escape needs explicit exception.",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "root",
+      "board": 4692,
+      "step": 8,
+      "frozenReason": "Fourteen-point void-heart technical doubler cannot claim eighteen-plus balanced NT continuation.",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "root",
+      "board": 4696,
+      "step": 12,
+      "frozenReason": "Transfer invitation accepted with confirmed fit; tooltip loses transfer support meaning.",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "root",
+      "board": 4699,
+      "step": 5,
+      "frozenReason": "Nineteen-point opener rebids minimum NT without showing extras or an accurate range.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7196,
+      "step": 5,
+      "frozenReason": "Competitive original five hearts are wrongly described as six.",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "root",
+      "board": 7244,
+      "step": 8,
+      "frozenReason": "Seventeen-point responder weakly returns clubs without retaining game exploration; tooltip incorrectly weak preference.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7250,
+      "step": 7,
+      "frozenReason": "Competitive original five spades are wrongly described as six.",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "root",
+      "board": 7261,
+      "step": 7,
+      "frozenReason": "Eight-point six-heart hand jumps with a ten-to-twelve promise.",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "root",
+      "board": 7265,
+      "step": 9,
+      "frozenReason": "Four-heart eight-point Stayman responder uses undefined three hearts and can create false five-card fit.",
+      "category": "unresolved-route",
+      "adjudication": "Unagreed continuation remains conservatively undefined; chooser must select an agreed route or retain uncertainty."
+    },
+    {
+      "reviewer": "root",
+      "board": 7283,
+      "step": 5,
+      "frozenReason": "Four-four reverse needs equal-length exception instead of claiming original suit always longer.",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "root",
+      "board": 7313,
+      "step": 4,
+      "frozenReason": "Natural NT overcall lacks a club stopper despite both enemy natural suits being shown.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7380,
+      "step": 3,
+      "frozenReason": "Only four clubs opposite public three cannot satisfy five-card limit-raise promise.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7466,
+      "step": 7,
+      "frozenReason": "Strong responder genuine club fit is described as weak preference and can terminate below game.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7519,
+      "step": 8,
+      "frozenReason": "Seven-spade ten-point jump should explicitly describe invitation, not just length.",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "root",
+      "board": 7638,
+      "step": 10,
+      "frozenReason": "Passed-hand natural five-club continuation needs explicit nonforcing meaning, not undefined placeholder.",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "root",
+      "board": 7677,
+      "step": 8,
+      "frozenReason": "Technical-double jump-heart support is wrongly labeled weak jump overcall.",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "root",
+      "board": 7683,
+      "step": 9,
+      "frozenReason": "Transfer invitation accepts confirmed spade fit; tooltip fails to identify support promise.",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "root",
+      "board": 7722,
+      "step": 6,
+      "frozenReason": "Partner two-spade nonjump overcall cannot be labeled weak jump in support hover.",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "root",
+      "board": 7734,
+      "step": 8,
+      "frozenReason": "Strong club-support responder cannot be described and routed as weak preference.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7756,
+      "step": 7,
+      "frozenReason": "Strong genuine club-support response is incorrectly weak preference.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7774,
+      "step": 8,
+      "frozenReason": "Three-point free heart response cannot satisfy six-plus free-advance strength.",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "root",
+      "board": 7777,
+      "step": 10,
+      "frozenReason": "Same-contract RKCB five-heart stop is correct, but hover wrongly disables Pass.",
+      "category": "shared-artificial-fix",
+      "adjudication": "Canonical natural/artificial or forcing state fixed in shared semantics; latest Pass UI replay required."
+    },
+    {
+      "reviewer": "root",
+      "board": 7810,
+      "step": 8,
+      "frozenReason": "Late natural diamond continuation should have a definite natural meaning; point/style boundary needs judgment.",
+      "category": "strength-uncertain",
+      "adjudication": "Natural long-suit role now explicit, but actual strength below usual10+ is a suit-quality judgment; keep uncertain unless a safer generated choice resolves it."
+    },
+    {
+      "reviewer": "core",
+      "board": 554,
+      "step": 8,
+      "frozenReason": "八点四红对未约定3H进局偏积极；前序未承诺四红，不能又按公开四红确认配合。",
+      "category": "unresolved-route",
+      "adjudication": "Unagreed continuation remains conservatively undefined; chooser must select an agreed route or retain uncertainty."
+    },
+    {
+      "reviewer": "core",
+      "board": 583,
+      "step": 7,
+      "frozenReason": "Michaels同伴已示五黑未明低花，自己三黑应3S；4D错误选择未知低花且解释误当自然争叫应叫。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 666,
+      "step": 9,
+      "frozenReason": "十二点方A可2NT答第四花色止张；说明却把最低人工答叫称邀请或额外实力，角色误导。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 672,
+      "step": 4,
+      "frozenReason": "十一点仅三红却最低1H被标零至八，应用有梅止的2NT邀请或合适强回复。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 700,
+      "step": 10,
+      "frozenReason": "公开六黑强跳加八点双梅支持正好25，4S正确；说明却称弱偏好或部分定约。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 723,
+      "step": 6,
+      "frozenReason": "十三点四梅四红不能作17以上竞争逆叫2H；说明还虚构原套更长。",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "core",
+      "board": 726,
+      "step": 4,
+      "frozenReason": "七点七红自然2H可竞争且最低联手NT仅22；说明未约定该自然应叫，不给已采用路线长度范围。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 764,
+      "step": 6,
+      "frozenReason": "四点五方J套对Michaels未知低花不能4D；说明8以上及自然争叫角色也不符合。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 766,
+      "step": 8,
+      "frozenReason": "八点双黑和双方双梅支持值十，面对六黑16最低已26，4S正确；说明弱偏好部分定约错误。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 798,
+      "step": 9,
+      "frozenReason": "十二点方A可2NT回应第四花色；说明错误称邀请或额外实力而非最低止张回答。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 807,
+      "step": 3,
+      "frozenReason": "十二点六方双短门九fit支持值超过十二，3D限制邀请与手力不符，应保持GF或强续叫。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 874,
+      "step": 10,
+      "frozenReason": "十一点五五低花可2NT答第四花色S止；应说明回答人工询问，不是12至21邀请。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 909,
+      "step": 11,
+      "frozenReason": "十七点4441竞争2S逆叫可用，但原方四与黑四等长，说明原套较长忽略4441例外。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 959,
+      "step": 8,
+      "frozenReason": "九点只有三张未叫花色应倾向荣誉好的红或NT探求；1S最低应叫说明0至8低报实点。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 975,
+      "step": 7,
+      "frozenReason": "强2C4441只有四黑，2S自然再叫明示五张不实，仍需4441路线。",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "core",
+      "board": 975,
+      "step": 11,
+      "frozenReason": "同一四黑再叫3S且被解释为五张原高花，仍虚构套长；不应靠最低负应叫解除26点强牌描述。",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "core",
+      "board": 979,
+      "step": 3,
+      "frozenReason": "十二点六方单红双黑九fit有约17支持点，限制10至12的3D低报。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 988,
+      "step": 5,
+      "frozenReason": "十点四方对三方开叫七fit，用3D邀请形状边界可讨论；说明明确五张支持而实有四，不能保留。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 1003,
+      "step": 10,
+      "frozenReason": "2S低花逃叫接力3C后自己六梅四紅，却3H选未知短紅；解释又错误保留回答义务而非低花接力已完成。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 1017,
+      "step": 8,
+      "frozenReason": "Michaels五黑五梅后同伴2S可三张支持，4S分布路线积极但未公开强度；说明反称同伴五黑错误角色。",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "core",
+      "board": 1077,
+      "step": 9,
+      "frozenReason": "十六点三紅对转移2NT邀请确认八fit且双方，4H正确；说明却把它当原套重述而非确认转移五红配合。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 1095,
+      "step": 9,
+      "frozenReason": "二十七点五红强套对二次负仅3H并称最低限解除进局义务，明显隐瞒强度，应至少进局继续描述。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "core",
+      "board": 1105,
+      "step": 11,
+      "frozenReason": "十四点四黑对竞争2S支持，敌3H后3S竞争合理；说明错当自己支持开叫人的应叫方10至12邀请，角色颠倒。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 1113,
+      "step": 7,
+      "frozenReason": "九点四黑单紅应Stayman后2S展示另一高花邀请，叫品修复；说明却未约定长度点力，随后不能把它当五张。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "core",
+      "board": 1131,
+      "step": 6,
+      "frozenReason": "十八点六方、负X公开八点且紅KQ有止，应3NT；3D最低未找到NT说明与真实止张不符。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 1189,
+      "step": 7,
+      "frozenReason": "转移后五S五H展示3H正确；此自然第二高花是成局逼叫，说明不能称不自动建立逼叫。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4072,
+      "step": 10,
+      "frozenReason": "自然强2NT再叫已经解除技术X应答，2点可Pass；禁止Pass的人工状态提示仍错误。",
+      "category": "shared-artificial-fix",
+      "adjudication": "Canonical natural/artificial or forcing state fixed in shared semantics; latest Pass UI replay required."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4082,
+      "step": 9,
+      "frozenReason": "平衡位原技术X下限是9+，不是固定12+；回答cue的五S叫品本身正确。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4102,
+      "step": 8,
+      "frozenReason": "六H十一点跳3H邀请正确；说明只有六张且未写10–12邀请分档，仍遗漏关键强度。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4159,
+      "step": 3,
+      "frozenReason": "11HCP五D两个双张有13支持点，3D可讨论但固定10–12说明不包本手。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4175,
+      "step": 7,
+      "frozenReason": "Michaels最低八点面对被迫2S不知伙伴实力且未保证五S，4S冒进；提示伙伴五S虚构长度。",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4186,
+      "step": 4,
+      "frozenReason": "十八点七D强牌被普通10–16争叫2D低报，需强牌技术X等明确路线。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4198,
+      "step": 12,
+      "frozenReason": "实际12HCP却改叫强NT2NT并写18+，原伪报强新套变成另一种强度伪报。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4227,
+      "step": 7,
+      "frozenReason": "八点四H对五H实际九将，2H可弱支持；说明只能弱二三张偏好并断言5–2，漏掉真实支持。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4229,
+      "step": 7,
+      "frozenReason": "十一点六S3S邀请正确，说明未写邀请实力分档。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4264,
+      "step": 9,
+      "frozenReason": "十二点有C止可被迫答第四花色2NT；12–21范围已改，用途却仍写邀请而非履行询问。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4274,
+      "step": 8,
+      "frozenReason": "十五点在技术X后自由3S却承诺17+五张，叫品与强度仍不符。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4323,
+      "step": 10,
+      "frozenReason": "两S对六S确认八将，八点加H单张有10支持点，4S接受正确；hover仍称弱部分定约错误。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4330,
+      "step": 7,
+      "frozenReason": "十二点两H对公开六H确认八将，S双张加1使25支持点下限，可4H；hover仍称弱部分定约错误。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4344,
+      "step": 4,
+      "frozenReason": "十七点七H强手仍普通2H并描述10–16，强牌路线和范围冲突未修。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4350,
+      "step": 10,
+      "frozenReason": "十七点五D有C AK止可2NT回答第四花色，精确强范围已撤；用途仍误写自愿邀请。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4398,
+      "step": 6,
+      "frozenReason": "十点只有四C对开叫三C未八将，3C要求五支持的邀请不符合本手。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4424,
+      "step": 6,
+      "frozenReason": "仅三S对一盖一四S七配，却2S要求四张支持，原虚造支持尚存。",
+      "category": "shared-length-fix",
+      "adjudication": "Conservative public minimum must come from shared semantics; chooser and hover both need to agree before replay can clear."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4444,
+      "step": 8,
+      "frozenReason": "十一点五D对三D八配加C单张14支持点，应邀请；hover断言未确认八配也不实。",
+      "category": "call-and-hover",
+      "adjudication": "Hover common-role fix supplied; original actual hand conflicts with advertised choice or current call changed, so core decision replay is required."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4445,
+      "step": 6,
+      "frozenReason": "五点四H对五H九将有六支持点可3H竞争；原2H是非跳争叫而非弱跳，hover仍错。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4478,
+      "step": 7,
+      "frozenReason": "实际五C对开叫三C确认八配，2C可弱支持；hover断言未确认八将仍不实。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4487,
+      "step": 8,
+      "frozenReason": "十二点七H KQJT应3H邀请，说明仍缺10–12邀请强度。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4530,
+      "step": 4,
+      "frozenReason": "八点六S自由二阶新套不到10+，叫品与hover10+F1范围冲突未修。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4534,
+      "step": 9,
+      "frozenReason": "十六点双五且D A止可2NT强迫答第四花色，不能只写邀请用途；原18–19错误范围已撤。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4542,
+      "step": 7,
+      "frozenReason": "十点七S AKQT应3S邀请，说明只有六张未给邀请实力分档。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4559,
+      "step": 7,
+      "frozenReason": "实际20HCP而hover固定18–19，叫3NT合理但上限说明仍漏20–21。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4578,
+      "step": 7,
+      "frozenReason": "十一点六H强套3H邀请合理，说明缺10–12邀请强度与长套价值。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4579,
+      "step": 7,
+      "frozenReason": "五S五H十四点转移后3H正确；应明确五H及GF，不能称不建立逼叫。",
+      "category": "hover-fixed",
+      "adjudication": "Common public-role wording changed; the frozen source finding still requires latest replay, not assumed cleared."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4581,
+      "step": 7,
+      "frozenReason": "七点六D可描述先前负X显示的低花；说明全称未约定并否认自然长套信息不准确，叫品强度边界保留。",
+      "category": "strength-uncertain",
+      "adjudication": "Natural long-suit role now explicit, but actual strength below usual10+ is a suit-quality judgment; keep uncertain unless a safer generated choice resolves it."
+    },
+    {
+      "reviewer": "competition",
+      "board": 4593,
+      "step": 3,
+      "frozenReason": "八点六H免费2H低于10+F1门槛，叫品与明确实力说明冲突。",
+      "category": "call-dependent",
+      "adjudication": "Public meaning threshold should remain; fix the generated call/fit/strength rather than changing wording to excuse the actual hand."
+    }
+  ],
+  "rowCount": 79,
+  "limitation": "No claim all findings are cleared; latest full-auction replay remains required, and unchanged unseen steps remain outside this review."
+}

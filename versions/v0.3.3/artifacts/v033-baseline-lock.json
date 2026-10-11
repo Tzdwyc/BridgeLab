@@ -1,0 +1,8 @@
+{
+  "file": "v033-baseline-auctions.json",
+  "sha256": "bf048534455c5fd2d5284c29222db42a63afd40e9c60d4289556c1d528a4d1c0",
+  "codeSha256": "a7ee9885b5e92deaaccf691e8c6677692c8a362454f6e73f5ac4822ade1d1472",
+  "boards": 2000,
+  "steps": 18348,
+  "mutableDuringReview": false
+}

@@ -1,0 +1,13 @@
+# BridgeLab current release only
+**/node_modules/
+**/dist/
+**/playwright-report/
+**/test-results/
+**/.dart_tool/
+**/.gradle/
+**/.gradle-home/
+**/.idea/
+**/build/
+**/.git/
+**/*.log
+**/*.tsbuildinfo

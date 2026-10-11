@@ -1,0 +1,371 @@
+564|1|OO|Six points below opening/preempt criteria; opening Pass meaning accurate.
+564|2|OO|Fifteen HCP and six hearts support natural one-heart opening.
+564|3|OO|Twelve HCP, heart void and 4-6-3 unbid support permit technical double.
+564|4|OO|Seven HCP and six spades permit natural response after double; F1 is accurate for unpassed hand.
+564|5|OO|Six HCP and five clubs meet free natural advance, not a zero-point compulsory answer.
+564|6|OO|Six-heart opener competes naturally; conservative public five-card repeat is accurate.
+564|7|OO|Twelve-point doubler need not compete again above opponent two hearts.
+564|8|OO|Seven-point six-spade responder naturally repeats; conservative competitive five-card description is valid.
+564|9|OO|Six-point advancer declines further competition over two spades.
+564|10|OO|Opener may accept partner's nonforcing spade partscore; no continuing force.
+564|11|OO|Doubler may leave the opposing natural partscore; no pending response.
+569|1|OO|Nine points and no preempt suit support opening Pass.
+569|2|OO|Ten points and four-card longest suits fail Rule of 20; Pass accurate.
+569|3|OO|Twelve plus two four-card suits meets Rule of 20; diamond opening accurate.
+569|4|OO|Five clubs and six hearts meet Unusual two-lowest-unbid-suits convention.
+569|5|OO|Passed nine-point hand need not compete over enemy artificial two-notrump.
+569|6|OO|Four hearts select partner's publicly shown five-heart suit; no invented partner strength or five-card advancer promise.
+569|7|OO|Minimum diamond opener may decline competition over three hearts.
+569|8|OO|Two-suit bidder need not advance the minimum natural selection to game.
+569|9|OO|Passed hand may leave opposing three hearts; no own force.
+623|1|OO|Eight-point weak diamond suit is not an opening or quality preempt.
+623|2|OO|Nine points with five clubs fails opening criteria; initial Pass valid.
+623|3|OO|Nine-point five-five lacks required opening strength; Pass acceptable.
+623|4|OO|Fourteen HCP and five diamonds support natural diamond opening.
+623|5|OO|Eight points and no unbid five-card suit support defensive Pass.
+623|6|OO|Passed nine-point four-spade responder may bid one spade naturally and nonforcing.
+623|7|OO|Nine-point defender need not introduce a two-level suit here.
+623|8|OO|Fourteen-point 5-3-3-2 opener meets natural minimum one-notrump rebid range.
+623|9|OO|Defender can leave natural one-notrump; no outstanding obligation.
+623|10|OE|Passed responder's natural five-club correction is acceptable, but hover still calls the adopted natural nonforcing route undefined.
+623|11|OO|Defender may leave natural two clubs; no own force.
+623|12|OO|Minimum opener can accept passed partner's natural nonforcing club correction.
+623|13|OO|Defender may finish natural club partscore.
+639|1|OO|Twelve plus five spades and four clubs meets Rule of 20.
+639|2|OO|Ten-point diamond suit lacks suitable two-level overcall quality; Pass reasonable.
+639|3|OO|Five-spade support and fifteen HCP satisfy Jacoby game-force support values.
+639|4|OO|Three points cannot profitably enter the Jacoby auction.
+639|5|OO|Minimum opener has no singleton/void and can fast-arrive in four spades.
+639|6|OO|Defender can decline opposing game.
+639|7|OO|Strong fitting responder asks spade RKCB; keycard mapping and trump accurate.
+639|8|OO|Weak defender may pass the opponents' artificial inquiry.
+639|9|OO|Club ace is opener's one keycard; five clubs correctly means one or four.
+639|10|OO|Defender need not interfere with the keycard response.
+639|11|OO|Responder's three keycards plus partner's one leaves one missing; five spades is a safe stop.
+639|12|OO|Defender may leave the natural five-spade contract.
+639|13|OO|Opener can accept partner's natural RKCB signoff; no artificial floor remains.
+639|14|OO|Defender may end at opponents' five spades.
+694|1|OO|Fourteen HCP and three clubs support natural club opening.
+694|2|OO|Seven points and no five-card unbid suit support Pass.
+694|3|OO|Seven points and six diamonds support natural one-over-one response and its force.
+694|4|OO|Twelve HCP with 3-4 majors and two diamonds supports sandwich takeout double.
+694|5|OO|Fourteen-point 4-4-2-3 opener may limit in natural one-notrump after sandwich double.
+694|6|OO|Seven-point advancer need not act immediately over the natural NT rebid.
+694|7|OO|Weak six-diamond responder corrects naturally; conservative competitive five-card description valid.
+694|8|OO|Minimum doubler may leave the opposing diamond partscore.
+694|9|OO|Opener can accept partner's nonforcing diamond repeat.
+694|10|OO|Seven HCP and four spades satisfy later free advance after takeout.
+694|11|OO|Six diamonds with good honors can compete to three diamonds; no new game force claimed.
+694|12|OO|Minimum doubler may decline another competition.
+694|13|OO|Opener may accept the natural three-diamond partscore.
+694|14|OO|Advancer may let opponents play three diamonds.
+700|1|OO|Ten points fail opening and preempt criteria.
+700|2|OO|Eight points with a five-card heart suit cannot open.
+700|3|OO|Four points cannot open.
+700|4|OO|Eighteen HCP and six spades support natural one-spade opening.
+700|5|OO|Passed ten-point hand lacks a suitable direct defense here.
+700|6|OO|Eight-point balanced responder satisfies semi-forcing 5-12 NT range.
+700|7|OO|Four-point defender cannot act over one notrump.
+700|8|OE|Eighteen points and six spades justify invitational three-spade jump; hover incorrectly denies any prior obligation despite the semi-forcing NT and unbalanced opener.
+700|9|OO|Defender may pass the strong natural spade invitation.
+700|10|OO|Two spades fit public six; support adjustment meets the invitation-to-game floor, and hover accurately calls game acceptance.
+700|11|OO|Weak defender may pass game.
+700|12|OO|Opener can accept responder's game; no continuing force below game.
+700|13|OO|Defender may end at four spades.
+732|1|OO|Nine-point club hand is too weak to open.
+732|2|OO|Six-point diamond hand cannot open.
+732|3|OO|Twelve with four diamonds and four hearts meets Rule of 20.
+732|4|OO|Thirteen HCP and six spades meet ordinary natural overcall range.
+732|5|OO|Nine HCP and four hearts satisfy negative double over one spade.
+732|6|OO|Six points and three spades fit the public five-card overcall; natural simple support accurate.
+732|7|OO|Four-heart minimum answer is forced up by two spades; no five-card or jump-strength promise.
+732|8|OO|Six-spade overcaller with known three-card support can compete to three spades; no unsupported game raise.
+732|9|OO|Nine-point responder may decline further competition.
+732|10|OO|Six-point advancer may accept partner's competitive spade partscore.
+732|11|OO|Minimum opener may leave opposing three spades.
+737|1|OO|Nine-point hand cannot open.
+737|2|OO|Twelve plus five hearts and four diamonds meets Rule of 20.
+737|3|OO|Five spades and five clubs satisfy Michaels; no natural-heart meaning.
+737|4|OO|Four-point responder may decline immediate competition over enemy Michaels.
+737|5|OO|Only two spades and sufficient useful values justify inquiry for partner's unknown minor.
+737|6|OO|Minimum opener may decline over enemy artificial inquiry.
+737|7|OO|Five clubs answer the Michaels inquiry naturally and discharge its obligation.
+737|8|OO|Four hearts give nine trumps and adjusted support for competitive three hearts; no game force.
+737|9|OO|Only three clubs opposite public five and no established game values justify Pass over three hearts.
+737|10|OO|Minimum opener can accept the competitive heart partscore.
+737|11|OO|Michaels bidder may decline further competition; no pending artificial answer.
+764|1|OO|Seven points with weak five spades cannot open.
+764|2|OO|Four points cannot open.
+764|3|OO|Nineteen HCP and five-five hearts-diamonds support a natural heart opening.
+764|4|OO|Five spades and five clubs meet Michaels; correct artificial role.
+764|5|OO|Three hearts with seven HCP and diamond doubleton can make a competitive heart raise.
+764|6|OO|Weak hand has no known minor fit after enemy heart raise; Pass now avoids the old unsupported four diamonds.
+764|7|UO|Heart RKCB is correctly described and fit is known; slam exploration is borderline because competitive three hearts has not unambiguously promised invitation strength.
+764|8|OO|Michaels bidder need not compete over enemy keycard inquiry.
+764|9|OO|Heart king is responder's one keycard, correctly answered one/four in five clubs.
+764|10|OO|Weak defender may leave opponents' artificial response.
+764|11|OO|Two keycards missing after the response require five-heart stop, not slam.
+764|12|OO|Defender may leave natural five hearts.
+764|13|OO|Partner can accept the natural keycard signoff.
+764|14|OO|Weak defender may end at five hearts.
+815|1|OO|Five points and six diamonds including ace-ten meet weak-two floor and suit quality.
+815|2|OO|Nine points lack strength for a two-level defense.
+815|3|OO|Fifteen-point responder may inquire about weak-two features; inquiry is artificial F1.
+815|4|OO|Eleven-point defender need not overcall at three spades.
+815|5|OO|Minimum weak-two opener with no side ace/king correctly returns diamonds.
+815|6|OO|Defender may leave three diamonds.
+815|7|OO|Feature response is minimum; responder has no public game floor and may Pass.
+815|8|OO|Defender may end at the diamond partscore.
+836|1|OO|Ten points with weak six-club suit fail opening and preempt quality thresholds.
+836|2|OO|Seven points and six diamonds with ace-jack-ten meet weak-two convention.
+836|3|OO|Six points cannot enter over opposing weak two.
+836|4|OO|Seventeen HCP and six spades satisfy forcing new suit after weak two.
+836|5|OO|Passed weak club hand cannot act profitably at three levels.
+836|6|OO|Weak-two opener has three spades and may raise partner's five-plus spade response.
+836|7|OO|Weak defender may leave natural three spades.
+836|8|OO|Strong six-spade responder with known support and shortage can choose four-spade game.
+836|9|OO|Defender may leave opposing game.
+836|10|OO|Weak-two opener may accept partner's natural game.
+836|11|OO|Defender may end at four spades.
+843|1|OO|Thirteen points and three clubs support natural club opening.
+843|2|OO|Fourteen HCP, five hearts and six clubs permit natural one-heart overcall.
+843|3|OO|Nine points and five spades meet the competitive one-spade response promise.
+843|4|OO|Four-point defender cannot introduce the weak seven-diamond suit at three levels.
+843|5|OO|Four spades support partner's public five spades; no enemy bid after response reduces this to a three-card raise.
+843|6|OO|Overcaller need not compete beyond opponents' two-spade fit.
+843|7|OO|Nine HCP plus doubleton heart support adjustment reaches invitation strength in a nine-trump fit.
+843|8|OO|Weak defender may decline invitation interference.
+843|9|OO|Opener's thirteen HCP and four-card support adjustment can accept the public invitation.
+843|10|OO|Defender may leave game.
+843|11|OO|Responder may accept natural four-spade game.
+843|12|OO|Weak defender may end at four spades.
+858|1|OO|Fourteen points and four clubs meet natural opening conditions.
+858|2|OO|Zero-point hand cannot defend actively.
+858|3|OO|Fourteen points and five hearts justify natural F1 response.
+858|4|OO|Twelve HCP and five spades support first natural overcall after enemy response.
+858|5|OO|Opener has three hearts and may raise competitively; hover correctly allows a possible seven-card fit.
+858|6|OO|Zero-point defender may Pass.
+858|7|OE|Responder's five hearts fit the competitive opener's public three and game values are sufficient; hover incorrectly says opener has shown four-card support.
+858|8|OO|Overcaller may decline further competition against heart game.
+858|9|OO|Opener may accept responder's natural game.
+858|10|OO|Zero-point defender may end at heart game.
+874|1|OO|Nine-point five-heart hand cannot open.
+874|2|OO|Twelve plus five-five minors meets Rule of 20; higher equal minor opens diamonds.
+874|3|OO|Two-point weak spade suit cannot overcall.
+874|4|OO|Seventeen HCP and six hearts justify natural one-over-one response.
+874|5|OO|Passed nine-point defender cannot introduce an appropriate natural suit.
+874|6|OO|Five clubs are a genuine natural second suit, not an artificial club inquiry.
+874|7|OO|Weak defender may leave two clubs.
+874|8|OO|Four-club responder support fits public four; strong adjusted values allow club keycard inquiry.
+874|9|OO|Defender may pass enemy artificial inquiry.
+874|10|OO|Heart ace is opener's one keycard; five clubs is correct one/four answer in club trump.
+874|11|OO|Weak defender may Pass.
+874|12|OO|Club answer is already the agreed natural trump contract; two missing keycards justify Pass at five clubs and UI correctly permits it.
+874|13|OO|Defender may end at natural five clubs.
+895|1|OO|Five points and weak five diamonds cannot open.
+895|2|OO|Four points and weak six clubs cannot open or preempt.
+895|3|OO|Fourteen points and six hearts meet natural opening criteria.
+895|4|OO|Seventeen HCP and seven good spades qualify for strong takeout-then-suit route.
+895|5|OO|Five HCP plus club-doubleton adjustment with three hearts permit weak simple support.
+895|6|OO|Four-point hand has no suitable free advance over two hearts.
+895|7|OO|Minimum opener can initially accept weak simple heart support.
+895|8|OO|Strong doubler naturally shows its seven-spade suit; seventeen-plus/five-plus description is true here.
+895|9|OO|Weak heart raiser can compete with three-card support against two spades; this is not a ten-point invitation.
+895|10|OO|Weak advancer cannot act over three hearts.
+895|11|EO|Fourteen-point opener advances weak competitive three hearts to game despite public adjusted floor remaining below twenty-five; natural-game hover itself makes no false invitation promise.
+895|12|OO|Strong spade defender may decline five-level competition over enemy game.
+895|13|OO|Weak raiser may accept partner's natural game; no pending force.
+895|14|OO|Weak defender may end at four hearts.
+924|1|OO|Twelve plus five hearts and four clubs meets Rule of 20.
+924|2|OO|Six-point defender cannot act directly.
+924|3|OO|Eight points and four spades support natural F1 response.
+924|4|OO|Fourteen points with no five-card unbid suit may decline sandwich interference.
+924|5|OO|Opener naturally shows its genuine four-club second suit.
+924|6|OO|Six-point defender may decline action over two clubs.
+924|7|OO|Weak responder with four clubs may accept the nonforcing natural second suit.
+924|8|OO|Delayed short-club double with support for possible alternative strains is an allowed takeout route; not automatically penalty.
+924|9|OO|Minimum opener may await the doubled contract's continuation.
+924|10|OE|Natural four-spade advance can select a playable strain, but spades were already bid by an enemy; hover incorrectly calls it an unbid suit.
+924|11|OO|Four-club responder fits partner's four clubs and can compete to three clubs.
+924|12|OO|Doubler may decline further competition.
+924|13|OO|Opener may accept natural club partscore.
+924|14|OO|Advancer may end at opponents' three clubs.
+951|1|OO|Eight-point balanced hand cannot open.
+951|2|OO|Seventeen-point 3-4-4-2 hand meets natural one-notrump opening.
+951|3|OO|Six-point defender cannot enter over one notrump.
+951|4|OO|Nine points and five hearts justify transfer followed by invitation.
+951|5|OO|Queen-jack-ten diamond sequence gives a reasonable directional double of the artificial transfer.
+951|6|OO|Opener fulfils transfer despite the lead-directing double; acceptance promises only two publicly.
+951|7|OO|Weak defender may leave the natural transfer acceptance.
+951|8|OO|Nine-point responder retains five hearts while making the agreed quantitative invitation.
+951|9|OO|Lead-directing doubler need not compete over the natural invitation.
+951|10|OO|Maximum NT opener has four hearts, sufficient points and known fit; game acceptance and three-plus support hover accurate.
+951|11|OO|Defender may decline action over game.
+951|12|OO|Responder may accept partner's natural heart game.
+951|13|OO|Defender may end at four hearts.
+975|1|OO|Two points cannot open.
+975|2|OO|Five points with weak five diamonds cannot open.
+975|3|OO|Twenty-two HCP meets strong artificial two-club opening.
+975|4|OO|Eleven-point defender may decline a three-level natural heart overcall.
+975|5|OO|Weak hand must answer strong two clubs; artificial diamond waiting does not promise diamonds.
+975|6|OO|Weak defender may Pass.
+975|7|OO|Strong 4-4-4-1 opener correctly uses the declared four-card minor exception, not false five spades.
+975|8|OO|Defender may leave natural three diamonds.
+975|9|OO|Two-point waiting responder uses declared artificial three-notrump second negative after three diamonds.
+975|10|OO|Defender may pass opponents' artificial negative answer.
+975|11|OO|Minimum strong opener returns original four-card minor under the explicit 4441 exception and releases game duty.
+975|12|OO|Defender need not act over four diamonds.
+975|13|OO|Weak responder may accept released natural diamond contract; three-notrump was not natural.
+975|14|OO|Weak defender may end at four diamonds.
+976|1|OO|Eight points and five weak diamonds cannot open.
+976|2|OO|Ten points and five hearts fail opening floor.
+976|3|OO|Three points cannot open.
+976|4|OO|Nineteen-point balanced hand outside NT opening ranges naturally opens clubs.
+976|5|OO|Eight HCP and five diamonds meet natural one-level overcall floor.
+976|6|OO|Passed ten-point five-heart hand may respond naturally; passed-hand nonforcing meaning accurate.
+976|7|OO|Three-point advancer cannot act.
+976|8|OO|Opener naturally shows four spades at one level without inventing jump strength.
+976|9|OO|Weak overcaller may decline further action.
+976|10|EO|Ten HCP is below the declared eleven-to-twelve NT invitation range; a five-heart long-suit valuation allowance has not been declared for this HCP band.
+976|11|OO|Weak defender may leave invitation.
+976|12|OO|Nineteen-point opener should accept the publicly advertised invitation, relying on partner's diamond stopper.
+976|13|OO|Overcaller may decline action over game.
+976|14|OO|Responder may accept natural notrump game.
+976|15|OO|Weak defender may end at three notrump.
+1008|1|OO|Ten points cannot open.
+1008|2|OO|Five-point hand cannot open or preempt.
+1008|3|OO|One-point hand cannot open.
+1008|4|OO|Twenty-four balanced HCP belongs in strong two-club route.
+1008|5|OO|Queen-jack club holding can direct a club lead on artificial two clubs; not takeout.
+1008|6|OO|Lead double does not alter two-diamond waiting into a natural diamond promise.
+1008|7|OO|One-point defender may Pass.
+1008|8|OO|Twenty-four balanced HCP meets strong-two-club twenty-two-to-twenty-four NT rebid.
+1008|9|OO|Directional doubler may leave natural two notrump.
+1008|10|OO|Five hearts permit transfer on the strong natural NT platform.
+1008|11|OO|Weak defender may leave enemy artificial transfer.
+1008|12|OO|Opener fulfils transfer; public acceptance does not promise five hearts.
+1008|13|OO|Defender may leave natural heart acceptance.
+1008|14|OO|Five HCP opposite public twenty-two-plus supplies game strength; five-card major remains available.
+1008|15|OO|Weak defender may leave game.
+1008|16|OO|Four hearts in NT opener fit the five-card transfer suit; natural four-heart choice accurately shows support.
+1008|17|OO|Defender may decline over game.
+1008|18|OO|Responder may accept natural game.
+1008|19|OO|Weak defender may end at four hearts.
+1073|1|OO|Eleven HCP and ace-ten six spades satisfy declared weak-two maximum.
+1073|2|OO|Ten-point defender lacks strength for two-level natural overcall.
+1073|3|OO|Five spades support weak two and permit nonforcing obstructive three-spade raise, not a normal invitation.
+1073|4|OO|Eleven-point defender may decline a four-level club overcall.
+1073|5|EO|Quiet ordinary weak-two raise has not shown constructive game strength; advancing six-card weak two to four spades lacks a public twenty-five-point floor, although hover correctly avoids invitation language.
+1073|6|OO|Defender may decline over natural game.
+1073|7|OO|Raiser can accept opener's nonforcing natural choice; no artificial contract remains.
+1073|8|OO|Defender may end at four spades.
+1095|1|OO|Twenty-six HCP and strong shape correctly start two clubs.
+1095|2|OO|Eleven-point defender may decline over strong opening.
+1095|3|OO|Weak responder must make artificial waiting response.
+1095|4|OO|One-point defender may Pass.
+1095|5|OO|Five strong hearts naturally describe opener's suit and require a response.
+1095|6|OO|Defender may leave two hearts.
+1095|7|OO|Four-card support in a known nine-trump fit can fast-arrive weakly opposite public strong opening values; natural game description does not promise independent strength.
+1095|8|OO|Weak defender may decline over game.
+1095|9|OO|Opener can accept game with no public slam floor; no false minimum three-heart release remains.
+1095|10|OO|Defender may end at heart game.
+1098|1|OO|Eleven points with ace-jack-ten six spades meet weak-two convention.
+1098|2|OO|Nine-point defender cannot act at two-level new suit.
+1098|3|OO|Fourteen HCP and five good hearts qualify for forcing new suit after weak two.
+1098|4|OO|Six-point defender may Pass.
+1098|5|OO|Weak-two opener without heart support fulfils the one-round response by returning six spades.
+1098|6|OO|Defender may leave natural spade partscore.
+1098|7|OO|Responder cannot guarantee game opposite public weak-two minimum; natural return discharged F1 and Pass allowed.
+1098|8|OO|Weak defender may end at three spades.
+1126|1|OO|Eleven points are below declared opening floor even though Rule-of-20 sum is twenty.
+1126|2|OO|Eight-point hand cannot open.
+1126|3|OO|Seventeen-point 2-3-3-5 hand meets NT opening range.
+1126|4|OO|Four-point defender cannot overcall.
+1126|5|OO|Eleven-point four-spade responder uses Stayman; artificial club meaning accurate.
+1126|6|OO|Queen-jack-ten club holding supplies plausible lead direction on Stayman.
+1126|7|OO|NT opener has no four-card major and correctly makes artificial diamond denial.
+1126|8|OO|Weak defender may leave the artificial answer.
+1126|9|OO|Eleven plus public fifteen reaches game; no four-card major fit was found.
+1126|10|OO|Directional defender may leave notrump game.
+1126|11|OO|NT opener may accept natural game; inquiry and answer obligations are discharged.
+1126|12|OO|Weak defender may end at three notrump.
+1141|1|OO|Six points and six quality hearts meet weak-two criteria.
+1141|2|OO|Seven-point defender cannot overcall at two levels.
+1141|3|OO|Thirteen HCP and six diamonds satisfy forcing positive new suit after weak two.
+1141|4|UO|Fourteen HCP and six top-quality clubs support natural minimum four-club overcall, but four-level exposure with unknown fit remains a competitive judgment.
+1141|5|UO|Weak opener lacks diamond support after enemy four clubs; Pass depends on whether intervening competition releases this ordinary F1, so retain uncertainty rather than invent a natural response.
+1141|6|OO|Weak defender may accept partner's natural four-club choice.
+1141|7|OO|Responder has no public game floor after interference and may decline five-level competition once the ordinary response is released.
+4118|1|OO|Thirteen HCP and four diamonds with equal four hearts support natural diamond opening.
+4118|2|OO|Eight-point defender lacks a suitable five-card overcall.
+4118|3|OO|Six HCP and four hearts satisfy natural one-level response.
+4118|4|OO|Thirteen-point sandwich hand supports unbid clubs and spades for technical double.
+4118|5|OO|Opener's four hearts fit responder's public four; natural support meaning accurate.
+4118|6|OO|Eight points and four clubs satisfy free three-club advance after double and enemy continuation.
+4118|7|OO|Six-point raiser competes in the confirmed heart fit without falsely showing ten-to-twelve invitation values.
+4118|8|OO|Minimum doubler can decline further competition.
+4118|9|OO|Opener correctly does not accept the weak competitive raise as an invitation.
+4118|10|OO|Advancer may end at opposing three hearts.
+4119|1|OO|Thirteen HCP and five spades meet natural opening criteria.
+4119|2|OO|Fourteen points, short spades and 3-4-4 unbid shape qualify for takeout double.
+4119|3|OO|Eleven HCP qualify for strength redouble, not an artificial support promise.
+4119|4|OO|Two-point hand may let technical doubler escape rather than make a free response.
+4119|5|OO|Opener may leave the redoubled contract provisionally.
+4119|6|OO|Four diamonds provide natural escape from redouble; no seventeen-point rebid promise.
+4119|7|OO|Three spades and adjusted support values permit a constructive three-spade invitation after strength redouble.
+4119|8|OO|Weak defender may leave three spades.
+4119|9|OO|Minimum opener cannot guarantee twenty-five adjusted points opposite invitation minimum and may decline.
+4119|10|OO|Doubler can leave opposing natural spade contract.
+7204|1|OO|Thirteen points and five diamonds meet natural opening criteria.
+7204|2|OO|Seventeen points with diamond void and 4-5-4 unbid support qualify for technical double.
+7204|3|OO|Five diamonds fit public three and shortage adjusts five HCP into weak-support range.
+7204|4|OO|Five-point advancer need not act freely over two diamonds.
+7204|5|OO|Opener may accept weak natural support temporarily.
+7204|6|OO|Seventeen HCP and five hearts satisfy strong takeout-then-natural-suit route.
+7204|7|OO|Known diamond fit and shortage support a competitive raise without a game invitation promise.
+7204|8|OO|Weak advancer may decline competition over three diamonds.
+7204|9|OO|Opener may accept diamond partscore below minor-game floor.
+7204|10|OO|Strong doubler has no public game fit/values and may leave three diamonds.
+7265|1|OO|Eight points with weak five diamonds cannot open.
+7265|2|OO|Nine-point balanced hand cannot open.
+7265|3|OO|Fifteen-point balanced hand meets natural NT opening floor.
+7265|4|OO|Eight-point defender cannot enter directly.
+7265|5|OO|Eight-point four-heart responder may use the adopted Stayman invitation route.
+7265|6|OO|Queen-jack-ten club sequence reasonably directs a club lead on artificial Stayman.
+7265|7|OO|Four-spade NT opener naturally answers Stayman; no five-card major promise.
+7265|8|OO|Defender may leave natural Stayman answer.
+7265|9|OE|Three hearts is the legal cheapest heart bid after two spades and a four-card invitation; hover incorrectly calls it an undefined jump beyond a two-level-only route.
+7265|10|OO|Directional doubler may leave the natural invitation.
+7265|11|EE|Opener has only three hearts opposite four-card invitation, so four hearts has seven trumps; helper/hover falsely promotes responder to five and chooser signs off in an unsupported game.
+7265|12|OO|Defender may decline over opponents' natural game.
+7265|13|OO|Responder may accept partner's chosen natural game; its preceding fit mistake is separately recorded.
+7265|14|OO|Defender may end at four hearts.
+7293|1|OO|Fifteen HCP and five diamonds support natural diamond opening.
+7293|2|OO|Five-point defender cannot act directly.
+7293|3|OO|Thirteen HCP and seven hearts justify natural F1 response.
+7293|4|OO|Seven-point defender lacks required two-level overcall strength.
+7293|5|OO|Four clubs are genuine natural second-suit rebid.
+7293|6|OO|Weak defender may leave two clubs.
+7293|7|OO|Strong responder uses artificial fourth suit for further description; no spade-length promise.
+7293|8|OO|Defender may Pass on enemy artificial inquiry.
+7293|9|OO|Opener may repeat its four-card second suit to discharge F1; does not falsely inflate to six clubs.
+7293|10|OO|Weak defender may leave natural club answer.
+7293|11|OO|Thirteen plus public thirteen gives NT game values, and responder holds its own spade stopper/heart winners.
+7293|12|OO|Defender may decline over game.
+7293|13|OO|Opener may accept natural game; no continuing fourth-suit duty.
+7293|14|OO|Weak defender may end at three notrump.
+7295|1|OO|Ten points with ace-king six hearts qualify for weak two.
+7295|2|OO|Three-point defender cannot act.
+7295|3|OO|Fourteen HCP and five good spades meet forcing new-suit response.
+7295|4|OO|Only king-doubleton spades are too thin for penalty double; Pass correct.
+7295|5|OO|Weak-two opener with singleton spade fulfils response by returning six hearts.
+7295|6|OO|Weak defender may leave three hearts.
+7295|7|OO|No weak-two maximum was publicly shown; responder may stop below a guaranteed game floor after F1 answer.
+7295|8|OO|Heart holding lacks enough assured defensive tricks for penalty; Pass reasonable.
+7334|1|OO|Twelve plus two four-card suits meets Rule of 20; diamond opening accurate.
+7334|2|OO|Six spades with king-ten and six HCP meet weak-jump convention, with distribution compensating moderate quality.
+7334|3|OO|Seven HCP are below negative-double/two-level-new-suit requirements; Pass acceptable.
+7334|4|OO|Fifteen HCP and five clubs provide natural constructive nonforcing new suit after overcall.
+7334|5|OO|Minimum opener may leave the opposing club contract.
+7334|6|OO|Weak jumper may accept partner's natural nonforcing club choice.
+7334|7|OO|Weak responder may end at enemy three clubs.

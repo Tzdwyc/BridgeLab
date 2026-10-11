@@ -1,0 +1,3 @@
+00:00 +0: loading H:/Projects/Bridge/versions/v0.3.3-mobile/test/local_asset_server_test.dart
+00:00 +0: serves JavaScript modules and WASM with WebView-compatible MIME types
+00:00 +1: All tests passed!

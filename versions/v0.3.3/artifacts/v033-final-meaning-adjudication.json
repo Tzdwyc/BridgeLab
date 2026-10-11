@@ -1,0 +1,27 @@
+{
+  "reviewedSourceSha256": "9d040530f7ed08de1011958ab07657cb0dc27ce9509bb292a3337fabe2d1b0ee",
+  "method": "GPT adjudication of frozen explicit review findings and authored public-prefix regressions; no automated bidding-quality oracle",
+  "frozenReview": "v033-final-complete-review.json",
+  "withdrawals": [
+    {
+      "board": 700,
+      "step": 8,
+      "originalMeaningVerdict": "error",
+      "adjudicatedMeaningVerdict": "ok",
+      "reason": "The 1NT responder had already passed before the opening. The custom card does not impose the unpassed semi-forcing response obligation on this passed hand. Opener's original-major jump invitation can correctly state that no prior continuation obligation existed. The original frozen verdict remains preserved."
+    }
+  ],
+  "confirmedHoverChanges": [
+    "Natural weak new two-level minor after opener's 1NT rebid explicitly shows five cards and is nonforcing, including passed responders; no new-minor-forcing agreement was introduced.",
+    "Stayman answer 2S followed by 3H is the cheapest legal other-major invitation and shows four cards. The same explanation applies after natural NT overcalls. Actual jumps remain unspecified.",
+    "Competitive opener raises can promise only three cards; later responder continuation must not claim opener guaranteed four or publicly guaranteed an eight-card fit.",
+    "Delayed technical-double replies choosing a previously shown enemy suit are described as natural available-suit choices rather than falsely calling that suit unbid.",
+    "The one-level fourth-suit exception 1C-1D-1H-1S explicitly shows four natural spades, forcing one round for an unpassed responder.",
+    "Weak-two opener can support a five-card natural positive response with three cards, including minor support.",
+    "Michaels advancer selection of a publicly shown major requires only three-card support and does not claim its own five-card new suit.",
+    "Cheap one-level new-suit advance of a natural overcall can show four cards.",
+    "Strong two-club original-major game return retains its public five-card minimum instead of inventing six; shared length fix belongs to core agent.",
+    "Six-card or longer quality overcalls may reduce usual HCP thresholds by suit quality and cashing tricks; no universal lower point threshold was added."
+  ],
+  "validationBoundary": "New authored meanings regressions exercise the changed public prefixes. The complete 40-board, 468-step manual review remains bound to the frozen source above; post-review source changes are not falsely represented as a second complete manual corpus audit. Strategic uncertain verdicts remain explicit."
+}

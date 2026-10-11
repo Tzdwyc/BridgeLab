@@ -1,0 +1,180 @@
+ok|ok|Six publicly repeated spades plus two-card support give eight trumps; 18 HCP and club doubleton support point plus public six reach major game.
+ok|ok|Nine points and six diamonds are a reasonable balancing natural two-level overcall.
+ok|ok|Twenty-one points and six spades warrant a strong natural repeat after partner passed; the description does not invent forcing.
+ok|ok|Sound AQJT six-card spades justify the natural NT interference at nine points.
+ok|ok|Eight points with two small enemy spades cannot make a penalty double; Pass is appropriate.
+uncertain|ok|Partner's double over 1NT interference is publicly penalty; the opener's four-heart escape may contradict that penalty request, though this counterfactual prefix contains the earlier bad double. The hover candidly supplies no fixed continuation agreement.
+uncertain|error|The prior 3H is described as an unconfigured continuation, yet this hover now guarantees four natural hearts. Own eight plus a doubleton support point and public NT15 is only24, so compulsory game is not established.
+ok|ok|Fourteen points without enemy-spade trump strength do not justify doubling a natural transfer acceptance.
+ok|ok|Public four spades plus own four establish eight trumps; two doubletons add two points to eight HCP, reaching25 opposite NT15.
+ok|ok|Own16 and the public fit invitation with shortness support establish major game.
+ok|ok|Eleven points with six diamonds and no major fit keep a natural NT invitation alive.
+error|ok|The natural 2NT overcall has public15 minimum; own11 reaches26. Five spades opposite transfer acceptance are only seven trumps, so 3NT is needed rather than Pass.
+ok|error|Nine points and seven spades reasonably make a light competitive natural response, but this configured light-major route still incorrectly declares a hard10+ floor.
+error|ok|Own11 plus a support cuebid's public10 minimum is21 HCP, not NT game. A natural heart answer to the one-round cue is preferable to blindly placing3NT.
+ok|ok|Own18 and a confirmed spade fit justify accepting the low spade raise in game.
+ok|error|3S supports the five spades already shown by partner's Michaels cue with own three. Hover incorrectly calls it a new five-card suit response.
+ok|ok|Nine points with four-card diamonds opposite a three-card opening do not justify jump minor support; restricted1NT is honest.
+ok|ok|Eleven points and seven spades invite naturally after opener's four-card second minor.
+uncertain|ok|The passed opponents have a possible double-five balancing hand, but competing over a weak natural club continuation is optional; Pass is defensible.
+uncertain|ok|In this SAYC card 2C after the NT rebid is a natural weak long-suit continuation, so there is no artificial inquiry obligation. Passing with queen-doubleton clubs after the penalty double is defensible but a diamond escape could also be considered.
+ok|ok|Natural clubs have been accepted by opener and there is no new forcing obligation; passing the doubled partscore is a legitimate signoff.
+ok|ok|Six good diamonds and sixteen points permit a natural overcall after the opponents bid two suits.
+ok|ok|Seven points with a reasonable five-card heart suit suffice in balancing position.
+ok|ok|AK94 in the opposing heart suit, seventeen points and strong outside diamonds provide genuine penalty strength.
+uncertain|ok|The passed responder's natural diamond continuation is nonforcing; a possible seven-card fit can be accepted, although returning to hearts is another partscore option.
+ok|ok|Nine points with four spades and a diamond doubleton accept opener's public16 jump-support invitation at26 support points.
+ok|ok|The two-diamond advance is nonforcing and badly fits opener's singleton; returning to the actual six hearts is appropriate.
+ok|ok|A singleton heart cannot support a penalty double of the opponents' accepted transfer.
+ok|ok|A minor invitation does not automatically show an eight-fit; own16 plus its public10 is below the29 minor threshold. Passing3D is defensible.
+ok|ok|Twelve points, diamond shortness and four cards in both unbid suits support a genuine sandwich takeout double.
+uncertain|ok|The low diamond return is a nonforcing preference and does not promise a new game invitation; accepting it is defensible although the public fit is not certain.
+ok|ok|A stopped diamond suit permits the minimum NT answer to the artificial fourth-suit inquiry; this is not a jump-strength claim.
+uncertain|ok|Forced takeout response with three hearts and weak diamonds is defensible; six clubs were bid by the opponents and are not an automatic playable trump suit.
+ok|ok|A seven-card ace-jack diamond suit at ten points is a reasonable NT overcall.
+ok|ok|Sixteen points and five strong diamonds permit the first natural two-level overcall.
+uncertain|ok|Balancing at eight points is possible, but Q9843 is a thin five-card club suit. Pass would also be defensible; the balancing range is accurately qualified.
+ok|ok|Nineteen points and six spades keep the opener's extras alive with a strong natural repeat.
+ok|ok|Six points with long clubs and no major can use restricted natural1NT below the uncontested2/1 GF threshold.
+ok|ok|Twelve points with four hearts and four spades after opponents name both minors support takeout shape.
+uncertain|ok|Partner's low diamond preference need not be invitational; the minimum opener can pass, though six-card public fit uncertainty makes the contract a judgment choice.
+ok|ok|Eleven points and real four spades keep an invitation alive after poor original-minor fit; the natural second suit is one-round forcing for an unpassed responder.
+ok|ok|Public original-spade jump shows six and16 minimum. Own eight plus shortness in the confirmed eight-fit reach game.
+ok|ok|Seven good diamonds and twelve points can balance over a NT auction that stopped.
+ok|ok|With diamond void and two real five-card suits, a nonforcing natural spade advance escapes the poor fit.
+ok|ok|Fourth-suit answer2H honestly supports with three; own minimum hand need not invent four hearts or a new game force.
+ok|ok|Seven points and six spades repeat naturally instead of accepting opener's four-card second clubs.
+ok|ok|Eleven points with three spades and a short opposing diamond holding can use the support cuebid to invite further description.
+ok|ok|Ten points opposite minimum natural NT rebid invite rather than pass; no artificial new-minor agreement is invented.
+error|ok|Own10 opposite the natural2NT overcall's public15 establishes25; partner promises a spade stopper. Enemy3S does not justify losing3NT game.
+ok|ok|Own11, singleton heart, nine diamonds and the ninth-trump point total15 support points; opposite16 minimum this exceeds minor29, so5D is justified.
+error|ok|The hand is13 HCP, below the reverse's explicit17 floor. Two hearts may be real four cards, but this auction makes2H a strength-promising reverse; a minimum NT answer or inquiry is needed.
+ok|ok|Given the public reverse commitment, this strong responder can cuebid the enemy spades to continue exploring rather than making a minimum repeat.
+ok|ok|Eight points with AKT seven-card clubs and a heart void justify a light natural two-level NT overcall.
+ok|ok|Seven points and seven hearts compete naturally over the club interference; the description correctly avoids an artificial transfer or hard10+ GF claim.
+ok|ok|Six strong diamonds are the actual own suit; the nonforcing one-spade advance has a singleton fit and should not end there.
+ok|ok|The Michaels bidder answers the minor inquiry with its actual five clubs; the response also retains the shown five spades.
+ok|ok|Four hearts opposite opener's five give nine trumps; four HCP plus doubleton and ninth-trump points justify a weak competitive raise when space has been removed.
+ok|ok|Twelve-point opener can accept partner's weak competitive heart raise; public strength does not establish game.
+ok|ok|Eight points with diamond support return to the original minor instead of a bad second-club fit. Hover correctly allows preference without asserting an eight-fit.
+ok|ok|The strong opener has two cards opposite partner's six-spade repeat, establishing eight trumps and enough support strength for game.
+ok|ok|Nine points plus singleton-spade support in a public four-four heart fit reach26 opposite NT15.
+ok|ok|The NT opener accepts the adjusted support invitation with its actual16 and established heart fit.
+ok|ok|Thirteen points and an ace-queen five-card heart suit permit a natural two-level NT overcall.
+ok|ok|Nine points and a diamond doubleton earn ten support points in a public heart eight-fit, reaching25 opposite NT15.
+ok|ok|The actual16-point opener has enough adjusted support to accept the natural heart invitation.
+ok|ok|Thirteen points and five ace-queen-jack diamonds suffice for a balancing natural overcall.
+ok|ok|Four points cannot answer the unknown Michaels minor by jumping4D; passing the opponents' three hearts is appropriate.
+ok|ok|Five KQT diamonds, nineteen points and strong outside heart/club defense provide genuine penalty strength against4D.
+ok|ok|Nine points plus a singleton-spade allowance in the public four-four heart fit reach game opposite NT15.
+ok|ok|The sixteen-point NT opener accepts the fit invitation; the repeat does not invent additional trump length.
+ok|ok|Two spades opposite opener's six establish eight trumps. Own nine plus diamond doubleton support and public16 minimum reach26.
+ok|ok|Opener's third-level invitation supplies16 minimum; own nine and three spades establish game without requiring extra length.
+ok|ok|Four hearts opposite the natural five-heart overcall establish nine trumps; singleton, doubleton and ninth-trump allowances turn nine HCP into a sound invitation.
+ok|ok|Three hearts support responder's natural two-heart suit. Raising after the enemy removes space is competitive and does not assert a new game force.
+ok|ok|An ace-sixth heart suit and favorable singleton shape justify a light natural NT overcall; the usual range is appropriately qualified.
+ok|ok|Fourteen points and a good five-heart suit permit a first natural two-level overcall.
+ok|ok|Four spades, nine HCP and a diamond doubleton support an invitational raise of partner's natural five spades.
+ok|ok|Twelve points without a long suit or clearly strong takeout shape can pass a weak two-heart opening.
+ok|ok|Fourteen points and six strong diamonds are a sound balancing overcall.
+ok|ok|Eleven points and four diamonds can use a forcing support cue to invite the natural diamond overcaller.
+ok|ok|Own12 and a diamond stopper provide a natural minimum NT answer to fourth-suit forcing, not a jump-range rebid.
+ok|ok|Five spades fit partner's five; eleven points and support shortness justify a support cuebid rather than claiming diamond length.
+uncertain|ok|Six diamonds opposite a three-card opening create nine trumps. Twelve HCP adjust upward beyond the usual limit-raise band, but minor game is still not publicly29; a natural invitation is defensible.
+ok|ok|Weak-two minimum repeat supplies only five points. Own15 does not establish NT25 or minor29, so accepting3D is appropriate.
+ok|ok|Own12 and a usable original five-card diamond suit can compete naturally. The hover conservatively allows a four-card competitive original-minor return rather than fabricating six.
+error|ok|Negative double showed hearts; responder actually has five hearts but only two clubs opposite opener's four. Passing the six-club fit hides a playable3H natural continuation.
+error|ok|The hand is five HCP and is voluntarily answering a late opposing bid. It does not meet the advertised six-HCP floor, and no known trump fit permits distribution to be treated as HCP.
+ok|ok|Six spades and17 points opposite an established support raise are sufficient to place spade game.
+ok|ok|Three spades support the natural competitive response; the raise can be competitive rather than a four-card simple support claim.
+error|ok|Partner's takeout-double jump support shows18+ and four hearts. Own five hearts make nine trumps; five HCP plus diamond doubleton and ninth trump yield seven support points, reaching25 rather than permitting Pass.
+ok|ok|Four spades with13 HCP and useful support values accept the natural spade invitation in game.
+ok|ok|Four diamonds would still be available at3D; the jump4D is a genuine extra-strength takeout response, and nine HCP with five diamonds qualify.
+ok|ok|Eleven points can invite over a semi-forcing NT original-major repeat with two-card support; the description correctly does not automatically assert an eight-fit.
+ok|ok|Fourteen-point responder preserves independently sufficient game values by cuebidding the enemy spades after ordinary F1 has been released.
+error|ok|Own11 opposite a natural12–14 NT rebid has23–25 public HCP and should invite2NT. The earlier negative double does not turn that constructive hand into an automatic Pass.
+ok|ok|Six hearts plus the NT acceptance establish eight trumps. Four HCP with club void adjust to eight support points opposite NT20, making4H reasonable despite the low raw count.
+ok|ok|The spade stopper permits a minimum natural NT answer after the fourth-suit inquiry; no strong jump range is invented.
+uncertain|ok|The14-point NT opener is maximum opposite a10–12 six-spade invitation. Public minimum totals24, so game acceptance is a reasonable invitational judgment rather than a strictly proven25-point obligation.
+ok|ok|Four spades opposite the transfer invitation's long suit give extra trumps; opener's actual15 and support adjustment establish game.
+ok|ok|The weak natural heart repeat is nonforcing. Opener's14 with three-card support does not independently establish game and may accept2H.
+ok|ok|Actual18 points and a real four-four-four-one hand justify a strength-promising competitive reverse in spades without treating partner's prior Pass as GF.
+ok|ok|Own13 plus opening12 minimum establish NT game, and AKT supplies the enemy-spade stopper.
+ok|ok|The completed club relay permits the weak responder to select its actual six-card diamond partscore nonforcing.
+ok|ok|Five hearts opposite opener's five produce ten trumps; own8 plus doubleton and extra-trump points justify an invitation despite the enemy double.
+ok|ok|Eight ace-queen-jack hearts and eleven points are ample playable suit strength for a natural nonjump overcall of the weak two diamonds.
+ok|ok|A singleton spade cannot supply penalty-double strength in this late two-suit opposing auction; Pass is appropriate.
+ok|ok|Own13 plus public opening12 establish NT game, and protected spade king-ten provide the opposing-suit stopper.
+ok|ok|Partner's competitive3H is a natural long-suit response; opener has three hearts and16 plus support adjustment, reaching game even at the light-major response minimum.
+ok|ok|Six hearts opposite the transfer acceptance establish eight trumps; nine HCP plus both side doubletons reach11 opposite NT15.
+ok|ok|The NT opener has actual15 and an established long-heart fit with extra trumps; it can accept the invitation in heart game.
+error|ok|Own12 opposite a natural12–14 NT rebid has24–26 public HCP and should invite2NT; the prior negative double does not require Pass.
+ok|ok|Four AK94 spades, sixteen points and usable outside clubs constitute actual trump and defensive strength for a penalty double.
+error|ok|The reopened natural heart side suit shows four. Own five hearts create nine trumps; five HCP plus singleton-club and ninth-trump points give nine support points, sufficient for at least2H rather than Pass.
+uncertain|ok|Eight points with six QT diamonds are a thin direct NT overcall compared with the usual ten-point range; nonvulnerable competition is possible but Pass is also reasonable.
+ok|ok|Five hearts opposite transfer acceptance remain seven trumps, so shortness cannot be added. Nine HCP justify the natural NT invitation rather than pretending an eight-fit.
+uncertain|ok|Balancing with fifteen points and six ace-headed clubs is reasonable, although the weak second honor and three-level space make this a judgment overcall rather than a compulsory action.
+uncertain|ok|Ten points can balance in five diamonds, but the ace-only suit is thin. The description qualifies the balancing range appropriately and Pass would also be defensible.
+uncertain|ok|The forced responder has three cards in every unbid suit. Lowest1H with KQ would be attractive, but a three-card1S answer is still allowed when no four-card option exists.
+ok|ok|AKQ5 in the enemy spades plus eighteen HCP and strong outside diamonds justify a genuine penalty double.
+ok|ok|Twelve points and a five-card ace-queen spade suit are a reasonable natural NT overcall.
+error|ok|Six hearts opposite opening five produce eleven trumps. Eight HCP plus diamond void four and three extra-trump points total fifteen support points; opposite12 this reaches27 and merits4H, not a mere invitation.
+ok|ok|The22-point four-four-four-one strong opener honestly chooses a four-card minor, retaining the strong-suit one-round obligation.
+error|ok|This counterfactual prefix includes the old wrong2S with only four spades. Repeating3S still promises at least five; a real four-card minor description would be honest. The complete current board avoids the prefix by opening its natural rebid3D.
+ok|ok|With only three original clubs, the19-point opener cannot strength-jump-shift from a supposedly long original minor; available1S honestly shows its real four-card side suit.
+ok|ok|Six strong clubs and fifteen points permit a balancing natural two-level overcall.
+error|ok|Six diamonds opposite opening three establish nine trumps. Twelve HCP plus spade doubleton, heart singleton and ninth-trump points total seventeen support points, meeting minor29 opposite opening12;3D understates a public5D game.
+ok|ok|Ten points and a good six-heart suit permit a natural NT overcall.
+error|ok|The four-card second clubs opposite own doubleton give only six trumps; a diamond-singleton preference is worse. Own double-five majors should show the real five hearts with2H rather than Pass.
+ok|ok|A passed ten-point responder with no four-card major can honestly use restricted natural1NT instead of jumping in four-card diamond support.
+ok|ok|Partner's lowest takeout response can be zero points. Own15 and four clubs fit the response, but neither minor29 nor an independently strong heart-game obligation is public; Pass is defensible.
+error|ok|Nineteen HCP opposite a natural1NT response's minimum six already establish game values. A minimum nonforcing2C can be passed; a strong3C jump description is needed for the actual five-five minors.
+uncertain|ok|The balancing NT platform is11–14, so own11 does not establish game from the minimum. A four-heart exploratory continuation after the club relay is conceivable, but this unconfigured route lacks a fixed forcing meaning and accepting3C is another reasonable choice.
+uncertain|ok|Partner's previous new-heart call has no configured point or length promise. The minimum balancing NT hand may accept it, though the likely seven-heart fit makes the final contract a judgment boundary.
+ok|ok|Own17 accepts the natural11–12 NT invitation at public28 minimum.
+ok|ok|A lead double of artificial strong2C does not suppress the artificial2D waiting response; five points are enough to wait.
+ok|ok|The counterfactual five-club response is already game and opener has no public slam minimum or established keycards; passing is appropriate rather than adding an automatic slam.
+ok|ok|Ten points and KQJT six-card clubs meet natural NT overcall suit quality.
+error|ok|Seven clubs headed only by the ten do not meet the stated three-level preempt suit-quality requirement; eight HCP concentrated outside trumps do not repair that thin suit.
+ok|ok|Own Michaels shows five spades and partner's preference can be three. Continuing3S is a competitive raise with a real eight-fit and does not inflate partner's suit to five.
+ok|ok|Nine points with only a doubleton second club can return to the original minor as a two-card preference rather than accepting the inferior six-club fit.
+ok|ok|Ace-queen-ten sixth clubs and ten points constitute a usable natural NT overcall.
+ok|ok|Own four spades opposite a natural five-card overcall advance establish nine trumps. Twelve HCP plus singleton, doubleton and ninth-trump points total17 support; even partner's eight minimum reaches25.
+ok|ok|Own three hearts opposite the light free natural five-heart response make eight trumps. Thirteen HCP plus club void four total17, reaching25 even at partner's eight-point floor.
+ok|ok|Twelve points, six KQJ hearts and diamond void provide adequate natural NT overcall shape and suit quality.
+ok|ok|Twelve points without a major fit can invite naturally in NT after opener's four-card spade side suit.
+ok|ok|Three hearts support partner's natural competitive response; a minimum three-level raise after space is removed is not an automatic game commitment.
+ok|ok|Twelve points and a sound six-spade suit can compete naturally after the opponents establish a heart fit.
+ok|ok|A three-diamond invitation need not guarantee more than preference support. Own13 does not independently reach the29 minor threshold, so accepting3D is defensible.
+ok|ok|Own14 plus the natural2NT invitation's11 minimum reach25; NT game is appropriate.
+error|ok|Partner's cheapest3D after a takeout double of weak2H can be zero points. Own19 and support adjustment do not publicly reach minor29; an invitational4D is safer than blindly placing5D.
+ok|ok|Four hearts support partner's natural four-heart response, and competing2H after the enemy advances is appropriate. The hover correctly does not invent four-card opener support as a universal requirement.
+ok|ok|Own four spades and two side doubletons provide an honest minimum competitive raise of partner's natural spades.
+uncertain|ok|The minimum opener has14 adjusted support points opposite a10–12 invitation, publicly24 at the lower end. Accepting a potentially26-point game is an invitational judgment, not a mandatory25-minimum conclusion.
+ok|ok|Three hearts opposite transfer five establish eight trumps. Sixteen HCP plus diamond doubleton reach17 support, enough opposite the invitation's eight minimum.
+ok|ok|Own ten points and six diamonds provide genuine extras for a jump takeout response when the lower3D answer remains available.
+ok|ok|Four spades support the natural five-card three-level response; fourteen HCP plus singleton, doubleton and extra-trump points reach game even at the light-response minimum.
+uncertain|ok|AJT sixth clubs and a spade void make an eight-point NT overcall plausible, although the usual direct range is higher. Passing is also defensible.
+error|ok|The responder has only five spades, not the six promised by2S. Thirteen HCP already establish independent game interest opposite opening12; show real four hearts or explore game instead of misdescribing a weak six-card repeat.
+ok|ok|Eight points accept opener's natural18–19 NT rebid at public26 even though the responder is nonbalanced.
+error|ok|The16-point opener can accept partner's natural competitive NT invitation, whose minimum at least ten gives26. Passing2NT conceals independently sufficient game strength.
+ok|ok|Twenty-six HCP retain the strong2C game commitment by describing the actual four diamonds after the second negative; the conservative hover does not falsely assign a six-card heart repeat.
+ok|ok|Thirteen points with four hearts, three diamonds and short opposing spades support a sandwich takeout double.
+ok|ok|Four actual spades provide an honest simple support raise of responder's natural spades.
+uncertain|ok|Own13 plus a diamond-doubleton adjustment give14 support points. Accepting the10–12 invitation is reasonable near the upper public range but is not a strict25-minimum obligation.
+uncertain|ok|Ten points with a seven-card club suit can invite rather than accept1NT; natural3C is another honest option. This2NT does not fabricate a major fit or a game minimum.
+ok|ok|Eleven points and five diamonds are a reasonable balancing natural overcall after1S is passed around.
+ok|ok|The prior negative double and raise establish the spade fit. Competing3S after enemy3H uses that fit without mislabeling it a fresh10–12 invitation.
+ok|ok|The delayed fourth-suit answer honestly supports with three hearts and does not transform responder's four into an eight-fit.
+ok|ok|Own15 opposite opening12 already establish NT game. Only seven hearts are public, so3NT is preferable to falsely choosing a four-four heart game.
+ok|ok|Own four diamonds opposite the secondary four-card suit establish eight trumps. Spade void brings support to13, enough to invite but below minor29 opposite opening12.
+ok|ok|Nine points and real four spades invite in the other major after Stayman; the description correctly avoids a fictitious five-card transfer suit.
+error|ok|The opener actually has nineteen balanced points and a protected enemy-spade stopper. A minimum1NT hides the strong18–19 range;2NT should show it.
+ok|ok|Ten points without a clear three-level overcall or useful takeout shape can pass the weak two-spade interference.
+ok|ok|Eleven points with a club stopper can invite naturally in NT after opener repeats spades; the natural competitive invitation does not invent GF.
+ok|ok|Own11 opposite NT15 minimum already establish26 HCP. A lead double of artificial Stayman does not make diamonds natural; NT game is appropriate after the denial.
+error|ok|Own18 plus negative double's constructive eight minimum reach26. KQ5 stops enemy hearts and the other side suits are stopped, so3NT should be chosen instead of a nonforcing original-minor repeat that can lose game.
+ok|ok|Own11 and a confirmed four-four spade fit accept opener's public16 jump-support invitation at27 minimum.
+ok|ok|The takeout doubler has nineteen balanced points, an enemy-heart stopper and no established eight-spade fit. Natural3NT accepts partner's jump invitation honestly.
+ok|ok|Six strong hearts can be described again with eleven points when opener's spade repeat is a void fit; this is a natural partscore or invitational continuation, not an automatic GF.
+ok|ok|Own15 opposite at least a minimum opening hand establish game. The natural NT rebid publicly supplies the opposing-spade stopper, which need not also be held by responder.

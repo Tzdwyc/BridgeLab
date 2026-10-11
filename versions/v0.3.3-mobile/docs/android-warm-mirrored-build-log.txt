@@ -1,0 +1,146 @@
+Starting a Gradle Daemon, 1 busy and 1 stopped Daemons could not be reused, use --status for details
+> Task :gradle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle:compileKotlin UP-TO-DATE
+> Task :gradle:compileJava NO-SOURCE
+> Task :gradle:compileGroovy NO-SOURCE
+> Task :gradle:pluginDescriptors UP-TO-DATE
+> Task :gradle:processResources UP-TO-DATE
+> Task :gradle:classes UP-TO-DATE
+> Task :gradle:jar UP-TO-DATE
+> Task :app:ReleaseMinSdkCheck
+
+> Task :app:compileFlutterBuildRelease
+Flutter assets will be downloaded from https://storage.flutter-io.cn. Make sure you trust this source!
+
+> Task :app:packJniLibsflutterBuildRelease
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+
+> Task :app:configureCMakeRelease[arm64-v8a]
+[CXX5304] This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+[CXX5304] This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :app:buildCMakeRelease[arm64-v8a]
+> Task :app:configureCMakeRelease[armeabi-v7a]
+> Task :app:buildCMakeRelease[armeabi-v7a]
+> Task :app:configureCMakeRelease[x86_64]
+> Task :app:buildCMakeRelease[x86_64]
+> Task :app:mergeReleaseJniLibFolders
+> Task :webview_flutter_android:preBuild UP-TO-DATE
+> Task :webview_flutter_android:preReleaseBuild UP-TO-DATE
+> Task :webview_flutter_android:mergeReleaseJniLibFolders
+> Task :webview_flutter_android:mergeReleaseNativeLibs NO-SOURCE
+> Task :webview_flutter_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :webview_flutter_android:copyReleaseJniLibsProjectOnly
+> Task :webview_flutter_android:generateReleaseResValues
+> Task :webview_flutter_android:generateReleaseResources
+> Task :webview_flutter_android:packageReleaseResources
+> Task :webview_flutter_android:parseReleaseLocalResources
+> Task :webview_flutter_android:javaPreCompileRelease
+> Task :webview_flutter_android:generateReleaseRFile
+> Task :app:buildKotlinToolingMetadata
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:cleanMergeReleaseAssets UP-TO-DATE
+> Task :webview_flutter_android:writeReleaseAarMetadata
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:checkReleaseAarMetadata
+> Task :webview_flutter_android:mergeReleaseShaders
+> Task :webview_flutter_android:compileReleaseShaders NO-SOURCE
+> Task :webview_flutter_android:generateReleaseAssets UP-TO-DATE
+> Task :webview_flutter_android:mergeReleaseAssets
+> Task :app:mergeReleaseAssets
+> Task :app:copyFlutterAssetsRelease
+> Task :app:generateReleaseResValues
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:mergeReleaseNativeLibs
+> Task :webview_flutter_android:compileReleaseKotlin
+> Task :app:mergeReleaseResources
+> Task :app:stripReleaseDebugSymbols
+> Task :webview_flutter_android:compileReleaseJavaWithJavac
+> Task :webview_flutter_android:mergeReleaseGeneratedProguardFiles
+> Task :webview_flutter_android:exportReleaseConsumerProguardFiles
+> Task :app:extractReleaseNativeSymbolTables
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+> Task :webview_flutter_android:extractDeepLinksRelease
+> Task :app:mergeReleaseNativeDebugMetadata
+
+> Task :webview_flutter_android:processReleaseManifest
+package="io.flutter.plugins.webviewflutter" found in source AndroidManifest.xml: C:\Users\ThinkPad\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.12.0\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.webviewflutter" from the source AndroidManifest.xml: C:\Users\ThinkPad\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.12.0\android\src\main\AndroidManifest.xml.
+
+> Task :app:javaPreCompileRelease
+> Task :webview_flutter_android:prepareReleaseArtProfile
+> Task :webview_flutter_android:bundleLibCompileToJarRelease
+> Task :app:mergeReleaseArtProfile
+> Task :app:processReleaseMainManifest
+> Task :app:outputReleaseAppLinkSettings
+> Task :app:processReleaseManifest
+> Task :app:extractProguardFiles
+> Task :webview_flutter_android:bundleLibRuntimeToJarRelease
+> Task :webview_flutter_android:processReleaseJavaRes
+> Task :app:mergeReleaseStartupProfile
+> Task :app:extractReleaseVersionControlInfo
+> Task :webview_flutter_android:createFullJarRelease
+> Task :app:compressReleaseAssets
+> Task :webview_flutter_android:extractProguardFiles
+> Task :webview_flutter_android:generateReleaseLintModel
+> Task :webview_flutter_android:stripReleaseDebugSymbols NO-SOURCE
+> Task :webview_flutter_android:prepareLintJarForPublish
+> Task :webview_flutter_android:copyReleaseJniLibsProjectAndLocalJars
+> Task :webview_flutter_android:extractDeepLinksForAarRelease
+> Task :webview_flutter_android:extractReleaseAnnotations
+> Task :webview_flutter_android:mergeReleaseConsumerProguardFiles
+> Task :webview_flutter_android:mergeReleaseJavaResource
+> Task :webview_flutter_android:syncReleaseLibJars
+> Task :webview_flutter_android:bundleReleaseLocalLintAar
+> Task :app:processReleaseManifestForPackage
+> Task :webview_flutter_android:writeReleaseLintModelMetadata
+> Task :webview_flutter_android:generateReleaseLintVitalModel
+> Task :app:processReleaseResources
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :webview_flutter_android:bundleReleaseAar
+> Task :webview_flutter_android:mapReleaseSourceSetPaths
+> Task :app:compileReleaseKotlin
+> Task :webview_flutter_android:lintVitalAnalyzeRelease
+> Task :webview_flutter_android:mergeReleaseResources
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:processReleaseJavaRes
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :webview_flutter_android:verifyReleaseResources
+> Task :webview_flutter_android:assembleRelease
+> Task :app:mergeReleaseJavaResource
+> Task :app:minifyReleaseWithR8
+> Task :app:convertShrunkResourcesToBinaryRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:optimizeReleaseResources
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:assembleRelease
+
+[Incubating] Problems report is available at: file:///H:/Projects/Bridge/versions/v0.3.3-mobile/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 4m 21s
+105 actionable tasks: 100 executed, 5 up-to-date

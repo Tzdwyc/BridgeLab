@@ -1,0 +1,180 @@
+352 o o Natural five-heart response and three-card game support.
+353 o e Transfer invitation accepted with three trumps; tooltip loses partner five-card promise.
+354 u o Jack-high seven-card vulnerable preempt needs style and quality judgment.
+355 u o Strong enemy trump holding can trap-pass; penalty versus waiting is tactical.
+356 u o Four-level balancing diamond overcall is vulnerability-sensitive.
+357 o o Genuine first late natural club overcall.
+358 e o Technical doubler must show its six hearts and sixteen points instead of accepting one diamond.
+359 o o Repeated secondary spades retain four-card promise.
+360 o o Seven-spade fit avoided; stopped natural game chosen.
+361 o o Genuine first natural overcall after NT.
+362 o o Balancing long-club overcall permits a reduced floor.
+363 u e Four actual diamonds do not meet the five-card public rebid promise; competitive escape needs explicit exception.
+364 e o Nine points and three partner spades merit a constructive raise.
+365 u o Five-heart continuation versus accepting competitive NT depends on NT range and fit.
+366 o o Competitive four-card second suit is described honestly.
+367 o o Seven-card natural overcall with ten points.
+368 o o Six strong spades escape poor club fit.
+369 e o Five spade support plus distribution merits support rather than passing the doubled partnership suit.
+370 u o Strong club rebid permits game exploration but own spade stopper is absent.
+371 e o Diamond void cannot safely accept partner diamond partscore; describe a playable suit.
+372 u o Competitive three-spade raise has no guaranteed invitation strength; do not treat hidden strength as public.
+373 e o Eight points opposite reverse strength should describe five spades instead of stopping in a three-card heart fit.
+374 u o Strong club minimum-return release is valid in general; actual extras merit further judgment.
+375 o o Eleven-point NT invitation avoids poor club fit.
+376 o o Four-card partner heart support.
+377 u o Weak club escape versus playing one NT is a practical style choice.
+378 u o Strong six-heart hand after weak-two return merits game exploration; no safe fit is confirmed.
+379 e o Six spades and diamond void supply confirmed fit support points to accept the invitation.
+380 e o Nine points with three partner hearts deserve support.
+381 o o Minimum weak-two response cannot establish twenty-nine minor-game points.
+382 e o Seven hearts should not accept partner unexpected NT on no genuine balanced basis.
+383 u o Two-heart preference versus seven-diamond rescue with three points is tactical.
+384 e o Eight points and three overcaller spades merit support.
+385 u o Jump club response has extras but poor suit; NT versus clubs remains a judgment.
+386 o o Strong stopped NT continuation after technical double.
+387 o o Four enemy spades with QJ and fourteen points provide plausible penalty defense.
+388 u o Eight-heart escape versus accepting partner penalty double is tactical.
+389 o o Confirmed heart fit and void support points place major game.
+390 u o Long-spade hand under strong club jump force may choose descriptive spades; NT stopper distribution unresolved.
+391 o o Five-heart transfer continuation places game and lets opener choose strain.
+392 o o Weak minor preference avoids insufficient club fit without fabricating support.
+393 e e Thirteen-point void-heart technical doubler cannot claim eighteen-plus balanced NT continuation.
+394 o o Weak minor preference avoids poor clubs.
+395 o o Five-spade support is a natural simple raise.
+396 o e Transfer invitation accepted with confirmed fit; tooltip loses transfer support meaning.
+397 e e Eighteen-point opener rebids minimum NT without showing extras or an accurate range.
+398 o o First late club overcall is natural.
+399 o o Five public responder spades plus three support form genuine fit.
+400 o o Natural diamond escape after artificial relay is nonforcing.
+401 o o Strong six-diamond responder invites descriptively.
+402 o o Natural five-spade response and three support permit major game.
+403 o o Four actual clubs support partner natural club response.
+404 o e Competitive original five hearts are wrongly described as six.
+405 o o No unsupported high-level competition after opponents advance.
+406 o o Strong enough balancing five-spade overcall.
+407 u o Strong-club minimum return is generally valid; twenty-four-point actual hand deserves further exploration.
+408 o o Five public hearts plus three support; competitive raise.
+409 e o Three-point hand cannot issue natural positive four diamonds after waiting.
+410 e e Seventeen-point responder weakly returns clubs without retaining game exploration; tooltip incorrectly weak preference.
+411 o e Competitive original five spades are wrongly described as six.
+412 o o Late heart support can be three; tooltip no longer fabricates a second four-card suit.
+413 o o Confirmed negative-double heart fit supports game with shortness.
+414 e e Eight-point six-heart hand jumps with a ten-to-twelve promise.
+415 e e Four-heart eight-point Stayman responder uses undefined three hearts and can create false five-card fit.
+416 o o Five public hearts and four support place game.
+417 o o Ten-point six-spade invitation is natural.
+418 o o Nineteen-point balanced opener shows its jump NT range.
+419 e o Seven-point responder opposite eighteen-to-nineteen should accept NT game.
+420 u e Four-four reverse needs equal-length exception instead of claiming original suit always longer.
+421 e o Strong six-heart responder must not accept unsupported clubs as terminal partscore.
+422 o o Four-card second clubs retain four-card promise after fourth-suit inquiry.
+423 o o Strong six-diamond jump accurately shows original suit and extras.
+424 o o Thirteen-point transfer responder continues to game despite lead-directing double.
+425 e e Natural NT overcall lacks a club stopper despite both enemy natural suits being shown.
+426 o o Fourth-suit answer describes three-card heart support.
+427 o o Michaels named-minor answer correctly identifies both five-card suits.
+428 o o First late natural club overcall.
+429 o o Confirmed negative-double fit with support points justifies strong spade answer.
+430 o o Ten points opposite strong NT choose game after Stayman denial.
+431 e o Ten-point responder opposite strong diamond jump should explore game instead of stopping.
+432 o o Simple four-diamond raise explicitly distinguishes preference from confirmed eight-card fit.
+433 o o Balancing seven-card diamond overcall is natural.
+434 e e Only four clubs opposite public three cannot satisfy five-card limit-raise promise.
+435 o o First natural diamond overcall with sufficient points and quality.
+436 o o Nineteen-point opener accepts eleven-point NT invitation.
+437 o o Technical-double response chooses actual five spades; minimum-response meaning is sound.
+438 o o Opener accepts responder nonforcing diamond preference below game strength.
+439 e o Strong five-spade responder should not accept partner clubs on two cards without game exploration.
+440 o o Four enemy spades headed KQ provide plausible penalty defense.
+441 o o Nineteen-point balanced opener jump NT rebid is accurate.
+442 o o Six-diamond invitation describes extra responder strength.
+443 e o Strong opener six hearts and responder nine points deserve descriptive game exploration rather than automatic Pass.
+444 u o Natural six-club continuation after NT feature inquiry requires fit and safety judgment.
+445 e e Strong responder genuine club fit is described as weak preference and can terminate below game.
+446 o o Weak long minor can use restricting NT response under custom GF system.
+447 o o Raise partnership natural spades despite enemy Michaels.
+448 e o Weak Michaels advancer cannot manufacture three NT game; enemy intervention releases response obligation.
+449 u o Four enemy hearts with KJ and thirteen points may penalize; partnership style matters.
+450 o o Natural competitive five-spade response receives three-card support.
+451 u o Responder club continuation is nonforcing on this public prefix; opener accepting three-card preference may be reasonable.
+452 o e Seven-spade ten-point jump should explicitly describe invitation, not just length.
+453 u o Stayman heart support in competition can be preemptive; public fit guarantee needs conservative interpretation.
+454 o o Five enemy hearts headed AQJ give strong penalty evidence.
+455 o o Three-card heart preference correctly permits five-two or five-three play without fake exact support.
+456 o o Simple minor raise honestly separates preference and eight-card fit.
+457 o o Weak long clubs can use restrictive NT response without GF strength.
+458 u o Weak natural five-club support over enemy cue is competitive and not automatically GF.
+459 o o Avoid unsupported minor game after enemy advancement.
+460 o o Strong-club waiting remains artificial after lead-directed double.
+461 u o Four-five club preference versus stopped NT needs range judgment; six-card promise is no longer fabricated.
+462 o o Natural minor preference escapes two-card clubs.
+463 o o Natural NT overcall defense chooses a good six-card diamond suit.
+464 o o Five-spade support and void can compete at three without inventing game force.
+465 u o Low-point four-spade sacrifice against game depends on vulnerability and defensive expectation.
+466 o o Michaels names the actual five-card minor after inquiry.
+467 o o Public strong spade invitation and confirmed fit accept major game.
+468 o o Passed-hand two-diamond response is not GF; two-heart preference may stop.
+469 o o Negative-double strong support points correctly show extras.
+470 e o Nine support points opposite public sixteen support points should accept major game.
+471 o o Four-card second spades retain their original minimum.
+472 u o Avoiding false eight-spade game is correct; other partscore rescue choices remain judgmental.
+473 u o Distributional five-five responder has extras; exact four-minor versus lower reply is a judgment.
+474 o o Eleven-point balancing-NT responder searches four-card major before invitation.
+475 o o First late seven-card natural club overcall.
+476 o o Four actual hearts support four public partner hearts.
+477 o e Passed-hand natural five-club continuation needs explicit nonforcing meaning, not undefined placeholder.
+478 e o Seven-heart opener should not accept partner clubs on a singleton.
+479 e o Twenty-two points and five-five suits should continue naturally after opponents support.
+480 o o Nine-point responder with fit support points accepts strong spade invitation.
+481 u o Club-rich advancer versus enemy clubs may reasonably accept partner diamonds or investigate; game is not guaranteed.
+482 e o Nine points and good five spades with six diamonds should enter naturally over one heart.
+483 o o Corrected GPT arithmetic: actual NT hand has sixteen HCP, not seventeen; quantitative invitation may be declined.
+484 e o Eighteen-point opener opposite public NT invitation must reach game.
+485 o o Three-card heart preference with weak responder is nonforcing.
+486 e o Seventeen-point competitive opener cannot assert NT game on partner zero-point Pass.
+487 o e Technical-double jump-heart support is wrongly labeled weak jump overcall.
+488 u o Six-card weak clubs may use relay escape; leaving one NT is not necessarily fatal.
+489 u o Nine-point excellent seven-heart suit can compete; direct two-heart HCP boundary versus preempt is stylistic.
+490 o e Transfer invitation accepts confirmed spade fit; tooltip fails to identify support promise.
+491 o o Seven points opposite strong NT rebid accept game.
+492 o o Fourth-suit continuation repeats four-card clubs without six-card fiction.
+493 e o Fourteen-point fourth-suit asker must continue toward game after partner reply.
+494 o o Natural four-card secondary spades rescue prior premature Pass.
+495 e o Fourteen-point opener must accept eleven-point NT invitation.
+496 o o Confirmed secondary spade fit and shortness accept invitation.
+497 e o Seven-heart responder with twelve points and balanced partner support should continue to major game.
+498 e o Six-diamond opener with weak NT fit should show its long diamonds.
+499 o o First two-level natural spade overcall is not a weak jump.
+500 o e Partner two-spade nonjump overcall cannot be labeled weak jump in support hover.
+501 e o Singleton enemy spade queen cannot justify penalty double.
+502 u o Historical incorrect opposing penalty action changes optimal escape; corrected complete sequence is authoritative.
+503 e e Strong club-support responder cannot be described and routed as weak preference.
+504 u o Strong technical doubler with only five hearts may prefer stopped NT; high-heart choice lacks confirmed fit.
+505 o o Michaels correctly names five clubs after inquiry.
+506 u o Four low spade support can compete preemptively; no game obligation follows.
+507 o o Four-card spade support and eleven adjusted points invite.
+508 o o Strong opener accepts NT invitation instead of premature Pass.
+509 o o Nineteen-point stopped technical doubler rebids the accurate NT range.
+510 o o Weak three-card heart preference is correctly nonforcing.
+511 o o Four-card natural second spades are shown instead of hidden by Pass.
+512 e o Original diamond opener cannot Pass natural forcing club response with poor club fit.
+513 o o Forced-level NT rebid differs from a genuine jump and correctly shows eighteen-to-twenty.
+514 e e Strong genuine club-support response is incorrectly weak preference.
+515 e o Twenty-point technical doubler cannot jump to slam opposite a zero-point forced response without keycard safety.
+516 o o Four-card spade support and adjusted invitation strength.
+517 e o Void-club six-diamond responder should describe diamonds rather than restricting NT.
+518 o o Strong jump spade support and shortness lift six HCP responder to major game acceptance.
+519 e e Three-point free heart response cannot satisfy six-plus free-advance strength.
+520 o o Sixteen-point opener accepts eleven-point NT invitation.
+521 o o Nine HCP plus singleton and ninth trump justify thirteen support-point Jacoby response.
+522 o e Same-contract RKCB five-heart stop is correct, but hover wrongly disables Pass.
+523 o o Good six-heart natural overcall meets direct strength.
+524 u o Five low heart support can raise preemptively; Pass versus three hearts is a competitive judgment.
+525 u o Late NT invitation range needs reconstruction; actual low responder strength alone cannot judge partner maximum.
+526 o o Strong original opener plus confirmed spade fit accepts major game.
+527 o o Negative-double spade fit and void support points place game.
+528 o o Fourth-suit NT answer correctly gives broad twelve-to-twenty-one range and heart stopper.
+529 o o Enemy forced response can safely Pass partnership with weak support.
+530 u e Late natural diamond continuation should have a definite natural meaning; point/style boundary needs judgment.
+531 u o Confirmed nine-card diamond fit and shortness may justify game or sacrifice; public uncertainty retained.

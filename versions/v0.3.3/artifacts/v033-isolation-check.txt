@@ -1,0 +1,15 @@
+
+> bridgelab@0.3.3 test
+> vitest run tests/version-isolation.test.ts --maxWorkers=2
+
+
+ RUN  v3.2.7 H:/Projects/Bridge/versions/v0.3.3
+
+ ✓ tests/version-isolation.test.ts (2 tests) 6ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  19:31:52
+   Duration  1.56s (transform 424ms, setup 0ms, collect 494ms, tests 6ms, environment 0ms, prepare 706ms)
+
+JSON report written to H:/Projects/Bridge/versions/v0.3.3/artifacts/unit-results.json

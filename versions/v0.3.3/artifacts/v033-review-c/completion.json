@@ -1,0 +1,60 @@
+{
+  "sourceSha256": "a7ee9885b5e92deaaccf691e8c6677692c8a362454f6e73f5ac4822ade1d1472",
+  "range": [
+    7146,
+    7545
+  ],
+  "reviewedBoardCount": 400,
+  "reviewedStepCount": 3616,
+  "nextBoard": 7546,
+  "complete": true,
+  "method": "Every step individually read and judged by this GPT chat; no hidden partner hand or quality oracle. Scripts only display observations and serialize explicit decisions.",
+  "callVerdictCounts": {
+    "ok": 3532,
+    "error": 23,
+    "uncertain": 61
+  },
+  "meaningVerdictCounts": {
+    "ok": 3559,
+    "error": 41,
+    "uncertain": 16
+  },
+  "batchFiles": [
+    "batch-7146-7165.json",
+    "batch-7166-7185.json",
+    "batch-7186-7205.json",
+    "batch-7206-7225.json",
+    "batch-7226-7245.json",
+    "batch-7246-7265.json",
+    "batch-7266-7285.json",
+    "batch-7286-7325.json",
+    "batch-7326-7365.json",
+    "batch-7366-7405.json",
+    "batch-7406-7445.json",
+    "batch-7446-7485.json",
+    "batch-7486-7525.json",
+    "batch-7526-7545.json"
+  ],
+  "editorialReasonCorrections": [
+    {
+      "board": 7358,
+      "step": 4,
+      "reason": "自然D争叫后自己9点六S，1S是建设性新花色应叫8+五张、NF；不是开叫方一盖一F1，也不是自己首次争叫，固定悬停准确。"
+    },
+    {
+      "board": 7504,
+      "step": 6,
+      "reason": "二盖一2C已建立GF，开叫人真实六D以2D描述第二套；公开只承诺4+张D、原GF继续，说明未把D当H或虚构更高点力。"
+    },
+    {
+      "board": 7530,
+      "step": 4,
+      "reason": "自己8点、无四高花且六C，3-3-1-6并非均型；当前13+GF的二阶C不能使用，1NT为可用限制描述，但提示固定均型过窄，应允许长套或半均型用途。"
+    },
+    {
+      "board": 7541,
+      "step": 7,
+      "reason": "技术X后自己19点、真实六S，随后自由2S显示17+点五张以上S；不是被迫答扣叫，强长套与说明正确。"
+    }
+  ]
+}

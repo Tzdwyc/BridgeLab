@@ -1,0 +1,43 @@
+Flutter assets will be downloaded from https://storage.flutter-io.cn. Make sure you trust this source!
+Running Gradle task 'assembleRelease'...                        
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':gradle:compileKotlin'.
+> Could not resolve all files for configuration ':gradle:compileClasspath'.
+   > Could not resolve androidx.annotation:annotation-jvm:1.9.1.
+     Required by:
+         project :gradle
+      > Could not resolve androidx.annotation:annotation-jvm:1.9.1.
+         > Could not get resource 'https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.pom'.
+            > Could not HEAD 'https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.pom'.
+               > The server may not support the client's requested TLS protocol versions: (TLSv1.2, TLSv1.3). You may need to configure the client to allow other protocols to be used. For more on this, please refer to https://docs.gradle.org/8.14/userguide/build_environment.html#sec:gradle_system_properties in the Gradle documentation.
+                  > Remote host terminated the handshake
+   > Could not resolve com.android.tools.build:gradle:8.11.1.
+     Required by:
+         project :gradle
+      > Could not resolve com.android.tools.build:gradle:8.11.1.
+         > Could not get resource 'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/8.11.1/gradle-8.11.1.pom'.
+            > Could not HEAD 'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/8.11.1/gradle-8.11.1.pom'.
+               > The server may not support the client's requested TLS protocol versions: (TLSv1.2, TLSv1.3). You may need to configure the client to allow other protocols to be used. For more on this, please refer to https://docs.gradle.org/8.14/userguide/build_environment.html#sec:gradle_system_properties in the Gradle documentation.
+                  > Remote host terminated the handshake
+   > Could not resolve org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0.
+     Required by:
+         project :gradle > org.jetbrains.kotlin:kotlin-stdlib:2.0.21
+      > Could not resolve org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0.
+         > Could not get resource 'https://dl.google.com/dl/android/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.0/kotlin-stdlib-jdk8-1.8.0.pom'.
+            > Could not HEAD 'https://dl.google.com/dl/android/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.0/kotlin-stdlib-jdk8-1.8.0.pom'.
+               > Read timed out
+> There are 3 more failures with identical causes.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2m 32s
+Running Gradle task 'assembleRelease'...                          152.6s
+[!] Gradle threw an error while downloading artifacts from the network.
+Retrying Gradle Build: #1, wait time: 100ms

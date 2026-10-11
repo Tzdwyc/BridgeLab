@@ -1,0 +1,1828 @@
+{
+  "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363",
+  "reviewer": "core",
+  "method": "GPT personally adjudicated all 180 frozen repaired public positions; scripts only serialized authored decisions. Complete auctions additionally inspected.",
+  "completeAuctionBoards": [
+    551,
+    554,
+    560,
+    573,
+    583,
+    641,
+    695,
+    700,
+    712,
+    722,
+    723,
+    770,
+    832,
+    858,
+    975,
+    1095,
+    1109,
+    1113,
+    1149
+  ],
+  "rows": [
+    {
+      "index": 0,
+      "board": 540,
+      "step": 9,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十八点双黑对公开六黑，调整支持点与应叫下限足局，4S可用。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 1,
+      "board": 551,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "平衡位九点六方可自然2D，说明正确区分平衡位。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 2,
+      "board": 551,
+      "step": 5,
+      "newCall": "2S",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "二十一点六黑只2S隐藏明显额外实力，应强跳3S；不借隐藏同伴点力硬进局。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 3,
+      "board": 554,
+      "step": 3,
+      "newCall": "2S",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "九点六黑AQJT有套质，略低于通常十点，属长套竞争边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 4,
+      "board": 554,
+      "step": 4,
+      "newCall": "X",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "八点两低黑不具惩罚将牌质量，不能X自然2S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 5,
+      "board": 554,
+      "step": 6,
+      "newCall": "3H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "uncertain",
+      "reason": "同伴惩罚X后开叫人仅四红改3H缺少约定支撑，解释未给点力长度；不能确认正确逃叫。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 6,
+      "board": 554,
+      "step": 8,
+      "newCall": "4H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "error",
+      "reason": "八点四红对未约定3H进局偏积极；前序未承诺四红，不能又按公开四红确认配合。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 7,
+      "board": 556,
+      "step": 8,
+      "newCall": "X",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十四点黑95不能惩罚X转移接受2S，点力不能代替将牌。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 8,
+      "board": 557,
+      "step": 7,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "四黑双双张为十支持点，NT最低十五已25，4S正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 9,
+      "board": 557,
+      "step": 9,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点五黑对四黑邀请，九将和双梅支持点足够接受4S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 10,
+      "board": 558,
+      "step": 7,
+      "newCall": "3D",
+      "callVerdict": "ok",
+      "meaningVerdict": "uncertain",
+      "reason": "十一点六方3D邀请如实，说明遗漏邀请十至十二范围但未作虚假承诺。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 11,
+      "board": 560,
+      "step": 10,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点对NT争叫公开十五最低已有26，应转移后3NT选择成局而非停3S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 12,
+      "board": 562,
+      "step": 3,
+      "newCall": "2S",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "uncertain",
+      "reason": "九点七张AK黑可积极自然2S，但略低于说明十点通常下限，保留套质边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 13,
+      "board": 573,
+      "step": 7,
+      "newCall": "3NT",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己十一点与支持扣叫公开十点最低仅21，3NT过早；先3H最低答叫。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 14,
+      "board": 578,
+      "step": 12,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十八点四黑单紅调整后对公开四黑支持足局，4S修复遗漏。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 15,
+      "board": 583,
+      "step": 7,
+      "newCall": "4D",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "Michaels同伴已示五黑未明低花，自己三黑应3S；4D错误选择未知低花且解释误当自然争叫应叫。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 16,
+      "board": 587,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "四方面对三方开叫尚七fit，说明已诚实列偏好，不再虚诺五张；均型1NT更自然，2D保留路线边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 17,
+      "board": 591,
+      "step": 8,
+      "newCall": "3S",
+      "callVerdict": "ok",
+      "meaningVerdict": "uncertain",
+      "reason": "十一点七黑应3S邀请，说明未写邀请范围但长度及NF不假。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 18,
+      "board": 623,
+      "step": 11,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "敌方2C自然长梅上的首攻或惩罚X非必需，十点Pass可接受。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 19,
+      "board": 623,
+      "step": 12,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "被迫最低均型开叫人无梅支持可先Pass被加倍的自然2C让长梅同伴判断。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 20,
+      "board": 623,
+      "step": 14,
+      "newCall": "P",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "九点五梅对均型开叫人公开至少两梅仅七fit，被加倍Pass偏积极但无确定可逃配合。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 21,
+      "board": 624,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点六方有好套可自然二阶竞争，说明识别首次争叫正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 22,
+      "board": 631,
+      "step": 4,
+      "newCall": "1H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "六点五红QJT平衡1H合理，说明允许平衡低点力。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 23,
+      "board": 631,
+      "step": 5,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "二十点四红AK具有惩罚将牌和防守，对1H的X可用。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 24,
+      "board": 632,
+      "step": 11,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "第四花色后开叫人三红迟到支持如实，不额外宣称四张或八fit。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 25,
+      "board": 637,
+      "step": 7,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点四黑加短门，面对强跳支持邀请最低十六，接受4S正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 26,
+      "board": 641,
+      "step": 9,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己单方且六红，停同伴五方的新套六fit明显较差，宜2H描述六红。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 27,
+      "board": 642,
+      "step": 8,
+      "newCall": "X",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十四点单红J不能惩罚X自然转移接受2H。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 28,
+      "board": 648,
+      "step": 10,
+      "newCall": "P",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "自己五方加同伴可能两张偏好尚七fit，取消5D正确；仍有四红可描述，Pass属后续选择边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 29,
+      "board": 655,
+      "step": 4,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "敌方一方一红后十二点四黑四梅、红双方三，技术X合理，解释已移除虚假惩罚角色。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 30,
+      "board": 656,
+      "step": 10,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点最低NT后自然方块偏好可Pass，说明未伪人工义务。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 31,
+      "board": 666,
+      "step": 9,
+      "newCall": "2NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "十二点方A可2NT答第四花色止张；说明却把最低人工答叫称邀请或额外实力，角色误导。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 32,
+      "board": 672,
+      "step": 4,
+      "newCall": "1H",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "十一点仅三红却最低1H被标零至八，应用有梅止的2NT邀请或合适强回复。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 33,
+      "board": 680,
+      "step": 2,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十点七方AJT可二阶自然竞争，套长改善质量，保留对NT风险。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 34,
+      "board": 689,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点五方AKJT在敌方1NT后首次自然2D合适。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 35,
+      "board": 691,
+      "step": 4,
+      "newCall": "2C",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点五梅Q高平衡2C套质偏弱，但平衡降点允许，保留竞争判断。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 36,
+      "board": 691,
+      "step": 5,
+      "newCall": "2S",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十九点六黑敌2C后仅2S少报，应3S强跳；不能凭隐藏同伴支持直接4S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 37,
+      "board": 692,
+      "step": 6,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "六点四方与开叫三方未确认fit，说明诚实最低偏好；1NT较自然但2D不再硬判违规。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 38,
+      "board": 694,
+      "step": 4,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点红四黑三方双梅四符合针对双方低花的技术X形状。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 39,
+      "board": 694,
+      "step": 9,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "自然低花回叫非逼叫，开叫人均型最低限可Pass2D。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 40,
+      "board": 695,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点单方却停原方，需2S描述四黑或2NT邀请，不能当NF即适合Pass。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 41,
+      "board": 700,
+      "step": 10,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "公开六黑强跳加八点双梅支持正好25，4S正确；说明却称弱偏好或部分定约。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 42,
+      "board": 703,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "平衡位十四点七方AQJ可自然2D，说明平衡角色正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 43,
+      "board": 703,
+      "step": 6,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己方缺门黑梅各五却停同伴方套，应2S或梅长套，不能接受零支持。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 44,
+      "board": 704,
+      "step": 9,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "三红迟到支持回应第四花色合理，未把三张解释成四张。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 45,
+      "board": 705,
+      "step": 7,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "弱六黑面对第二梅套差fit，2S长套签约比Pass合理。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 46,
+      "board": 706,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点三黑对五黑争叫有明确支持邀请，可支持扣叫，Pass漏邀请。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 47,
+      "board": 710,
+      "step": 8,
+      "newCall": "2NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "uncertain",
+      "reason": "十点对12至14的NT应2NT邀请，具体十至十二点后续范围未写明。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 48,
+      "board": 712,
+      "step": 5,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己十点对NT争叫15至18最低25，敌黑止已承诺，应3NT，不可让3S结束。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 49,
+      "board": 722,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点三方对跳3D公开六方及16最低，单紅和九将调整达局，应5D或适合的3NT。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 50,
+      "board": 723,
+      "step": 6,
+      "newCall": "2H",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "十三点四梅四红不能作17以上竞争逆叫2H；说明还虚构原套更长。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 51,
+      "board": 723,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十六点七方对公开17以上逆叫已有局力，且自己单红，Pass2H明显错误。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 52,
+      "board": 726,
+      "step": 3,
+      "newCall": "2C",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点七梅AKT长套对NT可考虑二阶自然争叫，低点长套边界保留。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 53,
+      "board": 726,
+      "step": 4,
+      "newCall": "2H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "error",
+      "reason": "七点七红自然2H可竞争且最低联手NT仅22；说明未约定该自然应叫，不给已采用路线长度范围。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 54,
+      "board": 735,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己黑单六方AQJT，停同伴五黑仅六fit，应2D重复长方。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 55,
+      "board": 737,
+      "step": 7,
+      "newCall": "3C",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "Michaels2NT询问后3C准确显示已约定五梅五黑，说明修复角色。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 56,
+      "board": 737,
+      "step": 8,
+      "newCall": "3H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "五点四红单黑竞争3H具分布，低于通常邀请值但竞争延长可合理。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 57,
+      "board": 737,
+      "step": 10,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点原高花对竞争性3H低支持下限不足硬局，Pass修复过冲。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 58,
+      "board": 745,
+      "step": 10,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "弱应叫两梅面对原五方和自己四方，2D偏好正确；不借隐藏七方把偏好改局。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 59,
+      "board": 746,
+      "step": 9,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "强开叫六红对同伴重复六黑并有AK双黑，4S达到真实八fit与局力。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 60,
+      "board": 748,
+      "step": 10,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点四红加黑单三支持点，对NT十五最低27，直接4H正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 61,
+      "board": 748,
+      "step": 12,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点五红对四红邀请调整后足25，接受4H正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 62,
+      "board": 749,
+      "step": 2,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点五红AQT质量合格，可自然2H防NT。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 63,
+      "board": 761,
+      "step": 7,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点四红双方调整十点，对NT最低十五25，4H正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 64,
+      "board": 761,
+      "step": 9,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点五红对邀请四红，九将和双梅足够接受4H。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 65,
+      "board": 763,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十四点五方AQJ在平衡位可2D，解释清楚首次竞争。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 66,
+      "board": 764,
+      "step": 6,
+      "newCall": "4D",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "四点五方J套对Michaels未知低花不能4D；说明8以上及自然争叫角色也不符合。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 67,
+      "board": 764,
+      "step": 7,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "强开叫五方KQT针对自然4D有惩罚长度和质量，加倍可用。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 68,
+      "board": 765,
+      "step": 8,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点四红单黑短门调整，NT最低已局，4H正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 69,
+      "board": 765,
+      "step": 10,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点四红加双方，对公开邀请支撑足局，4H正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 70,
+      "board": 766,
+      "step": 8,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "八点双黑和双方双梅支持值十，面对六黑16最低已26，4S正确；说明弱偏好部分定约错误。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 71,
+      "board": 770,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "九点三黑面对3S已确认fit并收到额外实力邀请，应4S，Pass未按邀请强度判断。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 72,
+      "board": 773,
+      "step": 5,
+      "newCall": "2H",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "九点四红单黑双方及九将达强邀请支持值，普通2H压低实力，应支持扣叫。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 73,
+      "board": 774,
+      "step": 5,
+      "newCall": "3H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "最低开叫人三红对五红自由应叫有八fit，3H继续建设性支持合理。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 74,
+      "board": 784,
+      "step": 4,
+      "newCall": "2H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点六红A高对NT二阶竞争略低常规十点，长套降低门槛属判断边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 75,
+      "board": 791,
+      "step": 4,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点五红AJ好套首次自然2H可用，说明移除错误晚期角色。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 76,
+      "board": 792,
+      "step": 4,
+      "newCall": "2S",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "九点四黑短门与九将达十一支持点，应邀请3S或扣叫，2S低报。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 77,
+      "board": 794,
+      "step": 3,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点黑三低花各四红双符合弱二后的技术X。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 78,
+      "board": 795,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十四点六方AKT平衡2D如实。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 79,
+      "board": 795,
+      "step": 6,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点四方对五方争叫九fit支持值十二，应3D邀请，不是必局但不能一律Pass。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 80,
+      "board": 798,
+      "step": 9,
+      "newCall": "2NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "十二点方A可2NT回应第四花色；说明错误称邀请或额外实力而非最低止张回答。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 81,
+      "board": 805,
+      "step": 9,
+      "newCall": "2S",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点五黑对五黑争叫十fit短门调整强，应扣叫邀请，2S压低。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 82,
+      "board": 807,
+      "step": 3,
+      "newCall": "3D",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "十二点六方双短门九fit支持值超过十二，3D限制邀请与手力不符，应保持GF或强续叫。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 83,
+      "board": 815,
+      "step": 7,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十四点四方对弱二否认特征，低限五支持不足29，Pass3D是合理拒邀。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 84,
+      "board": 821,
+      "step": 7,
+      "newCall": "3D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点五方在敌方竞争占空间后的3D仅保证已示五张，说明不虚诺六。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 85,
+      "board": 825,
+      "step": 9,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十点五红、两梅对第二四梅仅六fit，需3H邀请描述，不能停差低花。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 86,
+      "board": 832,
+      "step": 10,
+      "newCall": "2S",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己五点四黑自由2S的本卡通常六点门槛未到，应Pass，不按旧技术X当被迫回复。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 87,
+      "board": 836,
+      "step": 8,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十七点六黑对弱二开叫人自然3S支持三张，八fit调整值与公开5最低足局，可4S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 88,
+      "board": 838,
+      "step": 6,
+      "newCall": "3S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "最低十二点三黑对自然2S五张，3S支持建设性合理，不虚构GF。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 89,
+      "board": 840,
+      "step": 9,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "五点五红与技术X跳支持四红、十八以上合计支持值已25，应4H接受。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 90,
+      "board": 843,
+      "step": 9,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点四黑双方及九将调整十五，对三阶支持邀请10以上已25，4S正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 91,
+      "board": 844,
+      "step": 4,
+      "newCall": "4D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点五方黑强四张有短门，4D跳邀请通常九至十一稍偏强；需结合支持点不硬判违规。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 92,
+      "board": 855,
+      "step": 7,
+      "newCall": "3H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十一点双红对通常六红有调整邀请值，3H比Pass合理；说明两张支持例外清楚。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 93,
+      "board": 858,
+      "step": 7,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十四点与开叫最低十二足局，2S扣叫要求继续描述，修复让敌1S结束。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 94,
+      "board": 869,
+      "step": 9,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点负X后面对12至14的1NT应2NT邀请，Pass漏邀请。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 95,
+      "board": 870,
+      "step": 9,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "六红对20至21NT已八fit，梅缺门调整后足局，4H符合转移长套说明。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 96,
+      "board": 874,
+      "step": 10,
+      "newCall": "2NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "十一点五五低花可2NT答第四花色S止；应说明回答人工询问，不是12至21邀请。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 97,
+      "board": 880,
+      "step": 9,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点均型双黑接受同伴六黑邀请有八fit及支持点，4S可用。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 98,
+      "board": 883,
+      "step": 10,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点四黑对六黑邀请十fit，支持调整十八足接受4S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 99,
+      "board": 884,
+      "step": 11,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "自然2H弱长套回应最低NT，开叫人三红支持但未额外局力可Pass。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 100,
+      "board": 909,
+      "step": 11,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "十七点4441竞争2S逆叫可用，但原方四与黑四等长，说明原套较长忽略4441例外。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 101,
+      "board": 910,
+      "step": 8,
+      "newCall": "3NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点对开叫最低十二达25且S AKT止，3NT正当选择。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 102,
+      "board": 913,
+      "step": 8,
+      "newCall": "3D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "六点六方接力3C后改3D弱签约，人工义务已履行。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 103,
+      "board": 915,
+      "step": 4,
+      "newCall": "2H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点五红单黑十将支持点很强，2H竞争偏保守但敌X后可阻击路线，不强迫邀请。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 104,
+      "board": 916,
+      "step": 2,
+      "newCall": "P",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十一点八红AQJ长套应考虑3H或4H，但阻击后的竞争风险使Pass属保守判断边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 105,
+      "board": 920,
+      "step": 6,
+      "newCall": "X",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十四点黑单9无惩罚将牌，X自然1S明显错误。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 106,
+      "board": 928,
+      "step": 8,
+      "newCall": "3NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点与开叫最低十二25，S K四张有止，3NT正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 107,
+      "board": 930,
+      "step": 6,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "NT开叫三红对敌Unusual后五红GF应叫，调整支持点足局，4H合理。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 108,
+      "board": 934,
+      "step": 7,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点六红加双双张支持十一，对NT最低十五26，4H正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 109,
+      "board": 934,
+      "step": 9,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点四红对六红邀请，十将短门足接受4H。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 110,
+      "board": 938,
+      "step": 7,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十二点负X后面对12至14NT应邀请2NT或描述六梅，不应Pass。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 111,
+      "board": 946,
+      "step": 5,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点四黑AK有惩罚牌质与防守，敌1S加倍可用。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 112,
+      "board": 947,
+      "step": 10,
+      "newCall": "P",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "四点五紅双四黑对强平衡开叫人可支持但未公开最低局力，Pass偏保守可保留。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 113,
+      "board": 950,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点六方QT套对NT直接二阶偏轻，长套竞争属边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 114,
+      "board": 951,
+      "step": 8,
+      "newCall": "2NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点仅五红对转移接受两红仍七fit，不可借隐藏四红，2NT邀请正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 115,
+      "board": 954,
+      "step": 4,
+      "newCall": "3C",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点六梅A长套在弱二平衡位3C合理，角色修复。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 116,
+      "board": 955,
+      "step": 4,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十点五方A高平衡2D质量较弱，但空间及平衡允许低点，保留判断。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 117,
+      "board": 959,
+      "step": 8,
+      "newCall": "1S",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "error",
+      "reason": "九点只有三张未叫花色应倾向荣誉好的红或NT探求；1S最低应叫说明0至8低报实点。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 118,
+      "board": 959,
+      "step": 11,
+      "newCall": "X",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点黑AKQ四张对1S有惩罚将牌，加倍符合牌质。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 119,
+      "board": 970,
+      "step": 2,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点五黑AQ有套质，可自然2S防NT。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 120,
+      "board": 972,
+      "step": 4,
+      "newCall": "2H",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "八点六紅方缺门、十一将支持很强，2H部分支持低报，应至少邀请或阻击3H明示长将。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 121,
+      "board": 975,
+      "step": 7,
+      "newCall": "2S",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "强2C4441只有四黑，2S自然再叫明示五张不实，仍需4441路线。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 122,
+      "board": 975,
+      "step": 11,
+      "newCall": "3S",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "同一四黑再叫3S且被解释为五张原高花，仍虚构套长；不应靠最低负应叫解除26点强牌描述。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 123,
+      "board": 976,
+      "step": 8,
+      "newCall": "1S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十九点原梅三张且方无止，禁止强跳2S后如实1S描述四黑；可接受保留强度后续。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 124,
+      "board": 978,
+      "step": 4,
+      "newCall": "2C",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点六梅KQJ平衡2C自然，说明首次平衡正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 125,
+      "board": 979,
+      "step": 3,
+      "newCall": "3D",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "十二点六方单红双黑九fit有约17支持点，限制10至12的3D低报。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 126,
+      "board": 983,
+      "step": 2,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十一点六红QJT具合格质量，可直接自然2H竞争NT。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 127,
+      "board": 984,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "九点五五高花单方双梅却Pass第二四梅差fit，应2H显示第五红或2S强调黑套。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 128,
+      "board": 988,
+      "step": 5,
+      "newCall": "3D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "error",
+      "reason": "十点四方对三方开叫七fit，用3D邀请形状边界可讨论；说明明确五张支持而实有四，不能保留。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 129,
+      "board": 989,
+      "step": 6,
+      "newCall": "3H",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "uncertain",
+      "reason": "十六点六红先技术X后3H通常17以上，强套可能降一点但说明硬17与手力不一致，保留边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 130,
+      "board": 999,
+      "step": 5,
+      "newCall": "2C",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十九点五五低花应强跳3C建立额外实力，普通2C少报；不是均型可自然2NT的手。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 131,
+      "board": 1003,
+      "step": 10,
+      "newCall": "3H",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "2S低花逃叫接力3C后自己六梅四紅，却3H选未知短紅；解释又错误保留回答义务而非低花接力已完成。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 132,
+      "board": 1003,
+      "step": 12,
+      "newCall": "P",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "自己三紅对未约定3H续叫公开长度不明，Pass需信任长红，真实四红无适当fit，保留差fit边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 133,
+      "board": 1004,
+      "step": 9,
+      "newCall": "3NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十七点五梅AKQ对同伴NT邀请，3NT接受正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 134,
+      "board": 1008,
+      "step": 6,
+      "newCall": "2D",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "强2C遭首攻X后2D等待不承诺梅，修复假支持。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 135,
+      "board": 1008,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "旧错误前缀同伴5C已局，强开叫人不再跳6NT，Pass安全；不代表之前5C合法。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 136,
+      "board": 1010,
+      "step": 2,
+      "newCall": "2C",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十点六梅KQJT具有套质，可2C自然防NT。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 137,
+      "board": 1012,
+      "step": 1,
+      "newCall": "3C",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "五点七梅T高套质很弱，三阶阻击风险较高，按阻击判断保留而非按长度硬判正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 138,
+      "board": 1017,
+      "step": 8,
+      "newCall": "4S",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "error",
+      "reason": "Michaels五黑五梅后同伴2S可三张支持，4S分布路线积极但未公开强度；说明反称同伴五黑错误角色。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 139,
+      "board": 1019,
+      "step": 9,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "九点五黑四紅单方、两梅对四梅差fit，2D弱偏好改善原五方虽三张黑更长；仍可2H，保留选择边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 140,
+      "board": 1021,
+      "step": 2,
+      "newCall": "2C",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点六梅AQT直接二阶自然对NT合格。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 141,
+      "board": 1022,
+      "step": 8,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "二阶梅争叫人四黑单方双红调分对同伴五黑8最低达局，4S可用。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 142,
+      "board": 1025,
+      "step": 8,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十六点三红梅缺门与同伴五红确认八fit，2H自由应叫10最低，足4H。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 143,
+      "board": 1026,
+      "step": 3,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点六红KQJ有好套自然竞争NT，说明首次角色正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 144,
+      "board": 1032,
+      "step": 8,
+      "newCall": "2C",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十二点五紅四梅双双张应邀请2NT或继续红信息，2C最低偏好少报邀请实力。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 145,
+      "board": 1034,
+      "step": 6,
+      "newCall": "3H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点三紅对5H自由应叫10最低可3H建设支持。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 146,
+      "board": 1053,
+      "step": 4,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点六黑AQT在敌方支持红后自然2S竞争合理。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 147,
+      "board": 1061,
+      "step": 9,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点六方对同伴3D两张邀请偏好，公开支持不足29，拒邀Pass正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 148,
+      "board": 1062,
+      "step": 12,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十四点对同伴2NT邀请10至12最低24可最高限接受，按此前最低NT邀请十一则25；至少主动接受3NT，固定Pass漏邀请。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 149,
+      "board": 1069,
+      "step": 7,
+      "newCall": "5D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十九点五方对被迫3D仅公开约三张但非四，八fit短门强，5D为牌型路线而非必局，保留赢墩判断。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 150,
+      "board": 1070,
+      "step": 11,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点四紅对同伴至少四紅，双将及短门支持可2H竞争。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 151,
+      "board": 1076,
+      "step": 7,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点四黑对四黑应叫，双短门足竞争2S但未保证局力。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 152,
+      "board": 1076,
+      "step": 11,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十二点四黑调整支持十五对3S邀请10已25，4S正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 153,
+      "board": 1077,
+      "step": 9,
+      "newCall": "4H",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "十六点三紅对转移2NT邀请确认八fit且双方，4H正确；说明却把它当原套重述而非确认转移五红配合。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 154,
+      "board": 1078,
+      "step": 4,
+      "newCall": "4D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "九点六方单红双黑的4D强跳应叫可按分布邀请，通常9至11及四张条件已满足。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 155,
+      "board": 1083,
+      "step": 6,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十五点四黑单紅对Unusual后自然3S五张及强应叫，足进4S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 156,
+      "board": 1086,
+      "step": 3,
+      "newCall": "2C",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点六梅AJT黑缺门直接2C对NT积极，较低点但长套与短门保留竞争判断。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 157,
+      "board": 1087,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十二点五黑四紅单方对最低原方再叫应邀请或2H描述，不能停差方fit。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 158,
+      "board": 1089,
+      "step": 7,
+      "newCall": "3NT",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "八点六方配自然18至19NT至少26，但黑缺门入口止张风险，3NT可合理选择且应保留赢墩边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 159,
+      "board": 1090,
+      "step": 5,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十六点六梅对竞争2NT邀请至少10且同伴承诺紅止，应3NT接受，不能Pass。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 160,
+      "board": 1095,
+      "step": 9,
+      "newCall": "3H",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "二十七点五红强套对二次负仅3H并称最低限解除进局义务，明显隐瞒强度，应至少进局继续描述。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 161,
+      "board": 1096,
+      "step": 4,
+      "newCall": "X",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十一点红四方三黑双梅四形状可技术X但低于十二点通常下限，保留竞争降点边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 162,
+      "board": 1096,
+      "step": 5,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点四黑对自然1S四张，2S简单支持符合手型。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 163,
+      "board": 1096,
+      "step": 9,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十三点四黑短门对3S邀请，支持最低足局，4S正确。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 164,
+      "board": 1102,
+      "step": 8,
+      "newCall": "2NT",
+      "callVerdict": "error",
+      "meaningVerdict": "uncertain",
+      "reason": "十点七梅单红单方不适合先2NT邀请隐藏七梅；应3C或真实长套路线，NT说明未虚称均型但缺兑现依据。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 165,
+      "board": 1103,
+      "step": 5,
+      "newCall": "2D",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十一点五方K高平衡2D套质较弱，空间降点属竞争边界。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 166,
+      "board": 1105,
+      "step": 11,
+      "newCall": "3S",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "error",
+      "reason": "十四点四黑对竞争2S支持，敌3H后3S竞争合理；说明错当自己支持开叫人的应叫方10至12邀请，角色颠倒。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 167,
+      "board": 1109,
+      "step": 9,
+      "newCall": "2H",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "第四花色后开叫人三紅迟到支持正确，未声明八fit。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 168,
+      "board": 1109,
+      "step": 11,
+      "newCall": "4H",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己仅四紅对迟到支持三紅共七张，不能直接4H制造八fit；可3NT或继续询问。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 169,
+      "board": 1112,
+      "step": 10,
+      "newCall": "P",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "九点四方对开叫人第二四方确认八fit，但没有必邀/局力，Pass自然2D可接受。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 170,
+      "board": 1113,
+      "step": 7,
+      "newCall": "2S",
+      "callVerdict": "ok",
+      "meaningVerdict": "error",
+      "reason": "九点四黑单紅应Stayman后2S展示另一高花邀请，叫品修复；说明却未约定长度点力，随后不能把它当五张。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 171,
+      "board": 1117,
+      "step": 8,
+      "newCall": "1NT",
+      "callVerdict": "error",
+      "meaningVerdict": "uncertain",
+      "reason": "十九点均型Q四黑止在敌1S后最低1NT未显示18至19，应2NT邀请；泛限制性说明缺具体范围。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 172,
+      "board": 1118,
+      "step": 3,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十点六方KQ在同伴1C遭弱2S后有合格3D自由应叫，Pass遗漏建设描述。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 173,
+      "board": 1120,
+      "step": 7,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十一点双黑对开叫原黑仍七fit，梅A止可2NT邀请，不能停2S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 174,
+      "board": 1126,
+      "step": 9,
+      "newCall": "3NT",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十一点长方对NT十五最低26，Stayman方答人工无长度，3NT修复假5D。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 175,
+      "board": 1131,
+      "step": 6,
+      "newCall": "3D",
+      "callVerdict": "error",
+      "meaningVerdict": "error",
+      "reason": "十八点六方、负X公开八点且紅KQ有止，应3NT；3D最低未找到NT说明与真实止张不符。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 176,
+      "board": 1144,
+      "step": 8,
+      "newCall": "4S",
+      "callVerdict": "ok",
+      "meaningVerdict": "ok",
+      "reason": "十一点四黑面对开叫人强跳支持16最低，应4S接受。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 177,
+      "board": 1146,
+      "step": 7,
+      "newCall": "3NT",
+      "callVerdict": "uncertain",
+      "meaningVerdict": "ok",
+      "reason": "十九点三黑对被迫3S通常四张仅七fit，3NT有紅AK止可用；不借真实六黑强制4S。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 178,
+      "board": 1149,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "自己黑缺门六紅六方，Pass同伴2S零fit明显错误，应3H或3D长套描述。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    },
+    {
+      "index": 179,
+      "board": 1156,
+      "step": 8,
+      "newCall": "P",
+      "callVerdict": "error",
+      "meaningVerdict": "ok",
+      "reason": "十五点负X后面对自然2NT公开最低12及黑止，至少27，应3NT。",
+      "sourceSha256": "9abe5438b78077a9393e00434fbb6f3f493543885920bec9f72ae409785f3363"
+    }
+  ]
+}

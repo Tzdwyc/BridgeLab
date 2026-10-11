@@ -1,0 +1,14 @@
+{
+  "version": "0.3.2",
+  "checkedFiles": 136,
+  "changedFiles": [
+    "src/ui/App.module.css",
+    "src/ui/App.tsx",
+    "tests/e2e/game.spec.ts",
+    "dist/index.html",
+    "dist/sw.js",
+    "dist/assets/index-BtbdYsRl.css",
+    "dist/assets/index-CJ4rJVVr.js"
+  ],
+  "preserved": false
+}

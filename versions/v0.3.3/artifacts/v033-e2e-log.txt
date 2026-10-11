@@ -1,0 +1,151 @@
+
+> bridgelab@0.3.3 test:e2e
+> playwright test
+
+[WebServer] (node:31300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 1 worker
+
+(node:5408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\analysis.spec.ts:49:1 › real 53-position analysis, all candidates, counterfactual optimal continuation and original preservation (8.4s)
+  ok  2 [desktop] › tests\e2e\analysis.spec.ts:90:1 › offline first analysis boots cached WASM worker and computes an uncached full board (6.7s)
+  ok  3 [desktop] › tests\e2e\analysis.spec.ts:111:1 › all-pass board opens the double-dummy table and supports a hypothetical contract (1.3s)
+  ok  4 [desktop] › tests\e2e\analysis.spec.ts:132:1 › export/import, saved routes, keyboard navigation and cancelled continuation remain usable (3.4s)
+  x   5 [desktop] › tests\e2e\analysis.spec.ts:157:1 › desktop layout and distinct vector spade/club marks are visible in auction history (10.9s)
+(node:30040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [desktop] › tests\e2e\analysis.spec.ts:176:1 › inert ALERT control and post-opening STOP cards appear in the bidding flow (1.4s)
+  ok  7 [desktop] › tests\e2e\analysis.spec.ts:192:1 › all bidding systems have visible cards, persist preferences and apply on the next board or replay (1.9s)
+  ok  8 [desktop] › tests\e2e\bidding-context.spec.ts:18:1 › two-over-one and opener continuation show their original game force on hover (1.1s)
+  ok  9 [desktop] › tests\e2e\bidding-context.spec.ts:32:1 › a passed-hand new suit is explained as nonforcing in the history (768ms)
+  ok 10 [desktop] › tests\e2e\bidding-context.spec.ts:39:1 › a weak-two raise stays preemptive and can be read by touch hold (1.9s)
+  ok 11 [desktop] › tests\e2e\game.spec.ts:55:1 › complete user game, declarer dummy control, meaningful undo, reload and next board (7.7s)
+  ok 12 [desktop] › tests\e2e\game.spec.ts:93:1 › cached PWA reloads offline and completes all 13 tricks without network (4.5s)
+  ok 13 [desktop] › tests\e2e\game.spec.ts:104:1 › corrupt save is preserved and player can recover by starting a real game (3.4s)
+  x  14 [desktop] › tests\e2e\game.spec.ts:112:1 › PWA manifest, local resources and 1280px desktop bidding are usable (1.1s)
+(node:12692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 15 [desktop] › tests\e2e\game.spec.ts:131:1 › human defends with only South cards; AI declarer operates the revealed dummy (3.4s)
+  x  16 [desktop] › tests\e2e\game.spec.ts:145:1 › North AI declarer controls South dummy and finishes without illegal human clicks (12.6s)
+(node:24664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 17 [desktop] › tests\e2e\game.spec.ts:160:1 › random deal works when randomUUID is unavailable on a LAN HTTP browser (1.9s)
+  ok 18 [desktop] › tests\e2e\game.spec.ts:167:1 › sampled DDS hint is produced from public information and selects one legal card (2.5s)
+  ok 19 [desktop] › tests\e2e\game.spec.ts:179:1 › DDS adjudicates a saved claim without inventing a full play record (2.3s)
+  ok 20 [desktop] › tests\e2e\game.spec.ts:205:1 › bid meanings appear on desktop hover and mobile long press (1.8s)
+  ok 21 [desktop] › tests\e2e\game.spec.ts:219:1 › deal workbench assigns, saves, reloads and simulates a complete custom deal (8.4s)
+
+
+  1) [desktop] › tests\e2e\analysis.spec.ts:157:1 › desktop layout and distinct vector spade/club marks are visible in auction history 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')
+    Expected: visible
+    Received: hidden
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeVisible" getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]') with timeout 10000ms
+      - waiting for getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')
+        23 × locator resolved to <svg data-suit="S" aria-hidden="true" viewBox="0 0 32 36" class="suit-glyph suit-S">…</svg>
+           - unexpected value "hidden"
+
+
+      162 |   await page.goto('/'); const history = page.getByLabel('叫牌历史', { exact: true });
+      163 |   const spade = history.locator('svg[data-suit=S]'); const club = history.locator('svg[data-suit=C]');
+    > 164 |   await expect(spade).toBeVisible(); await expect(club).toBeVisible();
+          |                       ^
+      165 |   expect((await spade.boundingBox())!.width).toBeGreaterThanOrEqual(18); expect((await club.boundingBox())!.width).toBeGreaterThanOrEqual(18);
+      166 |   expect(await spade.evaluate(el => getComputedStyle(el).color)).not.toBe(await club.evaluate(el => getComputedStyle(el).color));
+      167 |   expect(await spade.locator('path').getAttribute('d')).not.toBe(await club.locator('path').getAttribute('d'));
+        at H:\Projects\Bridge\versions\v0.3.3\tests\e2e\analysis.spec.ts:164:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\e2e\game.spec.ts:112:1 › PWA manifest, local resources and 1280px desktop bidding are usable 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      115 |   for(const icon of manifest.icons) expect((await page.request.get(icon.src)).ok()).toBe(true);
+      116 |   await page.setViewportSize({width:1280,height:800});await instant(page);await start(page,'small-desktop');await waitDecision(page);await noOverflow(page);
+    > 117 |   const bidButton=page.getByRole('button',{name:'叫 7NT',exact:true});const bounds=await bidButton.boundingBox();expect(bounds!.width).toBeGreaterThanOrEqual(44);expect(bounds!.height).toBeGreaterThanOrEqual(44);
+          |                                                                                                                                                                                         ^
+      118 |   await page.getByRole('button',{name:'重打本副',exact:true}).click();await page.getByRole('button',{name:'确认重打',exact:true}).click();await expect(page.getByTestId('app')).toHaveAttribute('data-phase','auction');
+      119 |   await waitDecision(page);await noOverflow(page);
+      120 | });
+        at H:\Projects\Bridge\versions\v0.3.3\tests\e2e\game.spec.ts:117:185
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\e2e\game.spec.ts:145:1 › North AI declarer controls South dummy and finishes without illegal human clicks 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('北家机器人控制', { exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('北家机器人控制', { exact: true }) with timeout 10000ms
+      - waiting for getByText('北家机器人控制', { exact: true })
+
+
+      153 |     if(await page.getByTestId('app').getAttribute('data-phase')==='auction')await page.getByRole('button',{name:'不叫 Pass',exact:true}).click();
+      154 |   }
+    > 155 |   await expect(page.getByText('北家机器人控制',{exact:true})).toBeVisible();
+          |                                                        ^
+      156 |   await expect(page.locator('button[data-card]:not([disabled])')).toHaveCount(0);
+      157 |   await instant(page);await expect(page.getByTestId('result')).toBeVisible({timeout:15000});await expect(page.getByText('已完成 13 墩 · 查看记录',{exact:true})).toBeVisible();
+      158 | });
+        at H:\Projects\Bridge\versions\v0.3.3\tests\e2e\game.spec.ts:155:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests\e2e\analysis.spec.ts:157:1 › desktop layout and distinct vector spade/club marks are visible in auction history 
+    [desktop] › tests\e2e\game.spec.ts:112:1 › PWA manifest, local resources and 1280px desktop bidding are usable 
+    [desktop] › tests\e2e\game.spec.ts:145:1 › North AI declarer controls South dummy and finishes without illegal human clicks 
+  18 passed (1.7m)

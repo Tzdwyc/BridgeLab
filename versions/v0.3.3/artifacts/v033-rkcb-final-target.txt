@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 H:/Projects/Bridge/versions/v0.3.3
+
+ ✓ tests/bidding-v033-rkcb-interference.test.ts (11 tests) 15ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  09:33:14
+   Duration  972ms (transform 248ms, setup 0ms, collect 304ms, tests 15ms, environment 0ms, prepare 215ms)
+
+JSON report written to H:/Projects/Bridge/versions/v0.3.3/artifacts/unit-results.json

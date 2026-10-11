@@ -1,0 +1,984 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "H:\\Projects\\Bridge\\versions\\v0.3.3\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "H:\\Projects\\Bridge\\versions\\v0.3.3\\playwright.config.ts",
+    "rootDir": "H:/Projects/Bridge/versions/v0.3.3/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "H:/Projects/Bridge/versions/v0.3.3/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "H:/Projects/Bridge/versions/v0.3.3/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e",
+        "snapshotDir": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 90000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4177",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview -- --port 4177 --strictPort",
+      "url": "http://127.0.0.1:4177",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "analysis.spec.ts",
+      "file": "analysis.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real 53-position analysis, all candidates, counterfactual optimal continuation and original preservation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8417,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:09.049Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-da03855660185b686c34",
+          "file": "analysis.spec.ts",
+          "line": 49,
+          "column": 1
+        },
+        {
+          "title": "offline first analysis boots cached WASM worker and computes an uncached full board",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6686,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:20.045Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-edb641bd698ebc5cec92",
+          "file": "analysis.spec.ts",
+          "line": 90,
+          "column": 1
+        },
+        {
+          "title": "all-pass board opens the double-dummy table and supports a hypothetical contract",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1281,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:26.745Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-5f9e3dbb5e442bdc4340",
+          "file": "analysis.spec.ts",
+          "line": 111,
+          "column": 1
+        },
+        {
+          "title": "export/import, saved routes, keyboard navigation and cancelled continuation remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:28.039Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-544570fe186e07c44df9",
+          "file": "analysis.spec.ts",
+          "line": 132,
+          "column": 1
+        },
+        {
+          "title": "desktop layout and distinct vector spade/club marks are visible in auction history",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10920,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')\nExpected: visible\nReceived: hidden\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')\u001b[22m\n\u001b[2m    23 × locator resolved to <svg data-suit=\"S\" aria-hidden=\"true\" viewBox=\"0 0 32 36\" class=\"suit-glyph suit-S\">…</svg>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')\nExpected: visible\nReceived: hidden\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')\u001b[22m\n\u001b[2m    23 × locator resolved to <svg data-suit=\"S\" aria-hidden=\"true\" viewBox=\"0 0 32 36\" class=\"suit-glyph suit-S\">…</svg>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n    at H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\analysis.spec.ts:164:23",
+                    "location": {
+                      "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\analysis.spec.ts",
+                      "column": 23,
+                      "line": 164
+                    },
+                    "snippet": "  162 |   await page.goto('/'); const history = page.getByLabel('叫牌历史', { exact: true });\n  163 |   const spade = history.locator('svg[data-suit=S]'); const club = history.locator('svg[data-suit=C]');\n> 164 |   await expect(spade).toBeVisible(); await expect(club).toBeVisible();\n      |                       ^\n  165 |   expect((await spade.boundingBox())!.width).toBeGreaterThanOrEqual(18); expect((await club.boundingBox())!.width).toBeGreaterThanOrEqual(18);\n  166 |   expect(await spade.evaluate(el => getComputedStyle(el).color)).not.toBe(await club.evaluate(el => getComputedStyle(el).color));\n  167 |   expect(await spade.locator('path').getAttribute('d')).not.toBe(await club.locator('path').getAttribute('d'));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\analysis.spec.ts",
+                        "column": 23,
+                        "line": 164
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')\nExpected: visible\nReceived: hidden\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('叫牌历史', { exact: true }).locator('svg[data-suit=S]')\u001b[22m\n\u001b[2m    23 × locator resolved to <svg data-suit=\"S\" aria-hidden=\"true\" viewBox=\"0 0 32 36\" class=\"suit-glyph suit-S\">…</svg>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n\n  162 |   await page.goto('/'); const history = page.getByLabel('叫牌历史', { exact: true });\n  163 |   const spade = history.locator('svg[data-suit=S]'); const club = history.locator('svg[data-suit=C]');\n> 164 |   await expect(spade).toBeVisible(); await expect(club).toBeVisible();\n      |                       ^\n  165 |   expect((await spade.boundingBox())!.width).toBeGreaterThanOrEqual(18); expect((await club.boundingBox())!.width).toBeGreaterThanOrEqual(18);\n  166 |   expect(await spade.evaluate(el => getComputedStyle(el).color)).not.toBe(await club.evaluate(el => getComputedStyle(el).color));\n  167 |   expect(await spade.locator('path').getAttribute('d')).not.toBe(await club.locator('path').getAttribute('d'));\n    at H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\analysis.spec.ts:164:23"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:31.446Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\analysis-desktop-layout-an-982cc--visible-in-auction-history-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\analysis.spec.ts",
+                    "column": 23,
+                    "line": 164
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-5956dedb4ae2a396e723",
+          "file": "analysis.spec.ts",
+          "line": 157,
+          "column": 1
+        },
+        {
+          "title": "inert ALERT control and post-opening STOP cards appear in the bidding flow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1411,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:44.019Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-523deb31e42b886e330f",
+          "file": "analysis.spec.ts",
+          "line": 176,
+          "column": 1
+        },
+        {
+          "title": "all bidding systems have visible cards, persist preferences and apply on the next board or replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1935,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:47.034Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b34bd8d1c37d1e9436ab-20c9ffdb7066df79e717",
+          "file": "analysis.spec.ts",
+          "line": 192,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "bidding-context.spec.ts",
+      "file": "bidding-context.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "two-over-one and opener continuation show their original game force on hover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1104,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:49.000Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a021e63a5f65671a7860-25ea620556c7ffa0c340",
+          "file": "bidding-context.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "a passed-hand new suit is explained as nonforcing in the history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 768,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:50.118Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a021e63a5f65671a7860-efb93b220671d6db59d2",
+          "file": "bidding-context.spec.ts",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "a weak-two raise stays preemptive and can be read by touch hold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1928,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:50.907Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a021e63a5f65671a7860-05c0b5505cdf6c0eb268",
+          "file": "bidding-context.spec.ts",
+          "line": 39,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "game.spec.ts",
+      "file": "game.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "complete user game, declarer dummy control, meaningful undo, reload and next board",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7654,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:54:52.900Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-3efac077878525085dd4",
+          "file": "game.spec.ts",
+          "line": 55,
+          "column": 1
+        },
+        {
+          "title": "cached PWA reloads offline and completes all 13 tricks without network",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4451,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:00.572Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-d7ca2e74f451749ffcbb",
+          "file": "game.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "corrupt save is preserved and player can recover by starting a real game",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3441,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:05.034Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-b359a77be8fd281635af",
+          "file": "game.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "PWA manifest, local resources and 1280px desktop bidding are usable",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1116,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m44\u001b[39m\nReceived:    \u001b[31m38\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m44\u001b[39m\nReceived:    \u001b[31m38\u001b[39m\n    at H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts:117:185",
+                    "location": {
+                      "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts",
+                      "column": 185,
+                      "line": 117
+                    },
+                    "snippet": "  115 |   for(const icon of manifest.icons) expect((await page.request.get(icon.src)).ok()).toBe(true);\n  116 |   await page.setViewportSize({width:1280,height:800});await instant(page);await start(page,'small-desktop');await waitDecision(page);await noOverflow(page);\n> 117 |   const bidButton=page.getByRole('button',{name:'叫 7NT',exact:true});const bounds=await bidButton.boundingBox();expect(bounds!.width).toBeGreaterThanOrEqual(44);expect(bounds!.height).toBeGreaterThanOrEqual(44);\n      |                                                                                                                                                                                         ^\n  118 |   await page.getByRole('button',{name:'重打本副',exact:true}).click();await page.getByRole('button',{name:'确认重打',exact:true}).click();await expect(page.getByTestId('app')).toHaveAttribute('data-phase','auction');\n  119 |   await waitDecision(page);await noOverflow(page);\n  120 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts",
+                        "column": 185,
+                        "line": 117
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m44\u001b[39m\nReceived:    \u001b[31m38\u001b[39m\n\n  115 |   for(const icon of manifest.icons) expect((await page.request.get(icon.src)).ok()).toBe(true);\n  116 |   await page.setViewportSize({width:1280,height:800});await instant(page);await start(page,'small-desktop');await waitDecision(page);await noOverflow(page);\n> 117 |   const bidButton=page.getByRole('button',{name:'叫 7NT',exact:true});const bounds=await bidButton.boundingBox();expect(bounds!.width).toBeGreaterThanOrEqual(44);expect(bounds!.height).toBeGreaterThanOrEqual(44);\n      |                                                                                                                                                                                         ^\n  118 |   await page.getByRole('button',{name:'重打本副',exact:true}).click();await page.getByRole('button',{name:'确认重打',exact:true}).click();await expect(page.getByTestId('app')).toHaveAttribute('data-phase','auction');\n  119 |   await waitDecision(page);await noOverflow(page);\n  120 | });\n    at H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts:117:185"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:08.487Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\game-PWA-manifest-local-re-3abe2--desktop-bidding-are-usable-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts",
+                    "column": 185,
+                    "line": 117
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-620eed7dfd7e49f85558",
+          "file": "game.spec.ts",
+          "line": 112,
+          "column": 1
+        },
+        {
+          "title": "human defends with only South cards; AI declarer operates the revealed dummy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3416,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:11.829Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-4db21d7f498acc0ee8af",
+          "file": "game.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "North AI declarer controls South dummy and finishes without illegal human clicks",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 12555,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('北家机器人控制', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('北家机器人控制', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('北家机器人控制', { exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('北家机器人控制', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('北家机器人控制', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('北家机器人控制', { exact: true })\u001b[22m\n\n    at H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts:155:56",
+                    "location": {
+                      "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts",
+                      "column": 56,
+                      "line": 155
+                    },
+                    "snippet": "  153 |     if(await page.getByTestId('app').getAttribute('data-phase')==='auction')await page.getByRole('button',{name:'不叫 Pass',exact:true}).click();\n  154 |   }\n> 155 |   await expect(page.getByText('北家机器人控制',{exact:true})).toBeVisible();\n      |                                                        ^\n  156 |   await expect(page.locator('button[data-card]:not([disabled])')).toHaveCount(0);\n  157 |   await instant(page);await expect(page.getByTestId('result')).toBeVisible({timeout:15000});await expect(page.getByText('已完成 13 墩 · 查看记录',{exact:true})).toBeVisible();\n  158 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts",
+                        "column": 56,
+                        "line": 155
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('北家机器人控制', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('北家机器人控制', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('北家机器人控制', { exact: true })\u001b[22m\n\n\n  153 |     if(await page.getByTestId('app').getAttribute('data-phase')==='auction')await page.getByRole('button',{name:'不叫 Pass',exact:true}).click();\n  154 |   }\n> 155 |   await expect(page.getByText('北家机器人控制',{exact:true})).toBeVisible();\n      |                                                        ^\n  156 |   await expect(page.locator('button[data-card]:not([disabled])')).toHaveCount(0);\n  157 |   await instant(page);await expect(page.getByTestId('result')).toBeVisible({timeout:15000});await expect(page.getByText('已完成 13 墩 · 查看记录',{exact:true})).toBeVisible();\n  158 | });\n    at H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts:155:56"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:15.358Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.3\\test-results\\game-North-AI-declarer-con-da3e1-ithout-illegal-human-clicks-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "H:\\Projects\\Bridge\\versions\\v0.3.3\\tests\\e2e\\game.spec.ts",
+                    "column": 56,
+                    "line": 155
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-a97b20596f93e4257cb4",
+          "file": "game.spec.ts",
+          "line": 145,
+          "column": 1
+        },
+        {
+          "title": "random deal works when randomUUID is unavailable on a LAN HTTP browser",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1935,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:29.254Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-aa60c1880d3e66d6ad13",
+          "file": "game.spec.ts",
+          "line": 160,
+          "column": 1
+        },
+        {
+          "title": "sampled DDS hint is produced from public information and selects one legal card",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2502,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:31.290Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-4ada36e6fbeb829c2fdd",
+          "file": "game.spec.ts",
+          "line": 167,
+          "column": 1
+        },
+        {
+          "title": "DDS adjudicates a saved claim without inventing a full play record",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2340,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:33.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-046ce804b5d67e9b81e5",
+          "file": "game.spec.ts",
+          "line": 179,
+          "column": 1
+        },
+        {
+          "title": "bid meanings appear on desktop hover and mobile long press",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1790,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:36.157Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-dcdf1dabc9225ddb0776",
+          "file": "game.spec.ts",
+          "line": 205,
+          "column": 1
+        },
+        {
+          "title": "deal workbench assigns, saves, reloads and simulates a complete custom deal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8417,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T01:55:37.958Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b1bb1493a64c9fc3ab6-93188fc7791d0732e99f",
+          "file": "game.spec.ts",
+          "line": 219,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-11T01:54:05.735Z",
+    "duration": 102240.144,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

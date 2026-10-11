@@ -1,0 +1,1640 @@
+[
+  {
+    "board": 556,
+    "step": 8,
+    "seat": "W",
+    "hand": "95.KQ5.K643.AQ65",
+    "publicHistory": "N:P E:P S:1NT W:P N:2H E:P S:2S",
+    "call": "X",
+    "reason": "14点敌S只有95双张，不能惩罚X转移后2S；应Pass，单点力不能代替将牌质量。"
+  },
+  {
+    "board": 557,
+    "step": 7,
+    "seat": "W",
+    "hand": "K763.52.Q6.QJT85",
+    "publicHistory": "E:1NT S:P W:2C N:P E:2S S:P",
+    "call": "3S",
+    "reason": "自己四S加两双张有10支持点，公开NT15下限加八配=25，应4S而非邀请3S。"
+  },
+  {
+    "board": 557,
+    "step": 9,
+    "seat": "E",
+    "hand": "AT982.AKT.J73.A7",
+    "publicHistory": "E:1NT S:P W:2C N:P E:2S S:P W:3S N:P",
+    "call": "P",
+    "reason": "自己16点五S加公开四S有九将、双C，约18支持点，应接受3S邀请到4S，不能停3S。"
+  },
+  {
+    "board": 558,
+    "step": 7,
+    "seat": "N",
+    "hand": "Q83.Q3.KQ7632.Q4",
+    "publicHistory": "S:1C W:P N:1D E:P S:1S W:P",
+    "call": "2D",
+    "reason": "11点六D应自然3D邀请或有定义邀请路线，2D最低原套复叫低报10至12实力。"
+  },
+  {
+    "board": 560,
+    "step": 10,
+    "seat": "E",
+    "hand": "KQ876.7.T2.AQ853",
+    "publicHistory": "N:2H E:P S:P W:2NT N:P E:3H S:P W:3S N:P",
+    "call": "P",
+    "reason": "自己11点对公开15至18的NT已至少26；转移后应3NT提供成局选择，不能停3S，也不能借实际三S支持直接4S。"
+  },
+  {
+    "board": 591,
+    "step": 8,
+    "seat": "S",
+    "hand": "KQT9532.32.KQ.J3",
+    "publicHistory": "W:P N:1D E:P S:1S W:P N:2C E:P",
+    "call": "P",
+    "reason": "十一点七黑而只有两梅，同伴2C仅四梅不构成好停点；宜3S邀请长黑，不能把已解除F1等同于适合Pass。"
+  },
+  {
+    "board": 637,
+    "step": 7,
+    "seat": "W",
+    "hand": "J854.K987.52.KQ8",
+    "publicHistory": "E:1H S:P W:1S N:P E:3S S:P",
+    "call": "P",
+    "reason": "自九点四黑加方双一支持点，面对公开强跳支持最低十六已有二十六，确认八黑应接受4S，不能Pass3S。"
+  },
+  {
+    "board": 642,
+    "step": 8,
+    "seat": "E",
+    "hand": "Q986.J.A876.AK53",
+    "publicHistory": "S:P W:P N:1NT E:P S:2D W:P N:2H",
+    "call": "X",
+    "reason": "十四点仅单红J完全无惩罚将牌质量，2H是自然转移接受，宜Pass；说明还引入不存在的再加倍后历史。"
+  },
+  {
+    "board": 648,
+    "step": 10,
+    "seat": "E",
+    "hand": "J.K542.AK953.KQ9",
+    "publicHistory": "N:P E:1D S:P W:1S N:P E:2D S:P W:3D N:P",
+    "call": "5D",
+    "reason": "自己仅五方且同伴3D允许两张偏好，已知只有七张而原始16加邀请10仅26；5D不能凭假八张配合与支持点制造低花局，宜3H描述四红或探索NT成局。"
+  },
+  {
+    "board": 672,
+    "step": 4,
+    "seat": "W",
+    "hand": "A7.T87.K6.KJ8752",
+    "publicHistory": "N:1C E:X S:P",
+    "call": "1H",
+    "reason": "自十一点仅三红，以1H最低强迫回应被说明0–8，点力明显低报；自己梅KJ六张敌套有止张，宜自然2NT邀请表达10–12级实力，不假四红跳支持。"
+  },
+  {
+    "board": 691,
+    "step": 5,
+    "seat": "W",
+    "hand": "AKJT53.Q5.KQT.AT",
+    "publicHistory": "W:1S N:P E:P S:2C",
+    "call": "2S",
+    "reason": "自十九点六黑，敌2C后最低2S低报强度，应3S强跳显示16–20；搭档Pass只公开0+，不据真实同伴四点强4S。"
+  },
+  {
+    "board": 695,
+    "step": 8,
+    "seat": "S",
+    "hand": "Q765.AT95.8.KQ95",
+    "publicHistory": "W:P N:1D E:P S:1H W:P N:2D E:P",
+    "call": "P",
+    "reason": "自十一点仅单方，最低原套公开六方只有七配合；有四黑四红及梅KQ，可2S进一步描述或2NT邀请，直接Pass既遗漏10–12邀请又停差配合。"
+  },
+  {
+    "board": 700,
+    "step": 10,
+    "seat": "E",
+    "hand": "74.KQ763.QT53.JT",
+    "publicHistory": "N:P E:P S:P W:1S N:P E:1NT S:P W:3S N:P",
+    "call": "P",
+    "reason": "自八点两黑对公开六黑已八，梅双一支持点为九，加强跳最低十六达25，应4S接受而非Pass。"
+  },
+  {
+    "board": 705,
+    "step": 7,
+    "seat": "W",
+    "hand": "J87532.A72.Q9.82",
+    "publicHistory": "E:1D S:P W:1S N:P E:2C S:P",
+    "call": "P",
+    "reason": "自两梅对公开四梅仅六张，而原方套至少五张自己两方至少七；宜2D弱偏好或2S强调六黑，不能Pass最低第二低花差配合。"
+  },
+  {
+    "board": 706,
+    "step": 8,
+    "seat": "E",
+    "hand": "Q75.A75.K72.Q832",
+    "publicHistory": "S:P W:P N:1D E:P S:P W:1S N:P",
+    "call": "P",
+    "reason": "自十一点三黑支持，已Pass但可用支持性2D扣叫邀请同伴8–16争叫再描述，直接Pass遗漏明确支持邀请，不需假定最低联手必局。"
+  },
+  {
+    "board": 710,
+    "step": 8,
+    "seat": "E",
+    "hand": "KJ4.K7542.4.K864",
+    "publicHistory": "S:P W:1D N:P E:1H S:P W:1NT N:P",
+    "call": "P",
+    "reason": "自十点五红，已达到本卡10–12后续邀请范围，宜2NT邀请并保留红花信息；Pass1NT漏邀请，不意味着最低公开二十二一定要局。"
+  },
+  {
+    "board": 722,
+    "step": 8,
+    "seat": "E",
+    "hand": "AJ875.8.QT8.KJ74",
+    "publicHistory": "S:P W:1D N:P E:1S S:P W:3D N:P",
+    "call": "P",
+    "reason": "自十一点三方对公开六方已九配合，单红两支持点加九将一，达十四支持点；强跳最低十六合30，应5D或有止张的3NT，不可Pass。"
+  },
+  {
+    "board": 726,
+    "step": 4,
+    "seat": "E",
+    "hand": "J.QJT9432.Q54.J2",
+    "publicHistory": "S:P W:1NT N:2C",
+    "call": "2H",
+    "reason": "自七点七红，NT同伴均型保证至少两红，已知九将加黑单三点梅双一点及额外将牌达十二支持点，最低NT十五合27宜4H；2H未表示邀请/额外长套，说明又不给公开长度。"
+  },
+  {
+    "board": 737,
+    "step": 10,
+    "seat": "S",
+    "hand": "43.K8732.AKQ7.63",
+    "publicHistory": "E:P S:1H W:2H N:P E:2NT S:P W:3C N:3H E:P",
+    "call": "4H",
+    "reason": "自十二点五红对竞争3H支持最低六，自己两个双张与九将约15支持点，仅公开约21而无GF；4H不能靠虚构GF当必局，宜停3H。"
+  },
+  {
+    "board": 745,
+    "step": 10,
+    "seat": "S",
+    "hand": "32.A9654.A976.64",
+    "publicHistory": "E:P S:P W:P N:1D E:P S:1H W:P N:2C E:P",
+    "call": "P",
+    "reason": "自两梅对公开四梅仅六，而四方对原方至少五张已九配合；宜3D支持点邀请或2D偏好，不能Pass较短第二套。"
+  },
+  {
+    "board": 748,
+    "step": 10,
+    "seat": "E",
+    "hand": "4.J983.KQ63.K976",
+    "publicHistory": "N:P E:P S:P W:1NT N:P E:2C S:P W:2H N:P",
+    "call": "3H",
+    "reason": "自九点四红黑单加三支持点达十二，对NT最低十五已27，宜直接4H而不是邀请3H。"
+  },
+  {
+    "board": 748,
+    "step": 12,
+    "seat": "W",
+    "hand": "75.AKQ42.JT7.AQ2",
+    "publicHistory": "N:P E:P S:P W:1NT N:P E:2C S:P W:2H N:P E:3H S:P",
+    "call": "P",
+    "reason": "自十六点五红，面对四红邀请，九将加黑双支持点达十八，邀请最低十已有28，应4H接受不能Pass。"
+  },
+  {
+    "board": 761,
+    "step": 7,
+    "seat": "W",
+    "hand": "T85.Q652.KJ.QJ84",
+    "publicHistory": "E:1NT S:P W:2C N:P E:2H S:P",
+    "call": "3H",
+    "reason": "自九点四红方双加一点为十支持点，对NT最低十五达25，宜直接4H，不是3H邀请。"
+  },
+  {
+    "board": 761,
+    "step": 9,
+    "seat": "E",
+    "hand": "KJ9.AK873.Q87.K7",
+    "publicHistory": "E:1NT S:P W:2C N:P E:2H S:P W:3H N:P",
+    "call": "P",
+    "reason": "自十六点五红对四红邀请，九将和梅双达十八支持点，邀请最低十合28，应4H而非Pass。"
+  },
+  {
+    "board": 765,
+    "step": 8,
+    "seat": "N",
+    "hand": "4.KQ62.97543.A95",
+    "publicHistory": "E:P S:1NT W:P N:2C E:P S:2H W:P",
+    "call": "3H",
+    "reason": "自九点四红黑单三支持点达十二，NT最低十五已27，宜4H不3H邀请。"
+  },
+  {
+    "board": 765,
+    "step": 10,
+    "seat": "S",
+    "hand": "QJ3.A987.AT.KQT7",
+    "publicHistory": "E:P S:1NT W:P N:2C E:P S:2H W:P N:3H E:P",
+    "call": "P",
+    "reason": "自十六点四红加方双一支持点为十七，邀请最低十合27，应4H不能Pass。"
+  },
+  {
+    "board": 766,
+    "step": 8,
+    "seat": "E",
+    "hand": "T4.QJ652.J3.KQ53",
+    "publicHistory": "S:P W:1S N:P E:1NT S:P W:3S N:P",
+    "call": "P",
+    "reason": "自九点两黑对六黑八配合，方双加一点为十支持点，强跳最低十六合26，应4S接受。"
+  },
+  {
+    "board": 770,
+    "step": 8,
+    "seat": "E",
+    "hand": "J54.Q97.AQ86.653",
+    "publicHistory": "S:P W:1S N:P E:2S S:P W:3S N:P",
+    "call": "P",
+    "reason": "自九点均型三黑不需额外短门，对3S最低十六已25，应4S而非拒绝邀请。"
+  },
+  {
+    "board": 773,
+    "step": 5,
+    "seat": "E",
+    "hand": "3.AJ73.42.AT9876",
+    "publicHistory": "E:P S:1D W:1H N:1S",
+    "call": "2H",
+    "reason": "九点四红、黑单三点方双一点加九将达十四支持点，最低2H低报；宜支持cue2D邀请同伴继续，不等于最低联手已必局。"
+  },
+  {
+    "board": 792,
+    "step": 4,
+    "seat": "W",
+    "hand": "T987.K42.82.AQ84",
+    "publicHistory": "N:1H E:1S S:2H",
+    "call": "2S",
+    "reason": "九点四黑方双与九将达到十一支持点，2S低报，宜3S10–12邀请或支持cue，不以最低22当必局。"
+  },
+  {
+    "board": 794,
+    "step": 3,
+    "seat": "N",
+    "hand": "K93.Q6.9862.AK76",
+    "publicHistory": "S:P W:2H",
+    "call": "X",
+    "reason": "自十二点虽敌红双其它344支持合适，但直接弱二技术X本卡通常13+，不是平衡轻X；应Pass，说明未写门槛造成强度边界缺口。"
+  },
+  {
+    "board": 795,
+    "step": 6,
+    "seat": "N",
+    "hand": "AT3.K75.8532.KJ2",
+    "publicHistory": "W:1H N:P E:P S:2D W:P",
+    "call": "P",
+    "reason": "自十一点四方对自然至少五方九将有十二支持点，应3D邀请争叫人10–16判断，直接Pass遗漏支持邀请，不需要假定最低已低花局。"
+  },
+  {
+    "board": 805,
+    "step": 9,
+    "seat": "E",
+    "hand": "Q9832.QJ3.Q7.KJ5",
+    "publicHistory": "E:P S:1D W:1S N:X E:P S:2H W:P N:P",
+    "call": "2S",
+    "reason": "十一点五黑与伙伴五黑、双双张已有十五支持点，2S压低实力，宜扣叫邀请。"
+  },
+  {
+    "board": 807,
+    "step": 3,
+    "seat": "E",
+    "hand": "762.J9.AKQT85.Q6",
+    "publicHistory": "W:1D N:P",
+    "call": "3D",
+    "reason": "十二点六方双双张、十张配合超过10–12支持点，3D邀请低报，宜GF自然新套等保持强度。"
+  },
+  {
+    "board": 815,
+    "step": 7,
+    "seat": "E",
+    "hand": "Q43.QJ64.K84.AK8",
+    "publicHistory": "W:2D N:P E:2NT S:P W:3D N:P",
+    "call": "5D",
+    "reason": "自十五点均型与伙伴最低五点仅约21支持点，直接5D过高，宜Pass3D。"
+  },
+  {
+    "board": 825,
+    "step": 9,
+    "seat": "E",
+    "hand": "K976.AJT97.52.Q6",
+    "publicHistory": "E:P S:P W:1D N:2S E:X S:P W:3C N:P",
+    "call": "P",
+    "reason": "两C对伙伴第二套四C仅六张；自己五红应继续3H邀请描述，不能把NF等同适合停3C。"
+  },
+  {
+    "board": 836,
+    "step": 8,
+    "seat": "W",
+    "hand": "AJ9764.A95.KQ5.K",
+    "publicHistory": "N:P E:2D S:P W:2S N:P E:3S S:P",
+    "call": "P",
+    "reason": "自十七点六黑单C及九将达20支持点，伙伴弱二最低5+，应接受4S而非停3S。"
+  },
+  {
+    "board": 840,
+    "step": 9,
+    "seat": "N",
+    "hand": "T32.T8653.J7.A72",
+    "publicHistory": "N:P E:1D S:X W:P N:1H E:P S:3H W:P",
+    "call": "P",
+    "reason": "五点五红加方双张及九将为七支持点，对技术X跳支持的18+强邀请足局，应4H。"
+  },
+  {
+    "board": 843,
+    "step": 9,
+    "seat": "W",
+    "hand": "Q764.J985.AQ.KJ5",
+    "publicHistory": "W:1C N:1H E:1S S:P W:2S N:P E:3S S:P",
+    "call": "P",
+    "reason": "自十三点四黑加方双张及九将达十五支持点，对10+支持点邀请应4S。"
+  },
+  {
+    "board": 855,
+    "step": 7,
+    "seat": "E",
+    "hand": "A6.A7.KT753.9873",
+    "publicHistory": "W:1H N:P E:1NT S:P W:2H N:P",
+    "call": "P",
+    "reason": "十一点不能当弱偏好止叫，需2NT等邀请描述；公开六红含五张例外，不硬要求4H。"
+  },
+  {
+    "board": 869,
+    "step": 9,
+    "seat": "E",
+    "hand": "J3.KT53.T3.AK754",
+    "publicHistory": "E:P S:P W:1D N:1S E:X S:P W:1NT N:P",
+    "call": "P",
+    "reason": "十一点面对12–14限制NT应继续2NT邀请，不能只因负X已答就当弱牌Pass。"
+  },
+  {
+    "board": 870,
+    "step": 9,
+    "seat": "S",
+    "hand": "T843.QJ9654.J92.-",
+    "publicHistory": "S:P W:P N:2NT E:P S:3D W:P N:3H E:P",
+    "call": "P",
+    "reason": "六红加均型伙伴至少两红已八配合，四点加C缺门四支持点与20+足局，应4H。"
+  },
+  {
+    "board": 883,
+    "step": 10,
+    "seat": "N",
+    "hand": "Q962.A9.QT5.AKT4",
+    "publicHistory": "W:P N:1NT E:P S:2H W:P N:2S E:P S:3S W:P",
+    "call": "P",
+    "reason": "自十五点四黑红双及十将达十八支持点，对长黑邀请应4S，不能只按原NT最低限Pass。"
+  },
+  {
+    "board": 915,
+    "step": 4,
+    "seat": "S",
+    "hand": "7.A8743.AT52.T42",
+    "publicHistory": "W:P N:1H E:X",
+    "call": "2H",
+    "reason": "八点五红单黑及十将达13支持点，2H低报，应选择4H或有定义的强支持路线。"
+  },
+  {
+    "board": 934,
+    "step": 7,
+    "seat": "N",
+    "hand": "J72.AJ9542.Q3.J9",
+    "publicHistory": "S:1NT W:P N:2D E:P S:2H W:P",
+    "call": "3H",
+    "reason": "九点六红双双张达十一支持点，加NT最低十五已26，应4H而非只邀3H。"
+  },
+  {
+    "board": 934,
+    "step": 9,
+    "seat": "S",
+    "hand": "K6.KT76.AJ5.A653",
+    "publicHistory": "S:1NT W:P N:2D E:P S:2H W:P N:3H E:P",
+    "call": "P",
+    "reason": "十五点四红黑双及十将达十八支持点，面对长红邀请应4H，不能按原NT最低限Pass。"
+  },
+  {
+    "board": 938,
+    "step": 7,
+    "seat": "N",
+    "hand": "7.KJ85.K9.AJT876",
+    "publicHistory": "S:1D W:1S N:X E:P S:1NT W:P",
+    "call": "P",
+    "reason": "十二点面对12–14限制NT不可默作弱牌，需2NT邀请或3C描述六C，不等同强制3NT。"
+  },
+  {
+    "board": 951,
+    "step": 8,
+    "seat": "S",
+    "hand": "A75.QT976.5.QJT9",
+    "publicHistory": "W:P N:1NT E:P S:2D W:X N:2H E:P",
+    "call": "P",
+    "reason": "9点五H D单2和九将1支持12，对公开NT15最低27，至少邀请实际可4H，不能停2H。"
+  },
+  {
+    "board": 959,
+    "step": 8,
+    "seat": "S",
+    "hand": "943.KQ8.9863.A65",
+    "publicHistory": "W:P N:P E:1D S:P W:P N:X E:P",
+    "call": "1S",
+    "reason": "9点仅三S却选1S且H KQ三C三D四敵套；可1H同为三但荣誉好或1NT有D止不足敌D九?9873四无止，技术X三H四H概率高，三S最低虽可但9点应邀请跳且说明0至8不符；须统一强制应叫阶数。"
+  },
+  {
+    "board": 975,
+    "step": 11,
+    "seat": "E",
+    "hand": "AK92.4.AKQ5.AQT5",
+    "publicHistory": "W:P N:P E:2C S:P W:2D N:P E:2S S:P W:3C N:P",
+    "call": "3S",
+    "reason": "仍仅四S，不应重复伪造五S强长套语义，须四张例外真实解释与合适路线。"
+  },
+  {
+    "board": 976,
+    "step": 8,
+    "seat": "W",
+    "hand": "AKJ8.AT9.532.AK7",
+    "publicHistory": "N:P E:P S:P W:1C N:1D E:1H S:P",
+    "call": "2S",
+    "reason": "19点四S但原C仅AK7三，违背强跳移原低花4要求；均型应2NT18至19而非2S，须修强跳套长底线。"
+  },
+  {
+    "board": 979,
+    "step": 3,
+    "seat": "E",
+    "hand": "83.T.AQ8542.AQ32",
+    "publicHistory": "W:1D N:P",
+    "call": "3D",
+    "reason": "12点六D H单S双与总九D，支持17超10至12，不能限制跳3D少报，应强自然2C或GF定量探索；提示邀请与自己强配合矛盾。"
+  },
+  {
+    "board": 999,
+    "step": 5,
+    "seat": "W",
+    "hand": "A4.K.AQ962.AQ742",
+    "publicHistory": "W:1D N:P E:1NT S:P",
+    "call": "2C",
+    "reason": "19点五C第二套本应强跳3C建立GF，平2C少报大牌，应至少明确额外邀请路线。"
+  },
+  {
+    "board": 1004,
+    "step": 9,
+    "seat": "N",
+    "hand": "QJ2.A832.J.AKQ87",
+    "publicHistory": "N:1C E:P S:1D W:P N:1H E:P S:2NT W:P",
+    "call": "P",
+    "reason": "17点对邀请至少10，且五AKQ草花可跑源，应3NT而非Pass。"
+  },
+  {
+    "board": 1032,
+    "step": 8,
+    "seat": "W",
+    "hand": "JT.AT987.KQ.QT82",
+    "publicHistory": "N:P E:1C S:P W:1H N:P E:1S S:P",
+    "call": "2C",
+    "reason": "12点C四虽配自然3C仅七张，不能用最低2C偏好少报，H五两外双支持13可重叫3H邀请或2NT邀请；泛最低偏好不合上限。"
+  },
+  {
+    "board": 1061,
+    "step": 9,
+    "seat": "E",
+    "hand": "853.Q.AKT875.A83",
+    "publicHistory": "E:1D S:P W:1S N:P E:2D S:P W:3D N:P",
+    "call": "5D",
+    "reason": "自己13点加受限3D邀请10点，仅约24–26支持点，不能自动强跳5D，宜拒邀或补描述。"
+  },
+  {
+    "board": 1062,
+    "step": 12,
+    "seat": "E",
+    "hand": "J972.T8.AQ72.AK7",
+    "publicHistory": "S:P W:P N:P E:1D S:P W:1H N:P E:1S S:P W:2NT N:P",
+    "call": "P",
+    "reason": "14点加自然邀请至少11有25，应接受3NT，不能Pass。"
+  },
+  {
+    "board": 1076,
+    "step": 11,
+    "seat": "S",
+    "hand": "A842.73.K7.KQ763",
+    "publicHistory": "N:P E:P S:1C W:X N:1S E:2H S:2S W:P N:3S E:P",
+    "call": "P",
+    "reason": "12点双H双D及九将调整15，对3S邀请10达25应4S，不应Pass。"
+  },
+  {
+    "board": 1077,
+    "step": 9,
+    "seat": "E",
+    "hand": "QJ65.A53.K3.AQ53",
+    "publicHistory": "E:1NT S:P W:2D N:P E:2H S:P W:2NT N:P",
+    "call": "P",
+    "reason": "16点三H已八将且双D加1，17+邀请8=25，应4H或3NT，不能Pass。"
+  },
+  {
+    "board": 1089,
+    "step": 7,
+    "seat": "W",
+    "hand": "-.KJT.KJ9876.9852",
+    "publicHistory": "E:1S S:P W:1NT N:P E:2NT S:P",
+    "call": "P",
+    "reason": "8点加公开18–19最低26，应继续成局或描述长D推进，不能Pass2NT。"
+  },
+  {
+    "board": 1090,
+    "step": 5,
+    "seat": "S",
+    "hand": "AK3.4.AK5.QT8643",
+    "publicHistory": "S:1C W:2H N:2NT E:P",
+    "call": "P",
+    "reason": "16点加邀请至少10–11已26–27，伙伴承诺H止张，应接受3NT，不能Pass。"
+  },
+  {
+    "board": 1113,
+    "step": 7,
+    "seat": "W",
+    "hand": "J975.6.KJ532.A82",
+    "publicHistory": "E:1NT S:P W:2C N:P E:2H S:P",
+    "call": "2NT",
+    "reason": "自己四S单H，宜2S显示另一高花邀请，未找到H fit不应直接抹掉四S；2NT说明也缺具体范围。"
+  },
+  {
+    "board": 1120,
+    "step": 7,
+    "seat": "S",
+    "hand": "Q8.952.KQ973.A64",
+    "publicHistory": "N:1S E:2C S:2D W:P N:2S E:P",
+    "call": "P",
+    "reason": "11点均型有C A止张，双S七fit宜2NT邀请，不能静停2S少报邀请实力。"
+  },
+  {
+    "board": 1126,
+    "step": 9,
+    "seat": "S",
+    "hand": "JT84.K.AK542.973",
+    "publicHistory": "S:P W:P N:1NT E:P S:2C W:X N:2D E:P",
+    "call": "5D",
+    "reason": "Stayman2D不承诺D长度；自己仅五D无公开八fit且有26+局力，应3NT而非跳5D，tooltip也未明确其失约背景。"
+  },
+  {
+    "board": 1144,
+    "step": 8,
+    "seat": "W",
+    "hand": "JT75.543.AJT.AJ2",
+    "publicHistory": "N:P E:1D S:P W:1S N:P E:3S S:P",
+    "call": "P",
+    "reason": "自己11点面对邀请3S公开支持点16左右，应接受4S，不可只按原始开叫13判断。"
+  },
+  {
+    "board": 1149,
+    "step": 8,
+    "seat": "N",
+    "hand": "-.AKQ963.QT8653.3",
+    "publicHistory": "E:P S:1S W:2C N:2H E:P S:2S W:P",
+    "call": "P",
+    "reason": "自己黑桃缺门却Pass2S，六H六D应继续描述长套或重复六H，不能接受明确无配合S。"
+  },
+  {
+    "board": 1156,
+    "step": 8,
+    "seat": "W",
+    "hand": "K8.KQT8.A8.K8763",
+    "publicHistory": "N:P E:1C S:2S W:X N:P E:2NT S:P",
+    "call": "P",
+    "reason": "自己15面对负X后2NT至少12，公开27以上且S有止张，应3NT，不应Pass。"
+  },
+  {
+    "board": 1189,
+    "step": 7,
+    "seat": "W",
+    "hand": "AQ932.J9862.7.A7",
+    "publicHistory": "E:1NT S:P W:2H N:P E:2S S:P",
+    "call": "3NT",
+    "reason": "自己五S五H11点，应转移后展示H第二高花（3H成局逼叫），而不是3NT掩盖五H。"
+  },
+  {
+    "board": 1196,
+    "step": 12,
+    "seat": "W",
+    "hand": "AQ63.J2.AK765.A8",
+    "publicHistory": "N:P E:P S:P W:1D N:1H E:P S:2H W:2S N:3H E:3S S:P",
+    "call": "P",
+    "reason": "18点四S加H双C双支持点20，伙伴竞争3S有四支持与弱牌下限约6，公开足够4S，应接受而非Pass。"
+  },
+  {
+    "board": 1199,
+    "step": 8,
+    "seat": "S",
+    "hand": "K543.Q87.K86.K84",
+    "publicHistory": "W:P N:1H E:P S:1S W:P N:3H E:P",
+    "call": "P",
+    "reason": "自己11点三H对3H明确16–20邀请，已八张以上配合与27+点力，应4H，不得Pass。"
+  },
+  {
+    "board": 4068,
+    "step": 10,
+    "seat": "E",
+    "hand": "KJ82.AJ.AQ93.J72",
+    "publicHistory": "N:P E:1NT S:P W:2H N:P E:2S S:P W:2NT N:P",
+    "call": "P",
+    "reason": "16点四S已知搭档五S和至少8点邀请，九将加1及H双张加1使本手18支持点，26下限宜4S；不能只按NT点力拒绝。"
+  },
+  {
+    "board": 4076,
+    "step": 7,
+    "seat": "S",
+    "hand": "Q532.K.87643.Q53",
+    "publicHistory": "N:1C E:1H S:X W:P N:3S E:P",
+    "call": "P",
+    "reason": "7点四S及H单张调整10，公开3S强邀请最低16且确认八将，应4S接受；不能仅用原始7拒邀。"
+  },
+  {
+    "board": 4102,
+    "step": 8,
+    "seat": "E",
+    "hand": "K7.QJT963.KQ7.86",
+    "publicHistory": "S:P W:1C N:P E:1H S:P W:1S N:P",
+    "call": "2H",
+    "reason": "11点六H QJT符合本卡10–12六高花跳3H邀请；2H弱再叫低报，说明只说长度而未显示应有邀请范围。"
+  },
+  {
+    "board": 4103,
+    "step": 9,
+    "seat": "W",
+    "hand": "K75.7532.JT842.7",
+    "publicHistory": "W:P N:P E:2C S:X W:2D N:P E:2NT S:P",
+    "call": "P",
+    "reason": "4点加公开22–24最低26，不能停2NT；有四H应3C Stayman探索成局，且不借搭档真实C止张盲签NT。"
+  },
+  {
+    "board": 4119,
+    "step": 7,
+    "seat": "E",
+    "hand": "KT7.K8.T753.KQT5",
+    "publicHistory": "W:1S N:X E:XX S:P W:P N:2D",
+    "call": "2S",
+    "reason": "11点三S及H双张调整12，逃叫后应3S邀请而非最低2S，已有XX也不能低报支持实力。"
+  },
+  {
+    "board": 4130,
+    "step": 7,
+    "seat": "N",
+    "hand": "AQ7.K92.732.AQ74",
+    "publicHistory": "S:P W:1D N:P E:P S:1H W:P",
+    "call": "P",
+    "reason": "15点三H K与平衡自然五H确认八将，应强支持cue2D或邀请，不直接停1H；公开低限6不足硬4H但不应遗漏回应。"
+  },
+  {
+    "board": 4151,
+    "step": 4,
+    "seat": "S",
+    "hand": "Q3.J8754.AJ92.93",
+    "publicHistory": "W:P N:1H E:X",
+    "call": "2H",
+    "reason": "8点五H面对公开五H确认十将，两双张加2及十将加2，调整12应3H邀请；2H部分加叫低报配合实力。"
+  },
+  {
+    "board": 4172,
+    "step": 7,
+    "seat": "S",
+    "hand": "-.K73.AK752.KQJ64",
+    "publicHistory": "N:P E:P S:1D W:P N:1H E:1S",
+    "call": "P",
+    "reason": "16点五五低花无确认H配合，应竞争中2C表达真实第二套而非Pass，不以S缺门作惩罚X。"
+  },
+  {
+    "board": 4176,
+    "step": 9,
+    "seat": "N",
+    "hand": "542.AQ76.J3.J972",
+    "publicHistory": "N:P E:P S:1D W:P N:1H E:P S:3H W:P",
+    "call": "P",
+    "reason": "8点四H和D双张调整9，面对3H邀请最低16支持点合计25，确认八将应4H接受，不能仅raw8拒邀。"
+  },
+  {
+    "board": 4177,
+    "step": 7,
+    "seat": "W",
+    "hand": "KQ863.AK2.432.97",
+    "publicHistory": "E:1C S:P W:1S N:P E:3C S:P",
+    "call": "P",
+    "reason": "12点加公开3C邀请最低16已28，本手均型且有H AK、S KQ，应3NT接受到局，不能Pass3C。"
+  },
+  {
+    "board": 4180,
+    "step": 7,
+    "seat": "S",
+    "hand": "43.KT973.AJ93.32",
+    "publicHistory": "N:1S E:P S:1NT W:P N:2H E:P",
+    "call": "P",
+    "reason": "8点五H对公开四H，两个双张加2及九将加1得到11支持点，应3H邀请而非停2H，不能只看raw8。"
+  },
+  {
+    "board": 4188,
+    "step": 10,
+    "seat": "E",
+    "hand": "A876.KJ95.A82.A3",
+    "publicHistory": "N:P E:1NT S:P W:2H N:P E:2S S:P W:2NT N:P",
+    "call": "P",
+    "reason": "16点四S加C双张及九将调整18，搭档邀请至少8，已26且确认九S，应4S而非拒绝2NT邀，同4068。"
+  },
+  {
+    "board": 4190,
+    "step": 8,
+    "seat": "E",
+    "hand": "AKT8.K85.KJ43.A3",
+    "publicHistory": "S:P W:P N:P E:1D S:2C W:2D N:P",
+    "call": "P",
+    "reason": "18点四D对公开五支持确认九将，C双张及九将调整20，足够2NT或3D邀请，不能Pass2D；最低联手26仍不足硬5D。"
+  },
+  {
+    "board": 4201,
+    "step": 7,
+    "seat": "W",
+    "hand": "Q96.Q864.KT4.J94",
+    "publicHistory": "E:1H S:P W:2H N:P E:3H S:P",
+    "call": "P",
+    "reason": "8点自己四H与公开五H确认九将调整9，面对3H邀至少16支持点达25，应4H接受，不能raw8拒邀。"
+  },
+  {
+    "board": 4210,
+    "step": 7,
+    "seat": "N",
+    "hand": "J86.KJT5.JT.Q986",
+    "publicHistory": "S:1S W:P N:2S E:P S:3S W:P",
+    "call": "P",
+    "reason": "8点三S及D双张调整9，对3S邀请最低16支持点已25，应4S；邀请不额外保证六S也不影响八将确认。"
+  },
+  {
+    "board": 4215,
+    "step": 11,
+    "seat": "E",
+    "hand": "KQ4.9762.AJ943.K",
+    "publicHistory": "W:P N:P E:1D S:P W:1H N:1S E:2H S:2S W:3H N:3S",
+    "call": "P",
+    "reason": "自己13点加C单张为16支持点，搭档3H邀请最低10，八H已确认，应4H接受。"
+  },
+  {
+    "board": 4220,
+    "step": 7,
+    "seat": "S",
+    "hand": "A94.QJT6.KJ94.85",
+    "publicHistory": "N:1C E:P S:1H W:P N:3C E:P",
+    "call": "P",
+    "reason": "自己11点对公开16+跳3C已有27+，均型宜3NT接受邀请，不能停3C。"
+  },
+  {
+    "board": 4225,
+    "step": 9,
+    "seat": "E",
+    "hand": "J9.K752.A976.QJ4",
+    "publicHistory": "E:P S:P W:1D N:P E:1H S:P W:3H N:P",
+    "call": "P",
+    "reason": "自己11点加S双张为12支持点，对公开3H邀请16+且八H已确认，应4H。"
+  },
+  {
+    "board": 4229,
+    "step": 7,
+    "seat": "W",
+    "hand": "AT7652.Q.QJ83.Q6",
+    "publicHistory": "E:1D S:1H W:1S N:P E:2C S:P",
+    "call": "P",
+    "reason": "11点六S、仅两C面对公开四C无已知配合，应以3S邀请描述六张长套，停2C遗漏形状与邀请强度。"
+  },
+  {
+    "board": 4238,
+    "step": 8,
+    "seat": "E",
+    "hand": "942.Q98.94.KQJ82",
+    "publicHistory": "S:P W:1S N:P E:2S S:P W:3S N:P",
+    "call": "P",
+    "reason": "自己8点加D双张为9支持点，对3S邀请最低16已25，应4S。"
+  },
+  {
+    "board": 4244,
+    "step": 11,
+    "seat": "S",
+    "hand": "AKT8.J7.AJ.KQ963",
+    "publicHistory": "N:P E:P S:1C W:P N:1H E:P S:1S W:P N:2C E:P",
+    "call": "P",
+    "reason": "18点停最低C偏好低报额外实力，应以2NT邀请等路线显示18–19，不能像最低开叫止叫。"
+  },
+  {
+    "board": 4255,
+    "step": 7,
+    "seat": "E",
+    "hand": "3.A4.AKT85.QJT75",
+    "publicHistory": "W:P N:P E:1D S:1S W:P N:P",
+    "call": "P",
+    "reason": "14点五五低花且S单张，应2C描述真实第二长套，Pass遗漏明显非均型竞争路线。"
+  },
+  {
+    "board": 4257,
+    "step": 9,
+    "seat": "E",
+    "hand": "KJT9.Q942.5.9652",
+    "publicHistory": "E:P S:P W:1D N:P E:1H S:P W:3H N:P",
+    "call": "P",
+    "reason": "6点加D单张3为9支持点，对公开邀请16+及八H应4H接受。"
+  },
+  {
+    "board": 4265,
+    "step": 6,
+    "seat": "S",
+    "hand": "AK76.KT.T9.AQT72",
+    "publicHistory": "E:P S:1C W:X N:1D E:P",
+    "call": "2C",
+    "reason": "16点仅五C且有真实四S可廉价1S，应优先第二套；2C通常六张，16点亦不属最低五张例外。"
+  },
+  {
+    "board": 4283,
+    "step": 11,
+    "seat": "E",
+    "hand": "KJ.AKQ85.KQ42.KJ",
+    "publicHistory": "W:P N:P E:2C S:P W:2D N:P E:2H S:P W:4C N:P",
+    "call": "4S",
+    "reason": "仅两S无已约定人工4S含义，不能凭GF凑成局虚选S；宜真实4D第二套或4H重复，hover承认未约定仍未解释可签S。"
+  },
+  {
+    "board": 4305,
+    "step": 3,
+    "seat": "W",
+    "hand": "J32.J.AK65.T9752",
+    "publicHistory": "E:1C S:X",
+    "call": "2C",
+    "reason": "9点五C对公开三C已八将，加H单张为12支持点，应3C邀请；2C最低部分定约低报，hover未写强度边界。"
+  },
+  {
+    "board": 4307,
+    "step": 9,
+    "seat": "W",
+    "hand": "T.A652.AKQJT4.J9",
+    "publicHistory": "W:1D N:P E:1S S:P W:2D N:P E:2NT S:P",
+    "call": "P",
+    "reason": "15点对邀请最低10已25且六D AKQJT强源，H A止，宜3NT接受，不应Pass。"
+  },
+  {
+    "board": 4318,
+    "step": 4,
+    "seat": "E",
+    "hand": "KJT9.J952.-.K8754",
+    "publicHistory": "S:P W:1S N:X",
+    "call": "2S",
+    "reason": "8点四S加D缺门4及九将1为13支持点，2S低报；宜进局支持或至少邀请，不能只用原始HCP。"
+  },
+  {
+    "board": 4321,
+    "step": 8,
+    "seat": "N",
+    "hand": "76.A7543.Q.AKJ94",
+    "publicHistory": "E:P S:P W:P N:1H E:1S S:P W:1NT",
+    "call": "P",
+    "reason": "14点五H五C，敌1NT后可2C描述真实第二长套；Pass遗漏强非均型竞争路线。"
+  },
+  {
+    "board": 4323,
+    "step": 10,
+    "seat": "N",
+    "hand": "82.8.KQJ63.QT942",
+    "publicHistory": "W:P N:P E:P S:1S W:P N:1NT E:P S:3S W:P",
+    "call": "P",
+    "reason": "自己8点加H单张2为10支持点，对公开六S配两S已八将，16+邀请足够4S。"
+  },
+  {
+    "board": 4330,
+    "step": 7,
+    "seat": "N",
+    "hand": "Q5.52.AQ986.A975",
+    "publicHistory": "S:1H W:P N:1NT E:P S:2H W:P",
+    "call": "P",
+    "reason": "12点上限和五D四C侧源未描述邀请，应2NT等继续而非停2H；公开开叫最低12不构成直接强制3NT。"
+  },
+  {
+    "board": 4332,
+    "step": 6,
+    "seat": "E",
+    "hand": "AQJT983.AJ3.-.K84",
+    "publicHistory": "N:1D E:X S:P W:1NT N:P",
+    "call": "P",
+    "reason": "自己七S对公开均型NT至少两S已九将，15点加D缺门4及九将1为20支持点，对6+可4S；停NT遗漏极强长套配合。"
+  },
+  {
+    "board": 4333,
+    "step": 5,
+    "seat": "E",
+    "hand": "AKJ542.K8.KJ2.K6",
+    "publicHistory": "E:1S S:2D W:P N:P",
+    "call": "2S",
+    "reason": "18点六S应跳3S邀请，2S低报强度；hover仅给通常长套也遗漏强牌分档。"
+  },
+  {
+    "board": 4345,
+    "step": 12,
+    "seat": "N",
+    "hand": "52.AKJ86.AT.AQ82",
+    "publicHistory": "E:P S:P W:P N:1H E:P S:1S W:P N:2C E:P S:2H W:P",
+    "call": "P",
+    "reason": "18点不能停最低两H偏好而隐瞒强度，宜2NT邀请；七H配合未保证直接4H。"
+  },
+  {
+    "board": 4348,
+    "step": 8,
+    "seat": "W",
+    "hand": "KJ3.Q8762.9873.A",
+    "publicHistory": "N:P E:1D S:P W:1H N:P E:3D S:P",
+    "call": "P",
+    "reason": "四D对跳再叫公开六D已十将，10点加C单张3及十将2为15支持点，对16+达31，宜5D接受而非Pass。"
+  },
+  {
+    "board": 4354,
+    "step": 5,
+    "seat": "S",
+    "hand": "Q874.K83.94.AT73",
+    "publicHistory": "S:P W:1D N:1H E:P",
+    "call": "2H",
+    "reason": "9点三H加D双张为10支持点，宜跳3H邀请而非最低2H；支持扣叫需10HCP不能用9点冒充。"
+  },
+  {
+    "board": 4356,
+    "step": 6,
+    "seat": "E",
+    "hand": "KQ53.83.KT532.T5",
+    "publicHistory": "N:1D E:P S:1H W:1S N:2H",
+    "call": "2S",
+    "reason": "8点四S对五S九将，两双张加九将调整11，宜3S邀请而非简单2S。"
+  },
+  {
+    "board": 4356,
+    "step": 9,
+    "seat": "N",
+    "hand": "J.Q974.AQ96.KQ84",
+    "publicHistory": "N:1D E:P S:1H W:1S N:2H E:2S S:3H W:3S",
+    "call": "P",
+    "reason": "14点加S单张为17支持点，对搭档3H邀请10+且八H已知，应4H接受，不停敌3S。"
+  },
+  {
+    "board": 4364,
+    "step": 8,
+    "seat": "W",
+    "hand": "763.6.J83.AKQT72",
+    "publicHistory": "N:P E:1D S:P W:1NT N:P E:3D S:P",
+    "call": "P",
+    "reason": "10点三D对公开六D九将，H单张2加九将1为13支持点，对邀请16+最低29，宜5D接受。"
+  },
+  {
+    "board": 4378,
+    "step": 4,
+    "seat": "E",
+    "hand": "T962.97.AK752.Q2",
+    "publicHistory": "S:1H W:1S N:P",
+    "call": "2S",
+    "reason": "9点四S对五S九将、两双张调整12，应3S邀请而非最低2S。"
+  },
+  {
+    "board": 4389,
+    "step": 9,
+    "seat": "E",
+    "hand": "AK96.6.Q65.AQJ52",
+    "publicHistory": "E:1C S:P W:1H N:P E:1S S:P W:2S N:P",
+    "call": "P",
+    "reason": "16点加H单张3为19支持点，对简单支持6+及八S足25，应4S，不停2S。"
+  },
+  {
+    "board": 4390,
+    "step": 12,
+    "seat": "E",
+    "hand": "KT.AJ87.64.A9543",
+    "publicHistory": "S:P W:1D N:P E:1H S:P W:1S N:P E:2C S:P W:2S N:P",
+    "call": "4S",
+    "reason": "自己两S对公开四S至多未确认八将，不可直接4S支持；宜2NT邀请或真实3C描述，hover四张支持亦不实。"
+  },
+  {
+    "board": 4395,
+    "step": 7,
+    "seat": "E",
+    "hand": "K.QJT53.J65.KQT5",
+    "publicHistory": "W:1C N:P E:1H S:P W:1S N:P",
+    "call": "2C",
+    "reason": "12点上限不宜弱2C偏好止叫，应第四花色2D或2NT邀请继续描述；不能只因四C而低报。"
+  },
+  {
+    "board": 4398,
+    "step": 6,
+    "seat": "W",
+    "hand": "A76.AT7.543.Q654",
+    "publicHistory": "S:P W:P N:P E:1C S:P",
+    "call": "3C",
+    "reason": "10点仅四C，对公开三C七将；应1NT6–10自然，3C邀请及五C支持承诺均不实。"
+  },
+  {
+    "board": 4410,
+    "step": 8,
+    "seat": "E",
+    "hand": "QJ76.J953.T9.875",
+    "publicHistory": "S:P W:3NT N:P E:4C S:P W:4H N:P",
+    "call": "5H",
+    "reason": "4H已完成Stayman且已到成局，4点四H应Pass接受；无必要5H多抬一阶，非未完成F1。"
+  },
+  {
+    "board": 4411,
+    "step": 9,
+    "seat": "W",
+    "hand": "942.K864.KT92.Q5",
+    "publicHistory": "W:P N:P E:1D S:P W:1H N:P E:3H S:P",
+    "call": "P",
+    "reason": "8点加C双张为9支持点，对邀请16+已25且八H，应4H接受。"
+  },
+  {
+    "board": 4415,
+    "step": 7,
+    "seat": "E",
+    "hand": "KQT6542.K.87.942",
+    "publicHistory": "W:1C N:1D E:1S S:2D W:P N:P",
+    "call": "P",
+    "reason": "七S KQT且最低2S仍可用，应自然重复长套，不因敌2D介入丢弃明显七张高花路线。"
+  },
+  {
+    "board": 4418,
+    "step": 7,
+    "seat": "N",
+    "hand": "AJ3.4.J632.AKQ86",
+    "publicHistory": "S:1D W:P N:2C E:P S:2H W:P",
+    "call": "5D",
+    "reason": "自己四D对公开开叫D仅3+，第二H套未独立保证五D，八将未确认；应先3D偏好继续GF，5D及hover要求五D支持均不实。"
+  },
+  {
+    "board": 4422,
+    "step": 4,
+    "seat": "E",
+    "hand": "42.AKQ53.T7.8432",
+    "publicHistory": "S:1D W:1H N:1S",
+    "call": "2H",
+    "reason": "9点五H对五H十将，加两双张调整13，至少应邀请3H，简单2H低报支持与套质。"
+  },
+  {
+    "board": 4422,
+    "step": 7,
+    "seat": "N",
+    "hand": "KQJ853.-.A986.J97",
+    "publicHistory": "S:1D W:1H N:1S E:2H S:P W:P",
+    "call": "P",
+    "reason": "11点六S KQJ且H缺门，宜2S或3S邀请描述长套，不应默许敌2H低阶结束。"
+  },
+  {
+    "board": 4424,
+    "step": 6,
+    "seat": "E",
+    "hand": "T73.AQ65.Q9.A965",
+    "publicHistory": "N:P E:1C S:1D W:1S N:P",
+    "call": "2S",
+    "reason": "自己只有三S，2S自然支持/第二套四S承诺不实；需合法最低描述，不能靠伪造四张支持填补无D止再叫空档。"
+  },
+  {
+    "board": 4426,
+    "step": 9,
+    "seat": "S",
+    "hand": "AK862.4.KJT63.AT",
+    "publicHistory": "S:1S W:P N:1NT E:P S:2D W:P N:3H E:P",
+    "call": "P",
+    "reason": "自己15对明确长H邀请10+已25，宜3NT或真实D后续探索成局；H单张不能简单4H，但也不应停3H。"
+  },
+  {
+    "board": 4444,
+    "step": 8,
+    "seat": "W",
+    "hand": "AKJ.QJ74.98762.8",
+    "publicHistory": "N:P E:1D S:P W:1H N:P E:1S S:P",
+    "call": "2D",
+    "reason": "自己五D对开叫三D已八将，11点加C单张为14支持点，宜3D邀请或第四花色；弱2D偏好低报。"
+  },
+  {
+    "board": 4446,
+    "step": 11,
+    "seat": "N",
+    "hand": "J8.A853.K53.T986",
+    "publicHistory": "S:1S W:P N:1NT E:P S:2D W:P N:2S E:P S:2NT W:P",
+    "call": "P",
+    "reason": "8点对明确18–19 NT邀请最低26，宜3NT接受，不再借12–14最低范围拒绝。"
+  },
+  {
+    "board": 4447,
+    "step": 7,
+    "seat": "E",
+    "hand": "QT842.AJ93.A.J96",
+    "publicHistory": "W:1D N:P E:1S S:P W:2D N:P",
+    "call": "P",
+    "reason": "12点D仅单张，宜2H真实第二高花或2NT邀请，不能停原D坏配合且丢上限强度。"
+  },
+  {
+    "board": 4452,
+    "step": 8,
+    "seat": "W",
+    "hand": "KJ32.6.KJ8.KJT96",
+    "publicHistory": "N:P E:1H S:P W:1S N:P E:2C S:P",
+    "call": "P",
+    "reason": "自己五C对公开四C已九将，12点加H单张3及九将1为16支持点，至少3C邀请或第四花色，不应停2C；最低总28不硬直接5C。"
+  },
+  {
+    "board": 4456,
+    "step": 9,
+    "seat": "N",
+    "hand": "K763.KJ8.JT986.9",
+    "publicHistory": "N:P E:P S:P W:1D N:P E:1H S:1S W:2C",
+    "call": "2S",
+    "reason": "8点四S对五S九将、C单张3和九将1调整12，应邀请3S，简单2S低报。"
+  },
+  {
+    "board": 4464,
+    "step": 5,
+    "seat": "N",
+    "hand": "JT8.K.876.K98542",
+    "publicHistory": "N:P E:P S:1C W:X",
+    "call": "2C",
+    "reason": "7点六C对三C九将，H单张3加九将1为11支持点，应3C邀请，2C部分支持低报。"
+  },
+  {
+    "board": 4466,
+    "step": 6,
+    "seat": "W",
+    "hand": "Q4.72.AQT62.AK54",
+    "publicHistory": "S:P W:1D N:1H E:P S:P",
+    "call": "P",
+    "reason": "15点五D四C且两H，可最低2C自然描述第二套，不应漏非均型竞争路线。"
+  },
+  {
+    "board": 4487,
+    "step": 8,
+    "seat": "S",
+    "hand": "AQ.KQJT432.974.9",
+    "publicHistory": "W:P N:1D E:P S:1H W:P N:1S E:P",
+    "call": "2H",
+    "reason": "12点七张优质红心应3H邀请，2H低报为弱长套。"
+  },
+  {
+    "board": 4524,
+    "step": 7,
+    "seat": "S",
+    "hand": "AT76.KJ6.K6.QT85",
+    "publicHistory": "N:1NT E:P S:2C W:X N:2D E:P",
+    "call": "2NT",
+    "reason": "13加15已28点，Stayman后2NT不能止在邀请，应3NT。"
+  },
+  {
+    "board": 4526,
+    "step": 9,
+    "seat": "S",
+    "hand": "A98.AKT5.K6532.4",
+    "publicHistory": "S:1D W:P N:1S E:P S:2D W:P N:2NT E:P",
+    "call": "P",
+    "reason": "14点面对2NT邀请最低11联手25且真实五D，必须接受3NT，不能最低HCP泛化Pass。"
+  },
+  {
+    "board": 4542,
+    "step": 7,
+    "seat": "N",
+    "hand": "AKQT974.5.J85.95",
+    "publicHistory": "S:1H W:P N:1S E:P S:2C W:P",
+    "call": "2S",
+    "reason": "10点七S有AKQT应3S邀请，不应最低2S；说明没有区分六张最低与七张邀请价值。"
+  },
+  {
+    "board": 4545,
+    "step": 10,
+    "seat": "S",
+    "hand": "A752.AKT.KQT7.T6",
+    "publicHistory": "E:1D S:1NT W:P N:2D E:P S:2H W:P N:2NT E:P",
+    "call": "P",
+    "reason": "自己16点三H双C，支持17点对8–9邀请最低25，应4H或3NT接受，不应Pass。"
+  },
+  {
+    "board": 4553,
+    "step": 11,
+    "seat": "W",
+    "hand": "K9542.K542.AJT.5",
+    "publicHistory": "E:P S:1D W:1S N:X E:P S:2D W:P N:P E:3S S:P",
+    "call": "P",
+    "reason": "自己11点S5与H4、单C，支持点14，加邀请10至少24再九将支持可达局边界，应接受4S，而非只用原始11拒邀。"
+  },
+  {
+    "board": 4555,
+    "step": 8,
+    "seat": "S",
+    "hand": "AQ42.-.98643.AT87",
+    "publicHistory": "W:P N:2NT E:P S:3C W:P N:3D E:P",
+    "call": "4NT",
+    "reason": "自己10点5431且H缺门，不满足无将定量所需半均型，2NT20–21最高也31，应3NT或自然D探索，不能因人工3D算D配合而4NT邀。"
+  },
+  {
+    "board": 4560,
+    "step": 7,
+    "seat": "S",
+    "hand": "KT.6.A9862.AJ762",
+    "publicHistory": "N:1H E:P S:1NT W:P N:2H E:P",
+    "call": "P",
+    "reason": "12点双五低花与单H，面对最低2H应新套3C描述最大限，或2NT邀，不能直接Pass单支持H。"
+  },
+  {
+    "board": 4562,
+    "step": 8,
+    "seat": "E",
+    "hand": "Q98.J953.AK3.K52",
+    "publicHistory": "S:1C W:1H N:P E:2C S:P W:2H N:P",
+    "call": "P",
+    "reason": "13点四H九将支持点14，对已公开8–16最低8未强局，但至少应3H邀请不能Pass2H，面对cue后最低回叫须保留强支持再叫。"
+  },
+  {
+    "board": 4573,
+    "step": 7,
+    "seat": "W",
+    "hand": "AQJ76.2.AJ632.64",
+    "publicHistory": "E:1D S:P W:1S N:P E:2C S:P",
+    "call": "P",
+    "reason": "12点五D好支持而C仅两张，对双低花最低再叫应至少3D邀请，不能停六张左右C配合。"
+  },
+  {
+    "board": 4575,
+    "step": 7,
+    "seat": "E",
+    "hand": "QT5.K97.KT762.82",
+    "publicHistory": "W:1H N:P E:2H S:P W:3H N:P",
+    "call": "P",
+    "reason": "8点三支持加C双张得9支持，面对3H16+邀请已25，应4H，不应Pass。"
+  },
+  {
+    "board": 4578,
+    "step": 7,
+    "seat": "N",
+    "hand": "JT.KQT932.AJ652.-",
+    "publicHistory": "S:1D W:P N:1H E:P S:1S W:P",
+    "call": "2H",
+    "reason": "11点六H质量KQT与五D支持，至少3H邀请或D邀，应避免最低2H低报实力；说明也缺邀请分档。"
+  },
+  {
+    "board": 4579,
+    "step": 7,
+    "seat": "E",
+    "hand": "KQ952.AKQ32.92.4",
+    "publicHistory": "W:1NT N:P E:2H S:P W:2S N:P",
+    "call": "3NT",
+    "reason": "14点五S五H，应转移后3H展示另一高花并GF，不应直接3NT隐匿H。"
+  },
+  {
+    "board": 4608,
+    "step": 12,
+    "seat": "W",
+    "hand": "AKJ.KT85.AQ965.9",
+    "publicHistory": "N:P E:1C S:P W:1H N:P E:1S S:P W:2D N:P E:2S S:P",
+    "call": "4S",
+    "reason": "自己三S面对仅四S第二套重述2S，只有七将，不能4S；可3NT或C配合继续，说明虚构自己四支持。"
+  },
+  {
+    "board": 4622,
+    "step": 7,
+    "seat": "N",
+    "hand": "A732.KQ972.532.7",
+    "publicHistory": "S:1D W:2C N:X E:P S:2NT W:P",
+    "call": "P",
+    "reason": "9点五H四S已负X，pNT答否认四高花但可能三H，应再3H自然五H邀请或描述，不能自动Pass隐藏五H。"
+  },
+  {
+    "board": 4635,
+    "step": 4,
+    "seat": "S",
+    "hand": "K9653.Q54.T98.64",
+    "publicHistory": "W:1C N:1S E:X",
+    "call": "P",
+    "reason": "5点五S支持对方五S且己单?实际全均型但十将延阻可2S，此卡支持点额外2成7可最低支持，不宜Pass。"
+  },
+  {
+    "board": 4637,
+    "step": 8,
+    "seat": "N",
+    "hand": "QT542.J5.-.AT8764",
+    "publicHistory": "E:P S:1D W:P N:1S E:P S:2D W:P",
+    "call": "P",
+    "reason": "自己D缺门且六C，原套回2D不逼叫并不代表可接受，宜3C自然第二套描述或2S回五张，不能Pass明确无配合D。"
+  },
+  {
+    "board": 4641,
+    "step": 8,
+    "seat": "N",
+    "hand": "98632.K7.AK75.J3",
+    "publicHistory": "E:P S:1D W:P N:1S E:P S:2C W:P",
+    "call": "P",
+    "reason": "11点四D强支持与C两张，对双套再叫应3D邀请或探索NT，不能停仅六七张C配合；不得借真实18硬强局，但明显可邀。"
+  },
+  {
+    "board": 4656,
+    "step": 9,
+    "seat": "N",
+    "hand": "AKQ642.Q94.-.JT95",
+    "publicHistory": "N:1S E:P S:1NT W:P N:2C E:P S:2NT W:P",
+    "call": "P",
+    "reason": "本人六好S面对同伴均型NT邀请至少两S，可确认八将，加D缺门调整达16支持点与邀请11足够4S，不应原始12点拒邀停2NT。"
+  },
+  {
+    "board": 4661,
+    "step": 7,
+    "seat": "W",
+    "hand": "T74.KT72.AQ85.AQ",
+    "publicHistory": "E:2D S:P W:2NT N:P E:3D S:P",
+    "call": "5D",
+    "reason": "15点四D只有十将一双C调整到18，对低限5–8弱二不保证28支持点，贸然5D过高，应停3D或4D邀请；不能只因四D支持固定成局。"
+  },
+  {
+    "board": 4662,
+    "step": 8,
+    "seat": "E",
+    "hand": "93.KQJ6542.952.T",
+    "publicHistory": "S:1C W:P N:1H E:P S:1S W:1NT N:P",
+    "call": "P",
+    "reason": "6点七H好KQJ、自己C单，对同伴15–18 NT争叫应2D转移去H，不能PassNT漏七张长套。"
+  },
+  {
+    "board": 4670,
+    "step": 4,
+    "seat": "E",
+    "hand": "Q94.KQ3.K42.8764",
+    "publicHistory": "S:2H W:X N:P",
+    "call": "4C",
+    "reason": "10点四小C不该跳4C，3C可用应自然跳4C是自由邀请额外实力，说明误称高阶被迫最低；更宜2NT11下限未达或3S三好支持非对未示S借隐藏，只3C最低。"
+  },
+  {
+    "board": 4671,
+    "step": 6,
+    "seat": "N",
+    "hand": "AJ92.KJ4.AKT.K42",
+    "publicHistory": "W:2H N:X E:P S:3C W:P",
+    "call": "3NT",
+    "reason": "19点面对被迫0+三C，C只有K三非运行套，直接3NT缺保证局值；宜2NT强邀请按准确X后范围，不能把forced3C当9点跳应叫。"
+  },
+  {
+    "board": 4682,
+    "step": 7,
+    "seat": "N",
+    "hand": "AJT98752.43.Q.Q9",
+    "publicHistory": "S:1H W:P N:1S E:P S:3C W:P",
+    "call": "3NT",
+    "reason": "9点八S无D止、C仅双Q，GF中应重复S描述极长套，不应机械3NT；可3S保持GF后让伙伴选局。"
+  },
+  {
+    "board": 4689,
+    "step": 7,
+    "seat": "W",
+    "hand": "QJ74.AQJ54.K98.2",
+    "publicHistory": "E:1NT S:P W:2D N:P E:2H S:P",
+    "call": "3NT",
+    "reason": "13点五H四S，应转移后2S自然描述第二高花GF，而不是3NT掩盖四S配合潜力。"
+  },
+  {
+    "board": 4691,
+    "step": 9,
+    "seat": "W",
+    "hand": "J432.KQ75.J95.95",
+    "publicHistory": "W:P N:P E:1D S:P W:1H N:P E:2C S:P",
+    "call": "P",
+    "reason": "自己只有两C与伙伴四C，仅六张配合，应回2D三张偏好或1NT不够需2NT低限不宜，不能Pass2C错选短配合。"
+  },
+  {
+    "board": 4694,
+    "step": 5,
+    "seat": "S",
+    "hand": "QJ987.9842.Q4.A2",
+    "publicHistory": "S:P W:P N:1S E:X",
+    "call": "2S",
+    "reason": "9点五S对5S十将加双D双C调整达13支持点，应强支持3S限制或XX显示实力，最低2S低报，说明遗漏竞争加叫强度。"
+  },
+  {
+    "board": 4696,
+    "step": 12,
+    "seat": "W",
+    "hand": "AQT65.K93.AK2.92",
+    "publicHistory": "N:P E:P S:P W:1NT N:P E:2H S:P W:2S N:P E:2NT S:P",
+    "call": "P",
+    "reason": "自己16点五S和C双，十将支持点19对邀请8至少27，应接受4S而非Pass2NT。"
+  },
+  {
+    "board": 7279,
+    "step": 8,
+    "seat": "S",
+    "hand": "Q3.AK95.AK64.K92",
+    "publicHistory": "W:P N:P E:P S:1D W:P N:1NT E:P",
+    "call": "2NT",
+    "reason": "自己19+公开1NT应叫6至少25，不能仅2NT邀而容许部分局停，应3NT；说明2NT18–19邀请固定含义本身正确。"
+  },
+  {
+    "board": 7279,
+    "step": 10,
+    "seat": "N",
+    "hand": "T6.T2.J92.AQT543",
+    "publicHistory": "W:P N:P E:P S:1D W:P N:1NT E:P S:2NT W:P",
+    "call": "P",
+    "reason": "自己7对partner2NT公开最低18已25，不能拒邀停二NT，应3NT；Pass当前无逼叫义务文字虽形式正确但遗漏已知足局决策。"
+  },
+  {
+    "board": 7304,
+    "step": 7,
+    "seat": "S",
+    "hand": "73.AK754.Q942.K3",
+    "publicHistory": "N:1NT E:P S:2D W:X N:2H E:P",
+    "call": "P",
+    "reason": "自己的12点加同伴NT最低15为27，转移后Pass2H漏掉已知局实力；应3NT让开叫人按支持选择4H，不能借其真实四H判断。人工F1已经答完的Pass说明本身准确。"
+  },
+  {
+    "board": 7365,
+    "step": 8,
+    "seat": "N",
+    "hand": "Q984.AJ6.K932.97",
+    "publicHistory": "E:P S:1NT W:P N:2C E:X S:2D W:P",
+    "call": "3D",
+    "reason": "自己10点加NT最低15已经25，Stayman否认四高花后应3NT；3D只有四张且提示未建立GF，会停低花部分定约，不能表达已知成局实力。此Stayman后3D的精确定义卡未明，说明未约定边界保留。"
+  },
+  {
+    "board": 7400,
+    "step": 10,
+    "seat": "E",
+    "hand": "K764.T.AKQJ3.AJ7",
+    "publicHistory": "N:P E:1D S:P W:1H N:P E:1S S:P W:2NT N:P",
+    "call": "P",
+    "reason": "自手18点面对伙伴2NT邀请至少10点已知28HCP，适合NT及有长D来源，应3NT，Pass漏掉已知局实力；无持续F1的固定Pass解释本身正确。"
+  },
+  {
+    "board": 7443,
+    "step": 8,
+    "seat": "S",
+    "hand": "A32.AQJ6.K842.KQ",
+    "publicHistory": "W:P N:P E:P S:1D W:P N:1S E:P",
+    "call": "2NT",
+    "reason": "自己19点面对一盖一最低6点，即已知25HCP，均型跳2NT只邀请会容许漏局；应3NT（持三S可后续选局），18–19跳NT的固定说明本身正确。"
+  },
+  {
+    "board": 7519,
+    "step": 8,
+    "seat": "S",
+    "hand": "KQJ9872.63.A94.T",
+    "publicHistory": "W:P N:1D E:P S:1S W:P N:2C E:P",
+    "call": "P",
+    "reason": "自手七张KQJ领衔S、仅单张C，伙伴第二套2C只保证四C，当前C仅五将而自己强七S可合法回2S；Pass2C明显错选短配合，应2S自然NF。无持续F1的固定Pass含义本身正确。"
+  },
+  {
+    "board": 7534,
+    "step": 7,
+    "seat": "N",
+    "hand": "KQT.J854.Q3.A986",
+    "publicHistory": "S:P W:P N:1C E:2C S:3C W:3D",
+    "call": "5C",
+    "reason": "自己12点均型、四C对邀请3C五C仅九将，约14支持点加邀请最低10只有24，远不足29低花局线；没有真实GF义务，5C被前面虚假GF驱动，宜Pass或竞争4C。5C自然成局固定含义准确。"
+  },
+  {
+    "board": 7589,
+    "step": 9,
+    "seat": "E",
+    "hand": "AK6.J9.QT95.JT97",
+    "publicHistory": "E:P S:P W:1H N:P E:2D S:P W:2H N:P",
+    "call": "P",
+    "reason": "11点两H，开叫原套再叫通常六张以上；应三H邀请，不能直接停二H。"
+  },
+  {
+    "board": 7601,
+    "step": 7,
+    "seat": "W",
+    "hand": "K964.T9.Q532.K96",
+    "publicHistory": "E:1H S:2C W:X N:P E:3S S:P",
+    "call": "P",
+    "reason": "8点加双H支持9，面对公开调整16–18邀请最低25，应接受四S。"
+  },
+  {
+    "board": 7608,
+    "step": 6,
+    "seat": "E",
+    "hand": "AJ64.J63.42.KQ53",
+    "publicHistory": "N:1C E:P S:P W:1NT N:P",
+    "call": "P",
+    "reason": "11点面对11–14平衡NT应2NT邀请，不能照强NT的弱应叫Pass。"
+  },
+  {
+    "board": 7652,
+    "step": 7,
+    "seat": "S",
+    "hand": "KT54.J76.AQ.9743",
+    "publicHistory": "N:1C E:P S:1S W:P N:3S E:P",
+    "call": "P",
+    "reason": "10点四S加D双张九将调整12，对邀请16+足局，应4S，不得Pass。"
+  },
+  {
+    "board": 7659,
+    "step": 9,
+    "seat": "W",
+    "hand": "Q96.AK8.A83.KT94",
+    "publicHistory": "W:1NT N:P E:2C S:P W:2D N:P E:4NT S:P",
+    "call": "P",
+    "reason": "自己16点对定量邀请约17–18最低合33，应该接受6NT，不应只最高17点才能接受。"
+  },
+  {
+    "board": 7662,
+    "step": 9,
+    "seat": "S",
+    "hand": "AJ32.AQ8.J74.AQ2",
+    "publicHistory": "S:1C W:1D N:1H E:P S:1S W:P N:2NT E:P",
+    "call": "P",
+    "reason": "自己18点面对NT邀11+至少29，应接受3NT而不Pass；不能在第二套后忘记原始强点力。"
+  },
+  {
+    "board": 7683,
+    "step": 9,
+    "seat": "W",
+    "hand": "KQJ8.K943.K2.K87",
+    "publicHistory": "W:1NT N:P E:2H S:P W:2S N:P E:2NT S:P",
+    "call": "P",
+    "reason": "自己15点四S加D双与九将得17支持，对8下限至少25应4S，不应只低限15拒邀请。"
+  },
+  {
+    "board": 7708,
+    "step": 9,
+    "seat": "N",
+    "hand": "AT64.AK9.842.KT7",
+    "publicHistory": "N:1C E:P S:1H W:P N:1S E:P S:2NT W:P",
+    "call": "P",
+    "reason": "自己14加同伴邀请至少11已25，应3NT，不该Pass。"
+  },
+  {
+    "board": 7712,
+    "step": 11,
+    "seat": "S",
+    "hand": "A642.Q72.KQ.K765",
+    "publicHistory": "N:P E:P S:1C W:P N:1H E:P S:1S W:P N:3S E:P",
+    "call": "P",
+    "reason": "14点四S D双增加1，与邀请10以上达25支持点，应4S。"
+  },
+  {
+    "board": 7717,
+    "step": 8,
+    "seat": "N",
+    "hand": "KJ3.AT76532.62.A",
+    "publicHistory": "E:P S:1C W:2D N:2H E:P S:2NT W:P",
+    "call": "P",
+    "reason": "12点七H加公开13以上已25，不能停2NT，至少3NT或4H。"
+  },
+  {
+    "board": 7719,
+    "step": 5,
+    "seat": "W",
+    "hand": "875.AK.AJT643.T8",
+    "publicHistory": "W:1D N:P E:1NT S:P",
+    "call": "P",
+    "reason": "非均型六D不应直接停NT，应2D继续描述，让强应叫人决定邀请。"
+  },
+  {
+    "board": 7744,
+    "step": 7,
+    "seat": "S",
+    "hand": "K985.Q853.JT.A86",
+    "publicHistory": "N:1C E:P S:1H W:P N:1S E:P",
+    "call": "2NT",
+    "reason": "自己四S，已知搭档四S，10点D双支持11应3S邀请优先，不能忽略八张高花改2NT；NT提示没有邀请点力范围。"
+  },
+  {
+    "board": 7744,
+    "step": 9,
+    "seat": "N",
+    "hand": "AQT2.AT9.A.QT974",
+    "publicHistory": "N:1C E:P S:1H W:P N:1S E:P S:2NT W:P",
+    "call": "P",
+    "reason": "16点对同伴NT邀请最低10已26，不能Pass，应至少3NT。"
+  },
+  {
+    "board": 7759,
+    "step": 8,
+    "seat": "S",
+    "hand": "AJ94.A.A86.AQJ73",
+    "publicHistory": "W:3H N:P E:P S:X W:P N:4C E:P",
+    "call": "6C",
+    "reason": "20点不能把被迫4C当有9至11邀请，全副关键张/CK未确知就6C，明显把强迫应叫当强答；应5C成局或控制探索。"
+  },
+  {
+    "board": 7772,
+    "step": 9,
+    "seat": "N",
+    "hand": "QJ742.5.QJ86.874",
+    "publicHistory": "N:P E:P S:1H W:P N:1S E:P S:3S W:P",
+    "call": "P",
+    "reason": "自己6点五S H单3与九将1=10支持，面对强支持邀请应4S，而非按6HCP拒。"
+  },
+  {
+    "board": 7776,
+    "step": 9,
+    "seat": "N",
+    "hand": "AK93.AKQT6.95.98",
+    "publicHistory": "N:1H E:P S:1NT W:P N:2H E:P S:2NT W:P",
+    "call": "P",
+    "reason": "16点对10至12邀请最低26，不能Pass2NT，应3NT。"
+  },
+  {
+    "board": 7777,
+    "step": 4,
+    "seat": "N",
+    "hand": "9865.A865.A932.J",
+    "publicHistory": "E:P S:1H W:P",
+    "call": "2NT",
+    "reason": "9点四H C单支持12，低于本卡Jacoby13支持点，不能2NT GF；说明遗漏13支持点。"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "method": "Descriptive corpus counts; no bidding-quality verdicts.",
+  "boards": 2000,
+  "steps": 18348,
+  "long12Plus": 317,
+  "maxAuctionSteps": 24,
+  "competitiveBothSides": 729,
+  "withDoubleOrRedouble": 317
+}

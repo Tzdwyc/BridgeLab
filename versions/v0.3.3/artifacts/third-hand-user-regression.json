@@ -1,0 +1,37 @@
+{
+  "executedAt": "2026-10-11T01:53:56.875Z",
+  "engine": "DDS-WASM/bridge-dds-1.4.0/normalize-1",
+  "fixtureSha256": "f04dff0ae73ed93617a41d102939eb4e66656834632995487b519d48708d9413",
+  "source": "Manual reconstruction of user screenshot (not original saved seed)",
+  "prefixLegallyReplayed": true,
+  "originalFinalDeclarerTricks": 10,
+  "originalScoreNS": 130,
+  "actingSeat": "E",
+  "trick": 10,
+  "currentTrick": [
+    "W:H4",
+    "N:H2"
+  ],
+  "legalCards": [
+    "H14",
+    "H13",
+    "H11",
+    "H7"
+  ],
+  "oldChoice": "H7",
+  "newChoice": "H13",
+  "oldChoiceDds": {
+    "cardId": "H7",
+    "declarerTricks": 10,
+    "loss": 1,
+    "optimal": false
+  },
+  "newChoiceDds": {
+    "cardId": "H13",
+    "declarerTricks": 9,
+    "loss": 0,
+    "optimal": true
+  },
+  "cause": "Partner currently winning was treated as final before fourth hand played",
+  "fourthHandRegression": "West retains HQ by playing H9 under East HK"
+}

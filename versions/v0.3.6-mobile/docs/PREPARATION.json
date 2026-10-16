@@ -1,0 +1,49 @@
+{
+  "preparedAt": "2026-10-16T14:27:35.1740907+08:00",
+  "sourceMobile": "H:\\Projects\\Bridge\\versions\\v0.3.5-mobile",
+  "previousFiles": [
+    {
+      "path": "lib/main.dart",
+      "bytes": 6176,
+      "sha256": "b4bac7a3af5754e72aefd24524bb96e2d7a0203cd5fbd3d9ac4786c651a21204"
+    },
+    {
+      "path": "lib/diagnostics.dart",
+      "bytes": 5637,
+      "sha256": "80875332a55edf5ab9619d07a8a3262d1436e672d1e5c0cbff7de8b45c189f30"
+    },
+    {
+      "path": "lib/local_asset_server.dart",
+      "bytes": 3203,
+      "sha256": "c660be5f7f24fb73ab192e56909b10c3450685070fbbb2a239c95b30922995a0"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 436,
+      "sha256": "9282d5f0085744b56d40a62f64a945629ccc34480441d20703093fda070aeade"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "bytes": 2387,
+      "sha256": "1ef2041edcaa20a506eb32a4e0d1b4521ccdc103bd9f735dda4ef2eb1d006fd4"
+    },
+    {
+      "path": "android/app/build.gradle.kts",
+      "bytes": 1441,
+      "sha256": "222cb507a36ea2d48571baa95c967da9fdff7e9e9148673f6e24d7a1c69e0e02"
+    },
+    {
+      "path": "release/BridgeLab-v0.3.5-mobile-android.apk",
+      "bytes": 44270156,
+      "sha256": "9de1aeda9190ffb7a58a5cbfc4412d0b6fb6b4c031ac35bce53ef19cf435b429"
+    }
+  ],
+  "desktopSync": "pending root desktop freeze",
+  "apkBuild": "not started",
+  "applicationId": "cn.bridgelab.v03mobile",
+  "versionName": "0.3.6",
+  "versionCode": 40,
+  "origin": "http://127.0.0.1:51893",
+  "newSourceOnly": true,
+  "oldSourceModified": false
+}

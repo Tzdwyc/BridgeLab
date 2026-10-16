@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-16T07:11:03.928866+00:00",
+  "nativeBuildInputsChecked": 26,
+  "allRecordedInputsMatchCandidate1": true,
+  "nativeBinaryEntries": [
+    {
+      "path": "classes.dex",
+      "sha256": "d33b83c471efb27a388b90d5fbb76909e5bd22f98551c79a897ddaf6a32b31e4",
+      "sameAsCandidate1": true
+    },
+    {
+      "path": "lib/arm64-v8a/libapp.so",
+      "sha256": "8c5d8ee3a80b1e1cff3043ea56ea6372724e99cf5b42ca316d89cb33e34cc8f9",
+      "sameAsCandidate1": true
+    },
+    {
+      "path": "lib/armeabi-v7a/libapp.so",
+      "sha256": "bb5c07d1ce548ac6940fb2a7afa2210488b2e96b25878ad9786ff4da4172807b",
+      "sameAsCandidate1": true
+    },
+    {
+      "path": "lib/x86_64/libapp.so",
+      "sha256": "ad067c03b3272ca556322a2d2213b7d101be9fe87950d4507443ce0ec13cca40",
+      "sameAsCandidate1": true
+    }
+  ],
+  "reusedChecks": "candidate1: format, Flutter analyze, 7 Flutter tests, 8 exact native-script tests",
+  "candidate1Evidence": "artifacts/candidate1/docs",
+  "finalRechecked": "release build, signatures/upgrade identity, APK asset/native strings, final mobile layouts/IMP score labels, native file JS integration, real old-SW recovery/direct history/offline continuation"
+}

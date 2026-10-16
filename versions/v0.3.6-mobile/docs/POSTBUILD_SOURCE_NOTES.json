@@ -1,0 +1,23 @@
+{
+  "verifiedAt": "2026-10-16T07:11:03.928866+00:00",
+  "finalFreezeGeneration": 4,
+  "frozenDesktopFilesChecked": 76,
+  "runtimeAndDistUnchangedSinceFinalFreeze": true,
+  "finalCorrectedDesktopLockMatchesFrozenUpstream": true,
+  "preservedCandidates": [
+    "artifacts/candidate1/PRESERVATION_MANIFEST.json",
+    "artifacts/candidate2/PRESERVATION_MANIFEST.json",
+    "artifacts/candidate3/PRESERVATION_MANIFEST.json"
+  ],
+  "finalApkSha256": "5931475af9e7e6bda161d14d430bdcdb3696d3d3d1c65c84b9ca034141874730",
+  "nativeBuildInputsAndBinaryEntriesUnchanged": true,
+  "previousCode39AnchorFilesChecked": 7,
+  "previousMobileAnchorsUnchanged": true,
+  "runtimeSourceChangesSinceCandidate3": [
+    "src/match/engine.ts",
+    "src/persistence/library.ts",
+    "src/ui/MatchPages.tsx"
+  ],
+  "changeBoundary": "Historical explanation/version metadata are desktop runtime changes. Native wrapper, signing, origin and permissions are unchanged. Candidate1 preserves original pre-correction desktop lock metadata; final upstream source contains the corrected lock. Desktop lock is not an APK asset.",
+  "physicalDeviceTested": false
+}

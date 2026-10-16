@@ -1,0 +1,76 @@
+{
+  "product": "BridgeLab v0.3.6 Mobile",
+  "desktopVersion": "0.3.6",
+  "syncedAt": "2026-10-16T15:09:40.9425875+08:00",
+  "sourcePath": "H:\\Projects\\Bridge\\versions\\v0.3.6",
+  "sourceSnapshotSha256": "53d9afe32f42843bfbb318eb6b7e4260449d80fab9034d5d98c3529155f4b4c2",
+  "desktopMainBundle": "index-NYPHEG0I.js",
+  "desktopDistFiles": [
+    {
+      "path": "assets/index-DfNqx139.css",
+      "sha256": "2b728652b22ef9660af01e9641a982a2d2ece3555f24a711cee4c7c339c64684",
+      "bytes": 82694
+    },
+    {
+      "path": "assets/index-NYPHEG0I.js",
+      "sha256": "983c05f0654876ad50fa9881a85ed6824948cc74b0cbacbf8c891ffc6ba3200b",
+      "bytes": 838884
+    },
+    {
+      "path": "assets/play-advisor-worker-DozMqHBH.js",
+      "sha256": "b5b981afbf303446e7337701d5bd26bf88fbc9cfe356125cb0bd7b93a82a3094",
+      "bytes": 514327
+    },
+    {
+      "path": "assets/workbox-window.prod.es5-BBnX5xw4.js",
+      "sha256": "cadd21be4a88598a4dec91a26a025df0a5790ff6baec54a884e401c3f5c95557",
+      "bytes": 5748
+    },
+    {
+      "path": "assets/worker-DuxcIqkF.js",
+      "sha256": "cab0101c242a67844c28b289fdc4de4a8817440ffef64df2db3e9ed742d4cb94",
+      "bytes": 502030
+    },
+    {
+      "path": "icon.svg",
+      "sha256": "21eb715e7fbbe35047e931999b9e9bc37818618c2c8509e484644648871771b7",
+      "bytes": 479
+    },
+    {
+      "path": "icons/icon-192.png",
+      "sha256": "8af9bd81b6a139c02e84e55feba0d6b6a07fa92f5108b8650266db192a46e2bf",
+      "bytes": 1029
+    },
+    {
+      "path": "icons/icon-512.png",
+      "sha256": "f31693fedb2e2cc1c7a96a0d824d47f8a2d697633de11c71f7e87c8877f5c0d4",
+      "bytes": 2976
+    },
+    {
+      "path": "icons/maskable-512.png",
+      "sha256": "f31693fedb2e2cc1c7a96a0d824d47f8a2d697633de11c71f7e87c8877f5c0d4",
+      "bytes": 2976
+    },
+    {
+      "path": "index.html",
+      "sha256": "abd3bc467f5c14d3c65efd4a24894d467fc905486e7902088c7944190b4ad905",
+      "bytes": 810
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "f0dd93247493c3673e3dacf29457c855bd1ba32a78521010ffaa4b12c8324785",
+      "bytes": 491
+    },
+    {
+      "path": "sw.js",
+      "sha256": "d3b2fa1f5691d3171b0c63949868b2a251bd79db312ff384894125740c8e57ba",
+      "bytes": 1885
+    },
+    {
+      "path": "workbox-778a14ff.js",
+      "sha256": "02b098946250b3f87ddbaa02070a556fa34a2d69b39998ec8e45d81c0f469746",
+      "bytes": 15242
+    }
+  ],
+  "origin": "Final v0.3.6 desktop build; no bidding changes during mobile packaging"
+}

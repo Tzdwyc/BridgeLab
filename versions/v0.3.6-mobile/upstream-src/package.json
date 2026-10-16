@@ -1,0 +1,34 @@
+{
+  "name": "bridgelab",
+  "version": "0.3.6",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "node scripts/prepare-dds.mjs && tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "node scripts/serve.mjs",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "tsc -b",
+    "test:dds": "node scripts/prepare-dds.mjs && vitest run tests/dds.test.ts",
+    "package": "python scripts/package-release.py"
+  },
+  "dependencies": {
+    "bridge-dds": "1.4.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "vite-plugin-pwa": "^1.1.0",
+    "vitest": "^3.2.0"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-10-16T06:46:29.041Z",
+  "evidenceBoundary": "Exact Dart JavaScript templates executed in Node VM with WebView API stubs; physical device not tested.",
+  "results": [
+    {
+      "check": "legacy save remains readable",
+      "passed": true
+    },
+    {
+      "check": "current save has priority",
+      "passed": true
+    },
+    {
+      "check": "outdated bundle unregisters SW and navigates once without storage writes",
+      "passed": true
+    },
+    {
+      "check": "installed matching bundle passes without recovery",
+      "passed": true
+    },
+    {
+      "check": "failed repeated recovery stops without redirect loop",
+      "passed": true
+    },
+    {
+      "check": "native file bridge export cancellation, import content, error propagation, and repeated installation",
+      "passed": true
+    },
+    {
+      "check": "Android document-picker read/write paths and bridge wired without broad storage permissions (source check)",
+      "passed": true
+    },
+    {
+      "check": "wrapper keeps silent recovery, binds controller before load, and has no floating diagnostics button",
+      "passed": true
+    }
+  ]
+}

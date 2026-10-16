@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-16T14:52:12.8528449+08:00",
+  "base": "v0.3.5/package-lock.json",
+  "newRootVersion": "0.3.6",
+  "dependencyEntries": 439,
+  "differentDependencies": [],
+  "note": "Only application version changed; dependency versions, resolved URLs and integrity remain inherited."
+}

@@ -1,0 +1,52 @@
+{
+  "browser": "Edge Chromium",
+  "checks": [
+    {
+      "path": "artifacts/layout/home-1440x1000.png",
+      "viewport": 1440,
+      "content": 1440
+    },
+    {
+      "path": "artifacts/layout/setup-1440x1000.png",
+      "viewport": 1440,
+      "content": 1440
+    },
+    {
+      "path": "artifacts/layout/history-1440x1000.png",
+      "viewport": 1440,
+      "content": 1440
+    },
+    {
+      "path": "artifacts/layout/home-390x844.png",
+      "viewport": 390,
+      "content": 390
+    },
+    {
+      "path": "artifacts/layout/setup-390x844.png",
+      "viewport": 390,
+      "content": 390
+    },
+    {
+      "path": "artifacts/layout/history-390x844.png",
+      "viewport": 390,
+      "content": 390
+    },
+    {
+      "path": "artifacts/layout/home-844x390.png",
+      "viewport": 844,
+      "content": 844
+    },
+    {
+      "path": "artifacts/layout/setup-844x390.png",
+      "viewport": 844,
+      "content": 844
+    },
+    {
+      "path": "artifacts/layout/history-844x390.png",
+      "viewport": 844,
+      "content": 844
+    }
+  ],
+  "horizontalOverflow": false,
+  "physicalAndroid": "not tested"
+}

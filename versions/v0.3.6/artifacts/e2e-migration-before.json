@@ -1,0 +1,210 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "H:\\Projects\\Bridge\\versions\\v0.3.6\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.migration.config.ts",
+      "tests/e2e/v036-integration.spec.ts",
+      "--grep",
+      "direct historical startup"
+    ],
+    "configFile": "H:\\Projects\\Bridge\\versions\\v0.3.6\\playwright.migration.config.ts",
+    "rootDir": "H:/Projects/Bridge/versions/v0.3.6/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "H:/Projects/Bridge/versions/v0.3.6/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "H:/Projects/Bridge/versions/v0.3.6/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "H:\\Projects\\Bridge\\versions\\v0.3.6\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e",
+        "snapshotDir": "H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 90000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "launchOptions": {
+            "executablePath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/e2e-migration-before.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4180 --strictPort",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "v036-integration.spec.ts",
+      "file": "v036-integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "direct historical startup waits for the old-save archive migration",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 14548,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('history-page').getByRole('link', { name: /累计总分/ })\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByTestId('history-page').getByRole('link', { name: /累计总分/ }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('history-page').getByRole('link', { name: /累计总分/ })\u001b[22m\n\u001b[2m    27 × locator resolved to 0 elements\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('history-page').getByRole('link', { name: /累计总分/ })\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByTestId('history-page').getByRole('link', { name: /累计总分/ }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('history-page').getByRole('link', { name: /累计总分/ })\u001b[22m\n\u001b[2m    27 × locator resolved to 0 elements\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n    at H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e\\v036-integration.spec.ts:16:26",
+                    "location": {
+                      "file": "H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e\\v036-integration.spec.ts",
+                      "column": 26,
+                      "line": 16
+                    },
+                    "snippet": "  14 |   await page.goto('/#/history');\n  15 |   const archived = page.getByTestId('history-page').getByRole('link', { name: /累计总分/ });\n> 16 |   await expect(archived).toHaveCount(1);\n     |                          ^\n  17 |   expect(await page.evaluate(() => localStorage.getItem('bridgelab.session.v3.5'))).toBe(raw);\n  18 |   expect(await page.evaluate(() => localStorage.getItem('bridgelab.session.v3.5.backup.v3.6'))).toBe(raw);\n  19 |   await archived.click(); await expect(page.getByTestId('history-board')).toHaveCount(2);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e\\v036-integration.spec.ts",
+                        "column": 26,
+                        "line": 16
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('history-page').getByRole('link', { name: /累计总分/ })\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  12000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByTestId('history-page').getByRole('link', { name: /累计总分/ }) with timeout 12000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('history-page').getByRole('link', { name: /累计总分/ })\u001b[22m\n\u001b[2m    27 × locator resolved to 0 elements\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n\n  14 |   await page.goto('/#/history');\n  15 |   const archived = page.getByTestId('history-page').getByRole('link', { name: /累计总分/ });\n> 16 |   await expect(archived).toHaveCount(1);\n     |                          ^\n  17 |   expect(await page.evaluate(() => localStorage.getItem('bridgelab.session.v3.5'))).toBe(raw);\n  18 |   expect(await page.evaluate(() => localStorage.getItem('bridgelab.session.v3.5.backup.v3.6'))).toBe(raw);\n  19 |   await archived.click(); await expect(page.getByTestId('history-board')).toHaveCount(2);\n    at H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e\\v036-integration.spec.ts:16:26"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T07:00:29.474Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.6\\test-results\\v036-integration-direct-hi-9739c--old-save-archive-migration-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.6\\test-results\\v036-integration-direct-hi-9739c--old-save-archive-migration-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "H:\\Projects\\Bridge\\versions\\v0.3.6\\test-results\\v036-integration-direct-hi-9739c--old-save-archive-migration-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "H:\\Projects\\Bridge\\versions\\v0.3.6\\tests\\e2e\\v036-integration.spec.ts",
+                    "column": 26,
+                    "line": 16
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "93e94a7d82a20a67864e-746e94bc7462c96b505f",
+          "file": "v036-integration.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T07:00:25.237Z",
+    "duration": 20544.149,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

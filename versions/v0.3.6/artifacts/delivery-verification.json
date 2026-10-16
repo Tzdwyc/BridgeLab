@@ -1,0 +1,23 @@
+{
+  "version": "0.3.6",
+  "uniquePassedUnitCases": 2280,
+  "uniquePassedUiCases": 34,
+  "unitGenerations": [
+    "v036-final-unit-results.json",
+    "v036-final-core-results.json"
+  ],
+  "uiGenerations": [
+    "e2e-v036-complete-33.json",
+    "e2e-v036-results.json"
+  ],
+  "generationBoundary": "Full 2277-case unit and 33-case UI generations plus focused final affected-code reruns; counts deduplicated, not summed.",
+  "nativeExitCodes": 0,
+  "unhandledErrors": 0,
+  "mainBundle": "index-NYPHEG0I.js",
+  "mainBundleSha256": "983c05f0654876ad50fa9881a85ed6824948cc74b0cbacbf8c891ffc6ba3200b",
+  "apk": "H:\\Projects\\Bridge\\versions\\v0.3.6-mobile\\release\\BridgeLab-v0.3.6-mobile-android.apk",
+  "apkSha256": "5931475af9e7e6bda161d14d430bdcdb3696d3d3d1c65c84b9ca034141874730",
+  "protectedFilesUnchanged": 52,
+  "androidPhysicalDevice": "not tested",
+  "androidSafPickerOnDevice": "not tested"
+}

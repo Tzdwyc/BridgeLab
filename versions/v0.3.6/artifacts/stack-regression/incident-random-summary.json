@@ -1,0 +1,841 @@
+{
+  "incidentSeed": "d6753ea2-3fef-4cc7-be8d-93eecd089602",
+  "boards": 60,
+  "prefixes": 518,
+  "buttonExplanations": 19684,
+  "historyExplanations": 2199,
+  "appendedPrefixComparisons": 2193,
+  "systems": [
+    "sayc",
+    "two-over-one",
+    "precision"
+  ],
+  "completed": [
+    {
+      "system": "sayc",
+      "board": 1,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 2,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 3,
+      "calls": 15,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 4,
+      "calls": 12,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 5,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 6,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 7,
+      "calls": 4,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 8,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 9,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 10,
+      "calls": 4,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 11,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 12,
+      "calls": 9,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 13,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 14,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 15,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 16,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 17,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 5,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 18,
+      "calls": 7,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 19,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "sayc",
+      "board": 20,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 1,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 5,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 2,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 3,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 4,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 5,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 6,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 7,
+      "calls": 4,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 8,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 9,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 10,
+      "calls": 4,
+      "phase": "passedOut",
+      "contract": null
+    },
+    {
+      "system": "two-over-one",
+      "board": 11,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 12,
+      "calls": 14,
+      "phase": "play",
+      "contract": {
+        "level": 5,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 13,
+      "calls": 9,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 14,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 15,
+      "calls": 12,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 16,
+      "calls": 19,
+      "phase": "play",
+      "contract": {
+        "level": 5,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 17,
+      "calls": 4,
+      "phase": "passedOut",
+      "contract": null
+    },
+    {
+      "system": "two-over-one",
+      "board": 18,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 19,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "two-over-one",
+      "board": 20,
+      "calls": 4,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 1,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "C",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 2,
+      "calls": 7,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 3,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 4,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 5,
+      "calls": 6,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 6,
+      "calls": 9,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "S",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 7,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 8,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 9,
+      "calls": 10,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 10,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 11,
+      "calls": 7,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "C",
+        "doubled": 1,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 12,
+      "calls": 9,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "N",
+        "dummy": "S",
+        "leader": "E"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 13,
+      "calls": 7,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 14,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 4,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 15,
+      "calls": 8,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 16,
+      "calls": 9,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "S",
+        "dummy": "N",
+        "leader": "W"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 17,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 3,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 18,
+      "calls": 12,
+      "phase": "play",
+      "contract": {
+        "level": 5,
+        "strain": "D",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 19,
+      "calls": 11,
+      "phase": "play",
+      "contract": {
+        "level": 1,
+        "strain": "NT",
+        "doubled": 0,
+        "declarer": "E",
+        "dummy": "W",
+        "leader": "S"
+      }
+    },
+    {
+      "system": "precision",
+      "board": 20,
+      "calls": 4,
+      "phase": "play",
+      "contract": {
+        "level": 2,
+        "strain": "H",
+        "doubled": 0,
+        "declarer": "W",
+        "dummy": "E",
+        "leader": "N"
+      }
+    }
+  ]
+}

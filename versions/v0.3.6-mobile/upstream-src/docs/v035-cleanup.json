@@ -1,0 +1,70 @@
+{
+  "createdAt": "2026-10-16T01:50:10.4646428Z",
+  "scope": "Explicitly authorized v0.3.2 and earlier version directories, and 8000 excluded original boards",
+  "retainedCorpus": "resources/original-2000/manifest.json",
+  "protectedChecks": "docs/v035-cleanup-protected.json",
+  "versions": [
+    {
+      "name": "v0.1",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.1",
+      "beforeFiles": 11387,
+      "beforeBytes": 131084616,
+      "deleted": false
+    },
+    {
+      "name": "v0.2",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.2",
+      "beforeFiles": 11629,
+      "beforeBytes": 206281555,
+      "deleted": false
+    },
+    {
+      "name": "v0.3",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.3",
+      "beforeFiles": 11662,
+      "beforeBytes": 208870937,
+      "deleted": false
+    },
+    {
+      "name": "v0.3-mobile",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.3-mobile",
+      "beforeFiles": 1844,
+      "beforeBytes": 931284552,
+      "deleted": false
+    },
+    {
+      "name": "v0.3.1",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.3.1",
+      "beforeFiles": 11759,
+      "beforeBytes": 323611770,
+      "deleted": false
+    },
+    {
+      "name": "v0.3.2",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.3.2",
+      "beforeFiles": 11793,
+      "beforeBytes": 328296195,
+      "deleted": false
+    },
+    {
+      "name": "v0.3.2-mobile",
+      "path": "H:\\Projects\\Bridge\\versions\\v0.3.2-mobile",
+      "beforeFiles": 2543,
+      "beforeBytes": 944077219,
+      "deleted": false
+    }
+  ],
+  "status": "blocked-by-automatic-approval-policy",
+  "deletionExecuted": false,
+  "approvalRejection": {
+    "action": "Native deletion of seven authorized old version directories; fixed absolute target checked",
+    "reason": "blocked by policy",
+    "deletionAttempts": 2
+  },
+  "protectedVerification": {
+    "files": 130,
+    "changed": []
+  },
+  "totalBeforeFiles": 62617,
+  "totalBeforeBytes": 3073506844
+}

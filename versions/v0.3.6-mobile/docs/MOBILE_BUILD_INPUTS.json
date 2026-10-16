@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-10-16T14:47:08.8518600+08:00",
+  "boundary": "Build inputs recorded while Gradle release compilation was running; no subsequent runtime or native source changes",
+  "files": [
+    {
+      "path": "android/app/build.gradle.kts",
+      "sha256": "222cb507a36ea2d48571baa95c967da9fdff7e9e9148673f6e24d7a1c69e0e02"
+    },
+    {
+      "path": "android/app/src/debug/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "sha256": "a5c8e7e865150e3fd620b2f2aaf7f1cc76ff93225512ed8359b0cd24a4a1085f"
+    },
+    {
+      "path": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "sha256": "56899edffde7e5d34d6beda7bf8d6a804b0574a78fdd7957e3af9b69da58e75b"
+    },
+    {
+      "path": "android/app/src/main/kotlin/cn/bridgelab/bridgelab_v03_mobile/MainActivity.kt",
+      "sha256": "43331958415e17e09834527c9c9debb4700c659a271390f908d28ddc60910d7e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-v21/launch_background.xml",
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/launch_background.xml",
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "sha256": "b93d1351689d691281d13945919b90b91c658c8c2bf56e357a2a1fa6047a9a05"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "sha256": "0dbc5f867423eb397c9643dad1bbe1e2f19ffa70984ed30b5e3cf4dc4d793b4d"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "sha256": "aeb6bf9a07dd81848b8620e2b948796c8866351773a4c8e2240f799b57437e53"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "sha256": "2c17b2c8544436ca2a331e87ba89090796c2af1c4330899fd40eae9f97eba741"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "sha256": "20d6e3af23d76d48b596af40f62d184a245b7f2bf67be96b29b6d1c12501a503"
+    },
+    {
+      "path": "android/app/src/main/res/values-night/styles.xml",
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "path": "android/app/src/main/res/values/styles.xml",
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "path": "android/app/src/main/res/xml/network_security_config.xml",
+      "sha256": "70846138bd8381ea3d92ace39ecc7c990d30f14cd95dcd23f5d492fc4636e1d4"
+    },
+    {
+      "path": "android/app/src/profile/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "path": "android/build.gradle.kts",
+      "sha256": "76ac146321f2b49c272fbc92dccf3d5f28dc22da5b0c7cfa8765580fb0f3b915"
+    },
+    {
+      "path": "android/settings.gradle.kts",
+      "sha256": "ca3caa2c2cd9eef9838991d1fcdef0efb459ab535865e9c48e4af599b09161bc"
+    },
+    {
+      "path": "lib/diagnostics.dart",
+      "sha256": "4eebe1892fb11ddc02a8b0d8398b693f8a49892f486a971099e5fe7ab00ab0b0"
+    },
+    {
+      "path": "lib/local_asset_server.dart",
+      "sha256": "c660be5f7f24fb73ab192e56909b10c3450685070fbbb2a239c95b30922995a0"
+    },
+    {
+      "path": "lib/main.dart",
+      "sha256": "43b3da956a2aaebeb8ce9c0f99e2420bd5c3124a15bbd90e7c1f6dcdf7636655"
+    },
+    {
+      "path": "lib/native_files.dart",
+      "sha256": "14e5e22e9da6420eff23f65b0b64b959b4eb2ae1dff1a00dbc0da4138831f860"
+    },
+    {
+      "path": "mobile-overrides/mobile.css",
+      "sha256": "3ec72af69cbcef4347322d133f8cc3249d9c9337e2dc9992977d17f951482fc8"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "eca2bc6feb3212f0baa2c318e2fb19ce5ca5eb4a27f0f8ba0045e5fbd4490bbe"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "9dd8df000d73993296d4446dc537a5dd0fb67e47404526517206d0e0e717839e"
+    },
+    {
+      "path": "scripts/mobile-repositories.gradle",
+      "sha256": "3df0bafcbd9cee547c16784e9fb81348217a12972078d6646a5c8952ed35fe9b"
+    }
+  ]
+}

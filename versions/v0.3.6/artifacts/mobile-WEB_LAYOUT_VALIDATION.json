@@ -1,0 +1,51 @@
+{
+  "verifiedAt": "2026-10-16T07:10:53.699Z",
+  "servedAssets": "H:\\Projects\\Bridge\\versions\\v0.3.6-mobile\\assets\\www",
+  "desktopMainBundle": "index-NYPHEG0I.js",
+  "mainBundleSha256": "983c05f0654876ad50fa9881a85ed6824948cc74b0cbacbf8c891ffc6ba3200b",
+  "browserVersion": "154.0.4258.37",
+  "browserExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "evidenceBoundary": "Chromium mobile web viewport; no Android device launch",
+  "results": [
+    {
+      "orientation": "portrait",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.6-mobile\\docs\\new-table-portrait.png",
+      "historyInsideTable": true,
+      "biddingInsideTable": true,
+      "tableSeatCount": 4,
+      "mobileCssLoaded": true,
+      "noHorizontalOverflow": true,
+      "homeNoHorizontalOverflow": true,
+      "setupNoHorizontalOverflow": true,
+      "historyNoHorizontalOverflow": true,
+      "nativeBridgeArchiveRoundtrip": true,
+      "impScoreText": "我方 0 : 0 对方 · 净 0 IMP",
+      "impNoHorizontalOverflow": true,
+      "pageErrors": []
+    },
+    {
+      "orientation": "landscape",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.6-mobile\\docs\\new-table-landscape.png",
+      "historyInsideTable": true,
+      "biddingInsideTable": true,
+      "tableSeatCount": 4,
+      "mobileCssLoaded": true,
+      "noHorizontalOverflow": true,
+      "homeNoHorizontalOverflow": true,
+      "setupNoHorizontalOverflow": true,
+      "historyNoHorizontalOverflow": true,
+      "nativeBridgeArchiveRoundtrip": true,
+      "impScoreText": "我方 0 : 0 对方 · 净 0 IMP",
+      "impNoHorizontalOverflow": true,
+      "pageErrors": []
+    }
+  ]
+}

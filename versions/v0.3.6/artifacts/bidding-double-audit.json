@@ -1,0 +1,16 @@
+{
+  "version": "0.3.2",
+  "system": "SAYC＋2/1进局逼叫＋RKCB 1430",
+  "generatedAt": "2026-10-16T06:54:10.379Z",
+  "stats": {
+    "explicitPenaltyCases": 11,
+    "falsePenaltyMatrix": 1240,
+    "classificationCases": 5
+  },
+  "rules": [
+    "直接对花色开叫及阻击叫的加倍保持技术性",
+    "直接对1NT的加倍为惩罚性并要求15+ HCP及至少3个快速赢墩",
+    "竞争后的惩罚性加倍要求4+张敌方将牌、至少两个将牌大牌、足够快速赢墩与点力",
+    "对手有局时只降低一点HCP门槛，不降低将牌和快速赢墩门槛"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": "0.3.6",
+  "desktopArchive": "H:\\Projects\\Bridge\\versions\\v0.3.6\\artifacts\\BridgeLab-v0.3.6-source-and-app.zip",
+  "desktopArchiveSha256": "dca09febc66d8d89b80100249b88ae23ae2be5b822fafec297524f410de933b1",
+  "archiveCrcVerified": true,
+  "archiveFileHashesVerified": true,
+  "apk": "H:\\Projects\\Bridge\\versions\\v0.3.6-mobile\\release\\BridgeLab-v0.3.6-mobile-android.apk",
+  "apkSha256": "5931475af9e7e6bda161d14d430bdcdb3696d3d3d1c65c84b9ca034141874730",
+  "unitCases": 2280,
+  "uiCases": 34,
+  "oldSourceFilesUnchanged": 52,
+  "androidPhysicalDevice": "not tested",
+  "createdAt": "2026-10-16T15:13:39.8144080+08:00"
+}

@@ -1,0 +1,7 @@
+{
+  "note": "Prefix/explanation execution counters only; semantic pass/fail is recorded by the paired Vitest JSON report.",
+  "cases": 204,
+  "legalPrefixes": 1034,
+  "explanations": 39292,
+  "historicalQueries": 2333
+}

@@ -1,0 +1,7 @@
+{
+  "command": "node node_modules/typescript/bin/tsc -b --pretty false",
+  "observedExitCode": 0,
+  "buildInfoSha256": "d62a893bab2c0f4a547122f5ad48148ad4ac37680b3d0c5ffb6108b5e7e9c9a5",
+  "observedAt": "2026-10-16T14:51:04.1852187+08:00",
+  "note": "Final runtime types checked without source changes; test-only forced-card prelude and launcher assertions updated later."
+}

@@ -1,0 +1,210 @@
+[
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\main.tsx",
+    "sha256": "72A793DD7DDE8ABF72934ED9563167898A6BA7C9888A7222C84C89E90228F558"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\bidding-legacy.ts",
+    "sha256": "FBBDB9309759FB03C4AC56644D279A1BF2AC99E10F0F5E7E190F0036BF1EE899"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\bidding-notices.ts",
+    "sha256": "160015A51EC81F4FDDFBFE63F057A78E1932BF711BE9268C325907084B1DF9B8"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\bidding-semantics.ts",
+    "sha256": "719E040D6FAEF9F9A0B3C6D3339CEFA2DECD34D8A2267D9B88ADD8CC85C24C98"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\bidding.ts",
+    "sha256": "6DF0296D6B29EB9C819EF0E2ABA0E0D882FAEA9FAD5BED2E96CB63D126F11445"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\competition.ts",
+    "sha256": "A004AA87609087EAEF19E95B4F20802635E058014F438EEB24941AC8FEE8D0B7"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\observation.ts",
+    "sha256": "AC759A3090AB1F12DF61293EC53C55CC02F36A8B96C5261648803A6D9C092C6B"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-advisor-client.ts",
+    "sha256": "D73DDBAADD6F06E751E83980D5AA4B8B4976EDE30992185130C62246968444B1"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-advisor-core.ts",
+    "sha256": "DB3093F735A58DF28DE4FD7CAE5681897081AF9D20E70C9445EE3E8055260999"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-advisor-types.ts",
+    "sha256": "8122DDBD20B64979E885155D5235CE8E0088AD22E369EA4F16A67FEF8B20B8E1"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-advisor-worker.ts",
+    "sha256": "122717A0F1074DCB3EAFFA21D1B5B74EDCEB4BEA5CB7A86F81C03011A07440FC"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-public-model.ts",
+    "sha256": "8D9FA3C40E01A5C581ACB568B9AB35A068E01D0EE10C3FEE38C5DF10E1B364EE"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-safety.ts",
+    "sha256": "6023F445AA57CD63104B3BC84FC0400707D690FF13D7660A848846CBE6D197A4"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\play-sampler.ts",
+    "sha256": "7FDCB568E8BC095B51CFF8116E9A98518B3987FB1517FBAF05D050A6F7D659AF"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\playing.ts",
+    "sha256": "79FA07C1476CC1CB2E468395729BF13A88FAF28F19817BEC2DA6B2A22960362A"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\suit-evaluation.ts",
+    "sha256": "728B5A13AA707C2719E7F3E02B77EAA71951A11E206C20B5437AF429D7BAB468"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ai\\systems.ts",
+    "sha256": "1C64791296E8DB1777884BB52E85A1840FD5AFEB07A1DFE1E63C902F764509AB"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\adapter.ts",
+    "sha256": "9AA736432C1961159A64999EF24138AAA99673D04948311E1F8A7EE4D7C50543"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\client.ts",
+    "sha256": "54448570A065A0B1306269311A8F235B1CCE80EE3CFB5020FFB01A0144D17991"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\dds-module.d.ts",
+    "sha256": "A3CFC0CBEED37CF1FD5350A9A7E8D074BDA6A77EEA1FBFBDF1A6947B0C9278AF"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\engine.ts",
+    "sha256": "AA8627F6A9CAEC70F6DDADCCCFF389594BEF0364D7CE1CFE5C6729EA9D3C2469"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\model.ts",
+    "sha256": "97CBC0D0323ED73C7DBD4FAE26C755D5975FF10BB6AEF3DC7F02767A97D0B04E"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\navigation.ts",
+    "sha256": "7E06F2D42EEAFFA035F4FA73BFEAD773BA4D50ACF04047036E1CA0AD523A320F"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\persistence.ts",
+    "sha256": "DF408D1CD21F0E91DB2BC3D1D7D3074D89D5C99DC5977D5F2747D718FCA717C5"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\types.ts",
+    "sha256": "EB0F368D2B7661209ABF40A06C1E9D0F787CC76CF1802E71E82C2ADEA85580D5"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\worker.ts",
+    "sha256": "8F9419235AF9F0214C1B78BA9754C8CEEDF5E0177FDF66A0024103A8E816AD4D"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\vendor\\dds.d.mts",
+    "sha256": "E470A35226EC63F30B98B209C164C50EB6D1814A3BC58B9B149EC66AD9A27CB8"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\analysis\\vendor\\dds.mjs",
+    "sha256": "155A2C0B96B831CADFF07179178F55140B10FDD16DF8B6885FB507AAFB76E070"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\controller\\claim.ts",
+    "sha256": "783FCD7F2DE5551C9F197AE8F59DD27891B3075EEA1614B87723A752C598162F"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\controller\\play-advisor.ts",
+    "sha256": "41CC0BCCAD12553011B01D98D2590060909A7356D32540DD03C6E09B2CB55EED"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\controller\\robot.ts",
+    "sha256": "78393A15BF99CFE46608E93C0B0B83914DBA2BCFD11AF793E2BA27ED47F1D48A"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\controller\\store.ts",
+    "sha256": "DBB3D6ED857A569CA2D18E2231757C81813958A54A8A203A285354C5E9CBE249"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\core\\auction.ts",
+    "sha256": "020478BC687C4F2AD06C29982371A794A19E5BDD6CD513442FAF18D36014BE44"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\core\\deal.ts",
+    "sha256": "46D6A21E3D9C6D1BD0515D3100FDC9E93850F851456662FE3DC4B81CFF63A2FC"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\core\\game.ts",
+    "sha256": "029DEBAE47385671BA533C4C97013B308CF81D3332A27B763157F5CE8A8BDAC5"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\core\\play.ts",
+    "sha256": "0F289637C083ADB018F12E071D76C793206A62DBDC1B43C1415456DC4BE2C18B"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\core\\scoring.ts",
+    "sha256": "7CB80B21F76C48BDAF3C7DD46ED5E565AF6D3E5465389AFA76D2585C65804FB4"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\core\\types.ts",
+    "sha256": "B0EBFFEAB9FE51B3A84593367F6EDF1B238C02CB885D63B3FB73C81D33A4A1F3"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\deal-editor\\DealEditorPage.module.css",
+    "sha256": "02FE303EDF4C41C3319499603D459B8F3555704E1EE12E591E1DBF6A57CF299B"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\deal-editor\\DealEditorPage.tsx",
+    "sha256": "A14E89CEF5AE1DCED63E76BA07EE5AD7B6AAEA065A64209791ABCB3C268B9EF8"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\deal-editor\\model.ts",
+    "sha256": "34ECBFAC2530FD80764C14E3A1B5BA149851A35BD13EE5F84AB83793EDEC68FE"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\persistence\\session.ts",
+    "sha256": "3CCEBF3B3D0E2539AE63400730120C461660EE9089A4DCD828C3EA2C8C588453"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\AnalysisPage.module.css",
+    "sha256": "3B3C22F4FD35BD0178D7F9CBCE4220511F55261B0B1A1CD39C8361A4286A70AD"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\AnalysisPage.tsx",
+    "sha256": "9B223EEC0A7457090334B92523C5D207A8172CBC04AD724125F02E3D03159F4C"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\App.module.css",
+    "sha256": "A618EC73F7E22FC4B0CE35C04773B033B7ECCDBE58D706987D9C3F810E6160A6"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\App.tsx",
+    "sha256": "D6E02352BEE8B6DE6431ED5B482D62760CA0DF11E49DB8FFA3BE1ED99EE81C9F"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\format.ts",
+    "sha256": "6629E7E05219CB3347065CEB6106440863495763B4318C983C3F21726A21189B"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\global.css",
+    "sha256": "E50CE9C068ECE0632333E5A4DB70718599D9F238C3FBC394B7BDCCAA5EEEB563"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5\\src\\ui\\SuitGlyph.tsx",
+    "sha256": "AE0306760FF9E5C13663F0BD03975B88B4B835FEE46100D2E8F22C873A962462"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5-mobile\\lib\\diagnostics.dart",
+    "sha256": "80875332A55EDF5AB9619D07A8A3262D1436E672D1E5C0CBFF7DE8B45C189F30"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5-mobile\\lib\\local_asset_server.dart",
+    "sha256": "C660BE5F7F24FB73AB192E56909B10C3450685070FBBB2A239C95B30922995A0"
+  },
+  {
+    "path": "H:\\Projects\\Bridge\\versions\\v0.3.5-mobile\\lib\\main.dart",
+    "sha256": "B4BAC7A3AF5754E72AEFD24524BB96E2D7A0203CD5FBD3D9AC4786C651A21204"
+  }
+]

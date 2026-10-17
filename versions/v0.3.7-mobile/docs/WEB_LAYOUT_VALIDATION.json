@@ -1,0 +1,1550 @@
+{
+  "verifiedAt": "2026-10-17T04:40:38.857Z",
+  "version": "0.3.7+44",
+  "servedAssets": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\assets\\www",
+  "desktopMainBundle": "index-Bh7mqTwB.js",
+  "mainBundleSha256": "216b206397b4315b74efc50574ae80bd37452681677bd5ea1f6f430e601f25a7",
+  "browserVersion": "154.0.4258.37",
+  "browserExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "evidenceBoundary": "Chromium mobile web viewport; no Android device launch",
+  "results": [
+    {
+      "trickScoreChecks": [
+        {
+          "expected": {
+            "NS": 0,
+            "EW": 0,
+            "target": 7,
+            "declaringSide": "NS"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 24,
+                "y": 202,
+                "width": 20,
+                "height": 40
+              },
+              {
+                "side": "EW",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 89,
+                "y": 203,
+                "width": 20,
+                "height": 40
+              }
+            ],
+            "target": 7,
+            "targetSide": "NS",
+            "standaloneNumbers": [
+              0,
+              0
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 0,
+            "EW": 0,
+            "target": 7,
+            "declaringSide": "EW"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 20,
+                "y": 203,
+                "width": 20,
+                "height": 40
+              },
+              {
+                "side": "EW",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 85,
+                "y": 202,
+                "width": 20,
+                "height": 40
+              }
+            ],
+            "target": 7,
+            "targetSide": "EW",
+            "standaloneNumbers": [
+              0,
+              0
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 1,
+            "EW": 0,
+            "target": 7,
+            "declaringSide": "EW"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 1,
+                "min": 0,
+                "max": 13,
+                "x": 20,
+                "y": 203,
+                "width": 20,
+                "height": 40
+              },
+              {
+                "side": "EW",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 85,
+                "y": 202,
+                "width": 20,
+                "height": 40
+              }
+            ],
+            "target": 7,
+            "targetSide": "EW",
+            "standaloneNumbers": [
+              1,
+              0
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 6,
+            "EW": 1,
+            "target": 9,
+            "declaringSide": "NS"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 6,
+                "min": 0,
+                "max": 13,
+                "x": 24,
+                "y": 202,
+                "width": 20,
+                "height": 40
+              },
+              {
+                "side": "EW",
+                "value": 1,
+                "min": 0,
+                "max": 13,
+                "x": 89,
+                "y": 203,
+                "width": 20,
+                "height": 40
+              }
+            ],
+            "target": 9,
+            "targetSide": "NS",
+            "standaloneNumbers": [
+              6,
+              1
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 0,
+            "EW": 7,
+            "target": 9,
+            "declaringSide": "EW"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 20,
+                "y": 203,
+                "width": 20,
+                "height": 40
+              },
+              {
+                "side": "EW",
+                "value": 7,
+                "min": 0,
+                "max": 13,
+                "x": 85,
+                "y": 202,
+                "width": 20,
+                "height": 40
+              }
+            ],
+            "target": 9,
+            "targetSide": "EW",
+            "standaloneNumbers": [
+              0,
+              7
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 5,
+            "EW": 6,
+            "target": 9,
+            "declaringSide": "NS"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 5,
+                "min": 0,
+                "max": 13,
+                "x": 24,
+                "y": 202,
+                "width": 20,
+                "height": 40
+              },
+              {
+                "side": "EW",
+                "value": 6,
+                "min": 0,
+                "max": 13,
+                "x": 89,
+                "y": 203,
+                "width": 20,
+                "height": 40
+              }
+            ],
+            "target": 9,
+            "targetSide": "NS",
+            "standaloneNumbers": [
+              5,
+              6
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        }
+      ],
+      "orientation": "portrait",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\new-table-portrait.png",
+      "fixedScreen": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844
+        },
+        "body": {
+          "width": 390,
+          "height": 844
+        },
+        "root": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "noDocumentScroll": true,
+      "tableInsideViewport": true,
+      "historyInsideTable": true,
+      "biddingInsideTable": true,
+      "tableSeatCount": 4,
+      "mobileCssLoaded": true,
+      "noHorizontalOverflow": true,
+      "homeNoHorizontalOverflow": true,
+      "setupNoHorizontalOverflow": true,
+      "historyNoHorizontalOverflow": true,
+      "nativeBridgeArchiveRoundtrip": true,
+      "impScoreText": "我方 0 : 0 对方 · 净 0 IMP",
+      "impNoHorizontalOverflow": true,
+      "fixedNorthSouthSeats": true,
+      "noHandSwitchControls": true,
+      "dummyRemainsNorthAfterAction": true,
+      "fixedBefore": {
+        "north": {
+          "x": 18,
+          "y": 278.203125,
+          "width": 354,
+          "height": 161.59375
+        },
+        "south": {
+          "x": 18,
+          "y": 661,
+          "width": 354,
+          "height": 116
+        }
+      },
+      "fixedAfter": {
+        "north": {
+          "x": 18,
+          "y": 278.203125,
+          "width": 354,
+          "height": 161.59375
+        },
+        "south": {
+          "x": 18,
+          "y": 661,
+          "width": 354,
+          "height": 116
+        }
+      },
+      "fixedDummyScreenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\fixed-dummy-north-portrait.png",
+      "auctionHistoryScrollsInsideFrame": true,
+      "auctionHistoryPaginationRemoved": true,
+      "allAuctionCallsRendered": true,
+      "longAuctionCallCount": 25,
+      "longAuctionFixtureBoundary": "Same legal natural-with-pass 25-call sequence as desktop auction-scroll case; browser-only 1100ms robot timer extended to60000ms to hold the saved position during scroll checks.",
+      "longScrollDimensions": {
+        "height": 78,
+        "scrollHeight": 166,
+        "top": 0,
+        "overflowY": "auto"
+      },
+      "realWheelScrollTop": 88,
+      "longAuctionScreenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\auction-history-scroll-portrait.png",
+      "publicDummyChecks": [
+        {
+          "seat": "E",
+          "realCardsRendered": true,
+          "cardCount": 12,
+          "suitsInSeparateHorizontalRows": true,
+          "allCardFacesInsideSeat": true,
+          "suitRows": [
+            {
+              "suit": "S",
+              "bounds": {
+                "x": 263,
+                "y": 448.625,
+                "width": 108,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "S8",
+                  "x": 263,
+                  "y": 448.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "8",
+                  "pip": true
+                },
+                {
+                  "id": "S6",
+                  "x": 293.328125,
+                  "y": 448.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "S4",
+                  "x": 323.65625,
+                  "y": 448.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "4",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "S4",
+                "S6",
+                "S8"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "H",
+              "bounds": {
+                "x": 263,
+                "y": 489.625,
+                "width": 108,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "H10",
+                  "x": 263,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "10",
+                  "pip": true
+                },
+                {
+                  "id": "H9",
+                  "x": 278.15625,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "9",
+                  "pip": true
+                },
+                {
+                  "id": "H6",
+                  "x": 293.328125,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "H5",
+                  "x": 308.5,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "5",
+                  "pip": true
+                },
+                {
+                  "id": "H3",
+                  "x": 323.65625,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "3",
+                  "pip": true
+                },
+                {
+                  "id": "H2",
+                  "x": 338.828125,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "2",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "H10",
+                "H2",
+                "H3",
+                "H5",
+                "H6",
+                "H9"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "D",
+              "bounds": {
+                "x": 263,
+                "y": 530.625,
+                "width": 49,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "D14",
+                  "x": 263,
+                  "y": 530.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "A",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "D14"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "C",
+              "bounds": {
+                "x": 263,
+                "y": 571.625,
+                "width": 82,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "C14",
+                  "x": 263,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "A",
+                  "pip": true
+                },
+                {
+                  "id": "C2",
+                  "x": 295.5,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "2",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "C14",
+                "C2"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            }
+          ],
+          "hiddenOpponentCardsRemainHidden": true,
+          "remainsOriginalSide": true,
+          "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\public-dummy-E-portrait.png"
+        },
+        {
+          "seat": "W",
+          "realCardsRendered": true,
+          "cardCount": 12,
+          "suitsInSeparateHorizontalRows": true,
+          "allCardFacesInsideSeat": true,
+          "suitRows": [
+            {
+              "suit": "S",
+              "bounds": {
+                "x": 19,
+                "y": 448.625,
+                "width": 49,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "S2",
+                  "x": 19,
+                  "y": 448.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "2",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "S2"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "H",
+              "bounds": {
+                "x": 19,
+                "y": 489.625,
+                "width": 82,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "H13",
+                  "x": 19,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "K",
+                  "pip": true
+                },
+                {
+                  "id": "H8",
+                  "x": 51.5,
+                  "y": 489.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "8",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "H13",
+                "H8"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "D",
+              "bounds": {
+                "x": 19,
+                "y": 530.625,
+                "width": 108,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "D10",
+                  "x": 19,
+                  "y": 530.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "10",
+                  "pip": true
+                },
+                {
+                  "id": "D7",
+                  "x": 41.75,
+                  "y": 530.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "7",
+                  "pip": true
+                },
+                {
+                  "id": "D6",
+                  "x": 64.5,
+                  "y": 530.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "D5",
+                  "x": 87.25,
+                  "y": 530.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "5",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "D10",
+                "D5",
+                "D6",
+                "D7"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "C",
+              "bounds": {
+                "x": 19,
+                "y": 571.625,
+                "width": 108,
+                "height": 38
+              },
+              "cards": [
+                {
+                  "id": "C11",
+                  "x": 19,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "J",
+                  "pip": true
+                },
+                {
+                  "id": "C9",
+                  "x": 37.1875,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "9",
+                  "pip": true
+                },
+                {
+                  "id": "C8",
+                  "x": 55.390625,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "8",
+                  "pip": true
+                },
+                {
+                  "id": "C6",
+                  "x": 73.59375,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "C4",
+                  "x": 91.796875,
+                  "y": 571.625,
+                  "width": 30,
+                  "height": 38,
+                  "rank": "4",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "C11",
+                "C4",
+                "C6",
+                "C8",
+                "C9"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            }
+          ],
+          "hiddenOpponentCardsRemainHidden": true,
+          "remainsOriginalSide": true,
+          "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\public-dummy-W-portrait.png"
+        }
+      ],
+      "publicEastDummyCardsRendered": true,
+      "publicWestDummyCardsRendered": true,
+      "hiddenOpponentCardsRemainHidden": true,
+      "southCardsPreservedAcrossDummyAction": 13,
+      "pageErrors": []
+    },
+    {
+      "trickScoreChecks": [
+        {
+          "expected": {
+            "NS": 0,
+            "EW": 0,
+            "target": 7,
+            "declaringSide": "NS"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 20.5,
+                "y": 134,
+                "width": 19,
+                "height": 36
+              },
+              {
+                "side": "EW",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 70.5,
+                "y": 135,
+                "width": 19,
+                "height": 36
+              }
+            ],
+            "target": 7,
+            "targetSide": "NS",
+            "standaloneNumbers": [
+              0,
+              0
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 0,
+            "EW": 0,
+            "target": 7,
+            "declaringSide": "EW"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 20.5,
+                "y": 135,
+                "width": 19,
+                "height": 36
+              },
+              {
+                "side": "EW",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 70.5,
+                "y": 134,
+                "width": 19,
+                "height": 36
+              }
+            ],
+            "target": 7,
+            "targetSide": "EW",
+            "standaloneNumbers": [
+              0,
+              0
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 1,
+            "EW": 0,
+            "target": 7,
+            "declaringSide": "EW"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 1,
+                "min": 0,
+                "max": 13,
+                "x": 706.5,
+                "y": 135,
+                "width": 19,
+                "height": 36
+              },
+              {
+                "side": "EW",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 756.5,
+                "y": 134,
+                "width": 19,
+                "height": 36
+              }
+            ],
+            "target": 7,
+            "targetSide": "EW",
+            "standaloneNumbers": [
+              1,
+              0
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 6,
+            "EW": 1,
+            "target": 9,
+            "declaringSide": "NS"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 6,
+                "min": 0,
+                "max": 13,
+                "x": 20.5,
+                "y": 134,
+                "width": 19,
+                "height": 36
+              },
+              {
+                "side": "EW",
+                "value": 1,
+                "min": 0,
+                "max": 13,
+                "x": 70.5,
+                "y": 135,
+                "width": 19,
+                "height": 36
+              }
+            ],
+            "target": 9,
+            "targetSide": "NS",
+            "standaloneNumbers": [
+              6,
+              1
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 0,
+            "EW": 7,
+            "target": 9,
+            "declaringSide": "EW"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 0,
+                "min": 0,
+                "max": 13,
+                "x": 706.5,
+                "y": 135,
+                "width": 19,
+                "height": 36
+              },
+              {
+                "side": "EW",
+                "value": 7,
+                "min": 0,
+                "max": 13,
+                "x": 756.5,
+                "y": 134,
+                "width": 19,
+                "height": 36
+              }
+            ],
+            "target": 9,
+            "targetSide": "EW",
+            "standaloneNumbers": [
+              0,
+              7
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        },
+        {
+          "expected": {
+            "NS": 5,
+            "EW": 6,
+            "target": 9,
+            "declaringSide": "NS"
+          },
+          "actual": {
+            "seatLabelCollisions": [],
+            "meters": [
+              {
+                "side": "NS",
+                "value": 5,
+                "min": 0,
+                "max": 13,
+                "x": 20.5,
+                "y": 134,
+                "width": 19,
+                "height": 36
+              },
+              {
+                "side": "EW",
+                "value": 6,
+                "min": 0,
+                "max": 13,
+                "x": 70.5,
+                "y": 135,
+                "width": 19,
+                "height": 36
+              }
+            ],
+            "target": 9,
+            "targetSide": "NS",
+            "standaloneNumbers": [
+              5,
+              6
+            ],
+            "noStandaloneUnit": true,
+            "noAxisElement": true,
+            "insideViewport": true
+          },
+          "correctValues": true,
+          "verticalColumns": true,
+          "noLeftScale": true,
+          "correctTarget": true,
+          "noDocumentScroll": true
+        }
+      ],
+      "orientation": "landscape",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\new-table-landscape.png",
+      "fixedScreen": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "document": {
+          "width": 844,
+          "height": 390
+        },
+        "body": {
+          "width": 844,
+          "height": 390
+        },
+        "root": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        }
+      },
+      "noDocumentScroll": true,
+      "tableInsideViewport": true,
+      "historyInsideTable": true,
+      "biddingInsideTable": true,
+      "tableSeatCount": 4,
+      "mobileCssLoaded": true,
+      "noHorizontalOverflow": true,
+      "homeNoHorizontalOverflow": true,
+      "setupNoHorizontalOverflow": true,
+      "historyNoHorizontalOverflow": true,
+      "nativeBridgeArchiveRoundtrip": true,
+      "impScoreText": "我方 0 : 0 对方 · 净 0 IMP",
+      "impNoHorizontalOverflow": true,
+      "fixedNorthSouthSeats": true,
+      "noHandSwitchControls": true,
+      "dummyRemainsNorthAfterAction": true,
+      "fixedBefore": {
+        "north": {
+          "x": 18,
+          "y": 121.203125,
+          "width": 808,
+          "height": 57.59375
+        },
+        "south": {
+          "x": 18,
+          "y": 294,
+          "width": 808,
+          "height": 66
+        }
+      },
+      "fixedAfter": {
+        "north": {
+          "x": 18,
+          "y": 121.203125,
+          "width": 808,
+          "height": 57.59375
+        },
+        "south": {
+          "x": 18,
+          "y": 294,
+          "width": 808,
+          "height": 66
+        }
+      },
+      "fixedDummyScreenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\fixed-dummy-north-landscape.png",
+      "auctionHistoryScrollsInsideFrame": true,
+      "auctionHistoryPaginationRemoved": true,
+      "allAuctionCallsRendered": true,
+      "longAuctionCallCount": 25,
+      "longAuctionFixtureBoundary": "Same legal natural-with-pass 25-call sequence as desktop auction-scroll case; browser-only 1100ms robot timer extended to60000ms to hold the saved position during scroll checks.",
+      "longScrollDimensions": {
+        "height": 65,
+        "scrollHeight": 175,
+        "top": 0,
+        "overflowY": "auto"
+      },
+      "realWheelScrollTop": 110,
+      "longAuctionScreenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\auction-history-scroll-landscape.png",
+      "publicDummyChecks": [
+        {
+          "seat": "E",
+          "realCardsRendered": true,
+          "cardCount": 12,
+          "suitsInSeparateHorizontalRows": true,
+          "allCardFacesInsideSeat": true,
+          "suitRows": [
+            {
+              "suit": "S",
+              "bounds": {
+                "x": 656,
+                "y": 153.703125,
+                "width": 109,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "S8",
+                  "x": 656,
+                  "y": 153.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "8",
+                  "pip": true
+                },
+                {
+                  "id": "S6",
+                  "x": 687.65625,
+                  "y": 153.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "S4",
+                  "x": 719.328125,
+                  "y": 153.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "4",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "S4",
+                "S6",
+                "S8"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "H",
+              "bounds": {
+                "x": 656,
+                "y": 182.703125,
+                "width": 170,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "H10",
+                  "x": 656,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "10",
+                  "pip": true
+                },
+                {
+                  "id": "H9",
+                  "x": 682,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "9",
+                  "pip": true
+                },
+                {
+                  "id": "H6",
+                  "x": 708,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "H5",
+                  "x": 734,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "5",
+                  "pip": true
+                },
+                {
+                  "id": "H3",
+                  "x": 760,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "3",
+                  "pip": true
+                },
+                {
+                  "id": "H2",
+                  "x": 786,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "2",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "H10",
+                "H2",
+                "H3",
+                "H5",
+                "H6",
+                "H9"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "D",
+              "bounds": {
+                "x": 656,
+                "y": 211.703125,
+                "width": 47,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "D14",
+                  "x": 656,
+                  "y": 211.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "A",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "D14"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "C",
+              "bounds": {
+                "x": 656,
+                "y": 240.703125,
+                "width": 78,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "C14",
+                  "x": 656,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "A",
+                  "pip": true
+                },
+                {
+                  "id": "C2",
+                  "x": 688,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "2",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "C14",
+                "C2"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            }
+          ],
+          "hiddenOpponentCardsRemainHidden": true,
+          "remainsOriginalSide": true,
+          "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\public-dummy-E-landscape.png"
+        },
+        {
+          "seat": "W",
+          "realCardsRendered": true,
+          "cardCount": 12,
+          "suitsInSeparateHorizontalRows": true,
+          "allCardFacesInsideSeat": true,
+          "suitRows": [
+            {
+              "suit": "S",
+              "bounds": {
+                "x": 18,
+                "y": 153.703125,
+                "width": 47,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "S2",
+                  "x": 18,
+                  "y": 153.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "2",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "S2"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "H",
+              "bounds": {
+                "x": 18,
+                "y": 182.703125,
+                "width": 78,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "H13",
+                  "x": 18,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "K",
+                  "pip": true
+                },
+                {
+                  "id": "H8",
+                  "x": 50,
+                  "y": 182.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "8",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "H13",
+                "H8"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "D",
+              "bounds": {
+                "x": 18,
+                "y": 211.703125,
+                "width": 140,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "D10",
+                  "x": 18,
+                  "y": 211.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "10",
+                  "pip": true
+                },
+                {
+                  "id": "D7",
+                  "x": 49.5,
+                  "y": 211.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "7",
+                  "pip": true
+                },
+                {
+                  "id": "D6",
+                  "x": 81,
+                  "y": 211.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "D5",
+                  "x": 112.5,
+                  "y": 211.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "5",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "D10",
+                "D5",
+                "D6",
+                "D7"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            },
+            {
+              "suit": "C",
+              "bounds": {
+                "x": 18,
+                "y": 240.703125,
+                "width": 170,
+                "height": 27
+              },
+              "cards": [
+                {
+                  "id": "C11",
+                  "x": 18,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "J",
+                  "pip": true
+                },
+                {
+                  "id": "C9",
+                  "x": 49.1875,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "9",
+                  "pip": true
+                },
+                {
+                  "id": "C8",
+                  "x": 80.390625,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "8",
+                  "pip": true
+                },
+                {
+                  "id": "C6",
+                  "x": 111.59375,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "6",
+                  "pip": true
+                },
+                {
+                  "id": "C4",
+                  "x": 142.796875,
+                  "y": 240.703125,
+                  "width": 28,
+                  "height": 27,
+                  "rank": "4",
+                  "pip": true
+                }
+              ],
+              "expectedCards": [
+                "C11",
+                "C4",
+                "C6",
+                "C8",
+                "C9"
+              ],
+              "onlyExpectedSuit": true,
+              "horizontal": true,
+              "allCardFacesInsideSeat": true
+            }
+          ],
+          "hiddenOpponentCardsRemainHidden": true,
+          "remainsOriginalSide": true,
+          "screenshot": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\docs\\public-dummy-W-landscape.png"
+        }
+      ],
+      "publicEastDummyCardsRendered": true,
+      "publicWestDummyCardsRendered": true,
+      "hiddenOpponentCardsRemainHidden": true,
+      "southCardsPreservedAcrossDummyAction": 13,
+      "pageErrors": []
+    }
+  ]
+}

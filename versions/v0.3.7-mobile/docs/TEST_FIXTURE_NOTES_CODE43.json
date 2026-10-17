@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-17T04:13:50.242826+00:00",
+  "version": "0.3.7+43",
+  "finalBundle": "index-jRsnKaq-.js",
+  "failedExploratoryFixture": {
+    "sequence": "34 consecutive increasing bids without passes",
+    "outcome": "Browser render/scroll-container wait and diagnostic screenshot timed out",
+    "attribution": "Unnatural long multi-seat bidding semantic workload, matching desktop agent observation; no product source change made for this fixture"
+  },
+  "finalAcceptanceFixture": {
+    "sequence": "Same legal natural-with-pass 25-call sequence used by desktop auction-scroll case; two prior passout games preserve board continuity",
+    "robotTimerBoundary": "Browser test only extends1100ms robot timer to60000ms to retain the loaded position; packaged assets and native source unchanged",
+    "orientations": [
+      "390x844",
+      "844x390"
+    ],
+    "passed": true,
+    "checks": [
+      "all25call cells rendered",
+      "history pagination removed",
+      "real mouse wheel changes internal scrollTop",
+      "fixed header and frame",
+      "first and last calls reachable",
+      "outer page does not scroll"
+    ]
+  },
+  "candidatePreservation": {
+    "path": "artifacts/candidate-code43-side-suits",
+    "sha256": "edeb61400f06d0314eec904487255c716a75cfb16a388c4594e71f3a42f01c56",
+    "status": "Undelivered candidate before DDS UI cleanup and history scrolling; final package differs"
+  },
+  "finalApkSha256": "df98d8aa292bd3833ca2c9da60c7aa3e4980a14c3c44631c3b3a71cb3a2b30b7"
+}

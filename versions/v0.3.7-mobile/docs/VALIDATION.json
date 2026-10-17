@@ -1,0 +1,75 @@
+{
+  "builtAt": "2026-10-17T12:41:46.9459076+08:00",
+  "apk": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\release\\BridgeLab-v0.3.7-mobile-android.apk",
+  "bytes": 44476680,
+  "sha256": "6811670efe387813d506d09ca226e804ad51fac0a8235dec8d6c7e3290ea0021",
+  "desktopMainBundle": "index-Bh7mqTwB.js",
+  "desktopMainBundleSha256": "216b206397b4315b74efc50574ae80bd37452681677bd5ea1f6f430e601f25a7",
+  "embeddedMainBundleSha256": "216b206397b4315b74efc50574ae80bd37452681677bd5ea1f6f430e601f25a7",
+  "mainBundleHashMatch": true,
+  "desktopDistFileCount": 13,
+  "desktopDistFilesPresent": true,
+  "unchangedDistFileHashesMatch": true,
+  "mobileAssetHashes": {
+    "index.html": "343a1b8786cb935ba6850ff589620be158397ec0937ecf9bbdde32d133f60d30",
+    "mobile.css": "179adb9cbf82dd48d2758e81d6ec7f4ac84ca68881fdf0e1297223edffa7f849",
+    "mobile-build.json": "2c4f826c5447f4976f6414440620912d95acc4c41c9a3231ab790abe924b974d"
+  },
+  "sourceSnapshotSha256": "cf85116bf5c95442bbdc725cd6b85d2fcd4af2142e2dd5c7e227f6528668060b",
+  "packageBadging": [
+    "package: name='cn.bridgelab.v03mobile' versionCode='44' versionName='0.3.7' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+    "sdkVersion:'24'",
+    "targetSdkVersion:'36'"
+  ],
+  "signature": [
+    "Verifies",
+    "Verified using v1 scheme (JAR signing): false",
+    "Verified using v2 scheme (APK Signature Scheme v2): true",
+    "Verified using v3 scheme (APK Signature Scheme v3): false",
+    "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+    "Verified using v3.2 scheme (APK Signature Scheme v3.2): false",
+    "Verified using v4 scheme (APK Signature Scheme v4): false",
+    "Verified for SourceStamp: false",
+    "Number of signers: 1"
+  ],
+  "bundledAssetChecks": [
+    "assets/flutter_assets/assets/www/index.html",
+    "assets/flutter_assets/assets/www/mobile.css",
+    "assets/flutter_assets/assets/www/mobile-build.json",
+    "assets/flutter_assets/assets/www/assets/index-Bh7mqTwB.js",
+    "DDS worker",
+    "play-advisor worker"
+  ],
+  "nativeRecoveryChecks": [
+    {
+      "abi": "armeabi-v7a",
+      "recoveryScriptCompiled": true,
+      "backgroundCaptureCompiled": true,
+      "nativeFilesBridgeCompiled": true
+    },
+    {
+      "abi": "arm64-v8a",
+      "recoveryScriptCompiled": true,
+      "backgroundCaptureCompiled": true,
+      "nativeFilesBridgeCompiled": true
+    },
+    {
+      "abi": "x86_64",
+      "recoveryScriptCompiled": true,
+      "backgroundCaptureCompiled": true,
+      "nativeFilesBridgeCompiled": true
+    }
+  ],
+  "nativeValidation": "Preparation checks reused after all recorded native input hashes matched; see NATIVE_VALIDATION_INPUTS_CODE44.json",
+  "documentPickerNativeCodeCompiled": true,
+  "applicationId": "cn.bridgelab.v03mobile",
+  "versionName": "0.3.7",
+  "versionCode": 44,
+  "storageOrigin": "http://127.0.0.1:51893",
+  "storageKey": "bridgelab.session.v3.6",
+  "previousStorageKey": "bridgelab.session.v3.5",
+  "diagnosticsFloatingButton": false,
+  "saveDataCleared": false,
+  "previousDelivery": "artifacts/previous-code43/release/BridgeLab-v0.3.7-mobile-android.apk",
+  "deviceLaunch": "not performed in this task; Android installation, WebView and system document picker remain unverified on device"
+}

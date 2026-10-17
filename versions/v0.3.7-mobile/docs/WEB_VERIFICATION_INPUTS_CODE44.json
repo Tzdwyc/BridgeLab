@@ -1,0 +1,79 @@
+{
+  "verifiedAt": "2026-10-17T04:41:54.316729+00:00",
+  "version": "0.3.7+44",
+  "desktopMainBundle": "index-Bh7mqTwB.js",
+  "freshBrowserVerification": true,
+  "nativeVisualReview": {
+    "performed": true,
+    "screenshots": [
+      "trick-columns-high-landscape.png",
+      "trick-columns-S-portrait.png",
+      "public-dummy-E-landscape.png",
+      "public-dummy-W-portrait.png",
+      "auction-history-scroll-landscape.png"
+    ],
+    "finding": "Two NS/EW vertical columns without a left scale; legal 5:6 high-column landscape values and declaring-side target clear the N/S seat labels. Separate real-card suit rows at original E/W seats and 25-call fixed internal history scroll remain visible."
+  },
+  "files": [
+    {
+      "path": "assets/index-Bh7mqTwB.js",
+      "sha256": "216b206397b4315b74efc50574ae80bd37452681677bd5ea1f6f430e601f25a7"
+    },
+    {
+      "path": "assets/index-Da5ipfoK.css",
+      "sha256": "3fb890959f04bb2afe154aecb7f7fc28e68c5e356c2e580da9f32f6aec73eb29"
+    },
+    {
+      "path": "assets/play-advisor-worker-DozMqHBH.js",
+      "sha256": "b5b981afbf303446e7337701d5bd26bf88fbc9cfe356125cb0bd7b93a82a3094"
+    },
+    {
+      "path": "assets/workbox-window.prod.es5-BBnX5xw4.js",
+      "sha256": "cadd21be4a88598a4dec91a26a025df0a5790ff6baec54a884e401c3f5c95557"
+    },
+    {
+      "path": "assets/worker-DuxcIqkF.js",
+      "sha256": "cab0101c242a67844c28b289fdc4de4a8817440ffef64df2db3e9ed742d4cb94"
+    },
+    {
+      "path": "icon.svg",
+      "sha256": "21eb715e7fbbe35047e931999b9e9bc37818618c2c8509e484644648871771b7"
+    },
+    {
+      "path": "icons/icon-192.png",
+      "sha256": "8af9bd81b6a139c02e84e55feba0d6b6a07fa92f5108b8650266db192a46e2bf"
+    },
+    {
+      "path": "icons/icon-512.png",
+      "sha256": "f31693fedb2e2cc1c7a96a0d824d47f8a2d697633de11c71f7e87c8877f5c0d4"
+    },
+    {
+      "path": "icons/maskable-512.png",
+      "sha256": "f31693fedb2e2cc1c7a96a0d824d47f8a2d697633de11c71f7e87c8877f5c0d4"
+    },
+    {
+      "path": "index.html",
+      "sha256": "343a1b8786cb935ba6850ff589620be158397ec0937ecf9bbdde32d133f60d30"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "70a4b821cc128a69042494c15ed8275c032d062e48bdbdfb89a75c95b52f86e5"
+    },
+    {
+      "path": "mobile-build.json",
+      "sha256": "2c4f826c5447f4976f6414440620912d95acc4c41c9a3231ab790abe924b974d"
+    },
+    {
+      "path": "mobile.css",
+      "sha256": "179adb9cbf82dd48d2758e81d6ec7f4ac84ca68881fdf0e1297223edffa7f849"
+    },
+    {
+      "path": "sw.js",
+      "sha256": "c2286a776d1042717b26689225fee12527a73a4ee4c20021eadf07654d9c25e6"
+    },
+    {
+      "path": "workbox-778a14ff.js",
+      "sha256": "02b098946250b3f87ddbaa02070a556fa34a2d69b39998ec8e45d81c0f469746"
+    }
+  ]
+}

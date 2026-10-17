@@ -1,0 +1,1 @@
+Separate horizontal rows for every nonempty suit using real CardView at E/W original seats, fixed South/North dummy seats verified before/after a real dummy action, with mobile portrait/landscape and file-bridge checks.

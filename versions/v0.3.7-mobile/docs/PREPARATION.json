@@ -1,0 +1,65 @@
+{
+  "preparedAt": "2026-10-17T01:34:42.034931+00:00",
+  "sourceMobile": "H:\\Projects\\Bridge\\versions\\v0.3.6-mobile",
+  "version": "0.3.7+41",
+  "previousFiles": [
+    {
+      "path": "pubspec.yaml",
+      "sha256": "9dd8df000d73993296d4446dc537a5dd0fb67e47404526517206d0e0e717839e"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "eca2bc6feb3212f0baa2c318e2fb19ce5ca5eb4a27f0f8ba0045e5fbd4490bbe"
+    },
+    {
+      "path": "lib/main.dart",
+      "sha256": "43b3da956a2aaebeb8ce9c0f99e2420bd5c3124a15bbd90e7c1f6dcdf7636655"
+    },
+    {
+      "path": "lib/diagnostics.dart",
+      "sha256": "4eebe1892fb11ddc02a8b0d8398b693f8a49892f486a971099e5fe7ab00ab0b0"
+    },
+    {
+      "path": "lib/local_asset_server.dart",
+      "sha256": "c660be5f7f24fb73ab192e56909b10c3450685070fbbb2a239c95b30922995a0"
+    },
+    {
+      "path": "lib/native_files.dart",
+      "sha256": "14e5e22e9da6420eff23f65b0b64b959b4eb2ae1dff1a00dbc0da4138831f860"
+    },
+    {
+      "path": "android/app/build.gradle.kts",
+      "sha256": "222cb507a36ea2d48571baa95c967da9fdff7e9e9148673f6e24d7a1c69e0e02"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "sha256": "a5c8e7e865150e3fd620b2f2aaf7f1cc76ff93225512ed8359b0cd24a4a1085f"
+    },
+    {
+      "path": "android/app/src/main/kotlin/cn/bridgelab/bridgelab_v03_mobile/MainActivity.kt",
+      "sha256": "43331958415e17e09834527c9c9debb4700c659a271390f908d28ddc60910d7e"
+    },
+    {
+      "path": "mobile-overrides/mobile.css",
+      "sha256": "3ec72af69cbcef4347322d133f8cc3249d9c9337e2dc9992977d17f951482fc8"
+    },
+    {
+      "path": "scripts/build-android.ps1",
+      "sha256": "22e9789ac13895face3c1c100673386453487f8a3f5e649ece9ecb7f89915e17"
+    },
+    {
+      "path": "scripts/sync-v03.ps1",
+      "sha256": "c3c81f878a10d4711c6a62923a423e87d3166e27600b1367376c7d02e75342c0"
+    },
+    {
+      "path": "release/BridgeLab-v0.3.6-mobile-android.apk",
+      "sha256": "5931475af9e7e6bda161d14d430bdcdb3696d3d3d1c65c84b9ca034141874730"
+    }
+  ],
+  "applicationId": "cn.bridgelab.v03mobile",
+  "storageOrigin": "http://127.0.0.1:51893",
+  "storageKey": "bridgelab.session.v3.6",
+  "libraryDatabase": "bridgelab.library.v3.6",
+  "deviceConnected": false,
+  "sourceFrozen": false
+}

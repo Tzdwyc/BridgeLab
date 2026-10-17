@@ -1,0 +1,12 @@
+{
+  "verifiedAt": "2026-10-17T03:27:40.326344+00:00",
+  "version": "0.3.7+42",
+  "runtimeChecksReusedFromCode41": false,
+  "reason": "Fixed-seat and E/W real-card UI changed; browser tests were run fresh against index-BO6E1GCv.js.",
+  "freshReports": [
+    "docs/WEB_LAYOUT_VALIDATION.json",
+    "docs/UPGRADE_RECOVERY_VALIDATION.json",
+    "docs/WEB_VERIFICATION_INPUTS_CODE42.json"
+  ],
+  "historicalCode41Report": "artifacts/previous-code41/docs/WEB_ASSET_REUSE_VALIDATION.json"
+}

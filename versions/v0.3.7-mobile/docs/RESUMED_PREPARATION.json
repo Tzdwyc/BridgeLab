@@ -1,0 +1,7 @@
+{
+  "resumedAt": "2026-10-17T01:59:49.853416+00:00",
+  "status": "User approved packaging after preview. Await final desktop dist freeze.",
+  "nativeValidationReuse": "SHA-256 guard added for unchanged native code/dependencies/configuration.",
+  "desktopBuildInvokedBySync": false,
+  "releaseBuildPerformed": false
+}

@@ -1,0 +1,15 @@
+{
+  "preparedAt": "2026-10-17T03:14:45.780808+00:00",
+  "version": "0.3.7+42",
+  "previousVersion": "0.3.7+41",
+  "previousApk": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\artifacts\\previous-code41\\release\\BridgeLab-v0.3.7-mobile-android.apk",
+  "previousApkSha256": "55db99d1859b9504daf4a57cebe0e9af2bb834cf00dc4a449e75fe7b825e9b53",
+  "nativeCodeChanged": false,
+  "runtimeSynced": false,
+  "apkBuilt": false,
+  "status": "Waiting for fixed-seat desktop bundle freeze",
+  "applicationId": "cn.bridgelab.v03mobile",
+  "origin": "http://127.0.0.1:51893",
+  "sessionKey": "bridgelab.session.v3.6",
+  "libraryDatabase": "bridgelab.library.v3.6"
+}

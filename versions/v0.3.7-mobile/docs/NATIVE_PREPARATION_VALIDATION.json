@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-10-17T01:39:22.382737+00:00",
+  "version": "0.3.7+41",
+  "dartFormatting": {
+    "files": 7,
+    "changed": 0,
+    "passed": true
+  },
+  "flutterAnalyze": {
+    "issues": 0,
+    "passed": true
+  },
+  "flutterTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "nativeScriptChecks": {
+    "passed": 8,
+    "failed": 0,
+    "report": "docs/NATIVE_SCRIPT_VALIDATION.json"
+  },
+  "sourceSynced": false,
+  "desktopFrozen": false,
+  "releaseBuildPerformed": false,
+  "apkCreated": false,
+  "deviceConnected": false,
+  "packagingStatus": "Paused: user requested actual UI preview before packaging. Await desktop freeze and user review.",
+  "storageKey": "bridgelab.session.v3.6",
+  "libraryDatabase": "bridgelab.library.v3.6",
+  "storageOrigin": "http://127.0.0.1:51893",
+  "evidenceBoundary": "Source-level native checks only. Final desktop assets not synced, APK not built, real Android installation/WebView/document-picker not tested."
+}

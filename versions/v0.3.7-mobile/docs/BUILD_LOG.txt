@@ -1,0 +1,32 @@
+**********************
+PowerShell transcript start
+Start time: 20261017100224
+Username: THINK-QIHAN\ThinkPad
+RunAs User: THINK-QIHAN\ThinkPad
+Configuration Name: 
+Machine: THINK-QIHAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Users\ThinkPad\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference='Stop'; Set-Location -LiteralPath 'H:\Projects\Bridge\versions\v0.3.7-mobile'; Start-Transcript -LiteralPath docs\BUILD_LOG.txt; try { & .\scripts\build-android.ps1 -ReuseNativeValidation; if ($LASTEXITCODE) { throw 'Android build command failed.' } } finally { Stop-Transcript }
+Process ID: 33076
+PSVersion: 7.6.5
+PSEdition: Core
+GitCommitId: 7.6.5
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is docs\BUILD_LOG.txt
+
+Synced BridgeLab v0.3.7 source and dist. Main bundle: index-BWpAfJaD.js
+
+Native preparation checks reused: all 18 recorded inputs match SHA-256.
+
+APK: H:\Projects\Bridge\versions\v0.3.7-mobile\release\BridgeLab-v0.3.7-mobile-android.apk
+SHA-256: 12331ea3d4da47bc268a62dc221ef0c3821fc97112cc4be0505a7735a1bf9990
+**********************
+PowerShell transcript end
+End time: 20261017101052
+**********************

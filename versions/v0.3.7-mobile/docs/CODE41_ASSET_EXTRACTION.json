@@ -1,0 +1,68 @@
+{
+  "extractedAt": "2026-10-17T03:14:44.410305+00:00",
+  "sourceApk": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\artifacts\\previous-code41\\release\\BridgeLab-v0.3.7-mobile-android.apk",
+  "sourceApkSha256": "55db99d1859b9504daf4a57cebe0e9af2bb834cf00dc4a449e75fe7b825e9b53",
+  "version": "0.3.7+41",
+  "files": [
+    {
+      "path": "assets/index-BWpAfJaD.js",
+      "sha256": "83cf6cefbbef2bddb785f7fed7492677bd866712e8606841480b1d64f97683f0"
+    },
+    {
+      "path": "assets/index-BzJItyNf.css",
+      "sha256": "fb25282f5438835a310ad26b3f48bcc9e08d6aa56fcc20c15340ab32346c52cf"
+    },
+    {
+      "path": "assets/play-advisor-worker-DozMqHBH.js",
+      "sha256": "b5b981afbf303446e7337701d5bd26bf88fbc9cfe356125cb0bd7b93a82a3094"
+    },
+    {
+      "path": "assets/workbox-window.prod.es5-BBnX5xw4.js",
+      "sha256": "cadd21be4a88598a4dec91a26a025df0a5790ff6baec54a884e401c3f5c95557"
+    },
+    {
+      "path": "assets/worker-DuxcIqkF.js",
+      "sha256": "cab0101c242a67844c28b289fdc4de4a8817440ffef64df2db3e9ed742d4cb94"
+    },
+    {
+      "path": "icon.svg",
+      "sha256": "21eb715e7fbbe35047e931999b9e9bc37818618c2c8509e484644648871771b7"
+    },
+    {
+      "path": "icons/icon-192.png",
+      "sha256": "8af9bd81b6a139c02e84e55feba0d6b6a07fa92f5108b8650266db192a46e2bf"
+    },
+    {
+      "path": "icons/icon-512.png",
+      "sha256": "f31693fedb2e2cc1c7a96a0d824d47f8a2d697633de11c71f7e87c8877f5c0d4"
+    },
+    {
+      "path": "icons/maskable-512.png",
+      "sha256": "f31693fedb2e2cc1c7a96a0d824d47f8a2d697633de11c71f7e87c8877f5c0d4"
+    },
+    {
+      "path": "index.html",
+      "sha256": "31cbfade8e46dbdb47978c1cb51b3ff3ed68ba0f9a4c6b9dc8e8a671f6c99adf"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "70a4b821cc128a69042494c15ed8275c032d062e48bdbdfb89a75c95b52f86e5"
+    },
+    {
+      "path": "mobile-build.json",
+      "sha256": "0559a809fd1cf2583a9bd4751055e47c7632992da4dc0e6977b830b278eb5322"
+    },
+    {
+      "path": "mobile.css",
+      "sha256": "179adb9cbf82dd48d2758e81d6ec7f4ac84ca68881fdf0e1297223edffa7f849"
+    },
+    {
+      "path": "sw.js",
+      "sha256": "2c06f7c6e0dca1f2231f05ee2e615d4ad81d6ed98fa115c72f1ca3ae6b9da5c7"
+    },
+    {
+      "path": "workbox-778a14ff.js",
+      "sha256": "02b098946250b3f87ddbaa02070a556fa34a2d69b39998ec8e45d81c0f469746"
+    }
+  ]
+}

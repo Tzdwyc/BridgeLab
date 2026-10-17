@@ -1,0 +1,23 @@
+{
+  "verifiedAt": "2026-10-17T12:42:06.5806386+08:00",
+  "current": {
+    "apk": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\release\\BridgeLab-v0.3.7-mobile-android.apk",
+    "sha256": "6811670efe387813d506d09ca226e804ad51fac0a8235dec8d6c7e3290ea0021",
+    "applicationId": "cn.bridgelab.v03mobile",
+    "versionCode": 44,
+    "versionName": "0.3.7",
+    "publicCertificateSha256": "9d05b1c2856f7d46ce1fb07e05c615140cdefdddd24cdf4de9b44c528c074d90"
+  },
+  "previous": {
+    "apk": "H:\\Projects\\Bridge\\versions\\v0.3.7-mobile\\artifacts\\previous-code43\\release\\BridgeLab-v0.3.7-mobile-android.apk",
+    "sha256": "df98d8aa292bd3833ca2c9da60c7aa3e4980a14c3c44631c3b3a71cb3a2b30b7",
+    "applicationId": "cn.bridgelab.v03mobile",
+    "versionCode": 43,
+    "versionName": "0.3.7",
+    "publicCertificateSha256": "9d05b1c2856f7d46ce1fb07e05c615140cdefdddd24cdf4de9b44c528c074d90"
+  },
+  "sameApplicationId": true,
+  "samePublicCertificate": true,
+  "versionCodeIncreased": true,
+  "deviceLaunch": "not performed in this task; installation and device interactions remain unverified"
+}

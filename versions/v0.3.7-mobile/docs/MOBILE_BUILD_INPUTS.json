@@ -1,0 +1,166 @@
+{
+  "verifiedAt": "2026-10-17T04:42:07.594610+00:00",
+  "version": "0.3.7+44",
+  "files": [
+    {
+      "path": "analysis_options.yaml",
+      "sha256": "f2de2b3d32409892ff6819f834aa2e7671c90f9646e888fa0f6049cffe5a369e"
+    },
+    {
+      "path": "android/app/build.gradle.kts",
+      "sha256": "222cb507a36ea2d48571baa95c967da9fdff7e9e9148673f6e24d7a1c69e0e02"
+    },
+    {
+      "path": "android/app/src/debug/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "sha256": "a04f6576fd7587593e4f5ec73c18b0f8a0298b885b05a4574406cec2735a57cc"
+    },
+    {
+      "path": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "sha256": "56899edffde7e5d34d6beda7bf8d6a804b0574a78fdd7957e3af9b69da58e75b"
+    },
+    {
+      "path": "android/app/src/main/kotlin/cn/bridgelab/bridgelab_v03_mobile/MainActivity.kt",
+      "sha256": "43331958415e17e09834527c9c9debb4700c659a271390f908d28ddc60910d7e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/launch_background.xml",
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-v21/launch_background.xml",
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "sha256": "b93d1351689d691281d13945919b90b91c658c8c2bf56e357a2a1fa6047a9a05"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "sha256": "0dbc5f867423eb397c9643dad1bbe1e2f19ffa70984ed30b5e3cf4dc4d793b4d"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "sha256": "aeb6bf9a07dd81848b8620e2b948796c8866351773a4c8e2240f799b57437e53"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "sha256": "2c17b2c8544436ca2a331e87ba89090796c2af1c4330899fd40eae9f97eba741"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "sha256": "20d6e3af23d76d48b596af40f62d184a245b7f2bf67be96b29b6d1c12501a503"
+    },
+    {
+      "path": "android/app/src/main/res/values/styles.xml",
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "path": "android/app/src/main/res/values-night/styles.xml",
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "path": "android/app/src/main/res/xml/network_security_config.xml",
+      "sha256": "70846138bd8381ea3d92ace39ecc7c990d30f14cd95dcd23f5d492fc4636e1d4"
+    },
+    {
+      "path": "android/app/src/profile/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "path": "android/build.gradle.kts",
+      "sha256": "76ac146321f2b49c272fbc92dccf3d5f28dc22da5b0c7cfa8765580fb0f3b915"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "1220fdd333a881e47441de07b23f9dd1ebd35459730543ae429cf249847d91bf"
+    },
+    {
+      "path": "android/gradle.properties",
+      "sha256": "463777281ac1eac7297c06d2b3cc692738d266068227d57311823c940e0aeac5"
+    },
+    {
+      "path": "android/settings.gradle.kts",
+      "sha256": "ca3caa2c2cd9eef9838991d1fcdef0efb459ab535865e9c48e4af599b09161bc"
+    },
+    {
+      "path": "lib/diagnostics.dart",
+      "sha256": "46e56f210df2afa146b8f89d0360f6066df7ae6250c0f1d93508835819753326"
+    },
+    {
+      "path": "lib/local_asset_server.dart",
+      "sha256": "c660be5f7f24fb73ab192e56909b10c3450685070fbbb2a239c95b30922995a0"
+    },
+    {
+      "path": "lib/main.dart",
+      "sha256": "04451e6bab8101f4ebbf643443830b0872e123440cd01b2bebb80f0523372320"
+    },
+    {
+      "path": "lib/native_files.dart",
+      "sha256": "14e5e22e9da6420eff23f65b0b64b959b4eb2ae1dff1a00dbc0da4138831f860"
+    },
+    {
+      "path": "mobile-overrides/mobile.css",
+      "sha256": "179adb9cbf82dd48d2758e81d6ec7f4ac84ca68881fdf0e1297223edffa7f849"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "eca2bc6feb3212f0baa2c318e2fb19ce5ca5eb4a27f0f8ba0045e5fbd4490bbe"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "5fb69a254becf79ab17e74621591729b0d3818303df0438dbea1e8abe7c2578e"
+    },
+    {
+      "path": "scripts/build-android.ps1",
+      "sha256": "f20c6f6d760c9c0c570dd8a694f9bfd7ba720dc0b3603b1f088049b0232cae2b"
+    },
+    {
+      "path": "scripts/finalize-evidence.py",
+      "sha256": "3a1e0f0653158358dd3d087bfdded36818f2b6feccaddc181fdcf247ea7fa5e5"
+    },
+    {
+      "path": "scripts/generate-android-icons.py",
+      "sha256": "a0b7ad67eefbebae6cc989a86b3dae1e76124d466b7250e4361b83d9d71ce0d9"
+    },
+    {
+      "path": "scripts/mobile-repositories.gradle",
+      "sha256": "3df0bafcbd9cee547c16784e9fb81348217a12972078d6646a5c8952ed35fe9b"
+    },
+    {
+      "path": "scripts/sync-v03.ps1",
+      "sha256": "b5a6e9bd236473c3a0c703266639a91642d321c13e5e4bc34ea1ab39abf790f5"
+    },
+    {
+      "path": "scripts/verify-native-scripts.mjs",
+      "sha256": "005020d38e5abb5369eeaad776d3599f3f8d00d5b6b9e511041f47385ec3fa18"
+    },
+    {
+      "path": "scripts/verify-upgrade-recovery.mjs",
+      "sha256": "eeaf2653bf825c4f4a773b9d1d2e39d3ef8de644e583e3bd404b8316add706d3"
+    },
+    {
+      "path": "scripts/verify-upgrade.ps1",
+      "sha256": "d6f7226276290e562c1d929f2bf2c887a233be5449a0b18db5f7145c5ccf1597"
+    },
+    {
+      "path": "scripts/verify-web-layout.mjs",
+      "sha256": "d7a9b3834c039295d063ac544348870b7d8ad7decaf3016f3510f49023480a48"
+    },
+    {
+      "path": "test/diagnostics_test.dart",
+      "sha256": "b98c9cfda103654c0a939b41c18804a6191b21f89365bdd8b584135a8aa5e63a"
+    },
+    {
+      "path": "test/local_asset_server_test.dart",
+      "sha256": "baed45eb6f8958ce228bb0ffc82d19c0c8088200e79d08649885be2dede261b1"
+    },
+    {
+      "path": "test/native_files_test.dart",
+      "sha256": "4e2304b2d87c8e1b137a8788c8886b8806940881314d6db03e5ad7a4f0d8e85e"
+    }
+  ]
+}

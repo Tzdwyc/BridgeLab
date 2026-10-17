@@ -1,0 +1,3966 @@
+import { type AuctionEntry, type Call, type Seat, type Strain, type Suit, PASS, SUITS, partnerOf, sideOf } from '../core/types';
+import { auctionStatus, sameCall, bidValue } from '../core/auction';
+import { type BiddingObservation } from './observation';
+import { chooseBid as legacyBid, evaluateHand } from './bidding-legacy';
+import { type BiddingSystem, SYSTEMS } from './systems';
+import { analyzeAuctionSemantics, classifyDoubleAt, isArtificialBidAt, isNaturalNoTrumpAt, isTakeoutDoubleAt, latestNoTrumpRange, naturalSuitMinimum, noTrumpRangeAt, publicCallMeaningAt, publicPlayerConstraints, publicKeycardTrumpAt, publicControlCueAt, publicNoTrumpQuestionAt, publicWeakMinorRelayAt, publicNegativeDoubleMajorsAt, publicStrictNTTwoMajorAt, publicStrongMinorTrialAt, publicOpenerNTOverNTAt, publicInterruptedStaymanBefore, publicNTNewMinorAt, publicStrongTakeoutStopCueAt, publicSecondaryMinorInvitationAt, publicInterruptedTransferBefore, publicPenaltyConversionBefore } from './bidding-semantics';
+import { countKeycards, evaluateSuitFit, feasiblePublicKeycardCounts, hasTrumpQueen, publicSupportMinimum, rkcb1430Response } from './suit-evaluation';
+import { chooseCompetitiveCall } from './competition';
+export { evaluateHand } from './bidding-legacy';
+
+type Bid = Extract<Call, { kind: 'bid' }>;
+type Entry = { seat: Seat; call: Bid; index: number };
+const bid = (level: number, strain: Strain): Bid => ({ kind: 'bid', level, strain });
+const major = (strain: Strain): strain is 'H' | 'S' => strain === 'H' || strain === 'S';
+const gameLevel = (strain: Strain) => strain === 'NT' ? 3 : major(strain) ? 4 : 5;
+const atGame = (call: Bid) => call.level >= gameLevel(call.strain);
+const entries = (auction: AuctionEntry[]): Entry[] => auction.flatMap((entry, index) => entry.call.kind === 'bid' ? [{ seat: entry.seat, call: entry.call, index }] : []);
+const intervened = (auction: AuctionEntry[], seat: Seat, from: number, to = auction.length) => auction.slice(from + 1, to).some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.kind !== 'pass');
+const passedBefore = (auction: AuctionEntry[], seat: Seat, index: number) => auction.slice(0, index).some(entry => entry.seat === seat && entry.call.kind === 'pass');
+function twoOverOne(opening: Entry, response: Entry, auction: AuctionEntry[]) {
+  const o = opening.call, r = response.call;
+  return o.level === 1 && o.strain !== 'NT' && r.level === 2 && r.strain !== 'NT' && r.strain !== o.strain && bidValue(r) - bidValue(o) <= 5 && !passedBefore(auction, response.seat, opening.index) && !intervened(auction, opening.seat, opening.index, response.index);
+}
+function secondNegative(us: Entry[], index: number, system: BiddingSystem): boolean {
+  if (system === 'precision' || index !== 3 || us[0]?.call.level !== 2 || us[0].call.strain !== 'C'
+    || us[1]?.call.strain !== 'D' || us[1].call.level !== 2 || us[2]?.call.strain === 'NT') return false;
+  const call = us[index]?.call;
+  if (!call || call.level !== 3) return false;
+  if (major(us[2].call.strain)) return call.strain === 'C';
+  return system === 'sayc' && (us[2].call.strain === 'C' ? call.strain === 'D' : call.strain === 'NT');
+}
+/** A five-level trump contract is always a signoff, never a queen request. */
+function safeQueenInquiry(answer: Bid, trump: Suit): Bid | undefined {
+  if (answer.level !== 5 || !['C', 'D'].includes(answer.strain)) return undefined;
+  return (['C', 'D', 'H', 'S'] as Suit[]).map(suit => bid(5, suit)).find(call =>
+    call.strain !== trump && bidValue(call) > bidValue(answer) && bidValue(call) < bidValue(bid(5, trump)));
+}
+function knownFit(us: Entry[], lengths: Record<Suit, number>, system: BiddingSystem, seat: Seat): Suit | undefined {
+  const strongClub = us[0]?.call.strain === 'C' && (system === 'precision' ? us[0].call.level === 1 : us[0].call.level === 2);
+  const ntIndex = us.findIndex((entry, index) => entry.call.strain === 'NT'
+    && (index === 0 || (index === 2 && strongClub)));
+  if (ntIndex >= 0) {
+    const nt = us[ntIndex], request = us[ntIndex + 1], answer = us[ntIndex + 2];
+    const base = nt.call.level + 1;
+    if (request?.call.level === base && (request.call.strain === 'D' || request.call.strain === 'H')) {
+      const target: Suit = request.call.strain === 'D' ? 'H' : 'S';
+      // The acceptance does not promise a long suit. Only a subsequent
+      // natural trump rebid/raise establishes a fit for keycard purposes.
+      return us.slice(ntIndex + 3).some(entry => entry.call.strain === target && entry.call.level >= 3) ? target : undefined;
+    }
+    if (request?.call.strain === 'C' && request.call.level === base) {
+      return answer && major(answer.call.strain) && lengths[answer.call.strain] >= 4
+        && (seat !== nt.seat || us.slice(ntIndex + 3).some(entry => entry.call.strain === answer.call.strain)) ? answer.call.strain : undefined;
+    }
+    return undefined;
+  }
+  const relevant = us.filter((entry, index) => entry.call.strain !== 'NT'
+    && !secondNegative(us, index, system)
+    && !(strongClub && (index === 0 || (index === 1 && entry.call.strain === 'D'))));
+  const jacobyMajor = us[0]?.call.level === 1 && major(us[0].call.strain) && us[1]?.call.level === 2 && us[1].call.strain === 'NT' ? us[0].call.strain : undefined;
+  if (jacobyMajor && lengths[jacobyMajor] >= 3) return jacobyMajor;
+  const competitiveMinorTry = us[0]?.call.level === 1 && (us[0].call.strain === 'C' || us[0].call.strain === 'D')
+    && us[1]?.call.level === 3 && us[1].call.strain === 'NT'
+    && us[2]?.call.level === 4 && us[2].call.strain === us[0].call.strain ? us[0].call.strain : undefined;
+  if (competitiveMinorTry && lengths[competitiveMinorTry] >= 2) return competitiveMinorTry;
+  const preemptFit = us[0]?.call.level === 3 && us[0].call.strain !== 'NT'
+    && us[1]?.call.level === 3 && us[1].call.strain !== 'NT' && us[1].call.strain !== us[0].call.strain
+    && us[2]?.call.level === 4 && us[2].call.strain === us[0].call.strain ? us[0].call.strain : undefined;
+  if (preemptFit && lengths[preemptFit] >= 2) return preemptFit;
+  return (['S', 'H', 'D', 'C'] as Suit[]).find(suit => lengths[suit] >= 2
+    && new Set(relevant.filter(e => e.call.strain === suit).map(e => e.seat)).size === 2);
+}
+
+/** Declared trump for explanations: auction only, including low-card support.
+ * Filter waiting, asking and transfer calls before looking for a mutual raise.
+ */
+function declaredTrump(us: Entry[], system: BiddingSystem, genuineOpening = true): Suit | undefined {
+  const opening = us[0]; if (!opening) return undefined;
+  if (opening.call.level === 1 && major(opening.call.strain) && us[1]?.call.level === 2 && us[1].call.strain === 'NT') return opening.call.strain;
+  const nt = us.find(entry => entry.call.strain === 'NT' && entry.call.level <= 3);
+  const ntIndex = nt ? us.indexOf(nt) : -1;
+  const transfer = us[ntIndex + 1];
+  const transferSuit = nt && transfer?.call.level === nt.call.level + 1
+    ? transfer.call.strain === 'D' ? 'H' : transfer.call.strain === 'H' ? 'S' : undefined : undefined;
+  if (transferSuit && us.some(entry => entry.index > transfer.index && entry.call.strain === transferSuit && entry.call.level >= 3)) return transferSuit;
+  const staymanAnswer = us[ntIndex + 2];
+  if (nt && transfer?.call.strain === 'C' && transfer.call.level === nt.call.level + 1
+    && staymanAnswer && major(staymanAnswer.call.strain)
+    && us.some(entry => entry.index > staymanAnswer.index && entry.call.strain === staymanAnswer.call.strain)) return staymanAnswer.call.strain;
+  const natural = us.filter((entry, index) => entry.call.strain !== 'NT'
+    && !secondNegative(us, index, system)
+    && !(genuineOpening && index === 0 && ((opening.call.level === 2 && opening.call.strain === 'C' && system !== 'precision')
+      || (opening.call.level === 1 && opening.call.strain === 'C' && system === 'precision')))
+    && !(genuineOpening && index === 1 && ((opening.call.level === 2 && opening.call.strain === 'C' && entry.call.strain === 'D')
+      || (system === 'precision' && opening.call.strain === 'C' && entry.call.strain === 'D')))
+    && !(nt && entry.index > nt.index && index <= ntIndex + 2));
+  const raise = [...natural].reverse().find(entry => natural.some(before => before.index < entry.index
+    && before.seat !== entry.seat && before.call.strain === entry.call.strain));
+  if (raise && raise.call.strain !== 'NT') return raise.call.strain;
+  if (opening.call.level === 3 && opening.call.strain !== 'NT' && us[2]?.call.strain === opening.call.strain) return opening.call.strain;
+  if (opening.call.level === 1 && !major(opening.call.strain) && opening.call.strain !== 'NT'
+    && us[1]?.call.strain === 'NT' && us[1].call.level === 3 && us[2]?.call.strain === opening.call.strain && us[2].call.level === 4) return opening.call.strain;
+  return undefined;
+}
+
+/** A keycard ask can itself confirm support of partner's last natural suit.
+ * This never turns a waiting bid, cuebid, transfer or NT sequence into trump.
+ */
+function keycardTrump(us: Entry[], system: BiddingSystem, asker: Seat, auction: AuctionEntry[]): Suit | undefined {
+  const priorEnd = (us.at(-1)?.index ?? -1) + 1;
+  const questionIndex = auction.findIndex((entry, index) => index >= priorEnd && entry.seat === asker
+    && entry.call.kind === 'bid' && entry.call.level === 4 && entry.call.strain === 'NT');
+  // Decisions, public promises and hover descriptions share one auction-only
+  // agreement resolver. A private second fit must not change which king is a
+  // keycard. For a proposed ask, resolve its public meaning on the new prefix.
+  const prefix = questionIndex >= 0 ? auction.slice(0, questionIndex + 1)
+    : [...auction, { seat: asker, call: bid(4, 'NT') }];
+  const trump = publicKeycardTrumpAt(prefix, questionIndex >= 0 ? questionIndex : auction.length, system);
+  return trump && trump !== 'NT' ? trump : undefined;
+}
+
+/** Decisions consume only BiddingObservation. System ranges and forcing states are public. */
+export function chooseBid(obs: BiddingObservation, system: BiddingSystem = 'two-over-one'): Call {
+  if (system === 'natural-lite') return legacyBid(obs);
+  const { hcp, lengths, balanced } = evaluateHand(obs.hand);
+  const semantics = analyzeAuctionSemantics(obs.auction, obs.seat, system);
+  const available = (call: Call) => obs.legalCalls.some(c => sameCall(c, call));
+  let improvePass: (() => Call | undefined) | undefined;
+  let candidateValid: ((call: Call) => boolean) | undefined;
+  let preserveCompetitivePass = false;
+  const forcedFallback = (): Call => {
+    // A forcing obligation is not permission to name an arbitrary short suit.
+    // Prefer actual length or a publicly shown natural partner suit, avoiding
+    // opponent suits and artificial questions that have their own handlers.
+    const enemySuits = new Set(all.filter(e => sideOf(e.seat) !== sideOf(obs.seat)
+      && !all.some(prior => prior.index < e.index && sideOf(prior.seat) === sideOf(obs.seat)
+        && prior.call.strain === e.call.strain)).map(e => e.call.strain));
+    const partnerSuits = us.filter(e => e.seat === partnerOf(obs.seat) && e.call.strain !== 'NT'
+      && !enemySuits.has(e.call.strain) && !(e.call.level === 2 && e.call.strain === 'C' && e === opening && naturalOpening));
+    const candidates = obs.legalCalls.filter((c): c is Bid => c.kind === 'bid' && candidateValid?.(c) !== false
+      && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: c }], obs.auction.length, system).artificial);
+    const score = (c: Bid) => c.strain === 'NT'
+      ? (balanced && [...enemySuits].every(hasStopper) ? 9 : 0) - c.level * 2
+      : lengths[c.strain] * 2 + (partnerSuits.some(e => e.call.strain === c.strain) ? 4 : 0)
+        - (enemySuits.has(c.strain) ? 15 : 0) - c.level * 2;
+    return candidates.sort((a, b) => score(b) - score(a) || bidValue(a) - bidValue(b))[0] ?? PASS;
+  };
+  const safePass = (): Call => {
+    if (semantics.mustBid) return forcedFallback();
+    const improved = improvePass?.();
+    return improved && available(improved) && candidateValid?.(improved) !== false ? improved : PASS;
+  };
+  const pick = (...calls: Call[]): Call => calls.find(call => available(call) && candidateValid?.(call) !== false) ?? safePass();
+  const cheapest = (strain: Strain, maximum = 7): Call | undefined => {
+    for (let level = 1; level <= maximum; level++) if (available(bid(level, strain))) return bid(level, strain);
+  };
+  const sorted = [...SUITS].sort((a, b) => lengths[b] - lengths[a] || SUITS.indexOf(b) - SUITS.indexOf(a));
+  const naturalMajorOrder = (['H', 'S'] as Suit[]).sort((a, b) => lengths[b] - lengths[a]
+    || (lengths[a] === 4 ? SUITS.indexOf(a) - SUITS.indexOf(b) : SUITS.indexOf(b) - SUITS.indexOf(a)));
+  const longest = sorted[0]; const openingMajor = sorted.find(suit => major(suit) && lengths[suit] >= 5);
+  const gameSuitOrder = [...sorted].sort((a, b) => Number(major(b)) - Number(major(a)));
+  const minor = lengths.C === lengths.D ? (lengths.C === 3 ? 'C' : 'D') : lengths.C > lengths.D ? 'C' : 'D';
+  const saycOpeningStrength = hcp >= 13 || (hcp === 12 && lengths[sorted[0]] + lengths[sorted[1]] >= 8);
+  const hasStopper = (strain: Strain) => strain === 'NT' || obs.hand.some(c => c.suit === strain && (c.rank === 14 || (c.rank === 13 && lengths[c.suit] >= 2) || (c.rank === 12 && lengths[c.suit] >= 3)));
+  const ntShapeSuitable = balanced || SUITS.every(suit => lengths[suit] >= 2);
+  const reasonablePreemptSuit = (suit: Suit) => {
+    const ranks = obs.hand.filter(card => card.suit === suit).map(card => card.rank);
+    return ranks.filter(rank => rank >= 10).length >= 2 && ranks.some(rank => rank >= 12);
+  };
+  const all = entries(obs.auction); const us = all.filter(e => sideOf(e.seat) === sideOf(obs.seat));
+  const opening = us[0]; const response = us[1]; const p = us.filter(e => e.seat === partnerOf(obs.seat)).at(-1);
+  const own = us.filter(e => e.seat === obs.seat); const last = all.at(-1);
+  const partnerHasAction = obs.auction.some(entry => entry.seat === partnerOf(obs.seat) && entry.call.kind !== 'pass');
+  const naturalOpening = !!opening && all[0]?.index === opening.index;
+  const range = (call: Bid): [number, number] => call.level === 2 ? system === 'precision' ? [22, 23] : [20, 21] : system === 'precision' ? [13, 15] : [15, 17];
+  const responder = opening ? partnerOf(opening.seat) : null;
+  const isOpener = opening?.seat === obs.seat;
+  const partnerPublic = publicPlayerConstraints(obs.auction, partnerOf(obs.seat), system);
+  const ownPublic = publicPlayerConstraints(obs.auction, obs.seat, system);
+  const enemyShownSuits = [...new Set(all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat))
+    .flatMap(entry => {
+      const meaning = publicCallMeaningAt(obs.auction, entry.index, system);
+      if (meaning.role === 'michaels' || meaning.role === 'unusual')
+        return SUITS.filter(suit => (meaning.suitMinimums[suit] ?? 0) > 0);
+      return entry.call.strain !== 'NT' && !meaning.artificial ? [entry.call.strain as Suit] : [];
+    }))];
+  const partnerTrumpMinimum = (trump: Suit): number => partnerPublic.suitMinimums[trump];
+  const fitPoints = (trump: Suit, promised = partnerTrumpMinimum(trump)) => evaluateSuitFit(obs.hand, trump, promised).totalPoints;
+  const supportMinimum = (trump: Suit) => publicSupportMinimum(trump, lengths[trump], partnerPublic);
+  const acceptedSupportFloor = (trump: Suit): number => {
+    if (!p || p.call.strain !== trump || p.call.level !== gameLevel(trump)
+      || isArtificialBidAt(obs.auction, p.index, system)) return 0;
+    const accepted = publicCallMeaningAt(obs.auction, p.index, system).jointSupportFloor;
+    if (!accepted || accepted.trump !== trump) return 0;
+    const invitation = own.findLast(entry => entry.index < p.index);
+    if (!invitation || invitation.call.strain !== trump || atGame(invitation.call)
+      || accepted.invitationIndex !== invitation.index
+      || obs.auction.slice(invitation.index + 1, p.index).some(entry => entry.call.kind === 'bid')) return 0;
+    const meaning = publicCallMeaningAt(obs.auction, invitation.index, system);
+    if (!meaning.invitation || !meaning.supportRange || meaning.supportRange.trump !== trump) return 0;
+    const sourcePartner = publicPlayerConstraints(obs.auction.slice(0, invitation.index), p.seat, system);
+    const sourceOwn = publicPlayerConstraints(obs.auction.slice(0, invitation.index + 1), obs.seat, system);
+    if (sourceOwn.suitMinimums[trump] + sourcePartner.suitMinimums[trump] < 8) return 0;
+    // Acceptance guarantees the card's combined game threshold. The inviter
+    // knows only its own surplus over the declared floor; partner's actual
+    // length or strength is neither needed nor inferred from the game call.
+    const declaredFloor = publicSupportMinimum(trump, sourcePartner.suitMinimums[trump], sourceOwn);
+    const surplus = fitPoints(trump, sourcePartner.suitMinimums[trump]) - declaredFloor;
+    return surplus >= 0 ? accepted.total + surplus : 0;
+  };
+  const supportTotal = (trump: Suit) => Math.max(fitPoints(trump) + supportMinimum(trump), acceptedSupportFloor(trump));
+  const possiblePartnerKeys = (trump: Suit, counts: number[], raw = partnerPublic.hcpRange): number[] => {
+    const ownKeys = countKeycards(obs.hand, trump);
+    const missingPoints = [
+      ...SUITS.filter(suit => !obs.hand.some(card => card.suit === suit && card.rank === 14)).map(() => 4),
+      ...(obs.hand.some(card => card.suit === trump && card.rank === 13) ? [] : [3]),
+    ].sort((a, b) => b - a);
+    return counts.filter(keys => keys + ownKeys <= 5
+      && (!raw || raw.min <= 40 - hcp - missingPoints.slice(keys).reduce((sum, points) => sum + points, 0))
+      && (!raw || raw.max >= [...missingPoints].reverse().slice(0, keys).reduce((sum, points) => sum + points, 0)));
+  };
+  const ntInvitationAccept = (invitationMinimum: number): boolean => {
+    if (hcp + invitationMinimum >= 25) return true;
+    // A marginal game exception needs an establishment source and an outside
+    // entry. A bare five-card suit or scattered defensive honors is insufficient.
+    return hcp >= 16 && SUITS.some(suit => lengths[suit] >= 5
+      && [14, 13, 12].every(rank => obs.hand.some(card => card.suit === suit && card.rank === rank))
+      && obs.hand.some(card => card.suit === suit && (card.rank === 11 || card.rank === 10))
+      && obs.hand.some(card => card.suit !== suit && card.rank === 14));
+  };
+  const trumpAnchorSafe = (trump: Suit): boolean => obs.hand.some(card => card.suit === trump && card.rank >= 12)
+    || !!(opening && opening.seat === partnerOf(obs.seat) && opening.call.level >= 2
+      && opening.call.strain === trump && trump !== 'C');
+  const ownControl = (suit: Suit): boolean => lengths[suit] <= 1
+    || obs.hand.some(card => card.suit === suit && (card.rank === 14 || card.rank === 13 && lengths[suit] >= 2));
+  const slamEntrySafe = (trump: Suit): boolean => {
+    // A fast game opposite Jacoby denies extras; Jxxxx is not a sound ask
+    // merely because shortness and extra trumps inflate the point total.
+    const sideControls = SUITS.filter(suit => suit !== trump && (ownControl(suit)
+      || (partnerPublic.suitMaximums?.[suit] ?? 13) <= 1
+      || partnerPublic.controlSuits?.[suit]));
+    // Short support may ask about partner's trump honors. A player declaring
+    // its own long suit needs an honor anchor before distribution starts a try.
+    return trumpAnchorSafe(trump) && sideControls.length === 3;
+  };
+  const clubKeycardStopSafe = (trump: Suit): boolean => {
+    if (trump !== 'C') return true;
+    const ownKeys = countKeycards(obs.hand, trump);
+    const possibilities = possiblePartnerKeys(trump, [0, 1, 2, 3, 4, 5]);
+    return possibilities.length > 0 && possibilities.every(keys => {
+      // A 1/4 reply is five clubs itself and can always be passed. Every
+      // other reply crosses that safe stop, so both key and queen risks
+      // must already allow a small slam; four own keys alone is not enough.
+      if (keys === 1 || keys === 4) return true;
+      const total = ownKeys + keys;
+      return total >= 4 && (hasTrumpQueen(obs.hand, trump)
+        || total === 5 && lengths[trump] + partnerTrumpMinimum(trump) >= 10);
+    });
+  };
+  const canAskKeycards = (trump: Suit): boolean => lengths[trump] + partnerTrumpMinimum(trump) >= 8
+    && supportTotal(trump) >= 33 && slamEntrySafe(trump) && available(bid(4, 'NT'))
+    && clubKeycardStopSafe(trump) && keycardTrump(us, system, obs.seat, obs.auction) === trump;
+  const controlProbe = (trump: Suit): Bid | undefined => {
+    if (!major(trump) || !trumpAnchorSafe(trump) || supportTotal(trump) < 33) return undefined;
+    return SUITS.map(suit => bid(4, suit)).find(candidate => {
+      if (candidate.strain === trump || !ownControl(candidate.strain as Suit) || !available(candidate)) return false;
+      const meaning = publicControlCueAt([...obs.auction, { seat: obs.seat, call: candidate }], obs.auction.length, system);
+      return meaning?.trump === trump && (meaning.supportMinimum === undefined
+        || fitPoints(trump) >= meaning.supportMinimum);
+    });
+  };
+  candidateValid = call => {
+    if (call.kind === 'double') {
+      const kind = classifyDoubleAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system);
+      if (kind === 'lead-directing' && last?.call.strain !== 'NT' && last) {
+        const ranks = obs.hand.filter(card => card.suit === last.call.strain).map(card => card.rank);
+        const aceKing = ranks.length >= 3 && ranks.includes(14) && ranks.includes(13);
+        const strongFour = ranks.length >= 4 && ranks.filter(rank => rank >= 10).length >= 3
+          && ranks.some(rank => rank >= 12);
+        const connectedFive = ranks.length >= 5 && ranks.includes(12)
+          && (ranks.includes(14) || ranks.includes(13) || ranks.includes(11));
+        if (hcp < 8 || !(aceKing || strongFour || connectedFive)) return false;
+      }
+      if (kind === 'penalty' && last?.call.strain === 'NT' && last.call.level === 1) {
+        const quick = SUITS.reduce((total, suit) => {
+          const ranks = obs.hand.filter(card => card.suit === suit).map(card => card.rank);
+          return total + (ranks.includes(14) ? ranks.includes(13) ? 2 : ranks.includes(12) && ranks.length >= 2 ? 1.5 : 1
+            : ranks.includes(13) && ranks.length >= 2 ? ranks.includes(12) ? 1 : 0.5 : 0);
+        }, 0);
+        if (hcp < 15 || quick < 3) return false;
+      }
+      return true;
+    }
+    if (call.kind !== 'bid') return true;
+    const meaning = publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system);
+    if (!meaning.defined || meaning.role.startsWith('unmapped-')) return false;
+    if (call.level === 4 && major(call.strain) && naturalOpening && isOpener
+      && opening.call.level >= 2 && opening.call.strain === call.strain && lengths[call.strain] <= 6
+      && partnerPublic.suitMaximums?.[call.strain] !== undefined && partnerPublic.suitMaximums[call.strain]! <= 1
+      && p && p.call.strain !== 'NT' && p.call.strain !== call.strain && lengths[p.call.strain] >= 2) return false;
+    if (meaning.role === 'cue' && p?.call.strain === 'NT' && isNaturalNoTrumpAt(obs.auction, p.index, system)
+      && enemyShownSuits.length > 0 && enemyShownSuits.every(suit => partnerPublic.stopperSources.some(source => source.suit === suit))
+      && !meaning.supportRange && semantics.forcing !== 'game') return false;
+    const selfGame = meaning.selfLongGameQualification;
+    if (selfGame && hcp < selfGame.normalHcpMinimum) {
+      let quickTricks = 0, losingTricks = 0;
+      for (const suit of SUITS) {
+        const ranks = obs.hand.filter(card => card.suit === suit).map(card => card.rank);
+        const ace = ranks.includes(14), king = ranks.includes(13), queen = ranks.includes(12);
+        quickTricks += ace ? king ? 2 : queen && ranks.length >= 2 ? 1.5 : 1
+          : king && ranks.length >= 2 ? queen ? 1 : 0.5 : 0;
+        losingTricks += (ranks.length >= 1 && !ace ? 1 : 0)
+          + (ranks.length >= 2 && !king ? 1 : 0) + (ranks.length >= 3 && !queen ? 1 : 0);
+      }
+      if (hcp < selfGame.minHcp || lengths[selfGame.primarySuit] < selfGame.minPrimaryLength
+        || lengths[selfGame.secondarySuit] < selfGame.minSecondaryLength
+        || quickTricks < selfGame.minQuickTricks || losingTricks > selfGame.maxLosingTricks
+        || !SUITS.filter(suit => suit !== selfGame.primarySuit).every(ownControl)) return false;
+    }
+    const longNT = meaning.longMinorNTAlternative;
+    if (longNT && !balanced) {
+      const ranks = obs.hand.filter(card => card.suit === longNT.suit).map(card => card.rank);
+      const seven = hcp >= longNT.minHcp && ranks.length >= longNT.minLength
+        && [14, 13, 12].every(rank => ranks.includes(rank))
+        && obs.hand.filter(card => card.suit !== longNT.suit && card.rank === 14).length >= longNT.minSideAces;
+      const profile = longNT.sixCardSource;
+      const six = profile && hcp >= profile.minHcp && ranks.length >= profile.minLength
+        && (ranks.includes(14) && ranks.includes(13)
+          || ranks.includes(14) && ranks.includes(12) && ranks.length === 6
+            && [...Object.values(lengths)].sort((a, b) => b - a).join('') === '6322'
+          || ranks.filter(rank => rank >= 12).length >= profile.alternativeMinQueenHigher
+            && ranks.filter(rank => rank >= 10).length >= profile.alternativeMinTenHigher)
+        && SUITS.filter(suit => suit !== longNT.suit
+          && obs.hand.some(card => card.suit === suit && card.rank >= 13)).length >= profile.minSideAKSuits;
+      if (!seven && !six) return false;
+    }
+    const minorShape = meaning.minorInvitationShape;
+    if (minorShape && !(lengths[minorShape.primary] >= minorShape.ordinaryLength
+      || lengths[minorShape.primary] >= 5 && lengths[minorShape.secondary] >= minorShape.secondaryMinimum
+        && lengths[minorShape.originalMajor] <= minorShape.maxOriginal)) return false;
+    const compensation = meaning.playingSourceCompensation;
+    if (compensation) {
+      const ranks = obs.hand.filter(card => card.suit === compensation.suit).map(card => card.rank);
+      const king = ranks.filter(rank => rank >= 13).length;
+      const queen = ranks.filter(rank => rank >= 12).length;
+      const ten = ranks.filter(rank => rank >= 10).length;
+      const ordinary = hcp >= compensation.normalHcpMinimum
+        && king >= (compensation.normalMinKingOrAce ?? 0)
+        && queen >= (compensation.normalMinQueenOrHigher ?? 0)
+        && ten >= (compensation.normalMinTenOrHigher ?? 0);
+      const playingSource = hcp >= compensation.minHcp && ranks.length >= compensation.minLength
+        && king >= compensation.minKingOrAce && queen >= compensation.minQueenOrHigher
+        && ten >= compensation.minTenOrHigher
+        && (!compensation.maxOtherSuitLength
+          || lengths[compensation.maxOtherSuitLength.suit] <= compensation.maxOtherSuitLength.max);
+      // These are alternative public qualifications. Adding an outside honor
+      // cannot invalidate a six-card source that qualified at eight points.
+      const extra = compensation.extraLongAlternative;
+      const extraLong = !!extra && hcp >= extra.minHcp && ranks.length >= extra.minLength
+        && king >= extra.minKingOrAce && queen >= extra.minQueenOrHigher && ten >= extra.minTenOrHigher;
+      if (!ordinary && !playingSource && !extraLong) return false;
+    }
+    if (SUITS.some(suit => lengths[suit] < (meaning.suitMinimums[suit] ?? 0))) return false;
+    if (SUITS.some(suit => lengths[suit] > (meaning.suitMaximums?.[suit] ?? 13))) return false;
+    const marginalNtAcceptance = call.strain === 'NT' && call.level === 3 && hcp === 16
+      && p?.call.strain === 'NT' && p.call.level === 2
+      && own.some(entry => entry.call.strain === 'NT' && entry.call.level === 1)
+      && ntInvitationAccept(partnerPublic.hcpRange?.min ?? 0);
+    const candidateHcpMinimum = meaning.hcpRange && compensation && hcp < compensation.normalHcpMinimum
+      && meaning.hcpRange.min <= compensation.normalHcpMinimum
+      ? Math.min(meaning.hcpRange.min, compensation.minHcp) : meaning.hcpRange?.min;
+    const declaresInvitationRange = meaning.invitation && (call.strain !== 'NT' || call.level < 4);
+    const firstNaturalSuit = !meaning.artificial && call.strain !== 'NT'
+      && own.every(entry => entry.call.strain === 'NT' || isArtificialBidAt(obs.auction, entry.index, system));
+    if (!marginalNtAcceptance && meaning.hcpRange
+      && (hcp < candidateHcpMinimum! && (declaresInvitationRange || firstNaturalSuit || candidateHcpMinimum! > (ownPublic.hcpRange?.min ?? -1))
+        || hcp > meaning.hcpRange.max && (declaresInvitationRange || firstNaturalSuit || meaning.hcpRange.max < (ownPublic.hcpRange?.max ?? 41)))) return false;
+    if (meaning.supportRange) {
+      // A new declaration is checked against the prefix, never against its
+      // own advertised floor fed back through publicPlayerConstraints.
+      const points = fitPoints(meaning.supportRange.trump);
+      if (points < meaning.supportRange.min || points > meaning.supportRange.max) return false;
+    }
+    if (meaning.jointSupportFloor && supportTotal(meaning.jointSupportFloor.trump) < meaning.jointSupportFloor.total)
+      return false;
+    if (meaning.strictBalancedShapeFamily && !meaning.strictBalancedShapeFamily
+      .includes([...Object.values(lengths)].sort((a, b) => b - a).join('') as '4333' | '4432' | '5332')) return false;
+    if (meaning.allowedShapeFamily && !meaning.allowedShapeFamily
+      .includes([...Object.values(lengths)].sort((a, b) => b - a).join('') as '4333' | '4432' | '5332' | '6322' | '5422')) return false;
+    if (meaning.role === 'natural-repeat' && !semantics.mustBid && p && p.index === last?.index
+      && p.call.strain !== 'NT' && call.strain !== 'NT' && p.call.strain !== call.strain
+      && !isArtificialBidAt(obs.auction, p.index, system)) {
+      const currentFit = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain);
+      if (lengths[call.strain] <= 5 && (currentFit >= 7 || lengths[call.strain] <= 4
+        && publicCallMeaningAt(obs.auction, p.index, system).role === 'natural-preference')
+        && lengths[call.strain] + partnerTrumpMinimum(call.strain) < currentFit
+        && supportTotal(call.strain) < (major(call.strain) ? 25 : 29)) return false;
+    }
+    if (major(call.strain) && call.level === 4 && !meaning.artificial && meaning.role !== 'stayman-answer'
+      && lengths[call.strain] + partnerTrumpMinimum(call.strain) < 8
+      && !selfGame
+      && !(semantics.mustBid && own.length === 0 && meaning.role === 'takeout-minimum-response'
+        && lengths[call.strain] >= 4)
+      && !(semantics.forcing === 'game' && !available(bid(3, 'NT')) && meaning.role === 'natural-repeat'
+        && lengths[call.strain] >= 5 && own.some(entry => entry.call.strain === call.strain
+          && !isArtificialBidAt(obs.auction, entry.index, system)))
+      && !(lengths[call.strain] >= 6 && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+        && obs.hand.filter(card => card.suit === call.strain && card.rank >= 12).length >= 2
+        && obs.hand.filter(card => card.suit === call.strain && card.rank >= 10).length >= 3
+        && own.some(entry => entry.call.strain === call.strain && !isArtificialBidAt(obs.auction, entry.index, system)))
+      && !(semantics.mustBid && meaning.role === 'natural-repeat' && lengths[call.strain] >= 6
+        && own.some(entry => entry.call.strain === call.strain && !isArtificialBidAt(obs.auction, entry.index, system)))
+      && !(meaning.hcpRange && meaning.hcpRange.min >= 19 && lengths[call.strain] >= 6)
+      && !(p && p.call.strain !== 'NT' && lengths[p.call.strain] <= 1 && hcp >= 12
+        && lengths[call.strain] >= 6 && reasonablePreemptSuit(call.strain)
+        && (lengths[call.strain] > lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain)
+          || lengths[p.call.strain] === 0 && hcp >= 13 && lengths[call.strain] >= partnerTrumpMinimum(p.call.strain) - 1
+            && !own.some(entry => entry.call.strain === call.strain && !isArtificialBidAt(obs.auction, entry.index, system))))
+      && !(p && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+        && p.call.strain !== 'NT' && p.call.strain !== call.strain && lengths[p.call.strain] <= 1
+        && lengths[call.strain] >= 6 && lengths[call.strain] > lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain)
+        && own.some(entry => entry.call.strain === call.strain && !isArtificialBidAt(obs.auction, entry.index, system)))) return false;
+    if (call.strain !== 'NT' && !major(call.strain) && call.level === 4 && !semantics.mustBid
+      && meaning.role === 'natural-repeat' && lengths[call.strain] + partnerTrumpMinimum(call.strain) < 8
+      && hcp < 16 && (opening?.call.level ?? 0) < 2
+      // An original opener can compete at the lowest four-minor level on
+      // a genuine seven-card source. This promises no partner support or game.
+      && !(naturalOpening && isOpener && opening.call.level === 1 && opening.call.strain === call.strain
+        && hcp >= 12 && lengths[call.strain] >= 7 && !available(bid(3, call.strain))
+        && last && sideOf(last.seat) !== sideOf(obs.seat)
+        && last.call.level === 3 && last.call.strain !== 'NT' && last.call.strain !== call.strain
+        && !isArtificialBidAt(obs.auction, last.index, system)
+        && obs.hand.filter(card => card.suit === call.strain && card.rank >= 12).length >= 2
+        && obs.hand.filter(card => card.suit === call.strain && card.rank >= 10).length >= 3)
+      && !(p && p.call.strain !== 'NT' && p.call.strain !== call.strain && lengths[call.strain] >= 6
+        && lengths[call.strain] > lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain))) return false;
+    if (call.strain !== 'NT' && !meaning.artificial && !semantics.mustBid
+      && meaning.role === 'natural-repeat' && naturalOpening && isOpener && opening.call.strain === call.strain
+      && call.level >= 3 && !major(call.strain)
+      && lengths[call.strain] + partnerTrumpMinimum(call.strain) < 8
+      && last && sideOf(last.seat) !== sideOf(obs.seat) && enemyShownSuits.length) {
+      const ranks = obs.hand.filter(card => card.suit === call.strain).map(card => card.rank);
+      const goodSix = ranks.length >= 6 && ranks.filter(rank => rank >= 10).length >= 3
+        && (ranks.filter(rank => rank >= 12).length >= 2 || hcp >= 16 && ranks.some(rank => rank >= 13));
+      const longThreeLevelSource = call.level === 3 && ranks.length >= 7
+        && ranks.some(rank => rank >= 13) && ranks.filter(rank => rank >= 10).length >= 2;
+      if (!goodSix && !longThreeLevelSource) return false;
+    }
+    if (call.strain !== 'NT' && !meaning.artificial && !semantics.mustBid && !major(call.strain)
+      && call.level >= 4 && firstNaturalSuit && lengths[call.strain] < 6
+      && meaning.forcing !== 'game' && meaning.role !== 'takeout-strong-rebid'
+      && lengths[call.strain] + partnerTrumpMinimum(call.strain) < 8) return false;
+    if (call.strain !== 'NT' && !meaning.artificial && !selfGame && partnerHasAction
+      && call.level === gameLevel(call.strain) && lengths[call.strain] + partnerTrumpMinimum(call.strain) >= 8
+      && supportTotal(call.strain) < (major(call.strain) ? 25 : 29)
+      && semantics.forcing !== 'game'
+      && !(semantics.mustBid && meaning.role === 'takeout-minimum-response' && call.level === 4)) return false;
+    const keycardSequence = us.some(entry => entry.call.strain === 'NT' && entry.call.level === 4
+      && publicKeycardTrumpAt(obs.auction, entry.index, system) === call.strain);
+    if (major(call.strain) && call.level === 5 && !meaning.artificial && !semantics.mustBid
+      && !keycardSequence && (lengths[call.strain] + partnerTrumpMinimum(call.strain) < 9
+        || supportTotal(call.strain) < 29 || !trumpAnchorSafe(call.strain))) return false;
+    if (call.strain !== 'NT' && call.level >= 6 && !meaning.artificial && !keycardSequence) {
+      const counts = possiblePartnerKeys(call.strain, [0, 1, 2, 3, 4, 5]);
+      const keys = countKeycards(obs.hand, call.strain) + (counts.length ? Math.min(...counts) : 0);
+      if (lengths[call.strain] + partnerTrumpMinimum(call.strain) < 8 || supportTotal(call.strain) < 33
+        || !slamEntrySafe(call.strain) || keys < 4
+        || !hasTrumpQueen(obs.hand, call.strain)
+          && !(keys === 5 && lengths[call.strain] + partnerTrumpMinimum(call.strain) >= 10)) return false;
+    }
+    if (call.strain === 'NT' && !meaning.artificial) {
+      if (call.level === 5 && meaning.intent !== 'grand-inv') return false;
+      if (call.level === 2 && !meaning.invitation && !semantics.mustBid
+        && own.some(entry => entry.call.strain === 'NT')
+        && !noTrumpRangeAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system)) return false;
+
+      const quantitativeAnswer = p?.call.strain === 'NT' && p.call.level === 4
+        && !isArtificialBidAt(obs.auction, p.index, system)
+        && publicCallMeaningAt(obs.auction, p.index, system).intent === 'invitation';
+      const ourPublishedNtRange = quantitativeAnswer ? latestNoTrumpRange(obs.auction, obs.seat, system, p.index) : undefined;
+      // A public quantitative invitation includes the raw floor needed to
+      // reach33 opposite our announced maximum; waiting2D itself contributes
+      // no points. Derive it from that earlier platform, never this6NT bid.
+      const rawPartnerMinimum = Math.max(partnerPublic.hcpRange?.min ?? 0,
+        ourPublishedNtRange ? 33 - ourPublishedNtRange.max : 0);
+      if (call.level >= 6 && hcp + rawPartnerMinimum < (call.level === 7 ? 37 : 33)
+        && !(p?.call.strain === 'NT' && p.call.level === 5
+          && publicCallMeaningAt(obs.auction, p.index, system).intent === 'grand-inv' && call.level === 6)) return false;
+      if (meaning.intent === 'invitation' && call.level === 4 || meaning.intent === 'grand-inv' && call.level === 5) {
+        const partnerRange = latestNoTrumpRange(obs.auction, partnerOf(obs.seat), system);
+        const threshold = call.level === 4 ? 33 : 37, minimum = call.level === 4 ? 31 : 35;
+        if (!ntShapeSuitable || !partnerRange || hcp + partnerRange.min < minimum || hcp + partnerRange.max < threshold) return false;
+      }
+      if (call.level === 2 && naturalOpening && isOpener && own.length === 1 && !p
+        && last?.call.strain === 'NT' && sideOf(last.seat) !== sideOf(obs.seat)) {
+        const contract = publicOpenerNTOverNTAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system);
+        if (!contract || !contract.shapeFamily.includes([...Object.values(lengths)]
+          .sort((a, b) => b - a).join('') as '4333' | '4432' | '5332' | '6322')
+          || !SUITS.every(hasStopper)) return false;
+      }
+      if (call.level === 2 && meaning.invitation && !ntShapeSuitable
+        && !(partnerPublic.strictBalancedShapeFamily
+          && (lengths[longest] <= 4 || meaning.hcpRange?.min === 8 && meaning.hcpRange.max === 9))) return false;
+      if (call.level === 2 && isOpener && own.length >= 2 && !meaning.invitation && !semantics.mustBid
+        && !ntShapeSuitable && (SUITS.some(suit => lengths[suit] === 0)
+          || sorted.filter(suit => lengths[suit] >= 5).length >= 2)) return false;
+
+      // A real NT partner retains its length promises after a search. Outside
+      // such a platform, a void still needs a public control/stopper before
+      // the generic game shortcut may choose NT over our established source.
+      if (call.level === 3 && !partnerPublic.strictBalancedShapeFamily && SUITS.some(suit => lengths[suit] === 0
+        && partnerTrumpMinimum(suit) < 5 && !partnerPublic.controlSuits?.[suit]
+        && !partnerPublic.stopperSources.some(source => source.suit === suit))) return false;
+
+    }
+    return !meaning.stopperSources.some(source => source.seat === obs.seat
+      && source.index === obs.auction.length && !hasStopper(source.suit));
+  };
+
+  const decide = (): Call => {
+  // Converting partner's technical X is an affirmative defensive decision.
+  // The competition chooser checks the actual trump stack and outside tricks;
+  // the public helper only checks that this auction permits conversion.
+  if (system === 'sayc' && publicPenaltyConversionBefore(obs.auction, obs.seat, system)
+    && chooseCompetitiveCall(obs, system)?.kind === 'pass') {
+    preserveCompetitivePass = true;
+    return PASS;
+  }
+  if (system === 'sayc' && naturalOpening && isOpener && own.length === 1 && opening.call.level === 1
+    && major(opening.call.strain) && lengths[opening.call.strain as Suit] >= 7
+    && p?.call.level === 1 && p.call.strain === 'NT' && isNaturalNoTrumpAt(obs.auction, p.index, system)
+    && obs.auction.at(-1)?.call.kind === 'double'
+    && classifyDoubleAt(obs.auction, obs.auction.length - 1, system) === 'penalty')
+    return pick(bid(2, opening.call.strain));
+  const weakNegative = publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: PASS }], obs.auction.length, system);
+  if (hcp <= 3 && weakNegative.role === 'strong-club-negative-pass') return PASS;
+  if (naturalOpening && isOpener && opening.call.level >= 2 && opening.call.strain !== 'NT'
+    && p && p.index === last?.index && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain
+    && partnerPublic.suitMaximums?.[opening.call.strain] !== undefined
+    && partnerPublic.suitMaximums[opening.call.strain]! <= 1 && lengths[p.call.strain] >= 3
+    && partnerTrumpMinimum(p.call.strain) >= 4
+    && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8 && !semantics.mustBid) return PASS;
+  if (semantics.convention === 'reverse' && p) {
+    const majorInquiry = naturalMajorOrder.filter(suit => lengths[suit] >= 4
+      && !own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system)))
+      .map(suit => cheapest(suit, 2)).find(call => call && candidateValid?.(call) !== false
+        && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'fourth-suit');
+    if (majorInquiry) return majorInquiry;
+  }
+  if (semantics.convention === 'reverse' && p && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+    && enemyShownSuits.every(suit => hasStopper(suit) || partnerPublic.stopperSources.some(source => source.suit === suit))
+    && available(bid(3, 'NT')) && candidateValid?.(bid(3, 'NT')) !== false) return bid(3, 'NT');
+  if (semantics.convention === 'fourth-suit' && p && p.call.strain !== 'NT' && hasStopper(p.call.strain)) {
+    const nt = hcp >= 15 ? bid(3, 'NT') : cheapest('NT', 3);
+    if (nt && candidateValid?.(nt) !== false) return nt;
+  }
+  if (hcp <= 3 && semantics.mustBid) {
+    const negative = obs.legalCalls.find(call => {
+      if (call.kind !== 'bid') return false;
+      const meaning = publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system);
+      return meaning.artificial && meaning.defined && meaning.hcpRange?.min === 0 && meaning.hcpRange.max === 3
+        && candidateValid?.(call) !== false;
+    });
+    if (negative) return negative;
+  }
+  if (!p && partnerHasAction && !own.length && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25) {
+    if (balanced && enemyShownSuits.every(hasStopper) && available(bid(3, 'NT'))
+      && candidateValid?.(bid(3, 'NT')) !== false) return bid(3, 'NT');
+    const inquiry = enemyShownSuits.map(suit => cheapest(suit, 3)).find(call => call
+      && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'cue'
+      && candidateValid?.(call) !== false);
+    if (inquiry) return inquiry;
+  }
+  if (system === 'sayc' && publicInterruptedStaymanBefore(obs.auction, obs.seat, system)) {
+    const answer = chooseCompetitiveCall(obs, system);
+    if (answer && available(answer) && candidateValid?.(answer) !== false) return answer;
+  }
+  if (system === 'sayc' && ['unusual-advance', 'michaels-inquiry'].includes(semantics.convention)) {
+    const answer = chooseCompetitiveCall(obs, system);
+    const shown = SUITS.filter(suit => partnerTrumpMinimum(suit) >= 5);
+    if (answer?.kind === 'bid' && shown.includes(answer.strain as Suit)
+      && available(answer) && candidateValid?.(answer) !== false) return answer;
+    const selection = [...shown].sort((a, b) => lengths[b] - lengths[a] || SUITS.indexOf(a) - SUITS.indexOf(b))
+      .map(suit => cheapest(suit, 4)).find(call => call && candidateValid?.(call) !== false);
+    if (selection) return selection;
+  }
+  const ownTakeoutIndex = obs.auction.findLastIndex((entry, index) => entry.seat === obs.seat
+    && isTakeoutDoubleAt(obs.auction, index));
+  if (ownTakeoutIndex >= 0 && !own.length) {
+    const enemy = all.findLast(entry => entry.index < ownTakeoutIndex && sideOf(entry.seat) !== sideOf(obs.seat));
+    const redoubled = obs.auction.slice(ownTakeoutIndex + 1).some(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+      && entry.call.kind === 'redouble');
+    if (redoubled && enemy?.call.strain !== 'NT' && enemy && lengths[enemy.call.strain] <= 2) {
+      const escape = sorted.filter(suit => suit !== enemy.call.strain && lengths[suit] >= 4)
+        .map(suit => cheapest(suit, 2)).filter((call): call is Bid => !!call)
+        .sort((a, b) => bidValue(a) - bidValue(b)).find(call => candidateValid?.(call) !== false);
+      if (escape) return escape;
+    }
+    if (p && p.index === last?.index && hcp >= 17) {
+      const natural = sorted.filter(suit => lengths[suit] >= 5 && !enemyShownSuits.includes(suit))
+        .map(suit => cheapest(suit, 4)).find(call => call && candidateValid?.(call) !== false
+          && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'takeout-strong-rebid');
+      if (natural) return natural;
+    }
+  }
+  if (!last) {
+    if (system === 'precision') {
+      if (balanced && hcp >= 22 && hcp <= 23) return pick(bid(2, 'NT'));
+      if (hcp >= 16) return pick(bid(1, 'C'));
+      if (hcp >= 11) {
+        if (openingMajor) return pick(bid(1, openingMajor));
+        if (balanced && hcp >= 13) return pick(bid(1, 'NT'));
+        if (lengths.C >= 6 || (lengths.C === 5 && (lengths.H === 4 || lengths.S === 4))) return pick(bid(2, 'C'));
+        if (lengths.D <= 1 && lengths.H >= 3 && lengths.S >= 3 && lengths.C >= 4) return pick(bid(2, 'D'));
+        return pick(bid(1, 'D'));
+      }
+    } else {
+      if (system === 'sayc' && balanced && hcp >= 25 && hcp <= 27) return pick(bid(3, 'NT'));
+      if (hcp >= 22) return pick(bid(2, 'C'));
+      if (balanced && hcp >= 20 && hcp <= 21) return pick(bid(2, 'NT'));
+      if (balanced && hcp >= 15 && hcp <= 17) return pick(bid(1, 'NT'));
+      if (system === 'sayc' ? saycOpeningStrength : hcp >= 12) return pick(bid(1, openingMajor ?? minor));
+    }
+    const openingPosition = obs.auction.length + 1;
+    const weakTwoShape = openingPosition <= 3 && (['H', 'S'] as Suit[]).every(suit => suit === longest
+      || lengths[suit] < (openingPosition === 3 ? 5 : 4));
+    if (system === 'sayc' && openingPosition <= 3 && hcp >= 5 && hcp <= 10 && lengths[longest] >= 8) return pick(bid(4, longest));
+    if (system === 'sayc' && openingPosition <= 3 && hcp >= 5 && hcp <= 10 && lengths[longest] >= 7 && reasonablePreemptSuit(longest)) return pick(bid(3, longest));
+    if (system === 'sayc' && weakTwoShape && hcp >= 5 && hcp <= 11 && lengths[longest] >= 6 && longest !== 'C' && reasonablePreemptSuit(longest)) return pick(bid(2, longest));
+    if (system !== 'sayc' && weakTwoShape && hcp >= 6 && hcp <= 10 && lengths[longest] >= 6 && (system === 'precision' ? major(longest) : longest !== 'C')) return pick(bid(2, longest));
+    if (system !== 'sayc' && openingPosition <= 3 && hcp >= 6 && hcp <= 10 && lengths[longest] >= 7) return pick(bid(3, longest));
+    return safePass();
+  }
+
+  // Precision's opening inquiries and strong-club negative rebids are
+  // pending protocols. Their numeric NT/fit-looking calls cannot be
+  // consumed by generic game scoring or weak-misfit escape logic.
+  if (naturalOpening && system === 'precision' && opening && p
+    && !intervened(obs.auction, obs.seat, opening.index)) {
+    if (opening.call.level === 1 && opening.call.strain === 'C') {
+      if (obs.seat === responder && !own.length) {
+        if (hcp <= 7) return pick(bid(1, 'D'));
+        if (openingMajor) return pick(bid(1, openingMajor));
+        if (lengths[longest] >= 5) return pick(bid(2, longest));
+        return pick(bid(hcp >= 14 ? 2 : 1, 'NT'));
+      }
+      if (isOpener && us.length === 2 && response) {
+        if (response.call.strain === 'D' && response.call.level === 1) {
+          if (balanced) return pick(bid(hcp >= 24 ? 3 : hcp >= 19 ? 2 : 1, 'NT'));
+          const suit = openingMajor ?? sorted.find(suit => major(suit) && lengths[suit] >= 4) ?? longest;
+          return pick(cheapest(suit, 3) ?? safePass());
+        }
+        if (response.call.strain === 'NT' && balanced) {
+          const total = hcp + (partnerPublic.hcpRange?.min ?? 0);
+          if (total >= 33) return pick(bid(total >= 37 ? 7 : 6, 'NT'));
+        }
+        if (response.call.strain !== 'NT' && lengths[response.call.strain] >= (major(response.call.strain) ? 3 : 4))
+          return pick(bid(gameLevel(response.call.strain), response.call.strain), bid(3, 'NT'));
+        if (!balanced && openingMajor) return pick(cheapest(openingMajor, 3) ?? bid(3, 'NT'));
+        return pick(bid(3, 'NT'));
+      }
+      if (obs.seat === responder && us.length === 3 && response?.call.strain === 'D' && response.call.level === 1) {
+        const platform = p.call.strain === 'NT' ? noTrumpRangeAt(obs.auction, p.index, system) : undefined;
+        if (platform && balanced) {
+          const minimum = hcp + platform.min, maximum = hcp + platform.max;
+          if (minimum >= 37) return pick(bid(7, 'NT'));
+          if (minimum >= 35 && maximum >= 37) return pick(bid(5, 'NT'));
+          if (minimum >= 33) return pick(bid(6, 'NT'));
+          if (minimum >= 31 && maximum >= 33) return pick(bid(4, 'NT'));
+          if (minimum >= 25) return pick(bid(3, 'NT'));
+        }
+        if (p.call.strain === 'NT') return p.call.level === 2 && hcp >= 6 ? pick(bid(3, 'NT'))
+          : p.call.level === 1 && hcp >= 7 ? pick(bid(2, 'NT')) : safePass();
+        if (major(p.call.strain) && lengths[p.call.strain] >= 3 && hcp >= 5) return pick(bid(2, p.call.strain));
+        if (hcp >= 5 && lengths.S >= 4 && available(bid(1, 'S'))) return bid(1, 'S');
+        return hcp >= 5 ? pick(bid(1, 'NT')) : safePass();
+      }
+    }
+    if (opening.call.level === 2 && (opening.call.strain === 'C' || opening.call.strain === 'D')) {
+      const clubs = opening.call.strain === 'C'; const ask = clubs ? bid(2, 'D') : bid(2, 'NT');
+      if (obs.seat === responder && !own.length) {
+        if (hcp >= 11) return pick(ask);
+        if (clubs && lengths.C >= 3 && hcp >= 6) return pick(bid(3, 'C'));
+        if (!clubs) { const suit = lengths.S >= lengths.H ? 'S' : 'H'; if (lengths[suit] >= 4) return pick(bid(2, suit)); }
+        return safePass();
+      }
+      if (isOpener && us.length === 2 && response && sameCall(response.call, ask)) {
+        if (clubs) return lengths.H >= 4 ? pick(bid(2, 'H')) : lengths.S >= 4 ? pick(bid(2, 'S'))
+          : hcp >= 14 ? pick(bid(2, 'NT')) : pick(bid(3, 'C'));
+        return pick(bid(3, lengths.D === 0 ? 'D' : lengths.H === 3 ? 'H' : lengths.S === 3 ? 'S' : 'C'));
+      }
+      if (obs.seat === responder && us.length === 3 && response && sameCall(response.call, ask)) {
+        const shownMajor = clubs ? major(p.call.strain) ? p.call.strain : null
+          : lengths.S >= 4 && p.call.strain !== 'S' ? 'S' : lengths.H >= 4 && p.call.strain !== 'H' ? 'H' : null;
+        if (shownMajor && lengths[shownMajor] >= 4)
+          return pick(bid(supportTotal(shownMajor) >= 25 ? 4 : 3, shownMajor));
+        return clubs && hcp < 14 ? pick(bid(3, 'C'), bid(3, 'NT')) : pick(bid(3, 'NT'), bid(4, 'C'));
+      }
+    }
+  }
+
+  // Answer an outstanding NT question before competition or strength/fit
+  // scoring. A lead-directing double of the artificial request does not
+  // turn a transfer into natural support or cancel Stayman's answer.
+  const strongNtPlatform = naturalOpening && (system === 'sayc' || system === 'two-over-one')
+    && opening?.call.level === 2 && opening.call.strain === 'C'
+    && response?.call.level === 2 && response.call.strain === 'D' && us[2]?.call.strain === 'NT'
+    ? us[2] : undefined;
+  const questionNt = opening?.call.strain === 'NT' && isNaturalNoTrumpAt(obs.auction, opening.index, system)
+    && !obs.auction.slice(0, opening.index).some(entry => sideOf(entry.seat) === sideOf(obs.seat)
+      && entry.call.kind !== 'pass')
+    ? opening : strongNtPlatform;
+  const questionEntries = questionNt ? us.slice(us.indexOf(questionNt)) : [];
+  const question = questionEntries[1];
+  const publicQuestion = p && publicNoTrumpQuestionAt(obs.auction, p.index, system);
+  if (publicQuestion && publicQuestion.platform.seat === obs.seat && publicQuestion.platform.call.level <= 3
+    && obs.auction.slice(publicQuestion.request.index + 1).every(entry => entry.call.kind === 'pass'
+      || entry.call.kind === 'double')) {
+    if (publicQuestion.kind === 'stayman') return pick(bid(publicQuestion.request.call.level,
+      lengths.H >= 4 ? 'H' : lengths.S >= 4 ? 'S' : 'D'));
+    if (publicQuestion.kind === 'transfer') return pick(bid(publicQuestion.request.call.level, publicQuestion.target!));
+    return pick(bid(3, 'C'));
+  }
+  const relay = p && publicWeakMinorRelayAt(obs.auction, p.index, system);
+  if (relay?.stage === 'acceptance' && relay.request.seat === obs.seat && p?.index === last?.index) {
+    return lengths.D >= 6 && lengths.D > lengths.C ? pick(bid(3, 'D')) : PASS;
+  }
+  if (questionNt && question?.call.strain === 'C' && question.seat === obs.seat
+    && questionEntries.length === 3 && p && p.index === last?.index && major(p.call.strain)
+    && lengths[p.call.strain] >= 4 && publicCallMeaningAt(obs.auction, p.index, system).role === 'stayman-answer') {
+    const minimum = noTrumpRangeAt(obs.auction, questionNt.index, system)?.min ?? 0;
+    if (fitPoints(p.call.strain, 4) + minimum >= 25) return pick(bid(4, p.call.strain));
+    return questionNt.call.level === 1 && hcp >= 8 && hcp <= 9
+      ? pick(bid(3, p.call.strain)) : PASS;
+  }
+  if (p && p.index === last?.index && p.call.level === 3 && major(p.call.strain)
+    && own.some(entry => entry.call.strain === p.call.strain
+      && publicCallMeaningAt(obs.auction, entry.index, system).role === 'stayman-other-major-invitation')
+    && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+    && supportTotal(p.call.strain) >= 25) return pick(bid(4, p.call.strain));
+
+  // A lead double of the artificial opening does not show a natural enemy
+  // suit. Keep waiting and opener's first description ahead of generic fit
+  // scoring, which must never count artificial 2C as a club fit.
+  // First responses to genuine NT retain transfers and Stayman even when
+  // raw game values are already known. Waiting 2D is not an earlier natural
+  // response to the strong opener's newly established NT platform.
+  const firstNtPlatform = questionNt?.seat === partnerOf(obs.seat) && questionEntries.length === 1
+    ? questionNt : !own.length && !obs.auction.some(entry => entry.seat === obs.seat
+      && entry.call.kind !== 'pass') && p?.call.strain === 'NT' && p.call.level <= 2
+      && isNaturalNoTrumpAt(obs.auction, p.index, system) ? p : undefined;
+  if (firstNtPlatform && firstNtPlatform.call.level <= 2
+    && obs.auction.slice(firstNtPlatform.index + 1).every(entry => entry.call.kind === 'pass')) {
+    const base = firstNtPlatform.call.level + 1;
+    const platformRange = noTrumpRangeAt(obs.auction, firstNtPlatform.index, system);
+    if (openingMajor) return pick(bid(base, openingMajor === 'H' ? 'D' : 'H'));
+    const numericInquiryMinimum = platformRange
+      ? Math.max(0, 25 - (firstNtPlatform.call.level === 1 ? platformRange.max : platformRange.min)) : 8;
+    // The default overcall still uses the card's constructive eight-point
+    // Stayman route. A possible18-point maximum does not silently add a
+    // seven-point inquiry whose subsequent invitation has no public contract.
+    const majorInquiryMinimum = system === 'sayc' && !naturalOpening && firstNtPlatform === opening
+      && firstNtPlatform.call.level === 1 ? Math.max(8, numericInquiryMinimum) : numericInquiryMinimum;
+    if ((lengths.H >= 4 || lengths.S >= 4) && hcp >= majorInquiryMinimum)
+      return pick(bid(base, 'C'));
+    if (system === 'sayc' && firstNtPlatform.call.level === 1 && hcp < majorInquiryMinimum
+      && (lengths.C >= 6 || lengths.D >= 6)) return pick(bid(2, 'S'));
+  }
+  if (p && own.some(entry => {
+    const request = publicNoTrumpQuestionAt(obs.auction, entry.index, system);
+    return request?.kind === 'transfer' && request.platform.seat === p.seat
+      && request.target === p.call.strain && entry.index < p.index;
+  })
+    && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 33 && sorted.filter(suit => lengths[suit] >= 5).length >= 2) {
+    const second = sorted.filter(suit => !major(suit) && lengths[suit] >= 5)
+      .map(suit => cheapest(suit, 4)).find(call => call && candidateValid?.(call) !== false
+        && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).artificial);
+    if (second) return second;
+  }
+  const initialNaturalResponse = !!(naturalOpening && opening.call.level === 1
+    && opening.call.strain !== 'NT' && p?.index === opening.index && !own.length
+    && !obs.auction.some(entry => entry.seat === obs.seat && entry.call.kind !== 'pass'));
+  const quietInitialResponse = initialNaturalResponse && !intervened(obs.auction, obs.seat, opening.index);
+  if (system === 'sayc' && quietInitialResponse && major(opening.call.strain)
+    && passedBefore(obs.auction, obs.seat, opening.index) && hcp >= 5 && hcp <= 12
+    && lengths[opening.call.strain as Suit] <= 2 && balanced
+    && !naturalMajorOrder.some(suit => suit !== opening.call.strain && lengths[suit] >= 4 && available(bid(1, suit))))
+    return pick(bid(1, 'NT'));
+  const firstMajorDescription = initialNaturalResponse && naturalMajorOrder.some(suit =>
+    suit !== opening.call.strain && !enemyShownSuits.includes(suit) && lengths[suit] >= 4 && available(bid(1, suit)));
+  const firstResponseStructure = quietInitialResponse && (firstMajorDescription
+    || major(opening.call.strain) && !passedBefore(obs.auction, obs.seat, opening.index)
+      && (hcp >= 13 || lengths[opening.call.strain] >= 4 && fitPoints(opening.call.strain) >= 13));
+  const quietStrongClub = naturalOpening && (system === 'sayc' || system === 'two-over-one')
+    && opening?.call.level === 2 && opening.call.strain === 'C'
+    && !obs.auction.slice(opening.index + 1).some(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+      && entry.call.kind === 'bid');
+  if (quietStrongClub && obs.seat === responder && !own.length) return pick(bid(2, 'D'));
+  if (quietStrongClub && isOpener && us.length === 2 && response?.call.level === 2 && response.call.strain === 'D') {
+    if (balanced) return pick(bid(hcp >= 25 ? 3 : 2, 'NT'));
+    if (lengths[longest] === 4) {
+      const minor = (['D', 'C'] as Suit[]).find(suit => lengths[suit] >= 4);
+      if (minor) return pick(bid(3, minor));
+    }
+    return pick(cheapest(longest, 3) ?? safePass());
+  }
+
+  // Jacoby's requested shortness/extras description precedes generic slam
+  // scoring. Its artificial 2NT is not a natural invitation to accept.
+  if (naturalOpening && isOpener && own.length === 1 && opening.call.level === 1
+    && major(opening.call.strain) && response?.call.level === 2 && response.call.strain === 'NT'
+    && isArtificialBidAt(obs.auction, response.index, system)
+    && !passedBefore(obs.auction, response.seat, opening.index)) {
+    const short = sorted.find(suit => suit !== opening.call.strain && lengths[suit] <= 1);
+    if (short) return pick(bid(3, short));
+    return pick(hcp >= 18 ? bid(3, opening.call.strain) : hcp >= 15 ? bid(3, 'NT') : bid(4, opening.call.strain));
+  }
+
+  // An outstanding keycard question must be answered before a competitive
+  // module can release an ordinary natural obligation into Pass.
+  if (p?.call.strain === 'NT' && p.call.level === 4 && p.index === last?.index) {
+    const fit = keycardTrump(us.slice(0, -1), system, p.seat, obs.auction);
+    if (fit) {
+      const answer = rkcb1430Response(countKeycards(obs.hand, fit), hasTrumpQueen(obs.hand, fit));
+      return pick(answer);
+    }
+    const quantitativeRange = latestNoTrumpRange(obs.auction, obs.seat, system, p.index);
+    if (isNaturalNoTrumpAt(obs.auction, p.index, system) || !isArtificialBidAt(obs.auction, p.index, system))
+      return ntShapeSuitable && quantitativeRange
+        && (hcp >= quantitativeRange.max || hcp + (partnerPublic.hcpRange?.min ?? 0) >= 33)
+        ? pick(bid(6, 'NT')) : PASS;
+  }
+  const precedingKeyAsk = us.findLast(entry => entry.call.strain === 'NT' && entry.call.level === 4
+    && p && entry.index < p.index);
+  const precedingKeyTrump = precedingKeyAsk && keycardTrump(us.filter(entry => entry.index < precedingKeyAsk.index), system, precedingKeyAsk.seat, obs.auction);
+  if (p?.call.strain === 'NT' && p.call.level === 5 && p.index === last?.index && !precedingKeyTrump
+    && publicCallMeaningAt(obs.auction, p.index, system).intent === 'grand-inv') {
+    const ownRange = latestNoTrumpRange(obs.auction, obs.seat, system, p.index);
+    // A quantitative grand invitation opposite a defined NT band asks the
+    // maximum to reach the 37-HCP grand threshold. Its minimum is already
+    // committed to small slam; it cannot Pass the five-NT invitation.
+    const invitationFloor = ownRange ? Math.max(partnerPublic.hcpRange?.min ?? 0, 37 - ownRange.max) : 0;
+    return pick(bid(ownRange && hcp >= ownRange.max && hcp + invitationFloor >= 37 ? 7 : 6, 'NT'));
+  }
+
+  // A penalty conversion is a decision to defend, not a request to correct
+  // to our long suit. It precedes all natural escape/strength shortcuts.
+  const latestPartnerAction = obs.auction.findLastIndex(entry => entry.seat === partnerOf(obs.seat)
+    && entry.call.kind !== 'pass');
+  if (latestPartnerAction >= 0 && classifyDoubleAt(obs.auction, latestPartnerAction, system) === 'penalty'
+    && !obs.auction.slice(latestPartnerAction + 1).some(entry => entry.call.kind === 'bid')) return PASS;
+
+  const partnerControl = p && publicControlCueAt(obs.auction, p.index, system);
+  if (partnerControl && p?.index === last?.index) {
+    if (canAskKeycards(partnerControl.trump)) return bid(4, 'NT');
+    const continuation = controlProbe(partnerControl.trump); if (continuation) return continuation;
+    // A control question remains artificial and game forcing. Declining a
+    // try means playing the agreed major, never passing the side-suit cue.
+    return pick(cheapest(partnerControl.trump, 5) ?? forcedFallback());
+  }
+  if (p && p.index === last?.index && p.call.level === 4 && major(p.call.strain)
+    && !isArtificialBidAt(obs.auction, p.index, system)
+    && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+    && supportTotal(p.call.strain) >= 33
+    && !us.some(entry => entry.call.level === 4 && entry.call.strain === 'NT')) {
+    if (canAskKeycards(p.call.strain)) return bid(4, 'NT');
+    const cue = controlProbe(p.call.strain); if (cue) return cue;
+  }
+
+  if (!p && partnerHasAction && own.length === 1 && naturalOpening && opening.call.level === 1
+    && opening.call.strain !== 'NT' && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+    && !SUITS.some(suit => major(suit) && lengths[suit] + partnerTrumpMinimum(suit) >= 8
+      && supportTotal(suit) >= 25)
+    && !enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit))) {
+    const inquiry = enemyShownSuits.map(suit => cheapest(suit, 3)).find(call => call
+      && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'cue'
+      && candidateValid?.(call) !== false);
+    if (inquiry) return inquiry;
+  }
+  const partnerMeaning = p && publicCallMeaningAt(obs.auction, p.index, system);
+  if (!p && partnerHasAction && own.length && last && sideOf(last.seat) !== sideOf(obs.seat)
+    && last.call.level <= 3 && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25) {
+    const game = naturalMajorOrder.find(suit => lengths[suit] >= 7
+      && own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system))
+      && obs.hand.filter(card => card.suit === suit && card.rank >= 12).length >= 3
+      && available(bid(4, suit)) && candidateValid?.(bid(4, suit)) !== false);
+    if (game) return bid(4, game);
+  }
+
+  if (p && partnerMeaning?.role === 'strong-minor-control-trial' && p.call.strain !== 'NT') {
+    if (canAskKeycards(p.call.strain)) return pick(bid(4, 'NT'));
+    return pick(cheapest(p.call.strain, 5) ?? forcedFallback());
+  }
+
+  if (semantics.mustBid && p && !isArtificialBidAt(obs.auction, p.index, system)) {
+    const ownLongMajor = naturalMajorOrder.find(suit => lengths[suit] >= 6
+      && own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system))
+      && available(bid(4, suit)) && !available(bid(3, suit))
+      && candidateValid?.(bid(4, suit)) !== false);
+    if (ownLongMajor) return bid(4, ownLongMajor);
+  }
+
+  // This is a public, previously game-forcing return to our own minor.
+  // Show the long suit and every side control before asking about keys.
+  for (const trump of ['C', 'D'] as Suit[]) {
+    const trial = bid(4, trump);
+    if (!available(trial)) continue;
+    const contract = publicStrongMinorTrialAt([...obs.auction, { seat: obs.seat, call: trial }], obs.auction.length, system);
+    if (contract && lengths[trump] >= contract.ownMinimum
+      && fitPoints(trump, contract.partnerMinimum) >= contract.supportMinimum
+      && contract.controlSuits.every(ownControl) && candidateValid?.(trial) !== false) return trial;
+  }
+  if (p && p.call.strain !== 'NT' && acceptedSupportFloor(p.call.strain) >= 33
+    && countKeycards(obs.hand, p.call.strain) >= 4 && hasTrumpQueen(obs.hand, p.call.strain)
+    && slamEntrySafe(p.call.strain) && available(bid(6, p.call.strain))) return bid(6, p.call.strain);
+  if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+    && opening.call.strain !== 'NT' && !major(opening.call.strain) && hcp >= 19
+    && lengths.H < 4 && lengths.S < 4
+    && available(bid(3, 'NT')) && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: bid(3, 'NT') }], obs.auction.length, system).longMinorNTAlternative
+    && candidateValid?.(bid(3, 'NT')) !== false) return bid(3, 'NT');
+  const supportiveCue = !!(p && partnerMeaning?.role === 'cue'
+    && ['overcall-cue', 'competitive-cue'].includes(semantics.convention)
+    && partnerMeaning.supportRange && own.some(entry => entry.call.strain === partnerMeaning.supportRange!.trump
+      && !isArtificialBidAt(obs.auction, entry.index, system)));
+  const completedNtAnswer = !!(p && ['stayman-answer', 'transfer-acceptance', 'stayman-denial']
+    .includes(partnerMeaning?.role ?? '') && us.some(entry => entry.seat === p.seat
+      && entry.index < p.index && isNaturalNoTrumpAt(obs.auction, entry.index, system)));
+  const publicNaturalContinuation = !!p && (!isArtificialBidAt(obs.auction, p.index, system) || completedNtAnswer);
+  const supportedDescription = supportiveCue || partnerMeaning?.role === 'jacoby-rebid'
+    || partnerMeaning?.role === 'weak-feature-answer';
+  const knownMajorGame = (): Suit | undefined => (partnerMeaning?.role === 'stayman-other-major-game-force'
+    && p && major(p.call.strain) ? [p.call.strain, ...gameSuitOrder.filter(suit => suit !== p.call.strain)] : gameSuitOrder)
+    .find(suit => major(suit)
+    && lengths[suit] + partnerTrumpMinimum(suit) >= 8
+    && supportTotal(suit) >= 25 && available(bid(4, suit)) && candidateValid?.(bid(4, suit)) !== false);
+  if (p && partnerMeaning?.role === 'cue' && !knownMajorGame()
+    && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && available(bid(3, 'NT'))
+    && enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit))
+    && candidateValid?.(bid(3, 'NT')) !== false) return bid(3, 'NT');
+  for (const suit of ['C', 'D'] as Suit[]) {
+    const invitation = bid(3, suit);
+    if (available(invitation) && publicSecondaryMinorInvitationAt([...obs.auction, { seat: obs.seat, call: invitation }], obs.auction.length, system)
+      && candidateValid?.(invitation) !== false) return invitation;
+  }
+  if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+    && p && p.index === last?.index && hcp >= 19 && !knownMajorGame() && opening.call.strain !== 'NT') {
+    const jump = sorted.filter(suit => suit !== opening.call.strain && suit !== response.call.strain && lengths[suit] >= 4)
+      .map(suit => cheapest(suit, 2)).filter((call): call is Bid => !!call)
+      .map(call => bid(call.level + 1, call.strain)).find(call => available(call) && candidateValid?.(call) !== false
+        && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).forcing === 'game');
+    if (jump) return jump;
+  }
+  if (naturalOpening && isOpener && own.length === 1 && opening.call.strain !== 'NT'
+    && !major(opening.call.strain) && hcp >= 16 && lengths[opening.call.strain] >= 6
+    && obs.hand.filter(card => card.suit === opening.call.strain && card.rank >= 13).length >= 2
+    && last && sideOf(last.seat) !== sideOf(obs.seat)) {
+    if (hcp >= 17) {
+      const reverse = naturalMajorOrder.filter(suit => lengths[suit] >= 4 && !enemyShownSuits.includes(suit))
+        .map(suit => cheapest(suit, 2)).find(call => call && candidateValid?.(call) !== false
+          && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).forcing === 'one-round');
+      if (reverse) return reverse;
+    }
+    const repeat = cheapest(opening.call.strain, 3);
+    if (repeat && candidateValid?.(repeat) !== false) return repeat;
+  }
+  if (!knownMajorGame() && available(bid(3, 'C'))) {
+    const invitation = publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: bid(3, 'C') }], obs.auction.length, system);
+    if (invitation.minorInvitationShape && candidateValid?.(bid(3, 'C')) !== false) return bid(3, 'C');
+  }
+  if (!knownMajorGame()) {
+    const minor = sorted.filter(suit => !major(suit)).map(suit => bid(3, suit)).find(call => {
+      if (!available(call) || candidateValid?.(call) === false) return false;
+      const contract = publicNTNewMinorAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system);
+      return !!contract && hcp >= contract.minimum && hcp <= contract.maximum
+        && lengths[call.strain as Suit] >= contract.length;
+    });
+    if (minor) return minor;
+  }
+  if (p && semantics.convention === 'fourth-suit' && isOpener
+    && p.call.strain !== 'NT' && hasStopper(p.call.strain) && !knownMajorGame()) {
+    const answer = hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 ? bid(3, 'NT') : cheapest('NT', 3);
+    if (answer && candidateValid?.(answer) !== false) return answer;
+  }
+  const strongStopCue = enemyShownSuits.map(suit => bid(3, suit)).find(call => available(call)
+    && publicStrongTakeoutStopCueAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system)
+    && candidateValid?.(call) !== false);
+  if (strongStopCue) return strongStopCue;
+  if (hcp >= 11 && lengths.S >= 5 && lengths.H >= 5 && available(bid(3, 'H'))
+    && publicStrictNTTwoMajorAt([...obs.auction, { seat: obs.seat, call: bid(3, 'H') }], obs.auction.length, system)
+    && candidateValid?.(bid(3, 'H')) !== false) return bid(3, 'H');
+  if (naturalOpening && isOpener && opening.call.strain !== 'NT' && major(opening.call.strain)
+    && p && p.index === last?.index && p.call.strain === opening.call.strain && p.call.level === 2
+    && lengths[opening.call.strain] + partnerTrumpMinimum(opening.call.strain) === 7
+    && hcp >= 18 && ntShapeSuitable && !semantics.mustBid && available(bid(2, 'NT'))
+    && candidateValid?.(bid(2, 'NT')) !== false) return bid(2, 'NT');
+  if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+    && p?.index === response.index && major(response.call.strain) && lengths[response.call.strain] >= 4
+    && lengths[response.call.strain] + partnerTrumpMinimum(response.call.strain) >= 8
+    && !knownMajorGame() && available(bid(3, response.call.strain))) {
+    const invitation = bid(3, response.call.strain);
+    const meaning = publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: invitation }], obs.auction.length, system);
+    if (meaning.invitation && meaning.supportRange && candidateValid?.(invitation) !== false) return invitation;
+  }
+  if (p && p.index === last?.index && own.length === 1 && own.some(entry =>
+    publicCallMeaningAt(obs.auction, entry.index, system).role === 'cue')) {
+    const continuation = sorted.map(suit => cheapest(suit, 3)).find(candidate => candidate
+      && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: candidate }], obs.auction.length, system).role === 'takeout-cue-continuation'
+      && candidateValid?.(candidate) !== false);
+    if (continuation) return continuation;
+  }
+  if (naturalOpening && !isOpener && own.length === 1 && opening.call.level === 1
+    && opening.call.strain !== 'NT' && !major(opening.call.strain) && response?.seat === obs.seat && response.call.level === 1
+    && major(response.call.strain) && p?.index === last?.index && p.call.level === 2
+    && p.call.strain !== 'NT' && p.call.strain === opening.call.strain && lengths[p.call.strain] <= 1 && hcp >= 6) {
+    const second = naturalMajorOrder.find(suit => suit !== response.call.strain && lengths[suit] >= 4
+      && available(bid(2, suit)) && candidateValid?.(bid(2, suit)) !== false
+      && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: bid(2, suit) }], obs.auction.length, system).forcing === 'one-round');
+    if (second) return bid(2, second);
+  }
+  if (naturalOpening && !isOpener && own.length === 1 && p && p.index === last?.index
+    && hcp >= 10 && hcp <= 12 && !knownMajorGame()) {
+    const invitation = naturalMajorOrder.map(suit => bid(3, suit)).find(call => lengths[call.strain as Suit] >= 6
+      && available(call) && candidateValid?.(call) !== false
+      && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).invitation);
+    if (invitation) return invitation;
+  }
+  if (naturalOpening && !isOpener && own.length === 1 && opening.call.level === 1
+    && opening.call.strain === 'S' && response?.call.level === 1 && response.call.strain === 'NT'
+    && p?.index === last?.index && p.call.level === 2 && p.call.strain !== 'NT'
+    && lengths.S <= 1 && lengths.H >= 5 && available(bid(2, 'H'))
+    && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: bid(2, 'H') }], obs.auction.length, system).role === 'semi-nt-new-major'
+    && candidateValid?.(bid(2, 'H')) !== false) return bid(2, 'H');
+  if (naturalOpening && !isOpener && own.length === 1 && opening.call.level === 1
+    && opening.call.strain === 'S' && response?.call.level === 1 && response.call.strain === 'NT'
+    && p?.index === last?.index && p.call.level === 2 && p.call.strain === 'S'
+    && lengths.S <= 1 && lengths.H >= 6 && available(bid(3, 'H'))
+    && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: bid(3, 'H') }], obs.auction.length, system).role === 'semi-nt-major-escape'
+    && candidateValid?.(bid(3, 'H')) !== false) return bid(3, 'H');
+  if (naturalOpening && !isOpener && own.length === 1 && p?.index === last?.index
+    && opening.call.level === 2 && opening.call.strain !== 'NT' && p.call.level === 3
+    && p.call.strain === opening.call.strain && lengths[p.call.strain] <= 1 && hcp >= 16
+    && (publicCallMeaningAt(obs.auction, opening.index, system).hcpRange?.max ?? 40) <= 11
+    && !SUITS.some(suit => lengths[suit] + partnerTrumpMinimum(suit) >= 8)) {
+    const correction = (['C', 'D'] as Suit[]).filter(suit => lengths[suit] >= 4)
+      .map(suit => cheapest(suit, 4)).filter((candidate): candidate is Bid => !!candidate)
+      .sort((a, b) => bidValue(a) - bidValue(b)).find(candidate => candidate.level === 4
+        && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: candidate }], obs.auction.length, system).role === 'weak-preempt-minor-correction'
+        && candidateValid?.(candidate) !== false);
+    if (correction) return correction;
+  }
+  if (p && semantics.convention === 'fourth-suit' && isOpener
+    && p.call.strain !== 'NT' && hasStopper(p.call.strain) && !knownMajorGame()) {
+    const answer = hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 ? bid(3, 'NT') : cheapest('NT', 3);
+    if (answer && candidateValid?.(answer) !== false) return answer;
+  }
+  if (p && p.index === last?.index && !atGame(p.call) && semantics.forcing === 'game'
+    && !isOpener && own.length && !ntShapeSuitable && !knownMajorGame()
+    && !isArtificialBidAt(obs.auction, p.index, system)) {
+    // Strong two-minor hands can describe their other real five before NT,
+    // while retaining three-NT space. A weak GF hand cannot invent a fourth
+    // suit or jump to four clubs just because it also holds five clubs.
+    const otherMinor = hcp >= 13 && lengths.C >= 5 && lengths.D >= 5
+      ? (['C', 'D'] as Suit[]).map(suit => ({ suit, call: cheapest(suit, 4) }))
+        .find(({ suit, call }) => !own.some(entry => entry.call.strain === suit) && call
+          && candidateValid?.(call) !== false) : undefined;
+    if (otherMinor?.call) return otherMinor.call;
+    const original = own.findLast(entry => entry.call.strain !== 'NT'
+      && !isArtificialBidAt(obs.auction, entry.index, system));
+    const repeat = original && lengths[original.call.strain as Suit] >= 5 ? cheapest(original.call.strain, 3) : undefined;
+    if (repeat && candidateValid?.(repeat) !== false) return repeat;
+  }
+  const pendingFourthSuit = naturalOpening && opening.call.strain !== 'NT' && !isOpener && own.length === 1 && us.length === 3
+    && hcp >= 10 && ntShapeSuitable && response && response.call.strain !== 'NT' && p && p.call.strain !== 'NT'
+    && !knownMajorGame()
+    && new Set(us.map(entry => entry.call.strain)).size === 3
+    && SUITS.some(suit => !us.some(entry => entry.call.strain === suit) && available(bid(2, suit)));
+  // A strong NT rebid has not yet heard responder's long second minor.
+  // Describe it naturally before closing a privately inferred minor fit;
+  // the earlier five-card major and NT opener's two cards remain only seven.
+  if (naturalOpening && !isOpener && own.length === 1 && response?.call.level === 1
+    && response.call.strain !== 'NT' && p?.call.level === 2 && p.call.strain === 'NT'
+    && p.index === last?.index && isNaturalNoTrumpAt(obs.auction, p.index, system)
+    && (noTrumpRangeAt(obs.auction, p.index, system)?.min ?? 0) >= 18 && hcp >= 10
+    && !ntShapeSuitable && !(['H', 'S'] as Suit[]).some(suit => lengths[suit] + partnerTrumpMinimum(suit) >= 8)) {
+    const second = sorted.find(suit => !major(suit) && suit !== opening.call.strain
+      && suit !== response.call.strain && lengths[suit] >= 6 && available(bid(3, suit)));
+    if (second) return bid(3, second);
+  }
+  if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+    && opening.call.strain !== 'NT' && !major(opening.call.strain) && lengths[opening.call.strain] <= 3
+    && !(ntShapeSuitable && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+      && enemyShownSuits.every(suit => hasStopper(suit) || partnerPublic.stopperSources.some(source => source.suit === suit)))) {
+    const cheapMajor = naturalMajorOrder.find(suit => suit !== response.call.strain && lengths[suit] >= 4
+      && !enemyShownSuits.includes(suit) && available(bid(1, suit)) && candidateValid?.(bid(1, suit)) !== false);
+    if (cheapMajor) return bid(1, cheapMajor);
+  }
+  if (p && !atGame(p.call) && !firstResponseStructure && !pendingFourthSuit
+    && !initialNaturalResponse && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+    && !knownMajorGame() && enemyShownSuits.length && !isArtificialBidAt(obs.auction, p.index, system)
+    && !enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit))) {
+    const inquiry = enemyShownSuits.map(suit => cheapest(suit, 3)).find(call => call
+      && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'cue'
+      && candidateValid?.(call) !== false);
+    if (inquiry) return inquiry;
+  }
+
+  if (p && p.index === last?.index && (p.call.strain === 'C' || p.call.strain === 'D')
+    && !atGame(p.call) && !knownMajorGame() && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+    && fitPoints(p.call.strain) >= 16 && (partnerPublic.hcpRange?.min ?? 0) >= 10
+    && own.some(entry => major(entry.call.strain) && lengths[entry.call.strain] >= 6
+      && lengths[entry.call.strain] + partnerTrumpMinimum(entry.call.strain) < 8)) {
+    if (supportTotal(p.call.strain) >= 33 && canAskKeycards(p.call.strain)) return bid(4, 'NT');
+    const target = bid(supportTotal(p.call.strain) >= 29 ? 5 : 4, p.call.strain);
+    if (available(target) && candidateValid?.(target) !== false) return target;
+  }
+  // A supportive cue asks for a natural description; already known game
+  // strength is a valid answer and must precede the lowest repeat shortcut.
+  if (p && !atGame(p.call) && !firstResponseStructure && !pendingFourthSuit
+    && (initialNaturalResponse || obs.auction.some(entry => entry.seat === obs.seat && entry.call.kind !== 'pass'))
+    && (supportedDescription || publicNaturalContinuation && (!semantics.mustBid || completedNtAnswer))) {
+    const partnerPublic = publicPlayerConstraints(obs.auction, partnerOf(obs.seat), system);
+    const trump = gameSuitOrder.find(suit => partnerTrumpMinimum(suit) > 0
+      && lengths[suit] + partnerTrumpMinimum(suit) >= 8
+      && supportTotal(suit)
+        >= (major(suit) ? 25 : 29));
+    if (trump) {
+      const total = supportTotal(trump);
+      if (total >= 33 && !us.some(entry => entry.call.level === 4 && entry.call.strain === 'NT')) {
+        if (canAskKeycards(trump)) return bid(4, 'NT');
+        const cue = controlProbe(trump); if (cue) return cue;
+      }
+      if (!major(trump) && ntShapeSuitable && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+        && enemyShownSuits.every(suit => hasStopper(suit) || partnerPublic.stopperSources.some(source => source.suit === suit))
+        && available(bid(3, 'NT'))) return bid(3, 'NT');
+      return pick(bid(gameLevel(trump), trump));
+    }
+  }
+
+  if (p && partnerMeaning?.role === 'cue' && !knownMajorGame()
+    && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && available(bid(3, 'NT'))
+    && enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit))
+    && candidateValid?.(bid(3, 'NT')) !== false) return bid(3, 'NT');
+
+  // The old raw-NT shortcut ran before the ordinary major-fit continuation.
+  // Resolve a real eight-card major first, after initial responses and pending
+  // inquiries, so a three-card return to partner's five beats an unseen minor.
+  if (p && !atGame(p.call) && !firstResponseStructure && !pendingFourthSuit
+    && !(semantics.forcing === 'game' && isOpener && own.length === 1)
+    && !['fourth-suit', 'new-minor', 'weak-jump-inquiry'].includes(semantics.convention)
+    && (supportedDescription || publicNaturalContinuation)) {
+    const fit = knownMajorGame();
+    if (fit) {
+      if (canAskKeycards(fit)) return bid(4, 'NT');
+      const cue = controlProbe(fit); if (cue) return cue;
+      return bid(4, fit);
+    }
+  }
+  // A completed NT search still uses the original public numeric band.
+  // Competitive or natural game shortcuts must not erase quantitative
+  // invitations when the minimum is below slam but the maximum reaches it.
+  const numericNt = us.findLast(entry => entry.seat === partnerOf(obs.seat)
+    && isNaturalNoTrumpAt(obs.auction, entry.index, system)
+    && noTrumpRangeAt(obs.auction, entry.index, system));
+  const numericRange = numericNt && noTrumpRangeAt(obs.auction, numericNt.index, system);
+  const finishedMajorSearch = !!numericNt && own.some(entry => entry.index > numericNt.index
+    && publicCallMeaningAt(obs.auction, entry.index, system).role === 'stayman')
+    && p && p.index > numericNt.index;
+  if (numericRange && ntShapeSuitable && !pendingFourthSuit && !knownMajorGame()
+    && (lengths.H < 4 && lengths.S < 4 || finishedMajorSearch || numericNt && atGame(numericNt.call))
+    && !us.some(entry => entry.call.level >= 4 && entry.call.strain === 'NT')) {
+    const minimum = hcp + numericRange.min, maximum = hcp + numericRange.max;
+    const target = minimum >= 37 ? bid(7, 'NT') : minimum >= 35 && maximum >= 37 ? bid(5, 'NT')
+      : minimum >= 33 ? bid(6, 'NT') : minimum >= 31 && maximum >= 33 ? bid(4, 'NT') : undefined;
+    if (target && available(target) && candidateValid?.(target) !== false
+      && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: target }], obs.auction.length, system).artificial)
+      return target;
+  }
+  if (p && !atGame(p.call) && !initialNaturalResponse && !firstResponseStructure && !pendingFourthSuit && !firstNtPlatform
+    && !quietStrongClub && !SUITS.some(suit => major(suit) && lengths[suit] >= 6)
+    && !(semantics.forcing === 'game' && isOpener && own.length === 1)
+    && !isArtificialBidAt(obs.auction, p.index, system) && ntShapeSuitable
+    && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+    && hcp + (partnerPublic.hcpRange?.min ?? 0) < 31
+    && enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit))
+    && available(bid(3, 'NT'))) return bid(3, 'NT');
+
+  if (naturalOpening && isOpener && own.length === 1 && opening.call.level === 1
+    && opening.call.strain !== 'NT' && hcp >= 17 && last && sideOf(last.seat) !== sideOf(obs.seat)
+    && !knownMajorGame()) {
+    const partnerNegativeIndex = obs.auction.findLastIndex((entry, index) => entry.seat === partnerOf(obs.seat)
+      && classifyDoubleAt(obs.auction, index, system) === 'negative');
+    const stopped = enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit));
+    if (partnerNegativeIndex >= 0 && ntShapeSuitable && stopped
+      && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && available(bid(3, 'NT'))
+      && candidateValid?.(bid(3, 'NT')) !== false) return bid(3, 'NT');
+    if (!response && (!major(opening.call.strain) || lengths[opening.call.strain] < 6)
+      && hcp >= 18 && ntShapeSuitable && stopped && available(bid(2, 'NT'))
+      && candidateValid?.(bid(2, 'NT')) !== false) return bid(2, 'NT');
+    const original = cheapest(opening.call.strain, 3);
+    const second = sorted.filter(suit => suit !== opening.call.strain && suit !== response?.call.strain
+      && !enemyShownSuits.includes(suit) && lengths[suit] >= 4)
+      .map(suit => cheapest(suit, 3)).find(call => call && candidateValid?.(call) !== false
+        && (response || !major(opening.call.strain) || call.kind === 'bid' && original?.kind === 'bid'
+          && call.level <= original.level));
+    if (second?.kind === 'bid') {
+      const jump = bid(second.level + 1, second.strain);
+      if (hcp >= 19 && response?.call.level === 1 && response.call.strain !== 'NT'
+        && available(jump) && candidateValid?.(jump) !== false
+        && analyzeAuctionSemantics([...obs.auction, { seat: obs.seat, call: jump }], partnerOf(obs.seat), system).convention === 'opener-jump-shift')
+        return jump;
+      return second;
+    }
+  }
+
+  // A weak escape is not an invitation to alternate the same two suits
+  // indefinitely. Stop after our voluntary correction has already rejected
+  // this partner suit, unless opponents supplied fresh competitive pressure.
+  if (p && p.index === last?.index && p.call.strain !== 'NT' && !atGame(p.call)
+    && own.length >= 2 && hcp <= 16 && !semantics.mustBid && semantics.forcing !== 'game'
+    && !isArtificialBidAt(obs.auction, p.index, system)
+    && !publicCallMeaningAt(obs.auction, p.index, system).invitation) {
+    const ownPrevious = own.at(-1)!;
+    const priorPartnerSuit = us.findLast(entry => entry.seat === p.seat && entry.index < ownPrevious.index
+      && entry.call.strain === p.call.strain && !isArtificialBidAt(obs.auction, entry.index, system));
+    if (priorPartnerSuit && ownPrevious.call.strain !== 'NT' && ownPrevious.call.strain !== p.call.strain
+      && lengths[p.call.strain] <= 1 && lengths[ownPrevious.call.strain] >= 5
+      && !analyzeAuctionSemantics(obs.auction.slice(0, ownPrevious.index), obs.seat, system).mustBid
+      && !obs.auction.slice(ownPrevious.index + 1).some(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+        && entry.call.kind === 'bid')) return PASS;
+  }
+
+  if (p && p.index === last?.index && p.call.strain !== 'NT' && !atGame(p.call)
+    && !isArtificialBidAt(obs.auction, p.index, system) && !semantics.mustBid && own.length
+    && !(isOpener && own.length === 1 && hcp >= 16)
+    && lengths[p.call.strain] <= 1) {
+    const current = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain);
+    const returnSuit = sorted.find(suit => suit !== p.call.strain && lengths[suit] >= 6 && lengths[suit] > current
+      && own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system))
+      && cheapest(suit, 3));
+    if (returnSuit) return pick(cheapest(returnSuit, 3) ?? safePass());
+  }
+  if (naturalOpening && isOpener && own.length === 1 && p && p.index === last?.index
+    && p.call.strain !== 'NT' && lengths[p.call.strain] <= 1 && !semantics.mustBid) {
+    const second = sorted.filter(suit => suit !== opening.call.strain && suit !== p.call.strain
+      && lengths[suit] >= 4 && !enemyShownSuits.includes(suit))
+      .map(suit => cheapest(suit, 2)).find(call => call && candidateValid?.(call) !== false
+        && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).artificial);
+    if (second) return second;
+  }
+  if (naturalOpening && isOpener && own.length === 1 && p && p.index === last?.index
+    && opening.call.strain !== 'NT' && major(opening.call.strain)
+    && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain && lengths[p.call.strain] <= 1
+    && lengths[opening.call.strain] === 5 && reasonablePreemptSuit(opening.call.strain)
+    && hcp < 17
+    && !semantics.mustBid && semantics.forcing !== 'game'
+    && !isArtificialBidAt(obs.auction, p.index, system)) {
+    const original = cheapest(opening.call.strain, 2); if (original) return original;
+  }
+  if (p && p.index === last?.index && publicCallMeaningAt(obs.auction, p.index, system).role === 'weak-minor-escape'
+    && !semantics.mustBid) return PASS;
+  if (p && p.call.strain !== 'NT' && p.call.level === 1 && lengths[p.call.strain] === 0
+    && latestPartnerAction === p.index && obs.auction.at(-1)?.call.kind === 'double'
+    && classifyDoubleAt(obs.auction, obs.auction.length - 1, system) === 'penalty') {
+    const escapes = sorted.filter(suit => suit !== p.call.strain && lengths[suit] >= 4)
+      .map(suit => bid(2, suit)).filter(candidate => available(candidate)
+        && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: candidate }], obs.auction.length, system).role === 'weak-doubled-escape');
+    const safe = escapes.find(candidate => !enemyShownSuits.includes(candidate.strain as Suit)) ?? escapes[0];
+    if (safe) return safe;
+  }
+  if ((!own.length || naturalOpening && isOpener && own.length === 1) && last && sideOf(last.seat) !== sideOf(obs.seat)
+    && last.call.level === 4 && hcp >= 17) {
+    const selfMajor = sorted.find(suit => major(suit) && lengths[suit] >= 6
+      && (!own.length || opening.call.strain === suit)
+      && obs.hand.filter(card => card.suit === suit && card.rank >= 11).length >= 3
+      && SUITS.filter(side => side !== suit && (lengths[side] <= 1 || hasStopper(side))).length >= 2
+      && available(bid(4, suit)));
+    if (selfMajor) return bid(4, selfMajor);
+  }
+  if (naturalOpening && p && p.index === last?.index && p.call.strain !== 'NT' && p.call.level === 2
+    && !semantics.mustBid && !isArtificialBidAt(obs.auction, p.index, system)
+    && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8) {
+    const support = fitPoints(p.call.strain), meaning = publicCallMeaningAt(obs.auction, p.index, system);
+    if (!isOpener && own.length === 1 && support >= 10 && support <= 12)
+      return pick(bid(3, p.call.strain));
+    if (isOpener && own.length === 2 && major(p.call.strain) && support >= 16 && support <= 18
+      && meaning.role === 'natural-support') return pick(bid(3, p.call.strain));
+  }
+  if (naturalOpening && p && !isOpener && own.length <= 1 && !semantics.mustBid
+    && !isArtificialBidAt(obs.auction, p.index, system)) {
+    const invitationFit = sorted.find(suit => lengths[suit] + partnerTrumpMinimum(suit) >= 8
+      && fitPoints(suit) >= 10 && fitPoints(suit) <= 12 && available(bid(3, suit))
+      && supportTotal(suit) < (major(suit) ? 25 : 29)
+      && (own.length === 1 || p.index === opening.index && suit === opening.call.strain
+        && lengths[suit] >= 5 && available(bid(2, suit))));
+    if (invitationFit) return pick(bid(3, invitationFit));
+  }
+  if (naturalOpening && p && p.index === last?.index && p.call.strain === 'NT' && p.call.level <= 2
+    && !isOpener && hcp >= 10 && hcp <= 12 && !semantics.mustBid
+    && !isArtificialBidAt(obs.auction, p.index, system)) {
+    const ownLongMajor = sorted.find(suit => major(suit) && lengths[suit] >= 6
+      && own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system))
+      && lengths[suit] + partnerTrumpMinimum(suit) < 8 && available(bid(3, suit)));
+    if (ownLongMajor) return bid(3, ownLongMajor);
+  }
+
+  if (system === 'sayc') {
+    const competitive = chooseCompetitiveCall(obs, system);
+    // A minimum preempt has already described its offensive source. Do not
+    // reactivate an explicitly declined second bid via the generic opener route.
+    if (competitive?.kind === 'pass' && !semantics.mustBid && naturalOpening && isOpener
+      && own.length === 1 && opening.call.level >= 2 && opening.call.strain !== 'NT'
+      && !(opening.call.level === 2 && opening.call.strain === 'C') && hcp <= 11) {
+      preserveCompetitivePass = true;
+      return PASS;
+    }
+    // A released one-round obligation does not make Pass compulsory. Keep
+    // independently known game values and an available natural major alive.
+    const enemySuits = enemyShownSuits;
+    const publicStops = enemySuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit));
+    const firstFourCardMajor = naturalOpening && opening.call.level === 1 && own.length <= 1
+      && (!isOpener || hcp < 19)
+      && naturalMajorOrder.some(suit => suit !== opening.call.strain && !enemySuits.includes(suit)
+        && lengths[suit] >= 4 && available(bid(1, suit)));
+    const strongOriginalMajor = naturalOpening && isOpener && own.length === 1 && opening.call.level === 1
+      && major(opening.call.strain) && lengths[opening.call.strain] >= 6 && hcp >= 19;
+    if (!semantics.mustBid && partnerHasAction && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+      && hcp + (partnerPublic.hcpRange?.min ?? 0) < 31
+      && !initialNaturalResponse && !firstFourCardMajor && !strongOriginalMajor
+      && publicStops && (balanced || SUITS.every(suit => hasStopper(suit)
+        || partnerPublic.stopperSources.some(source => source.suit === suit)))
+      && available(bid(3, 'NT'))) return bid(3, 'NT');
+    // A sound six-card responder suit remains a natural 10+ one-round force
+    // when opponents consume the two level. It does not require 13 or a fit.
+    if ((!competitive || competitive.kind === 'pass') && naturalOpening && !isOpener && !own.length
+      && p?.index === opening.index
+      && opening.call.level <= 2 && opening.call.strain !== 'NT' && hcp >= 10 && enemySuits.length) {
+      const longResponse = sorted.find(suit => suit !== opening.call.strain && !enemySuits.includes(suit)
+        && lengths[suit] >= 6 && reasonablePreemptSuit(suit) && cheapest(suit, 3));
+      if (longResponse) return pick(cheapest(longResponse, 3) ?? safePass());
+    }
+    // A later voluntary natural NT response is still an invitation or minimum
+    // response. It must not disappear behind a released competition obligation.
+    // Artificial Jacoby/feature asks and compulsory NT answers keep their own
+    // routes; a new enemy bid leaves this decision in the competition route.
+    if (naturalOpening && isOpener && opening.call.level === 1 && opening.call.strain !== 'NT'
+      && p?.call.strain === 'NT' && p.call.level <= 2 && p.index === last?.index
+      && own.length >= 2 && lengths.S <= 5 && lengths.H <= 5
+      && isNaturalNoTrumpAt(obs.auction, p.index, system)
+      && !analyzeAuctionSemantics(obs.auction.slice(0, p.index), p.seat, system).mustBid) {
+      const publicRange = noTrumpRangeAt(obs.auction, p.index, system);
+      if (publicRange && publicRange.max <= 12 && hcp + publicRange.min >= 25 && hcp <= 21
+        && available(bid(3, 'NT')))
+        return bid(3, 'NT');
+      if (p.call.level === 1 && !ntShapeSuitable) {
+        const realMinor = lengths[opening.call.strain] >= 5 ? opening.call.strain
+          : sorted.find(suit => !major(suit) && suit !== opening.call.strain && lengths[suit] >= 4);
+        const natural = realMinor && cheapest(realMinor, 2); if (natural) return natural;
+      }
+    }
+    const ownNegative = obs.auction.some((entry, index) => entry.seat === obs.seat
+      && classifyDoubleAt(obs.auction, index, system) === 'negative');
+    if (naturalOpening && !isOpener && ownNegative && !own.length && p && !semantics.mustBid) {
+      if (major(p.call.strain) && p.index === last?.index
+        && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8) {
+        const support = fitPoints(p.call.strain);
+        if (support < 10) return PASS;
+        if (support <= 12 && p.call.level === 2) return pick(bid(3, p.call.strain));
+      }
+      if (p.call.strain === 'NT' && p.call.level === 1 && hcp >= 11)
+        return pick(bid(hcp + (noTrumpRangeAt(obs.auction, p.index, system)?.min ?? 12) >= 25 ? 3 : 2, 'NT'));
+      if (p.call.strain !== 'NT' && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8) {
+        const majorSuit = sorted.find(suit => major(suit) && !enemySuits.includes(suit) && lengths[suit] >= 5);
+        if (majorSuit && hcp >= 10) return pick(cheapest(majorSuit, 3) ?? safePass());
+      }
+    }
+    // After responder passes, opener has no public partner minimum for a
+    // three-level NT game. Show the original long major competitively.
+    if (naturalOpening && isOpener && own.length === 1 && !response && !partnerHasAction
+      && hcp >= 19 && hcp <= 21 && major(opening.call.strain) && lengths[opening.call.strain] >= 6
+      && reasonablePreemptSuit(opening.call.strain) && available(bid(4, opening.call.strain)))
+      return bid(4, opening.call.strain);
+    if (naturalOpening && isOpener && own.length === 1 && !response && !partnerHasAction
+      && hcp >= 16 && hcp <= 18 && major(opening.call.strain) && lengths[opening.call.strain] >= 6
+      && reasonablePreemptSuit(opening.call.strain) && available(bid(3, opening.call.strain)))
+      return bid(3, opening.call.strain);
+    if (naturalOpening && isOpener && own.length === 1 && !response && !partnerHasAction && hcp <= 21
+      && major(opening.call.strain) && enemySuits.length && last
+      && (last.call.level >= 3 && lengths[opening.call.strain] >= 6 || hcp >= 17 && reasonablePreemptSuit(opening.call.strain)))
+      return pick(cheapest(opening.call.strain, 3) ?? safePass());
+    if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+      && major(response.call.strain) && lengths[response.call.strain] === 3
+      && response.call.strain !== opening.call.strain && last && sideOf(last.seat) !== sideOf(obs.seat)
+      && last.call.level <= 2 && lengths[last.call.strain as Suit] <= 1
+      && lengths[opening.call.strain as Suit] <= 5
+      && !SUITS.some(suit => suit !== opening.call.strain && suit !== response.call.strain && lengths[suit] >= 5)
+      && !isArtificialBidAt(obs.auction, response.index, system)) {
+      const preference = cheapest(response.call.strain, 2); if (preference) return preference;
+    }
+    if (naturalOpening && isOpener && own.length === 1 && !response && !partnerHasAction && balanced && hcp >= 18
+      && hcp <= 19 && enemySuits.every(hasStopper) && available(bid(2, 'NT'))) return bid(2, 'NT');
+    if (naturalOpening && isOpener && own.length === 1 && !response && !partnerHasAction && hcp >= 17
+      && opening.call.strain !== 'NT' && !major(opening.call.strain)) {
+      const side = sorted.find(suit => suit !== opening.call.strain && !enemySuits.includes(suit)
+        && lengths[suit] >= 4 && available(bid(2, suit)));
+      if (side && available(bid(1, side))) return bid(1, side);
+      if (side) return bid(2, side);
+    }
+    if (naturalOpening && isOpener && own.length === 1 && p?.call.level === 1
+      && p.call.strain !== 'NT' && hcp >= 17 && enemySuits.length && !balanced
+      && opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 4) {
+      const reverseSuit = sorted.find(suit => suit !== opening.call.strain && suit !== p.call.strain
+        && !enemySuits.includes(suit) && lengths[suit] >= 4
+        && bidValue(bid(1, suit)) > bidValue(opening.call) && !available(bid(1, suit)) && available(bid(2, suit)));
+      if (reverseSuit) return bid(2, reverseSuit);
+      if (major(opening.call.strain) && lengths[opening.call.strain] >= 6 && hcp >= 16
+        && available(bid(3, opening.call.strain))) return bid(3, opening.call.strain);
+    }
+    if (naturalOpening && isOpener && own.length === 1 && p?.call.level === 2
+      && major(opening.call.strain) && lengths[opening.call.strain] >= 6 && hcp >= 16
+      && hcp < 19 && available(bid(3, opening.call.strain))) return bid(3, opening.call.strain);
+    if (naturalOpening && isOpener && own.length === 1 && p?.call.level === 2
+      && p.call.strain !== 'NT' && enemySuits.length > 0 && hcp < 17 && hcp >= 12
+      && lengths[p.call.strain] <= 2 && enemySuits.every(hasStopper) && available(bid(2, 'NT')))
+      return pick(cheapest('NT', 2) ?? safePass());
+    if (naturalOpening && isOpener && own.length === 1 && p?.call.level === 2
+      && p.call.strain !== 'NT' && opening.call.strain !== 'NT' && lengths[opening.call.strain] < 5
+      && lengths[p.call.strain] <= 2 && hcp >= 12 && hcp < 17 && !enemySuits.every(hasStopper)) {
+      const cue = enemySuits.find(suit => cheapest(suit, 3));
+      if (cue) return pick(cheapest(cue, 3) ?? safePass());
+    }
+    if (naturalOpening && isOpener && own.length === 1 && opening.call.strain !== 'NT'
+      && p?.call.strain === 'NT' && p.call.level === 2 && isNaturalNoTrumpAt(obs.auction, p.index, system)
+      && hcp + (noTrumpRangeAt(obs.auction, p.index, system)?.min ?? 0) >= 25
+      && available(bid(3, 'NT'))) return bid(3, 'NT');
+    if (naturalOpening && !isOpener && !own.length && p && p.index > opening.index
+      && p.call.level < 3
+      && major(p.call.strain) && !isArtificialBidAt(obs.auction, p.index, system)
+      && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8 && fitPoints(p.call.strain) >= 6)
+      return pick(bid(fitPoints(p.call.strain) + 12 >= 25 ? 4
+        : fitPoints(p.call.strain) >= 10 ? 3 : p.call.level + 1, p.call.strain));
+    if (!naturalOpening && own.length === 1 && p && p.call.strain !== 'NT' && semantics.mustBid
+      && enemySuits.includes(p.call.strain as Suit) && hcp < 15
+      && own[0].call.strain !== 'NT' && !isArtificialBidAt(obs.auction, own[0].index, system)) {
+      const side = hcp >= 11 ? sorted.find(suit => suit !== own[0].call.strain && !enemySuits.includes(suit) && lengths[suit] >= 4) : undefined;
+      return pick(cheapest(side ?? own[0].call.strain, 4) ?? safePass());
+    }
+    if ((!competitive || competitive.kind === 'pass') && naturalOpening && !isOpener && !own.length
+      && !obs.auction.some(entry => entry.seat === obs.seat && entry.call.kind !== 'pass')
+      && opening.call.level === 1 && opening.call.strain !== 'NT' && hcp >= 13 && enemySuits.length) {
+      const newSuit = sorted.find(suit => suit !== opening.call.strain && !enemySuits.includes(suit)
+        && lengths[suit] >= 5 && cheapest(suit, 3));
+      if (newSuit) return pick(cheapest(newSuit, 3) ?? safePass());
+      if (enemySuits.every(hasStopper)) return pick(bid(3, 'NT'));
+      const cue = enemySuits.find(suit => cheapest(suit, 3));
+      if (cue) return pick(cheapest(cue, 3) ?? safePass());
+    }
+    const continuationAfterInterference = naturalOpening && opening.call.level === 1 && opening.call.strain !== 'NT'
+      && response?.call.level === 1 && response.call.strain !== 'NT' && own.length >= 1
+      && !us.some(entry => atGame(entry.call));
+    if ((!competitive || competitive.kind === 'pass') && continuationAfterInterference
+      && all.some(entry => sideOf(entry.seat) !== sideOf(obs.seat))) {
+      if (obs.seat === responder && hcp + 12 >= 25) {
+        if (p?.call.strain === 'NT' && p.index === last?.index
+          && own.some(entry => entry.call.strain !== 'NT' && isArtificialBidAt(obs.auction, entry.index, system)))
+          return pick(bid(3, 'NT'));
+        const fit = sorted.find(suit => us.some(entry => entry.seat === partnerOf(obs.seat) && entry.call.strain === suit
+          && !isArtificialBidAt(obs.auction, entry.index, system)) && lengths[suit] + partnerTrumpMinimum(suit) >= 8);
+        if (fit && supportTotal(fit) >= (major(fit) ? 25 : 29)) return pick(bid(gameLevel(fit), fit));
+        if (enemySuits.every(hasStopper)) return pick(bid(3, 'NT'));
+        const cue = enemySuits.find(suit => cheapest(suit, 3));
+        if (cue) return pick(cheapest(cue, 3) ?? safePass());
+        const second = sorted.find(suit => suit !== response.call.strain && !enemySuits.includes(suit)
+          && lengths[suit] >= 4 && cheapest(suit, 3));
+        if (second) return pick(cheapest(second, 3) ?? safePass());
+      }
+      if (isOpener && own.length === 1) {
+        if (balanced && hcp >= 18 && enemySuits.every(hasStopper)) return pick(bid(2, 'NT'));
+        const newMajor = naturalMajorOrder.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+          && !enemySuits.includes(suit) && lengths[suit] >= 4 && available(bid(1, suit)));
+        if (newMajor) return hcp >= 19 && opening.call.strain !== 'NT'
+          && lengths[opening.call.strain] >= 4 && available(bid(2, newMajor))
+          ? bid(2, newMajor) : bid(1, newMajor);
+        if (major(opening.call.strain) && lengths[opening.call.strain] >= 6)
+          return pick(cheapest(opening.call.strain, 3) ?? safePass());
+      }
+    }
+    if (competitive && available(competitive) && candidateValid?.(competitive) !== false && (competitive.kind !== 'pass'
+      || !semantics.mustBid && !(naturalOpening && own.length > 0))) return competitive;
+  }
+
+  // RKCB 1430 is used only with publicly established trump support.
+  if (p?.call.strain === 'NT' && p.call.level === 4) {
+    const fit = keycardTrump(us.slice(0, -1), system, p.seat, obs.auction);
+    if (fit) {
+      const answer = rkcb1430Response(countKeycards(obs.hand, fit), hasTrumpQueen(obs.hand, fit));
+      return pick(bid(answer.level, answer.strain));
+    }
+    const quantitativeRange = latestNoTrumpRange(obs.auction, obs.seat, system, p.index);
+    return balanced && quantitativeRange && hcp >= quantitativeRange.max ? pick(bid(6, 'NT')) : safePass();
+  }
+
+  // The next step over a 5C/5D RKCB response asks for the trump queen.
+  const ownLast = own.at(-1);
+  const fourNt = [...us].reverse().find(entry => entry.call.level === 4 && entry.call.strain === 'NT');
+  const rkcbFit = fourNt ? keycardTrump(us.filter(entry => entry.index < fourNt.index), system, fourNt.seat, obs.auction) : undefined;
+  // RKCB 5NT asks for a specific side-suit king. The trump king is already a keycard.
+  const kingAsk = !!(rkcbFit && fourNt && ownLast && p && p.call.level === 5 && p.call.strain === 'NT'
+    && fourNt.seat === p.seat && ownLast.index > fourNt.index && ownLast.index < p.index && ownLast.call.level === 5 && ownLast.call.strain !== 'NT');
+  if (kingAsk && rkcbFit) {
+    const sideKing = (['C', 'D', 'H', 'S'] as Suit[]).find(suit => suit !== rkcbFit
+      && bidValue(bid(6, suit)) < bidValue(bid(6, rkcbFit))
+      && obs.hand.some(card => card.suit === suit && card.rank === 13));
+    return pick(sideKing ? bid(6, sideKing) : bid(6, rkcbFit));
+  }
+  // A specific king reply supplies one control, not thirteen cashable tricks.
+  const kingReply = !!(rkcbFit && fourNt && ownLast && p && ownLast.call.level === 5 && ownLast.call.strain === 'NT'
+    && ownLast.index > fourNt.index && p.index > ownLast.index && p.call.level === 6 && p.call.strain !== 'NT');
+  if (kingReply && rkcbFit && p) return p.call.strain === rkcbFit ? safePass() : pick(bid(6, rkcbFit));
+  // A below-trump six-level response to the queen ask shows the trump queen
+  // and that side-suit king. It is descriptive, not a proposal to play there;
+  // the asker signs off in six of the already agreed trump suit.
+  const rkcbAnswer = fourNt ? us.find(entry => entry.index > fourNt.index && entry.seat === partnerOf(fourNt.seat)
+    && entry.call.level === 5 && (entry.call.strain === 'C' || entry.call.strain === 'D')) : undefined;
+  const queenInquiryByUs = !!(rkcbFit && fourNt && fourNt.seat === obs.seat && ownLast && rkcbAnswer && p
+    && rkcbAnswer.index < ownLast.index && ownLast.index < p.index
+    && !!safeQueenInquiry(rkcbAnswer.call, rkcbFit) && sameCall(ownLast.call, safeQueenInquiry(rkcbAnswer.call, rkcbFit)!));
+  if (queenInquiryByUs && rkcbFit && p && p.call.level === 6 && p.call.strain !== rkcbFit
+    && bidValue(p.call) < bidValue(bid(6, rkcbFit))) return pick(bid(6, rkcbFit));
+  if (queenInquiryByUs && rkcbFit && p && p.call.strain === rkcbFit && (p.call.level === 5 || p.call.level === 6)) return safePass();
+  const queenAsk = !!(rkcbFit && ownLast && p && ownLast.index < p.index
+    && !!safeQueenInquiry(ownLast.call, rkcbFit) && sameCall(p.call, safeQueenInquiry(ownLast.call, rkcbFit)!));
+  if (queenAsk && rkcbFit) {
+    if (!hasTrumpQueen(obs.hand, rkcbFit)) return pick(cheapest(rkcbFit, 6) ?? safePass());
+    const sixTrump = bid(6, rkcbFit);
+    const sideKing = (['C', 'D', 'H', 'S'] as Suit[]).find(suit => suit !== rkcbFit && obs.hand.some(card => card.suit === suit && card.rank === 13) && bidValue(bid(6, suit)) < bidValue(sixTrump) && available(bid(6, suit)));
+    return pick(sideKing ? bid(6, sideKing) : sixTrump);
+  }
+  if (own.at(-1)?.call.strain === 'NT' && own.at(-1)?.call.level === 4 && p?.call.level === 5) {
+    const fit = keycardTrump(us.filter(entry => entry.index < fourNt!.index), system, obs.seat, obs.auction);
+    if (fit) {
+      const ownKeycards = countKeycards(obs.hand, fit);
+      let partnerKeysMinimum = p.call.strain === 'C' ? 1 : p.call.strain === 'D' ? 0 : 2;
+      // Every earlier public raw-HCP source can resolve an ambiguous reply,
+      // including a natural GF response. Support points cannot do so. With
+      // k remaining keys, exclude their other HCP from the forty-point deck.
+      const keycardConstraints = publicPlayerConstraints(obs.auction.slice(0, own.at(-1)!.index), p.seat, system);
+      const priorPartnerRange = keycardConstraints.hcpRange;
+      const responseCounts = p.call.strain === 'C' ? [1, 4] : p.call.strain === 'D' ? [0, 3] : [2, 5];
+      const boundedCounts = possiblePartnerKeys(fit, responseCounts, priorPartnerRange);
+      const correlatedCounts = feasiblePublicKeycardCounts(obs.hand, fit, keycardConstraints, boundedCounts);
+      // Contradictory earlier public calls cannot manufacture certainty.
+      const possibleCounts = correlatedCounts.length ? correlatedCounts : boundedCounts;
+      if (possibleCounts.length) partnerKeysMinimum = Math.min(...possibleCounts);
+      // An RKCB answer can coincide with the safe trump contract. Repeating
+      // the same bid is illegal, but passing that answer is legal signoff;
+      // the generic artificial-contract fallback must not raise it a level.
+      const signoff = (level: number): Call => p.call.strain === fit && p.call.level === level
+        ? PASS : pick(bid(level, fit));
+      const openingBid = us[0]; const responseBid = us[1];
+      const publicPartnerMin = openingBid?.seat === obs.seat
+        ? responseBid?.call.level === 2 && responseBid.call.strain === 'NT' ? 13 : system === 'precision' && openingBid.call.strain === 'C' && responseBid && !(responseBid.call.level === 1 && responseBid.call.strain === 'D') ? 8 : responseBid?.call.level === 3 ? 10 : 6
+        : !naturalOpening ? openingBid?.call.level === 1 ? 8 : 10 : (system === 'two-over-one' || system === 'sayc') && openingBid?.call.level === 2 && openingBid.call.strain === 'C' ? 22 : system === 'precision' && openingBid?.call.level === 1 && openingBid.call.strain === 'C' ? 16 : system === 'precision' ? 11 : 12;
+      const allFiveKnown = ownKeycards + partnerKeysMinimum === 5;
+      const trumpQueenKnown = hasTrumpQueen(obs.hand, fit) || p.call.strain === 'S';
+      if (allFiveKnown && trumpQueenKnown && supportTotal(fit) >= 37 && slamEntrySafe(fit)
+        && available(bid(5, 'NT'))) return bid(5, 'NT');
+      if (p.call.strain === 'C' || p.call.strain === 'D') {
+        const knownTotal = ownKeycards + partnerKeysMinimum;
+        if (knownTotal < 4) return p.call.strain === fit ? PASS : pick(cheapest(fit, 6) ?? safePass());
+        if (hasTrumpQueen(obs.hand, fit)) return allFiveKnown || slamEntrySafe(fit)
+          ? pick(bid(6, fit)) : signoff(5);
+        // Ten publicly confirmed trumps may justify the agreed small-slam
+        // queen-risk exception. This does not turn an unknown queen into a
+        // known queen and never licenses the five-NT king inquiry.
+        if (allFiveKnown && lengths[fit] + partnerTrumpMinimum(fit) >= 10
+          && supportTotal(fit) >= 33 && slamEntrySafe(fit)) return pick(bid(6, fit));
+        const question = safeQueenInquiry(p.call, fit);
+        // Do not ask about a queen we hold, or ask past the safe five-level
+        // contract when the response leaves two keycards missing.
+        return question ? pick(question)
+          : p.call.strain === fit ? PASS : pick(cheapest(fit, 6) ?? safePass());
+      }
+      const totalKeycards = ownKeycards + partnerKeysMinimum;
+      const hasQueen = trumpQueenKnown;
+      // Adjusted strength and all keys do not by themselves count thirteen tricks.
+      const level = totalKeycards >= 4 && hasQueen ? 6 : 5;
+      return signoff(level);
+    }
+  }
+
+  const directUncontested = opening && !intervened(obs.auction, obs.seat, opening.index);
+  const gameForcing = (semantics.forcing === 'game' && (!directUncontested || semantics.convention === 'strong-suit-rebid'
+    || semantics.convention === 'opener-jump-shift')) || !!(naturalOpening && response && ((system === 'two-over-one' || system === 'sayc')
+    ? twoOverOne(opening, response, obs.auction)
+    : system === 'precision' && opening.call.level === 1 && opening.call.strain === 'C' && !(response.call.level === 1 && response.call.strain === 'D')));
+
+  // After 1m-(3X)-3NT, a strong distributional opener may continue with a
+  // six-card minor as a natural slam try. Responder's return to 4NT with
+  // two-card support and extras is RKCB for that explicitly established fit.
+  const competitiveThreeNt = !!(opening && response && opening.call.level === 1
+    && (opening.call.strain === 'C' || opening.call.strain === 'D')
+    && response.call.level === 3 && response.call.strain === 'NT'
+    && intervened(obs.auction, opening.seat, opening.index, response.index));
+  if (competitiveThreeNt && isOpener && own.length === 1 && p?.index === response?.index
+    && lengths[opening!.call.strain as Suit] >= 6 && hcp >= 16) return pick(bid(4, opening!.call.strain));
+  if (competitiveThreeNt && obs.seat === responder && own.length === 1 && p?.call.level === 4
+    && p.call.strain === opening!.call.strain && lengths[opening!.call.strain as Suit] >= 2 && hcp >= 13
+    && canAskKeycards(opening!.call.strain as Suit)) return bid(4, 'NT');
+
+  const closeGame = (): Call => {
+    const stoppedEnemySuits = enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit));
+    const partnerSuits = us.filter(e => e.seat === partnerOf(obs.seat) && e.call.strain !== 'NT'
+      && !isArtificialBidAt(obs.auction, e.index, system));
+    const fit = [...new Map(partnerSuits.map(entry => [entry.call.strain, entry])).values()]
+      .map(entry => ({ entry, combined: lengths[entry.call.strain as Suit] + partnerTrumpMinimum(entry.call.strain as Suit) }))
+      .filter(candidate => candidate.combined >= 8)
+      .sort((a, b) => Number(major(b.entry.call.strain)) - Number(major(a.entry.call.strain))
+        || b.combined - a.combined)[0]?.entry;
+    if (fit && !major(fit.call.strain) && ntShapeSuitable && stoppedEnemySuits
+      && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && available(bid(3, 'NT'))) return bid(3, 'NT');
+    if (fit) return pick(bid(gameLevel(fit.call.strain), fit.call.strain),
+      stoppedEnemySuits ? bid(3, 'NT') : forcedFallback());
+    const ownLongSuit = sorted.find(suit => lengths[suit] >= 6);
+    if (ownLongSuit && lengths[ownLongSuit] >= 7 && major(ownLongSuit)
+      && own.some(entry => entry.call.strain === ownLongSuit) && available(bid(3, ownLongSuit)))
+      return bid(3, ownLongSuit);
+    const realMajor = sorted.find(suit => major(suit) && lengths[suit] >= 5 && available(bid(4, suit)));
+    const realSide = sorted.find(suit => lengths[suit] >= 4 && cheapest(suit, 4));
+    return pick(stoppedEnemySuits ? bid(3, 'NT') : forcedFallback(), ownLongSuit ? bid(gameLevel(ownLongSuit), ownLongSuit)
+      : realMajor ? bid(4, realMajor) : realSide ? cheapest(realSide, 4)! : bid(5, longest), bid(5, longest));
+  };
+
+  const partnerMinimum = (trump?: Suit): number => {
+    if (trump) return supportMinimum(trump);
+    if (p?.call.strain !== undefined && p.call.strain !== 'NT'
+      && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8)
+      return supportMinimum(p.call.strain);
+    const publicPartner = publicPlayerConstraints(obs.auction, partnerOf(obs.seat), system);
+    const publicSupport = p && p.call.strain !== 'NT' ? publicPartner.supportRanges[p.call.strain] : undefined;
+    if (publicSupport) return Math.max(publicSupport.min, publicPartner.hcpRange?.min ?? 0);
+    if (publicPartner.hcpRange) return publicPartner.hcpRange.min;
+    if (naturalOpening && isOpener && opening.call.level === 2 && opening.call.strain !== 'C'
+      && opening.call.strain !== 'NT' && response?.call.strain === opening.call.strain
+      && response.call.level === 3) return 0;
+    const legacySupportMinimum = (): number => {
+      if (!p || p.call.strain === 'NT') return 10;
+      const previousOwn = own.findLast(entry => entry.index < p.index && entry.call.strain === p.call.strain);
+      const preceding = all.findLast(entry => entry.index < p.index);
+      const enemyAdvanced = previousOwn && all.some(entry => entry.index > previousOwn.index && entry.index < p.index
+        && sideOf(entry.seat) !== sideOf(obs.seat) && !isArtificialBidAt(obs.auction, entry.index, system));
+      // A minimum raise after the opponents take away bidding space is
+      // competitive support, rather than a fresh ten-point invitation.
+      return enemyAdvanced && preceding && bidValue(p.call) - bidValue(preceding.call) <= 5 ? 6 : 10;
+    };
+    if (naturalOpening && !isOpener && p?.seat === opening.seat && response?.call.level === 1
+      && major(response.call.strain) && p.call.strain === response.call.strain && p.call.level === 3
+      && p.index === us[2]?.index) return 16;
+    if (naturalOpening && !isOpener && p?.seat === opening.seat && p.call.strain === opening.call.strain
+      && p.call.strain !== 'NT' && p.call.level === 3 && p.index === us[2]?.index
+      && response?.call.level === 1 && response.call.strain !== opening.call.strain) return 16;
+    if (naturalOpening && !isOpener && p?.seat === opening.seat && major(p.call.strain) && p.call.level === 3
+      && response?.call.strain === opening.call.strain && response.call.level === 2) return 16;
+    if (p?.call.strain === 'NT') {
+      const publicRange = noTrumpRangeAt(obs.auction, p.index, system);
+      if (publicRange) return publicRange.min;
+    }
+    const ourNegative = obs.auction.findIndex((entry, index) => entry.seat === obs.seat
+      && classifyDoubleAt(obs.auction, index, system) === 'negative');
+    if (ourNegative >= 0 && p && major(p.call.strain) && p.call.level === 3 && p.index > ourNegative
+      && !own.length) {
+      const beforeReply = all.findLast(entry => entry.index < p.index)?.call;
+      if (beforeReply && bidValue(p.call) - bidValue(beforeReply) > 5) return 16;
+    }
+    if (naturalOpening && isOpener && p && p.call.level === 3 && p.call.strain !== 'NT'
+      && !major(p.call.strain) && p.call.strain === opening.call.strain
+      && own.some(entry => entry.index < p.index && entry.call.level === 2 && entry.call.strain === p.call.strain))
+      return legacySupportMinimum();
+    if ((system === 'sayc' || system === 'two-over-one') && naturalOpening && !isOpener
+      && p && p.index === us[2]?.index && p.call.strain !== 'NT' && response?.call.level === 1
+      && p.call.strain !== opening.call.strain && p.call.strain !== response.call.strain
+      && !all.some(entry => entry.index < p.index && sideOf(entry.seat) !== sideOf(obs.seat)
+        && entry.call.strain === p.call.strain && !isArtificialBidAt(obs.auction, entry.index, system))) {
+      const preceding = all.findLast(entry => entry.index < p.index)?.call;
+      if (preceding && bidValue(p.call) - bidValue(preceding) > 5) return 19;
+    }
+    if (naturalOpening && p && p.call.strain !== 'NT' && major(p.call.strain) && p.call.level === 3) {
+      const previous = all.findLast(entry => entry.index < p.index)?.call;
+      if (!isOpener && p.seat === opening.seat && p.call.strain === opening.call.strain
+        && previous && bidValue(p.call) - bidValue(previous) > 5) return 16;
+      if (isOpener && own.some(entry => entry.index < p.index && entry.call.strain === p.call.strain)) return legacySupportMinimum();
+      if (isOpener && response?.call.level === 1 && response.call.strain === p.call.strain
+        && p.index > response.index) return 10;
+    }
+    if (naturalOpening && isOpener && response?.call.strain === opening.call.strain
+      && response.call.strain !== 'NT') return response.call.level === 2 ? 6 : response.call.level === 3 ? 10 : 0;
+    if (naturalOpening && isOpener && response?.call.level === 1 && response.call.strain === 'NT'
+      && p?.call.level === 3 && major(p.call.strain) && p.call.strain !== opening.call.strain) {
+      const preceding = all.findLast(entry => entry.index < p.index)?.call;
+      if (preceding && bidValue(p.call) - bidValue(preceding) > 5) return 10;
+    }
+    if (naturalOpening && !isOpener && p && p.index === us[2]?.index
+      && p.call.level === 2 && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain
+      && p.call.strain !== response?.call.strain
+      && bidValue(bid(1, p.call.strain)) > bidValue(opening.call)) return 17;
+    if (naturalOpening && opening?.seat === obs.seat && response?.call.level === 1
+      && major(response.call.strain) && us[2]?.call.level === 2 && us[2].call.strain === response.call.strain
+      && p && p.index > us[2].index && p.call.level === 3 && p.call.strain === response.call.strain) return 10;
+    const takeoutIndex = obs.auction.findIndex((entry, index) => entry.seat === obs.seat && isTakeoutDoubleAt(obs.auction, index));
+    if (p && takeoutIndex >= 0 && p.index > takeoutIndex) {
+      const opposingOpening = all[0]?.call;
+      const firstReply = all.find(entry => entry.seat === partnerOf(obs.seat) && entry.index > takeoutIndex);
+      if (!firstReply) return 0;
+      if (opposingOpening && firstReply.call.strain === opposingOpening.strain) return 12;
+      if (firstReply.call.strain === 'NT') return firstReply.call.level === 1 ? 6 : firstReply.call.level === 2 ? 11 : 13;
+      const previous = all.findLast(entry => entry.index < firstReply.index)?.call;
+      return previous && bidValue(firstReply.call) - bidValue(previous) > 5 ? 9 : 0;
+    }
+    if (!opening || opening.seat === obs.seat) {
+      if (!response || response.seat !== partnerOf(obs.seat)) return 0;
+      if ((system === 'sayc' || system === 'two-over-one') && opening?.call.level === 2 && opening.call.strain === 'C'
+        && response.call.strain === 'D' && response.call.level === 2) return 0;
+      if (system === 'precision' && opening?.call.level === 1 && opening.call.strain === 'C') return response.call.level === 1 && response.call.strain === 'D' ? 0 : 8;
+      if ((system === 'two-over-one' || system === 'sayc') && opening && twoOverOne(opening, response, obs.auction)) return 13;
+      if (opening && major(opening.call.strain) && response.call.level === 2 && response.call.strain === 'NT') return 13;
+      if (opening && major(opening.call.strain) && response.call.level === 3 && response.call.strain === opening.call.strain) return 10;
+      if (system === 'sayc' && opening && major(opening.call.strain) && response.call.level === 1 && response.call.strain === 'NT') return 5;
+      if (opening && opening.call.level === 2 && opening.call.strain !== 'C' && opening.call.strain !== 'NT'
+        && response.call.strain !== opening.call.strain && response.call.strain !== 'NT') return 13;
+      if (opening && opening.call.level === 1 && response.call.level === 2 && response.call.strain !== 'NT'
+        && response.call.strain !== opening.call.strain) return major(response.call.strain) && !directUncontested ? 8 : 10;
+      return response.call.level === 1 ? 6 : 8;
+    }
+    if (system === 'two-over-one' && response && twoOverOne(opening, response, obs.auction)) {
+      const openerRebid = us[2];
+      if (openerRebid?.seat === opening.seat && openerRebid.call.level === 3 && openerRebid.call.strain === response.call.strain && major(response.call.strain)) return 15;
+    }
+    if (!naturalOpening) return opening.call.level === 1 ? 8 : 10;
+    if (opening.call.level >= 3 && opening.call.strain !== 'NT') return 5;
+    if (opening.call.level === 2 && opening.call.strain !== 'NT' && opening.call.strain !== 'C') return 5;
+    if ((system === 'two-over-one' || system === 'sayc') && opening.call.level === 2 && opening.call.strain === 'C') return 22;
+    if (system === 'precision' && opening.call.level === 1 && opening.call.strain === 'C') return 16;
+    if (opening.call.level === 2 && opening.call.strain === 'NT') return system === 'precision' ? 22 : 20;
+    if (opening.call.level === 1 && opening.call.strain === 'NT') return system === 'precision' ? 13 : 15;
+    return system === 'precision' ? 11 : 12;
+  };
+  // Raises and Jacoby promise support points, not an equal number of HCP.
+  // Their distribution allowance must not manufacture a no-trump game.
+  const partnerHcpMinimum = (): number => {
+    const publicPartner = publicPlayerConstraints(obs.auction, partnerOf(obs.seat), system);
+    if (publicPartner.hcpRange) return publicPartner.hcpRange.min;
+    if (Object.keys(publicPartner.supportRanges).length) return 0;
+    if (naturalOpening && isOpener && p && p.call.level === 3 && p.call.strain !== 'NT'
+      && !major(p.call.strain) && p.call.strain === opening.call.strain
+      && own.some(entry => entry.index < p.index && entry.call.level === 2 && entry.call.strain === p.call.strain))
+      return 0;
+    if (isOpener && p && p.call.level === 3 && major(p.call.strain)
+      && own.some(entry => entry.index < p.index && entry.call.strain === p.call.strain)) return 0;
+    if (naturalOpening && isOpener && response && (response.call.strain === opening.call.strain
+      || (major(opening.call.strain) && response.call.level === 2 && response.call.strain === 'NT'))) return 0;
+    return partnerMinimum();
+  };
+  const explicitFit = (): Suit | undefined => {
+    const fitLengths = Object.fromEntries(SUITS.map(suit => [suit,
+      lengths[suit] + partnerTrumpMinimum(suit) >= 8 ? lengths[suit] : 0])) as Record<Suit, number>;
+    const established = knownFit(us, fitLengths, system, obs.seat);
+    if (established && lengths[established] + partnerTrumpMinimum(established) >= 8) return established;
+    const laterRaise = p && p.call.strain !== 'NT' && own.some(entry => entry.index < p.index
+      && entry.call.strain === p.call.strain && !isArtificialBidAt(obs.auction, entry.index, system));
+    if (laterRaise && p.call.strain !== 'NT' && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8)
+      return p.call.strain;
+    if (system === 'precision' && opening?.call.level === 1 && opening.call.strain === 'C' && response && response.call.strain !== 'NT' && response.call.strain !== 'D' && lengths[response.call.strain] >= 3) return response.call.strain;
+    const openerRebid = us[2];
+    if (opening && response && obs.seat === responder && openerRebid?.seat === opening.seat && openerRebid.call.strain !== 'NT') {
+      if (openerRebid.call.strain === opening.call.strain && major(opening.call.strain)
+        && lengths[opening.call.strain] + partnerTrumpMinimum(opening.call.strain) >= 8) return opening.call.strain;
+      if (openerRebid.call.strain !== opening.call.strain
+        && lengths[openerRebid.call.strain] + partnerTrumpMinimum(openerRebid.call.strain) >= 8) return openerRebid.call.strain;
+    }
+    if (naturalOpening && (system === 'two-over-one' || system === 'sayc') && opening?.call.level === 2 && opening.call.strain === 'C' && obs.seat !== opening.seat
+      && !us.some((entry, index) => index === 2 && entry.call.strain === 'NT')) {
+      const openerSuit = us.find((entry, index) => index >= 2 && entry.seat === opening.seat && entry.call.strain !== 'NT');
+      const openerStrain = openerSuit?.call.strain;
+      if (openerStrain && openerStrain !== 'NT' && lengths[openerStrain] >= 3) return openerStrain;
+    }
+    return undefined;
+  };
+
+  improvePass = () => {
+    if (!p || p.index !== last?.index || atGame(p.call) || isArtificialBidAt(obs.auction, p.index, system)) return undefined;
+    const partnerPublic = publicPlayerConstraints(obs.auction, partnerOf(obs.seat), system);
+    const enemies = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+      && entry.call.strain !== 'NT' && !isArtificialBidAt(obs.auction, entry.index, system));
+    const stopped = enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit));
+    const fit = gameSuitOrder.find(suit => partnerTrumpMinimum(suit) > 0
+      && lengths[suit] + partnerTrumpMinimum(suit) >= 8
+      && supportTotal(suit)
+        >= (major(suit) ? 25 : 29));
+    if (fit && !major(fit) && ntShapeSuitable && stopped
+      && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && available(bid(3, 'NT'))) return bid(3, 'NT');
+    if (fit && available(bid(gameLevel(fit), fit))) return bid(gameLevel(fit), fit);
+    if (hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && stopped
+      && (ntShapeSuitable || SUITS.every(hasStopper)) && available(bid(3, 'NT'))) return bid(3, 'NT');
+    if (naturalOpening && !isOpener && own.length && ntShapeSuitable && stopped
+      && hcp >= 11 && hcp <= 12 && available(bid(2, 'NT'))
+      && !SUITS.some(suit => major(suit) && lengths[suit] + partnerTrumpMinimum(suit) >= 8))
+      return bid(2, 'NT');
+    if (p.call.strain === 'NT' || !naturalOpening || own.length < 1) return undefined;
+    const current = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain);
+    if (current >= 7 && lengths[p.call.strain] >= 2) return undefined;
+    const better = sorted.find(suit => suit !== p.call.strain && partnerTrumpMinimum(suit) > 0
+      && lengths[suit] + partnerTrumpMinimum(suit) >= 7
+      && lengths[suit] + partnerTrumpMinimum(suit) > current && cheapest(suit, 3));
+    if (better) return cheapest(better, 3);
+    const escape = sorted.find(suit => suit !== p.call.strain && lengths[suit] >= 6
+      && !enemies.some(entry => entry.call.strain === suit)
+      && (lengths[p.call.strain as Suit] <= 1 || lengths[suit] >= current + 2)
+      && cheapest(suit, major(suit) ? 3 : 4)
+      && own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system)));
+    return escape ? cheapest(escape, major(escape) ? 3 : 4) : undefined;
+  };
+
+  // New-suit responses to weak two/three-level preempts retain their one-round
+  // force through interference. Do not fall through to competitive Pass.
+  if (naturalOpening && isOpener && opening.call.level >= 2 && opening.call.strain !== 'NT'
+    && p && p.index === last?.index && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain
+    && partnerPublic.suitMaximums?.[opening.call.strain] !== undefined
+    && partnerPublic.suitMaximums[opening.call.strain]! <= 1
+    && lengths[p.call.strain] >= 3 && partnerTrumpMinimum(p.call.strain) >= 4) {
+    if (lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8 && !semantics.mustBid) return PASS;
+    return pick(cheapest(p.call.strain, 5) ?? safePass());
+  }
+  if (naturalOpening && isOpener && response && semantics.convention === 'preempt-new-suit') {
+    if (response.call.strain !== 'NT' && lengths[response.call.strain] >= 3) return pick(cheapest(response.call.strain, 5) ?? safePass());
+    if (partnerPublic.suitMaximums?.[opening.call.strain as Suit] !== undefined
+      && partnerPublic.suitMaximums[opening.call.strain as Suit]! <= 1
+      && response.call.strain !== 'NT' && lengths[response.call.strain] >= 2)
+      return pick(cheapest(response.call.strain, 5) ?? safePass());
+    return pick(cheapest(opening.call.strain, 5) ?? safePass());
+  }
+  if (naturalOpening && system === 'sayc' && isOpener && own.length === 1 && response
+    && opening.call.level === 1 && opening.call.strain !== 'NT'
+    && passedBefore(obs.auction, response.seat, opening.index)
+    && response.call.level === 2 && response.call.strain !== 'NT'
+    && response.call.strain !== opening.call.strain && directUncontested && !gameForcing) {
+    // A passed responder's two-level new suit is not a 2/1 game force, but
+    // opener cannot treat its constructive values as zero and pass with extras.
+    if ((hcp >= 15 && balanced) || (hcp >= 19 && SUITS.filter(suit => suit !== response.call.strain).every(hasStopper))) return pick(bid(3, 'NT'));
+    if (lengths[response.call.strain] >= (major(response.call.strain) ? 3 : 4))
+      return hcp >= 18 ? pick(bid(gameLevel(response.call.strain), response.call.strain))
+        : hcp >= 15 ? pick(cheapest(response.call.strain, 3) ?? safePass()) : safePass();
+    if (major(opening.call.strain) && lengths[opening.call.strain] >= 6)
+      return pick(cheapest(opening.call.strain, 2) ?? safePass());
+    const longSide = sorted.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+      && lengths[suit] >= 5 && cheapest(suit, 3));
+    if (longSide && lengths[response.call.strain] <= 1) return pick(cheapest(longSide, 3) ?? safePass());
+    if (hcp >= 15) {
+      const second = sorted.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+        && lengths[suit] >= 4 && cheapest(suit, 3));
+      if (second) return pick(cheapest(second, 3) ?? safePass());
+      return pick(cheapest(opening.call.strain, 3) ?? safePass());
+    }
+  }
+
+  // A new suit by an unpassed strong responder over partner's three-level
+  // preempt is forcing for one round. The preempter raises with support or
+  // returns to the long suit; responder may then establish that suit and use
+  // RKCB with clear slam interest.
+  if (system === 'sayc' && naturalOpening && opening && opening.call.level === 3 && opening.call.strain !== 'NT') {
+    if (obs.seat === responder && own.length === 0 && p?.index === opening.index && hcp >= 15) {
+      const forcingSuit = sorted.find(suit => suit !== opening.call.strain && lengths[suit] >= 5 && !!cheapest(suit, 4));
+      if (forcingSuit) return pick(cheapest(forcingSuit, 4) ?? safePass());
+      if (balanced && hcp >= 16) return pick(bid(3, 'NT'), cheapest(opening.call.strain, 5) ?? safePass());
+      if (lengths[opening.call.strain as Suit] >= 2 && hcp >= 18
+        && canAskKeycards(opening.call.strain as Suit)) return bid(4, 'NT');
+    }
+    if (isOpener && semantics.convention === 'preempt-new-suit' && response) {
+      if (lengths[response.call.strain as Suit] >= 3) return pick(cheapest(response.call.strain, 4) ?? safePass());
+      return pick(cheapest(opening.call.strain, 4) ?? safePass());
+    }
+    if (obs.seat === responder && own.length === 1 && us.length === 3 && p?.call.level === 4
+      && p.call.strain === opening.call.strain && lengths[opening.call.strain as Suit] >= 2 && hcp >= 18
+      && canAskKeycards(opening!.call.strain as Suit)) return bid(4, 'NT');
+  }
+
+  // Public no-trump ranges set hard game, small-slam and grand-slam floors.
+  const latestPartnerNt = [...us].reverse().find(entry => entry.seat === partnerOf(obs.seat) && entry.call.strain === 'NT');
+  const latestDefinedPartnerNt = [...us].reverse().find(entry => entry.seat === partnerOf(obs.seat)
+    && noTrumpRangeAt(obs.auction, entry.index, system));
+  const ntRange = latestDefinedPartnerNt ? noTrumpRangeAt(obs.auction, latestDefinedPartnerNt.index, system) : undefined;
+  if (ntRange && balanced) {
+    const combinedMinimum = hcp + ntRange.min;
+    if (combinedMinimum >= 37) return pick(bid(7, 'NT'));
+    const majorSearchCompleted = us.some(entry => entry.seat === obs.seat && entry.call.strain === 'C'
+      && latestPartnerNt && entry.index > us[0].index && entry.index < latestPartnerNt.index);
+    if (combinedMinimum >= 31 && combinedMinimum < 33 && hcp + ntRange.max >= 33
+      && ((lengths.H < 4 && lengths.S < 4) || majorSearchCompleted)) return pick(bid(4, 'NT'));
+    if (combinedMinimum >= 35 && combinedMinimum < 37 && hcp + ntRange.max >= 37
+      && ((lengths.H < 4 && lengths.S < 4) || majorSearchCompleted)) return pick(bid(5, 'NT'));
+    if (combinedMinimum >= 33) return pick(bid(6, 'NT'));
+    if (combinedMinimum >= 25 && lengths.H < 4 && lengths.S < 4 && !firstNtPlatform) return pick(bid(3, 'NT'));
+  }
+
+  // Once support and at least 33 public adjusted points are known, ask for keycards instead of signing off in game.
+  const slamFit = explicitFit();
+  if (slamFit && !us.some(entry => entry.call.level === 4 && entry.call.strain === 'NT')) {
+    if (canAskKeycards(slamFit)) return bid(4, 'NT');
+    const cue = controlProbe(slamFit); if (cue) return cue;
+  }
+  // Natural support points can establish game before a narrow continuation
+  // chooses a minimum repeat or a false preference. Only a public eight-card
+  // fit earns shortness points; an artificial answer contributes no length.
+  if (p && !atGame(p.call) && own.length >= 1 && !(gameForcing && isOpener && own.length === 1)
+    && semantics.convention !== 'fourth-suit'
+    && semantics.convention !== 'new-minor' && semantics.convention !== 'weak-jump-inquiry'
+    && !isArtificialBidAt(obs.auction, p.index, system)) {
+    const fit = sorted.find(suit => major(suit) && lengths[suit] + partnerTrumpMinimum(suit) >= 8
+      && us.some(entry => entry.seat === partnerOf(obs.seat) && entry.call.strain === suit
+        && !isArtificialBidAt(obs.auction, entry.index, system)));
+    if (fit && supportTotal(fit) >= 25) return pick(bid(4, fit));
+  }
+  // Weak actors do not gain length or a new force by alternating already
+  // described five-card suits. A better real partscore remains available.
+  if (naturalOpening && p && p.index === last?.index && own.length >= 2 && hcp <= 16
+    && !semantics.mustBid && !gameForcing && !atGame(p.call) && p.call.strain !== 'NT'
+    && !isArtificialBidAt(obs.auction, p.index, system)
+    && ownLast && ownLast.call.strain !== 'NT' && ownLast.call.strain !== p.call.strain && lengths[ownLast.call.strain] <= 5
+    && !isArtificialBidAt(obs.auction, ownLast.index, system)
+    && !publicCallMeaningAt(obs.auction, p.index, system).invitation)
+    return safePass();
+  // Answer partner's takeout double before treating the opposing opening as an overcall.
+  const partnerDouble = obs.auction.findLast((e, index) => e.seat === partnerOf(obs.seat) && isTakeoutDoubleAt(obs.auction, index));
+  const partnerNegative = naturalOpening && opening.seat === obs.seat
+    && obs.auction[opening.index + 1]?.call.kind === 'bid'
+    && obs.auction[opening.index + 2]?.seat === partnerOf(obs.seat)
+    && obs.auction[opening.index + 2]?.call.kind === 'double';
+  if (partnerDouble && !p && !own.length && last.call.strain !== 'NT' && last.call.level <= 2) {
+    const suit = sorted.find(s => s !== last.call.strain)!; const low = cheapest(suit, 3);
+    if (hcp >= 12) return pick(cheapest(last.call.strain, 3) ?? safePass(), bid(3, 'NT'));
+    if (low?.kind === 'bid' && hcp >= 9) return pick(bid(low.level + 1, suit), low);
+    return pick(low ?? safePass());
+  }
+  if (partnerNegative && !p && own.length === 1 && opening?.seat === obs.seat && last.call.level <= 2) {
+    const negativeIndex = obs.auction.findLastIndex((entry, index) => entry.seat === partnerOf(obs.seat)
+      && classifyDoubleAt(obs.auction, index, system) === 'negative');
+    const other = negativeIndex >= 0 ? publicNegativeDoubleMajorsAt(obs.auction, negativeIndex)
+      .find(suit => lengths[suit] >= 4) : undefined;
+    if (other) {
+      return pick(cheapest(other, 3) ?? safePass());
+    }
+    if (opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 6 && hcp >= 16
+      && available(bid(3, opening.call.strain))) return bid(3, opening.call.strain);
+    // The original double fixes the requested major. A later enemy bid
+    // cannot turn its other major into a four-card response to that double.
+    if (ntShapeSuitable && enemyShownSuits.every(hasStopper)) {
+      const nt = cheapest('NT', 2); if (nt && candidateValid?.(nt) !== false) return nt;
+    }
+    const natural = sorted.filter(suit => !enemyShownSuits.includes(suit)
+      && lengths[suit] >= (suit === opening.call.strain ? 4 : 5))
+      .map(suit => cheapest(suit, 3)).find(call => call && candidateValid?.(call) !== false);
+    return natural ?? safePass();
+  }
+  // Opposing bids use natural competition. Existing game forces survive later interference.
+  if (system === 'sayc' && naturalOpening && opening.call.strain === 'NT' && opening.call.level <= 2
+    && p && p.call.strain !== 'NT' && semantics.convention === 'competitive-cue' && isOpener) {
+    const naturalMajor = naturalMajorOrder.find(suit => lengths[suit] >= 4 && cheapest(suit, 4));
+    if (naturalMajor) return pick(cheapest(naturalMajor, 4) ?? safePass());
+    if (hasStopper(p.call.strain)) return pick(bid(3, 'NT'));
+    return forcedFallback();
+  }
+  if (system === 'sayc' && naturalOpening && opening.call.strain === 'NT' && opening.call.level === 1
+    && !own.length && p?.index === opening.index && last.call.strain !== 'NT'
+    && sideOf(last.seat) !== sideOf(obs.seat) && last.call.level <= 3) {
+    const newMajor = sorted.find(suit => major(suit) && suit !== last.call.strain && lengths[suit] >= 5);
+    if (newMajor && hcp >= 10 && available(bid(3, newMajor))) return bid(3, newMajor);
+    if (hcp >= 10 && (lengths.H >= 4 || lengths.S >= 4))
+      return pick(cheapest(last.call.strain, 3) ?? safePass());
+    if (hcp >= 10 && hasStopper(last.call.strain)) return pick(bid(3, 'NT'));
+    if (newMajor && lengths[newMajor] >= 6 && hcp >= 6) return pick(cheapest(newMajor, 2) ?? safePass());
+  }
+  if (naturalOpening && isOpener && own.length === 1 && !directUncontested && response
+    && p?.index === response.index && response.call.strain !== 'NT' && response.call.strain !== opening.call.strain
+    && (semantics.convention === 'natural-response'
+      || (passedBefore(obs.auction, response.seat, opening.index) && lengths[response.call.strain] <= 2))) {
+    const r = response.call.strain;
+    if (lengths[r] >= (response.call.level === 1 ? 4 : major(r) ? 3 : 4))
+      return pick(cheapest(r, 5) ?? safePass());
+    const second = sorted.find(suit => suit !== opening.call.strain && suit !== r && lengths[suit] >= 4
+      && !all.some(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain === suit) && cheapest(suit, 3)
+      && (bidValue(bid(1, suit)) < bidValue(opening.call) || hcp >= 17));
+    const enemyNatural = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain !== 'NT');
+    const nt = cheapest('NT', 2);
+    if (balanced && nt?.kind === 'bid' && (nt.level === 1
+      || hcp >= 18 && enemyNatural.every(entry => hasStopper(entry.call.strain)))) return nt;
+    if (second) return pick(cheapest(second, 3) ?? safePass());
+    if (opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 5) return pick(cheapest(opening.call.strain, 3) ?? safePass());
+    return forcedFallback();
+  }
+  // A free opposing bid may end the response's one-round obligation; it
+  // does not erase opener's independently sufficient strength.
+  if (system === 'sayc' && naturalOpening && isOpener && own.length === 1 && !directUncontested
+    && response?.seat === partnerOf(obs.seat) && response.call.level === 1 && response.call.strain !== 'NT'
+    && p?.index === response.index && hcp >= 17 && opening.call.strain !== 'NT') {
+    const enemySuits = new Set(all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+      && !isArtificialBidAt(obs.auction, entry.index, system)).map(entry => entry.call.strain));
+    const second = sorted.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+      && !enemySuits.has(suit) && lengths[suit] >= 4 && cheapest(suit, 3));
+    const low = second ? cheapest(second, 3) : undefined;
+    if (low?.kind === 'bid' && lengths[opening.call.strain] >= 4
+      && (hcp >= 19 || bidValue(bid(1, low.strain)) > bidValue(opening.call)))
+      return pick(bid(low.level === 1 && hcp >= 19 ? 2 : low.level, low.strain));
+  }
+  if (sideOf(last.seat) !== sideOf(obs.seat)) {
+    if (gameForcing && !us.some(entry => atGame(entry.call))) return closeGame();
+    const opponent = last.call; const stopped = hasStopper(opponent.strain);
+    if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+      && major(response.call.strain) && opening.call.strain !== response.call.strain
+      && lengths[response.call.strain] === 3 && balanced && hcp >= 12 && opponent.level <= 2
+      && response.index < last.index && !isArtificialBidAt(obs.auction, response.index, system)) {
+      const support = cheapest(response.call.strain, 2);
+      if (support) return support;
+    }
+    if (naturalOpening && isOpener && own.length === 1 && opening.call.level === 1
+      && opening.call.strain !== 'NT' && hcp >= 12) {
+      const enemyNatural = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+        && !isArtificialBidAt(obs.auction, entry.index, system)).map(entry => entry.call.strain);
+      const second = sorted.find(suit => suit !== opening.call.strain && suit !== response?.call.strain
+        && !enemyNatural.includes(suit) && lengths[suit] >= 4 && cheapest(suit, 2)
+        && bidValue(bid(1, suit)) < bidValue(opening.call));
+      if (second && !balanced) return pick(cheapest(second, 2) ?? safePass());
+      if (lengths[opening.call.strain] >= 6 && available(bid(2, opening.call.strain)))
+        return pick(bid(hcp >= 16 ? 3 : 2, opening.call.strain));
+    }
+    if (naturalOpening && !isOpener && response?.seat === obs.seat && own.length >= 1
+      && response.call.strain !== 'NT' && lengths[response.call.strain] >= 6 && hcp >= 6) {
+      const repeat = cheapest(response.call.strain, 3);
+      if (repeat) return pick(repeat);
+    }
+    if (naturalOpening && opening && opening.call.strain !== 'NT' && p && own.length === 0 && opening.call.level === 1 && opponent.level <= 2
+      && last.index === opening.index + 1 && obs.auction.length === opening.index + 2) {
+      const otherMajor = opponent.strain === 'H' ? 'S' : opponent.strain === 'S' ? 'H' : null;
+      if (otherMajor && lengths[otherMajor] === 4 && hcp >= (opponent.level === 1 ? 6 : 8)) return pick({ kind: 'double' });
+    }
+    const artificialPartnerOpening = !!(naturalOpening && p && opening && p.index === opening.index && ((system === 'precision' && p.call.level === 1 && p.call.strain === 'C') || ((system === 'two-over-one' || system === 'sayc') && p.call.level === 2 && p.call.strain === 'C')));
+    if (artificialPartnerOpening) {
+      const positiveSuit = sorted.find(suit => suit !== opponent.strain && lengths[suit] >= 5);
+      if (hcp >= (system === 'precision' ? 8 : 4) && positiveSuit) return pick(cheapest(positiveSuit, 3) ?? safePass());
+      if (hcp >= 8 && balanced) return pick(cheapest('NT', 3) ?? safePass());
+      // Our card treats X here as penalty. A weak waiting responder does
+      // not acquire defense from partner's artificial strong opening.
+      const enemyTrump = opponent.strain !== 'NT' ? opponent.strain as Suit : undefined;
+      const defensiveTricks = obs.hand.filter(card => card.rank === 14).length
+        + obs.hand.filter(card => card.rank === 13 && lengths[card.suit] >= 2).length;
+      return enemyTrump && lengths[enemyTrump] >= 4 && defensiveTricks >= 2
+        ? pick({ kind: 'double' }) : PASS;
+    }
+    if (naturalOpening && !isOpener && !own.length && opening.call.level === 1
+      && opening.call.strain !== 'NT' && p?.index === opening.index && opponent.level === 2
+      && hcp >= 13) {
+      const natural = sorted.find(suit => suit !== opening.call.strain && suit !== opponent.strain
+        && lengths[suit] >= 5 && cheapest(suit, 3));
+      if (natural) return pick(cheapest(natural, 3) ?? safePass());
+    }
+    if (naturalOpening && isOpener && own.length === 1 && opening.call.strain !== 'NT'
+      && major(opening.call.strain) && lengths[opening.call.strain] >= 7 && hcp >= 12
+      && obs.hand.filter(card => card.suit === opening.call.strain && card.rank >= 11).length >= 3) {
+      const repeat = cheapest(opening.call.strain, 3); if (repeat) return repeat;
+    }
+    if (p && !artificialPartnerOpening && p.call.strain !== 'NT' && lengths[p.call.strain] >= 3
+      && fitPoints(p.call.strain) >= 6) {
+      const ownTakeout = obs.auction.findIndex((entry, index) => entry.seat === obs.seat && isTakeoutDoubleAt(obs.auction, index));
+      const forcedTakeoutResponse = ownTakeout >= 0 && p.index > ownTakeout;
+      const partnerMin = forcedTakeoutResponse ? 0 : partnerMinimum();
+      const total = fitPoints(p.call.strain) + (forcedTakeoutResponse ? partnerMin : supportMinimum(p.call.strain));
+      const supportNeeded = major(p.call.strain) ? p.call.level === 1 && p.index !== opening?.index ? 4 : 3
+        : p.index === opening?.index ? 5 : 4;
+      if (lengths[p.call.strain] >= supportNeeded && total >= (major(p.call.strain) ? 25 : 29)
+        && available(bid(gameLevel(p.call.strain), p.call.strain))) return bid(gameLevel(p.call.strain), p.call.strain);
+      const competitiveRaise = lengths[p.call.strain] >= supportNeeded ? cheapest(p.call.strain, 3) : undefined;
+      if (competitiveRaise) return competitiveRaise;
+    }
+    if (naturalOpening && isOpener && own.length === 1 && (!p || p.index === opening.index)) {
+      const o = opening.call.strain;
+      const enemyNatural = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain !== 'NT');
+      if (balanced && hcp >= 18 && enemyNatural.every(entry => hasStopper(entry.call.strain)))
+        return pick(bid(2, 'NT'));
+      const second = sorted.find(suit => suit !== o && !enemyNatural.some(entry => entry.call.strain === suit)
+        && lengths[suit] >= 4 && cheapest(suit, 3));
+      // A strong opener retains its actual second suit after an opposing
+      // takeout double; repeating six cards first would conceal these extras.
+      if (second && (hcp >= 18 || (hcp >= 17 && bidValue(bid(1, second)) > bidValue(opening.call))))
+        return pick(cheapest(second, 3) ?? safePass());
+      if (o !== 'NT' && lengths[o] >= 6 && hcp >= 16) {
+        const repeat = cheapest(o, 4); if (repeat) return repeat;
+      }
+      if (second && (hcp >= 18 || (hcp >= 17 && lengths[second] >= 6))) return pick(cheapest(second, 3) ?? safePass());
+      if (o !== 'NT' && lengths[o] >= 5 && hcp >= 18) return pick(cheapest(o, 4) ?? safePass());
+      if (balanced && hcp >= 18 && stopped) return pick(cheapest('NT', 3) ?? safePass());
+    }
+    const balancing = all.length === 1 && obs.auction.slice(last.index + 1).length === 2
+      && obs.auction.slice(last.index + 1).every(entry => entry.call.kind === 'pass');
+    const ntMinimum = balancing ? 11 : 15, ntMaximum = balancing ? 14 : 18;
+    const artificialEnemy = isArtificialBidAt(obs.auction, last.index, system);
+    if (!artificialEnemy && !own.length && balanced && hcp >= ntMinimum && hcp <= ntMaximum
+      && stopped && available(bid(1, 'NT'))) return bid(1, 'NT');
+    const enemySuits = new Set(all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat)).map(entry => entry.call.strain));
+    const overcallSuit = sorted.find(suit => !enemySuits.has(suit) && lengths[suit] >= 5);
+    if (!own.length && overcallSuit) {
+      const call = cheapest(overcallSuit, 2);
+      const ranks = obs.hand.filter(card => card.suit === overcallSuit).map(card => card.rank);
+      const sound = call?.kind === 'bid' && (call.level === 1 ? ranks.some(rank => rank >= 12) || ranks.length >= 6
+        : ranks.filter(rank => rank >= 10).length >= 2 && ranks.some(rank => rank >= 12)
+          || ranks.length >= 6 && ranks.some(rank => rank >= 13));
+      if (call?.kind === 'bid' && hcp >= (call.level === 1 ? 8 : 12) && sound) return call;
+    }
+    const unbid = SUITS.filter(s => s !== opponent.strain);
+    if (!artificialEnemy && !own.length && opponent.strain !== 'NT' && opponent.level <= 2
+      && classifyDoubleAt([...obs.auction, { seat: obs.seat, call: { kind: 'double' } }], obs.auction.length, system) === 'takeout'
+      && ((hcp >= 18 && (lengths[opponent.strain] <= 2 || unbid.some(s => lengths[s] >= 5)))
+        || (hcp >= 12 && lengths[opponent.strain] <= 2 && unbid.every(s => lengths[s] >= 3)))) return pick({ kind: 'double' });
+    return safePass();
+  }
+  if (!opening || !p) return safePass();
+  if (semantics.convention === 'competitive-cue' && p.call.strain !== 'NT'
+    && balanced && hasStopper(p.call.strain)) return pick(cheapest('NT', 3) ?? forcedFallback());
+
+  const responderNegativeIndex = obs.auction.findIndex((entry, index) => entry.seat === obs.seat
+    && entry.call.kind === 'double' && index === opening.index + 2
+    && obs.auction[opening.index + 1]?.call.kind === 'bid');
+  if (naturalOpening && !isOpener && responderNegativeIndex >= 0 && !own.length && p.index > responderNegativeIndex) {
+    if (p.call.strain !== 'NT' && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+      && supportTotal(p.call.strain) >= (major(p.call.strain) ? 25 : 29))
+      return pick(bid(gameLevel(p.call.strain), p.call.strain));
+    const enemyNatural = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+      && !isArtificialBidAt(obs.auction, entry.index, system));
+    if (balanced && hcp + partnerHcpMinimum() >= 25 && enemyNatural.every(entry => hasStopper(entry.call.strain)))
+      return pick(bid(3, 'NT'));
+    if (p.call.strain !== 'NT' && major(p.call.strain) && lengths[p.call.strain] >= 4) {
+      const total = evaluateSuitFit(obs.hand, p.call.strain, 4).totalPoints + 12;
+      return pick(bid(total >= 25 ? 4 : total >= 23 ? 3 : 2, p.call.strain));
+    }
+    const shownRange = p.call.strain === 'NT' ? noTrumpRangeAt(obs.auction, p.index, system) : undefined;
+    if (shownRange && balanced) return hcp + shownRange.min >= 25 ? pick(bid(3, 'NT'))
+      : hcp + shownRange.max >= 25 ? pick(bid(2, 'NT')) : safePass();
+    if (p.call.strain !== 'NT' && p.index === last?.index && !atGame(p.call)) {
+      const currentLength = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain);
+      const preference = sorted.filter(suit => suit !== p.call.strain
+        && partnerTrumpMinimum(suit) > 0 && lengths[suit] + partnerTrumpMinimum(suit) >= 7
+        && lengths[suit] + partnerTrumpMinimum(suit) > currentLength)
+        .map(suit => cheapest(suit, 3)).find(call => call && available(call) && candidateValid?.(call) !== false
+          && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).artificial);
+      if (preference) return preference;
+    }
+    if (p.call.strain !== 'NT' && lengths[p.call.strain] <= 1) {
+      const enemySuits = new Set(all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat)).map(entry => entry.call.strain));
+      const escape = sorted.find(suit => !enemySuits.has(suit) && lengths[suit] >= 5 && cheapest(suit, 3));
+      if (escape) return pick(cheapest(escape, 3) ?? safePass());
+    }
+  }
+
+  if (semantics.convention === 'new-minor' && isOpener) {
+    const respondersMajor = response && major(response.call.strain) ? response.call.strain : undefined;
+    if (respondersMajor && lengths[respondersMajor] >= 3) return pick(cheapest(respondersMajor, 3) ?? safePass());
+    const otherMajor = (['H', 'S'] as Suit[]).find(suit => suit !== respondersMajor && lengths[suit] >= 4);
+    if (otherMajor) return pick(cheapest(otherMajor, 3) ?? safePass());
+    return pick(cheapest('NT', 3) ?? safePass(), cheapest(opening.call.strain, 3) ?? safePass());
+  }
+  if (semantics.convention === 'fourth-suit' && isOpener) {
+    const respondersSuit = response?.call.strain;
+    if (respondersSuit && respondersSuit !== 'NT' && lengths[respondersSuit] >= (major(respondersSuit) ? 3 : 4)) return pick(cheapest(respondersSuit, 3) ?? safePass());
+    if (hasStopper(p.call.strain)) return hcp >= 15 ? pick(bid(3, 'NT')) : pick(cheapest('NT', 3) ?? safePass());
+    const ownShown = own.filter(entry => entry.call.strain !== 'NT' && !isArtificialBidAt(obs.auction, entry.index, system));
+    const ownNatural = sorted.find(suit => lengths[suit] >= 6 && ownShown.some(entry => entry.call.strain === suit))
+      ?? ownShown.at(-1)?.call.strain;
+    return pick(ownNatural ? cheapest(ownNatural, 3) ?? safePass() : safePass());
+  }
+  if (semantics.convention === 'trial-bid' && isOpener && response && major(response.call.strain) && p.call.strain !== 'NT') {
+    const accept = hcp >= 14 || lengths[p.call.strain] <= 1 || hasStopper(p.call.strain);
+    return pick(bid(accept ? 4 : 3, response.call.strain));
+  }
+
+  const naturalRebidRange = p.call.strain === 'NT' ? latestNoTrumpRange(obs.auction, obs.seat, system, p.index + 1) : undefined;
+  const responseToNaturalOneLevel = !isOpener && own.length === 1 && opening.call.level === 1 && opening.call.strain !== 'NT' && !(system === 'precision' && opening.call.strain === 'C') && response?.seat === obs.seat && response.call.level === 1 && response.call.strain !== 'NT' && p.seat === opening.seat;
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3
+    && opening.call.strain !== 'NT' && !major(opening.call.strain) && p.call.level === 2
+    && p.call.strain === opening.call.strain && lengths[p.call.strain] <= 1 && hcp <= 12) {
+    const escapeMinor = (['C', 'D'] as Suit[]).find(suit => suit !== p.call.strain && lengths[suit] >= 6
+      && (hcp <= 9 || reasonablePreemptSuit(suit)));
+    if (escapeMinor) return pick(bid(hcp >= 10 ? 4 : 3, escapeMinor));
+  }
+  if (responseToNaturalOneLevel && naturalRebidRange) {
+    if (major(response!.call.strain) && lengths[response!.call.strain] >= 6) {
+      const supported = fitPoints(response!.call.strain as Suit, 2);
+      if (supported + naturalRebidRange.min >= 25) return pick(bid(4, response!.call.strain));
+      if (hcp >= 10 && supported + naturalRebidRange.max >= 25) return pick(bid(3, response!.call.strain));
+    }
+    if (!balanced && hcp <= 9) {
+      const escape = sorted.find(suit => suit !== response!.call.strain && lengths[suit] >= 5 && cheapest(suit, 2));
+      if (escape) return pick(cheapest(escape, 2) ?? safePass());
+      if (lengths[response!.call.strain as Suit] >= 6) return pick(cheapest(response!.call.strain, 2) ?? safePass());
+    }
+    if (hcp + naturalRebidRange.min >= 25) return pick(bid(3, 'NT'));
+    if (hcp >= 11 || hcp + naturalRebidRange.max >= 25) return pick(bid(2, 'NT'));
+    return safePass();
+  }
+  // Invitations after a one-over-one do not require a perfectly balanced
+  // hand. Show a genuine second major or choose NT with the invitation range.
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3
+    && p.call.strain === opening.call.strain && p.call.strain !== 'NT' && p.call.level === 3
+    && hcp + partnerHcpMinimum() >= 25
+    && (!major(p.call.strain) || lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8)) {
+    if (!major(p.call.strain)) {
+      if (lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+        && supportTotal(p.call.strain) >= 29) return pick(bid(5, p.call.strain));
+      return pick(bid(3, 'NT'));
+    }
+    if (balanced) return pick(bid(3, 'NT'));
+    const side = sorted.find(suit => suit !== response!.call.strain && suit !== p.call.strain
+      && lengths[suit] >= 4 && cheapest(suit, 3));
+    if (side) return pick(cheapest(side, 3) ?? safePass());
+    return pick(bid(3, 'NT'));
+  }
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3
+    && p.call.strain === opening.call.strain && p.call.strain !== 'NT' && hcp >= 10 && hcp <= 12) {
+    if (lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8 && fitPoints(p.call.strain) >= 10)
+      return pick(bid(3, p.call.strain));
+    const second = sorted.find(suit => suit !== response!.call.strain && suit !== opening.call.strain
+      && lengths[suit] >= 4 && cheapest(suit, 3));
+    if (second) return pick(cheapest(second, 3) ?? safePass());
+    if (lengths[response!.call.strain as Suit] >= 6) return pick(bid(3, response!.call.strain));
+    if (available(bid(2, 'NT'))) return bid(2, 'NT');
+  }
+
+  const strongRebidNT = opening && us[2]?.call.strain === 'NT' && ((system === 'two-over-one' || system === 'sayc') && opening.call.level === 2 && opening.call.strain === 'C' || system === 'precision' && opening.call.level === 1 && opening.call.strain === 'C' && response?.call.strain === 'D' && response.call.level === 1);
+  const ntOpening = opening?.call.strain === 'NT' && isNaturalNoTrumpAt(obs.auction, opening.index, system)
+    ? opening : strongRebidNT && isNaturalNoTrumpAt(obs.auction, us[2].index, system) ? us[2] : undefined;
+  const ntUs = ntOpening ? us.slice(us.indexOf(ntOpening)) : [];
+  const ntResponse = ntUs[1];
+  if (naturalOpening && directUncontested && system === 'sayc' && ntOpening?.call.level === 3) {
+    if (obs.seat === responder && ntUs.length === 1) {
+      if (openingMajor) return pick(bid(4, openingMajor === 'H' ? 'D' : 'H'));
+      if (lengths.H >= 4 || lengths.S >= 4) return pick(bid(4, 'C'));
+      return safePass();
+    }
+    if (isOpener && ntUs.length === 2) {
+      if (p.call.level === 4 && p.call.strain === 'C') return pick(bid(4, lengths.H >= 4 ? 'H' : lengths.S >= 4 ? 'S' : 'D'));
+      if (p.call.level === 4 && (p.call.strain === 'D' || p.call.strain === 'H')) return pick(bid(4, p.call.strain === 'D' ? 'H' : 'S'));
+    }
+  }
+  const ntQuestionsOnlyDoubled = !!ntOpening && obs.auction.slice(ntOpening.index + 1).every((entry, offset) =>
+    sideOf(entry.seat) === sideOf(obs.seat) || entry.call.kind === 'pass'
+    || entry.call.kind === 'double' && isArtificialBidAt(obs.auction, ntOpening.index + offset, system));
+  if (naturalOpening && (directUncontested || ntQuestionsOnlyDoubled) && ntOpening && ntOpening.call.level <= 2) {
+    const [minimum, maximum] = strongRebidNT ? system === 'precision' ? ntOpening.call.level === 1 ? [16, 18] : [19, 21] : [22, 24] : range(ntOpening.call);
+    const base = ntOpening.call.level + 1;
+    const invite = Math.max(0, 23 - minimum); const gamePoints = Math.max(0, 25 - minimum);
+    if (obs.seat === responder && ntUs.length === 1) {
+      if (openingMajor) return pick(bid(base, openingMajor === 'H' ? 'D' : 'H'));
+      const staymanPoints = ntOpening.call.level === 2 ? gamePoints : invite;
+      if ((lengths.H >= 4 || lengths.S >= 4) && hcp >= staymanPoints) return pick(bid(base, 'C'));
+      if (hcp >= gamePoints) return pick(bid(3, 'NT'));
+      if (ntOpening.call.level === 1 && hcp >= invite) return pick(bid(2, 'NT'));
+      return safePass();
+    }
+    if (isOpener && ntUs.length === 2) {
+      if (p.call.strain === 'C' && p.call.level === base) return pick(bid(base, lengths.H >= 4 ? 'H' : lengths.S >= 4 ? 'S' : 'D'));
+      if (p.call.level === base && (p.call.strain === 'D' || p.call.strain === 'H')) return pick(bid(base, p.call.strain === 'D' ? 'H' : 'S'));
+      if (p.call.strain === 'NT' && p.call.level === 2) return ntInvitationAccept(invite) ? pick(bid(3, 'NT')) : safePass();
+      return safePass();
+    }
+    if (obs.seat === responder && ntUs.length === 3 && ntResponse) {
+      if (ntResponse.call.level === base && (ntResponse.call.strain === 'D' || ntResponse.call.strain === 'H')) {
+        const target: Suit = ntResponse.call.strain === 'D' ? 'H' : 'S';
+        const fit = lengths[target] + partnerTrumpMinimum(target) >= 8;
+        const support = fitPoints(target);
+        const secondMajor: Suit = target === 'H' ? 'S' : 'H';
+        if (hcp >= gamePoints && lengths[secondMajor] >= 5 && available(bid(3, secondMajor))) return bid(3, secondMajor);
+        if (fit && support + minimum >= 25) return pick(bid(4, target));
+        if (hcp >= gamePoints) return pick(bid(3, 'NT'));
+        if (hcp >= invite || fit && support >= 10 && support + maximum >= 25)
+          return fit ? pick(bid(3, target)) : pick(bid(2, 'NT'));
+        return safePass();
+      }
+      if (ntResponse.call.strain === 'C' && ntResponse.call.level === base) {
+        if (major(p.call.strain) && lengths[p.call.strain] >= 4) {
+          if (fitPoints(p.call.strain, 4) + minimum >= 25) return pick(bid(4, p.call.strain));
+          return hcp >= invite && hcp <= 9 ? pick(bid(3, p.call.strain)) : safePass();
+        }
+        const otherMajor = (['H', 'S'] as Suit[]).find(suit => suit !== p.call.strain && lengths[suit] >= 4
+          && cheapest(suit, 3));
+        // A denial of both majors supplies no major fit. Four-card invitations
+        // go through NT; only an actual major answer permits the other-major route.
+        if (major(p.call.strain) && otherMajor) {
+          if (p.call.strain === 'H' && otherMajor === 'S' && hcp < gamePoints)
+            return pick(bid(base, 'S'));
+          if (p.call.strain === 'S' && otherMajor === 'H' && lengths.H >= 5 && lengths.S >= 4 && hcp >= gamePoints)
+            return pick(bid(base + 1, 'H'));
+        }
+        return hcp >= gamePoints ? pick(bid(3, 'NT')) : ntOpening.call.level === 1 ? pick(bid(2, 'NT')) : safePass();
+      }
+    }
+    if (isOpener && ntUs.length >= 4 && ntResponse) {
+      const target = ntResponse.call.strain === 'D' ? 'H' : ntResponse.call.strain === 'H' ? 'S' : null;
+      if (ntResponse.call.strain === 'C' && major(p.call.strain)
+        && !isArtificialBidAt(obs.auction, p.index, system)) {
+        if (lengths[p.call.strain] >= 4) return fitPoints(p.call.strain, 4) + invite >= 25
+          ? pick(bid(4, p.call.strain)) : p.call.level < 3 ? pick(bid(3, p.call.strain)) : safePass();
+        return ntInvitationAccept(invite) ? pick(bid(3, 'NT'))
+          : p.call.level < 3 ? pick(bid(2, 'NT')) : safePass();
+      }
+      if (p.call.strain === 'NT' && p.call.level === 3 && target && lengths[target] >= 3) return pick(bid(4, target));
+      if (p.call.strain === 'NT' && p.call.level === 2) {
+        if (target && lengths[target] >= 3 && supportTotal(target) >= 25) return pick(bid(4, target));
+        return ntInvitationAccept(invite) ? pick(bid(3, 'NT')) : safePass();
+      }
+      if (major(p.call.strain) && p.call.level === 3) {
+        const promised = ntResponse.call.strain === 'C' ? 4 : 6;
+        return lengths[p.call.strain] + promised >= 8 && fitPoints(p.call.strain, promised) + invite >= 25
+          ? pick(bid(4, p.call.strain)) : ntResponse.call.strain === 'C' && hcp + invite >= 25
+            ? pick(bid(3, 'NT')) : safePass();
+      }
+      return safePass();
+    }
+  }
+
+  if (quietStrongClub && opening.call.level === 2 && opening.call.strain === 'C' && (system === 'two-over-one' || system === 'sayc')) {
+    if (obs.seat === responder && !own.length) return pick(bid(2, 'D'));
+    if (isOpener && us.length === 2) {
+      if (balanced) return pick(bid(hcp >= 25 ? 3 : 2, 'NT'));
+      if (lengths[longest] === 4) return pick(bid(3, minor));
+      return pick(cheapest(longest, 3) ?? safePass());
+    }
+    if (obs.seat === responder && us.length === 3) {
+      if (p.call.strain === 'NT') {
+        if (p.call.level === 2 && openingMajor) return pick(bid(3, openingMajor === 'H' ? 'D' : 'H'));
+        if (p.call.level === 2 && (lengths.H >= 4 || lengths.S >= 4) && hcp >= 3) return pick(bid(3, 'C'));
+        return hcp >= 3 ? pick(bid(3, 'NT')) : safePass();
+      }
+      if (system === 'sayc' && hcp <= 3) {
+        const negative = p.call.strain === 'C' ? bid(3, 'D') : p.call.strain === 'D' ? bid(3, 'NT') : bid(3, 'C');
+        return pick(negative);
+      }
+      if (lengths[p.call.strain] >= (major(p.call.strain) ? 3 : 4)) return pick(bid(gameLevel(p.call.strain), p.call.strain));
+      if (system === 'sayc' && hcp >= 4) {
+        const positive = sorted.find(suit => suit !== p.call.strain && lengths[suit] >= 5 && cheapest(suit, 4));
+        if (positive) {
+          const low = cheapest(positive, 4);
+          const reservedNegative = major(p.call.strain) ? 'C' : p.call.strain === 'C' ? 'D' : 'NT';
+          if (low?.kind === 'bid' && low.level === 3 && low.strain === reservedNegative)
+            return pick(bid(4, positive));
+          return pick(low ?? safePass());
+        }
+      }
+      if (hcp <= 3) return pick(bid(3, 'C'));
+      return pick(bid(3, 'NT'));
+    }
+    if (system === 'sayc' && isOpener && us.length === 4 && hcp <= 26
+      && ((us[2].call.strain === 'C' && p.call.level === 3 && p.call.strain === 'D')
+        || (us[2].call.strain === 'D' && p.call.level === 3 && p.call.strain === 'NT')))
+      return pick(cheapest(us[2].call.strain, 5) ?? safePass());
+    if (isOpener && p.call.level === 3 && p.call.strain === 'C' && own.at(-1)?.call.strain === 'NT') return pick(bid(3, lengths.H >= 4 ? 'H' : lengths.S >= 4 ? 'S' : 'D'));
+    if (isOpener && p.call.level === 3 && (p.call.strain === 'D' || p.call.strain === 'H') && own.at(-1)?.call.strain === 'NT') return pick(bid(3, p.call.strain === 'D' ? 'H' : 'S'));
+    if (isOpener && p.call.level === 3 && p.call.strain === 'C' && own.at(-1)?.call.strain !== 'NT') {
+      if (hcp >= 25) {
+        const second = sorted.find(suit => suit !== own.at(-1)!.call.strain && lengths[suit] >= 4 && cheapest(suit, 4));
+        if (second) return pick(cheapest(second, 4) ?? safePass());
+        return pick(bid(4, own.at(-1)!.call.strain), bid(3, 'NT'));
+      }
+      return pick(cheapest(own.at(-1)!.call.strain, 4) ?? bid(3, 'NT'));
+    }
+  }
+
+  // Weak two: natural support and a simple feature ask, with no Ogust inference.
+  if (naturalOpening && directUncontested && opening.call.level === 2 && opening.call.strain !== 'NT' && (system === 'precision' ? major(opening.call.strain) : opening.call.strain !== 'C')) {
+    if (obs.seat === responder && !own.length) {
+      const supportTotal = fitPoints(opening.call.strain, 6);
+      if (lengths[opening.call.strain] >= 2 && supportTotal + 5 >= (major(opening.call.strain) ? 25 : 29))
+        return pick(bid(gameLevel(opening.call.strain), opening.call.strain));
+      if (system === 'sayc') {
+        const forcingSuit = sorted.find(suit => suit !== opening.call.strain && lengths[suit] >= 5 && hcp >= 13 && cheapest(suit, 3));
+        if (forcingSuit) return pick(cheapest(forcingSuit, 3) ?? safePass());
+      }
+      if (hcp >= 15) return pick(bid(2, 'NT'));
+      if (lengths[opening.call.strain] >= 3 && supportTotal >= 6) return pick(bid(3, opening.call.strain));
+      return safePass();
+    }
+    if (system === 'sayc' && isOpener && us.length === 2 && response && response.call.strain !== 'NT' && response.call.strain !== opening.call.strain) {
+      if (lengths[response.call.strain] >= 3) return pick(cheapest(response.call.strain, 4) ?? safePass());
+      if (hcp <= 8) return pick(bid(3, opening.call.strain));
+      const feature = sorted.find(s => s !== opening.call.strain && s !== response.call.strain && obs.hand.some(c => c.suit === s && c.rank >= 13));
+      return feature ? pick(cheapest(feature, 4) ?? bid(3, opening.call.strain)) : pick(cheapest('NT', 3) ?? bid(3, opening.call.strain));
+    }
+    if (isOpener && p.call.strain === 'NT' && p.call.level === 2) {
+      if (hcp >= (system === 'sayc' ? 9 : 8)) { const feature = sorted.find(s => s !== opening.call.strain && obs.hand.some(c => c.suit === s && c.rank >= 13)); if (feature) return pick(bid(3, feature), bid(3, opening.call.strain)); }
+      return pick(bid(3, opening.call.strain));
+    }
+    if (obs.seat === responder && response?.call.strain === 'NT' && response.call.level === 2 && us.length === 3) {
+      const publicMinimum = p.call.strain === opening.call.strain ? 5 : 9;
+      if (lengths[opening.call.strain] + 6 >= 8
+        && fitPoints(opening.call.strain, 6) + publicMinimum >= (major(opening.call.strain) ? 25 : 29))
+        return pick(bid(gameLevel(opening.call.strain), opening.call.strain));
+      if (balanced && hcp + publicMinimum >= 25) return pick(bid(3, 'NT'));
+      return pick(cheapest(opening.call.strain, 3) ?? safePass());
+    }
+    if (system === 'sayc' && obs.seat === responder && response?.call.strain !== 'NT'
+      && response?.call.strain !== opening.call.strain && us.length >= 3 && hcp >= 19) {
+      if (lengths[opening.call.strain] >= 2) return pick(bid(gameLevel(opening.call.strain), opening.call.strain));
+      if (balanced) return pick(bid(3, 'NT'));
+      const selfMajor = sorted.find(suit => major(suit) && lengths[suit] >= 6 && available(bid(4, suit)));
+      if (selfMajor) return pick(bid(4, selfMajor));
+      if (SUITS.filter(suit => suit !== opening.call.strain).every(hasStopper)) return pick(bid(3, 'NT'));
+      const sideSuit = sorted.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+        && lengths[suit] >= 4 && cheapest(suit, 4));
+      if (sideSuit) return pick(cheapest(sideSuit, 4) ?? safePass());
+      return pick(cheapest(response.call.strain, 3) ?? safePass());
+    }
+    if (system === 'sayc' && obs.seat === responder && response?.call.strain !== 'NT'
+      && response?.call.strain !== opening.call.strain && us.length === 3
+      && p.call.strain === opening.call.strain && lengths[opening.call.strain] <= 1
+      && lengths[response.call.strain] >= 6 && hcp >= 13)
+      return pick(cheapest(response.call.strain, 3) ?? safePass());
+    return safePass();
+  }
+  if (system === 'sayc' && naturalOpening && opening.call.level === 3
+    && obs.seat === responder && response?.call.strain !== 'NT' && response?.call.strain !== opening.call.strain
+    && own.length === 1 && us.length === 3 && hcp >= 15 && major(response.call.strain)
+    && lengths[response.call.strain] >= 6 && available(bid(4, response.call.strain)))
+    return bid(4, response.call.strain);
+  if (atGame(last.call)) return safePass();
+  if (system === 'sayc' && naturalOpening && isOpener && own.length === 1 && p.call.level === 2
+    && opening.call.strain !== 'NT' && !major(opening.call.strain) && p.call.strain === opening.call.strain
+    && hcp >= 16 && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8)
+    return pick(bid(fitPoints(p.call.strain) + partnerMinimum() >= 29 ? 5 : 3, p.call.strain));
+  if (system === 'sayc' && naturalOpening && isOpener && own.length >= 2 && p.call.level === 3
+    && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain
+    && hcp + partnerHcpMinimum() >= 25 && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8) {
+    const side = sorted.find(suit => suit !== p.call.strain && lengths[suit] >= 4 && cheapest(suit, 4));
+    return pick(bid(3, 'NT'), side ? cheapest(side, 4) ?? safePass() : safePass());
+  }
+  // A natural NT rebid or invitation has a public range even when an
+  // earlier intervention or a nonbalanced response preceded it.
+  if (system === 'sayc' && naturalOpening && p.call.strain === 'NT' && p.call.level === 2
+    && isNaturalNoTrumpAt(obs.auction, p.index, system)
+    && opening.call.level === 1 && opening.call.strain !== 'NT' && own.length >= 1) {
+    if (!isOpener && response && response.call.strain !== 'NT' && major(response.call.strain)
+      && lengths[response.call.strain] >= 6 && partnerTrumpMinimum(response.call.strain) >= 2
+      && supportTotal(response.call.strain) >= 25)
+      return pick(bid(4, response.call.strain));
+    if (hcp + partnerHcpMinimum() >= 25) return pick(bid(3, 'NT'));
+  }
+  if (system === 'sayc' && naturalOpening && isOpener && own.length >= 2
+    && p.call.strain !== 'NT' && !gameForcing && lengths[p.call.strain] <= 1
+    && opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 6)
+    return pick(cheapest(opening.call.strain, 3) ?? safePass());
+  if (system === 'sayc' && naturalOpening && isOpener && own.length === 2
+    && major(opening.call.strain) && response?.call.level === 1 && response.call.strain === 'NT'
+    && us[2]?.call.strain !== opening.call.strain && p.call.level === 2 && p.call.strain === opening.call.strain
+    && hcp >= 18 && available(bid(2, 'NT'))
+    && all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain !== 'NT'
+      && !isArtificialBidAt(obs.auction, entry.index, system)).every(entry => hasStopper(entry.call.strain)))
+    return pick(bid(hcp + partnerHcpMinimum() >= 25 ? 3 : 2, 'NT'));
+  if (system === 'sayc' && naturalOpening && isOpener && own.length >= 2 && p.call.strain !== 'NT'
+    && !gameForcing && hcp >= 17 && !atGame(p.call)) {
+    if (hcp + partnerHcpMinimum() >= 25 && available(bid(3, 'NT'))
+      && all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain !== 'NT')
+        .every(entry => hasStopper(entry.call.strain))) return bid(3, 'NT');
+    if (balanced) return pick(cheapest('NT', 3) ?? safePass());
+    if (p.call.strain === opening.call.strain
+      && lengths[opening.call.strain] >= (major(opening.call.strain) ? 6 : 5) && available(bid(3, opening.call.strain)))
+      return bid(3, opening.call.strain);
+    const second = sorted.find(suit => suit !== opening.call.strain && suit !== p.call.strain
+      && lengths[suit] >= 4 && cheapest(suit, 3));
+    if (second) return pick(cheapest(second, 3) ?? safePass());
+    if (lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8)
+      return pick(cheapest('NT', 3) ?? safePass());
+  }
+  if (system === 'sayc' && naturalOpening && isOpener && own.length === 1 && response
+    && response.call.level === 2 && response.call.strain !== 'NT' && !gameForcing
+    && opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 6
+    && lengths[response.call.strain] <= 2)
+    return pick(cheapest(opening.call.strain, 3) ?? safePass());
+  if (system === 'sayc' && naturalOpening && !gameForcing && obs.seat === responder && own.length === 1
+    && response?.call.level === 2 && response.call.strain !== 'NT'
+    && p.call.strain !== 'NT' && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8) {
+    const enemies = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain !== 'NT'
+      && !isArtificialBidAt(obs.auction, entry.index, system));
+    if (hcp >= 13) {
+      if (enemies.every(entry => hasStopper(entry.call.strain))) return pick(bid(3, 'NT'));
+      const cue = enemies.findLast(entry => cheapest(entry.call.strain, 3));
+      if (cue) return pick(cheapest(cue.call.strain, 3) ?? safePass());
+    }
+    if (lengths[response.call.strain] >= 6 && lengths[p.call.strain] <= 2)
+      return pick(cheapest(response.call.strain, 3) ?? safePass());
+    if (hcp >= 11 && available(bid(2, 'NT'))) return bid(2, 'NT');
+    return safePass();
+  }
+  if (naturalOpening && !gameForcing && response?.call.level === 1 && major(response.call.strain)
+    && opening.call.strain !== response.call.strain && us[2]?.call.level === 2
+    && us[2].call.strain === response.call.strain) {
+    const trump = response.call.strain;
+    if (obs.seat === responder && us.length === 3 && lengths[trump] + partnerTrumpMinimum(trump) >= 8
+      && fitPoints(trump) >= 10)
+      return pick(bid(fitPoints(trump) + partnerMinimum() >= 25 ? 4 : 3, trump));
+    if (isOpener && us.length === 4 && p.call.level === 3 && p.call.strain === trump
+      && lengths[trump] + partnerTrumpMinimum(trump) >= 8
+      && fitPoints(trump) + partnerMinimum() >= 25) return pick(bid(4, trump));
+  }
+  if (system === 'sayc' && naturalOpening && !directUncontested && p && p.call.strain !== 'NT'
+    && !all.some(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain === p.call.strain)) {
+    const trump = p.call.strain;
+    const partnerMin = isOpener && obs.auction.some(entry => entry.seat === partnerOf(obs.seat)
+      && entry.call.kind === 'redouble') ? 10 : partnerMinimum();
+    if (lengths[trump] + partnerTrumpMinimum(trump) >= 8
+      && fitPoints(trump) + partnerMin >= (major(trump) ? 25 : 29)) return pick(bid(gameLevel(trump), trump));
+  }
+  if (gameForcing && (system === 'two-over-one' || system === 'sayc') && isOpener && own.length === 1) {
+    if (p.call.strain !== 'NT' && lengths[p.call.strain] >= (major(p.call.strain) ? 3 : 4)) {
+      if (major(p.call.strain)) return hcp <= 14 ? pick(bid(4, p.call.strain)) : pick(bid(3, p.call.strain));
+      if (balanced) return pick(bid(2, 'NT'));
+      return pick(cheapest(p.call.strain, 3) ?? safePass());
+    }
+    if (balanced) return pick(bid(2, 'NT'));
+    if (lengths[opening.call.strain as Suit] >= 6) return pick(cheapest(opening.call.strain, 3) ?? safePass());
+    const second = sorted.find(suit => suit !== opening.call.strain && suit !== p.call.strain && lengths[suit] >= 4 && cheapest(suit, 3));
+    if (second) return pick(cheapest(second, 3) ?? safePass());
+    if (lengths[opening.call.strain as Suit] >= 5) return pick(cheapest(opening.call.strain, 3) ?? safePass());
+    return forcedFallback();
+  }
+  if (gameForcing && system === 'sayc' && !isOpener && us.length === 3 && response?.call.level === 1
+    && response.call.strain === 'NT' && semantics.convention === 'opener-jump-shift') {
+    const longMajor = sorted.find(suit => major(suit) && lengths[suit] >= 6 && suit !== opening.call.strain
+      && suit !== p?.call.strain && cheapest(suit, 3));
+    if (longMajor) return pick(cheapest(longMajor, 3) ?? safePass());
+  }
+  if (gameForcing) return closeGame();
+  if (system === 'sayc' && naturalOpening && !isOpener && own.length === 2 && us.length === 5
+    && own[1].call.strain !== 'NT' && isArtificialBidAt(obs.auction, own[1].index, system)
+    && new Set(us.slice(0, 4).map(entry => entry.call.strain)).size === 4 && hcp >= 13)
+    return closeGame();
+  if (system === 'sayc' && naturalOpening && !directUncontested && isOpener && own.length === 1
+    && response && response.call.strain !== 'NT' && response.call.strain !== opening.call.strain
+    && opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 6 && hcp >= 16
+    && available(bid(3, opening.call.strain))) return bid(3, opening.call.strain);
+  // The same natural responder continuations apply when an earlier enemy
+  // intervention has ended. Do not route every such auction into Pass.
+  const naturalResponderContinuation = !!(naturalOpening && responseToNaturalOneLevel && us.length >= 3 && us.length <= 5);
+  if ((!naturalOpening || !directUncontested) && !naturalResponderContinuation) {
+    if (system === 'sayc') {
+      // Competitive sequences retain their own public ranges. Do not hand an
+      // unrecognized auction to the old HCP-only engine.
+      if (semantics.forcing === 'game') return closeGame();
+      if (semantics.mustBid) return forcedFallback();
+      return safePass();
+    }
+    const fallback = legacyBid(obs);
+    return semantics.mustBid && fallback.kind === 'pass' ? forcedFallback() : fallback;
+  }
+
+  if (!own.length && obs.seat === responder && opening.call.level === 1) {
+    const o = opening.call;
+    if (major(o.strain)) {
+      const supportTotal = fitPoints(o.strain, 5);
+      if (lengths[o.strain] >= 4 && supportTotal >= (system === 'precision' ? 14 : 13)) return pick(bid(2, 'NT'));
+      if (o.strain === 'H' && lengths.S >= 4 && hcp >= 6) return pick(bid(1, 'S'));
+      if (lengths[o.strain] >= 3 && supportTotal >= 6) {
+        if (supportTotal >= 13 && system === 'precision') return pick(bid(4, o.strain));
+        if (supportTotal <= 12) return pick(bid(supportTotal >= 10 ? 3 : 2, o.strain));
+      }
+      const responderPassed = passedBefore(obs.auction, obs.seat, opening.index);
+      if (system === 'sayc' && responderPassed && hcp >= 10) {
+        const longSuit = sorted.find(s => s !== o.strain && lengths[s] >= 5 && available(bid(2, s)));
+        if (longSuit) return bid(2, longSuit);
+        if (balanced && lengths[o.strain] <= 2) {
+          if (hcp >= 16 && hcp <= 18) return pick(bid(3, 'NT'));
+        }
+        const suit = sorted.find(s => s !== o.strain && lengths[s] >= 4 && available(bid(2, s)));
+        if (suit) return bid(2, suit);
+      }
+      if ((system === 'two-over-one' || system === 'sayc') && hcp >= 13 && !responderPassed) {
+        const suit = sorted.find(s => s !== o.strain && lengths[s] >= (s === 'H' ? 5 : s === 'D' ? 4 : 3) && available(bid(2, s)));
+        if (suit) return bid(2, suit);
+      }
+      if (system === 'precision' && hcp >= 10) { const suit = sorted.find(s => s !== o.strain && lengths[s] >= 4 && available(bid(2, s))); if (suit) return bid(2, suit); }
+      if (supportTotal >= 13 && lengths[o.strain] >= 3) return pick(bid(4, o.strain));
+      return hcp >= ((system === 'sayc' || system === 'two-over-one') ? 5 : 6) ? pick(bid(1, 'NT')) : safePass();
+    }
+    const newMajor = naturalMajorOrder.find(s => lengths[s] >= 4 && available(bid(1, s)));
+    if (newMajor && hcp >= 6) return bid(1, newMajor);
+    if (o.strain === 'C' && lengths.D >= 4 && hcp >= 6) return pick(bid(1, 'D'));
+    if (system === 'sayc' && balanced && hcp >= 11 && hcp <= 15)
+      return pick(bid(hcp >= 13 ? 3 : 2, 'NT'));
+    const twoOneThreshold = (system === 'two-over-one' || system === 'sayc')
+      && !passedBefore(obs.auction, obs.seat, opening.index) ? 13 : 10;
+    if (o.strain === 'D' && lengths.C >= ((system === 'sayc' || system === 'two-over-one')
+      && passedBefore(obs.auction, obs.seat, opening.index) ? 5 : system === 'two-over-one' ? 3 : 4)
+      && hcp >= twoOneThreshold) return pick(bid(2, 'C'));
+    // Balanced 11-12 invites; 13+ places game when no one-level major or
+    // genuine new-suit game force is available. Minor support is not HCP.
+    if (system === 'sayc' && balanced && hcp >= 13) return pick(bid(3, 'NT'));
+    if (system === 'sayc' && balanced && hcp >= 11) return pick(bid(2, 'NT'));
+    if (system !== 'sayc' && balanced && hcp >= 13) return pick(bid(3, 'NT'));
+    if (system !== 'sayc' && balanced && hcp >= 11) return pick(bid(2, 'NT'));
+    if (lengths[o.strain as Suit] >= 5) {
+      const partnerLength = system === 'precision' && o.strain === 'D' ? 2 : 3;
+      const supportTotal = fitPoints(o.strain as Suit, partnerLength);
+      if (supportTotal + 12 >= 29 && lengths[o.strain as Suit] + partnerLength >= 8) return pick(bid(5, o.strain));
+      if (supportTotal >= 6) return pick(bid(supportTotal >= 10 ? 3 : 2, o.strain));
+    }
+    return hcp >= 6 ? pick(bid(1, 'NT')) : safePass();
+  }
+  // Jacoby 2NT over an uncontested major: shortness, extras, or minimum game.
+  if (major(opening.call.strain) && response?.call.strain === 'NT' && response.call.level === 2) {
+    if (isOpener && own.length === 1) {
+      const short = sorted.find(s => s !== opening.call.strain && lengths[s] <= 1);
+      if (short) return pick(bid(3, short));
+      return pick(bid(hcp >= 18 ? 3 : 4, opening.call.strain));
+    }
+    if (obs.seat === responder) return pick(bid(4, opening.call.strain));
+  }
+  // The 11-12 balanced invitation is accepted from the opener's own HCP.
+  if (system === 'sayc' && isOpener && (opening.call.strain === 'C' || opening.call.strain === 'D')
+    && response?.call.level === 2 && response.call.strain === 'NT' && own.length === 1) {
+    return hcp >= 14 ? pick(bid(3, 'NT')) : safePass();
+  }
+  // A balanced 18-19 opener rebids 2NT after a natural 1NT response. Passing
+  // would conceal the upper range and can lose a game opposite 6-7 HCP.
+  if (system === 'sayc' && isOpener && opening.call.level === 1 && opening.call.strain !== 'NT'
+    && response?.call.level === 1 && response.call.strain === 'NT' && own.length === 1
+    && balanced && hcp >= 18) return pick(bid(2, 'NT'));
+  if (system === 'sayc' && naturalOpening && isOpener && own.length === 1
+    && !major(opening.call.strain) && opening.call.strain !== 'NT' && response?.call.level === 1
+    && response.call.strain !== 'NT' && hcp >= 19 && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25
+    && lengths[opening.call.strain] >= 6
+    && obs.hand.filter(card => card.suit === opening.call.strain && card.rank >= 11).length >= 3
+    && obs.hand.some(card => card.suit !== opening.call.strain && card.rank === 14)
+    && enemyShownSuits.every(suit => hasStopper(suit) || partnerPublic.stopperSources.some(source => source.suit === suit))
+    && available(bid(3, 'NT'))) return bid(3, 'NT');
+  if (system === 'sayc' && isOpener && opening.call.level === 1 && !major(opening.call.strain)
+    && opening.call.strain !== 'NT' && response?.call.level === 1 && response.call.strain === 'NT'
+    && own.length === 1 && hcp >= 17 && !balanced) {
+    const second = sorted.find(suit => suit !== opening.call.strain && lengths[suit] >= 4
+      && cheapest(suit, 2));
+    if (hcp >= 19 && second && lengths[opening.call.strain] >= 4 && available(bid(3, second)))
+      return bid(3, second);
+    if (second) return pick(cheapest(second, 2) ?? safePass());
+    if (lengths[opening.call.strain] >= 6) return pick(bid(3, opening.call.strain));
+    if (hcp >= 19 && SUITS.filter(suit => suit !== opening.call.strain).every(hasStopper)) return pick(bid(3, 'NT'));
+    return pick(cheapest(opening.call.strain, 2) ?? safePass());
+  }
+  if (system === 'sayc' && isOpener && opening.call.level === 1 && opening.call.strain !== 'NT'
+    && !major(opening.call.strain) && response?.call.level === 1 && response.call.strain === 'NT'
+    && own.length === 1 && !balanced && lengths[opening.call.strain] >= 6)
+    return pick(bid(hcp >= 16 ? 3 : 2, opening.call.strain));
+  // SAYC+2/1 1M-1NT is 5-12 semi-forcing. A minimum balanced opener may pass,
+  // but a minimum or intermediate unbalanced
+  // opener still describes a real four-card side suit instead of concealing a
+  // 5-4 shape. With no side suit, a six-card major is the natural rebid.
+  if (isOpener && (system === 'sayc' || system === 'two-over-one') && major(opening.call.strain)
+    && response?.call.level === 1 && response.call.strain === 'NT' && own.length === 1) {
+    if (balanced && hcp >= 18) return pick(bid(2, 'NT'));
+    const second = sorted.find(s => s !== opening.call.strain && lengths[s] >= 4 && available(bid(2, s))
+      && (bidValue(bid(1, s)) < bidValue(opening.call) || hcp >= 17));
+    if (hcp >= 19 && second && available(bid(3, second))) return bid(3, second);
+    if (lengths[opening.call.strain] >= 6 && hcp >= 16
+      && !(second && bidValue(bid(1, second)) > bidValue(opening.call)))
+      return pick(bid(hcp >= 19 ? 4 : 3, opening.call.strain));
+    if (second) return bid(2, second);
+    if (lengths[opening.call.strain] >= 6) return pick(bid(2, opening.call.strain));
+    // With no legal four-card second suit, semi-forcing allows Pass. Do not
+    // invent a three-card minor while consumers use a four-card promise.
+    return safePass();
+  }
+  // After 1M-1NT and opener's natural rebid, responder must choose the safest
+  // partscore instead of passing a singleton second suit. A two-card return to
+  // opener's known five-card major is the standard false preference.
+  if (obs.seat === responder && major(opening.call.strain) && response?.seat === obs.seat
+    && response.call.level === 1 && response.call.strain === 'NT' && own.length === 1 && us.length === 3) {
+    const openerRebid = p.call;
+    if (openerRebid.strain === 'NT') {
+      const publicNt = noTrumpRangeAt(obs.auction, p.index, system);
+      if (hcp + (publicNt?.min ?? 18) >= 25 && available(bid(3, 'NT'))) return bid(3, 'NT');
+      if (hcp >= 8 && available(bid(2, 'NT'))) return bid(2, 'NT');
+      return safePass();
+    }
+    if (openerRebid.strain === opening.call.strain) {
+      const combinedTrumps = lengths[opening.call.strain] + partnerTrumpMinimum(opening.call.strain);
+      if (combinedTrumps >= 8 && fitPoints(opening.call.strain) + partnerMinimum() >= 25)
+        return pick(bid(4, opening.call.strain));
+      if (combinedTrumps >= 8 && fitPoints(opening.call.strain) >= 10)
+        return pick(bid(fitPoints(opening.call.strain) + partnerMinimum() >= 25 ? 4 : 3, opening.call.strain));
+      const ownLong = sorted.find(suit => suit !== opening.call.strain && lengths[suit] >= 6 && cheapest(suit, 3));
+      if (hcp >= 10 && ownLong) return pick(bid(3, ownLong));
+      if (hcp >= 10 && available(bid(2, 'NT'))) return pick(bid(2, 'NT'));
+      const weakLong = sorted.find(suit => suit !== opening.call.strain && lengths[suit] >= 6 && cheapest(suit, 3));
+      if (lengths[opening.call.strain] <= 1 && weakLong) return pick(cheapest(weakLong, 3) ?? safePass());
+      return safePass();
+    }
+    const secondFit = lengths[openerRebid.strain] + partnerTrumpMinimum(openerRebid.strain) >= 8;
+    if (secondFit && fitPoints(openerRebid.strain) + partnerMinimum() >= (major(openerRebid.strain) ? 25 : 29))
+      return pick(bid(gameLevel(openerRebid.strain), openerRebid.strain));
+    if (hcp >= 10) {
+      const invitationSuit = sorted.find(suit => suit !== opening.call.strain && suit !== openerRebid.strain
+        && lengths[suit] >= 6 && available(bid(3, suit)));
+      if (invitationSuit) return bid(3, invitationSuit);
+      if (balanced && available(bid(2, 'NT'))) return bid(2, 'NT');
+    }
+    if (secondFit && lengths[openerRebid.strain] >= 4) {
+      if (fitPoints(openerRebid.strain) >= 10) return pick(bid(Math.min(4, openerRebid.level + 1), openerRebid.strain));
+      return safePass();
+    }
+    const ownLong = sorted.find(suit => suit !== opening.call.strain && suit !== openerRebid.strain && lengths[suit] >= 6 && cheapest(suit, 3));
+    if (ownLong) return pick(cheapest(ownLong, 3) ?? safePass());
+    if (lengths[opening.call.strain] >= 2) {
+      const preference = cheapest(opening.call.strain, 2);
+      if (preference) return preference;
+    }
+    return safePass();
+  }
+  // A reverse promises 17+, so a responder with game values cannot give a
+  // minimum five-card repeat. Describe a genuine fourth suit before NT.
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3
+    && semantics.convention === 'reverse' && hcp + partnerHcpMinimum() >= 25) {
+    if (balanced) return pick(bid(3, 'NT'));
+    const fourth = sorted.find(suit => !us.some(entry => entry.call.strain === suit)
+      && lengths[suit] >= 4 && cheapest(suit, 3));
+    if (fourth) return pick(cheapest(fourth, 3) ?? safePass());
+    if (explicitFit()) return closeGame();
+    if (lengths[response!.call.strain as Suit] >= 6) return pick(bid(3, response!.call.strain));
+    return pick(bid(3, 'NT'));
+  }
+  // SAYC one-over-one continuation: after 1H-1S-2m, a weak responder with no
+  // minor fit gives a two-card false preference to opener's known five-card
+  // heart suit. With invitational values, bid a four-card fourth suit instead
+  // of disguising the hand as a weak sign-off.
+  if (obs.seat === responder && (system === 'sayc' || system === 'two-over-one')
+    && major(opening.call.strain) && response?.seat === obs.seat
+    && response.call.level === 1 && response.call.strain !== 'NT'
+    && own.length === 1 && us.length === 3 && p.call.level === 2
+    && p.call.strain !== 'NT' && !major(p.call.strain)) {
+    const openerSecond = p.call.strain;
+    const secondFit = lengths[openerSecond] + partnerTrumpMinimum(openerSecond) >= 8;
+    if (!secondFit) {
+      if (lengths[response.call.strain] >= 6 && hcp <= 12)
+        return pick(bid(hcp >= 10 ? 3 : 2, response.call.strain));
+      if (hcp <= 9 && lengths[opening.call.strain] >= 2) {
+        const preference = cheapest(opening.call.strain, 2);
+        if (preference) return preference;
+      }
+      if (hcp >= 10) {
+        const fourthSuit = sorted.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+          && suit !== openerSecond && lengths[suit] >= 4 && cheapest(suit, 3));
+        if (fourthSuit) return pick(cheapest(fourthSuit, 3) ?? safePass());
+        if (balanced) return hcp >= 13 ? pick(bid(3, 'NT')) : pick(cheapest('NT', 3) ?? safePass());
+      }
+      if (lengths[response.call.strain] >= 6) return pick(cheapest(response.call.strain, 2) ?? safePass());
+    }
+    if (secondFit && fitPoints(openerSecond) >= 10 && (hcp >= 10 || fitPoints(openerSecond) >= 11))
+      return pick(bid(fitPoints(openerSecond) + partnerMinimum() >= 29 ? 5 : 3, openerSecond));
+  }
+  // After a one-over-one response and opener's natural second-suit rebid,
+  // balanced invitational hands keep the auction alive. This branch comes
+  // after the weak false-preference rule so 6-9 HCP can still sign off in 2M.
+  if (obs.seat === responder && system === 'sayc' && response?.seat === obs.seat
+    && response.call.level === 1 && response.call.strain !== 'NT'
+    && own.length === 1 && us.length === 3 && p.call.strain !== 'NT'
+    && p.call.strain !== opening.call.strain && p.call.strain !== response.call.strain && balanced
+    && !(major(p.call.strain) && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8)) {
+    if (hcp >= 13) return pick(bid(3, 'NT'));
+    if (hcp >= 11) return pick(bid(2, 'NT'));
+    if (hcp === 10 && available(bid(1, 'NT'))) return bid(1, 'NT');
+  }
+  // A one-level second suit by opener does not promise enough cards to be
+  // passed with a poor fit. Responder describes NT, a real long suit or a
+  // supported original minor instead of treating the last bid as a contract.
+  if (system === 'sayc' && obs.seat === responder && own.length === 1 && us.length === 3
+    && response?.call.level === 1 && response.call.strain !== 'NT' && p.call.level === 1
+    && p.call.strain !== 'NT' && p.call.strain !== response.call.strain
+    && p.call.strain !== opening.call.strain) {
+    if (hcp >= 13) {
+      const fourth = SUITS.find(suit => !us.some(entry => entry.call.strain === suit));
+      if (fourth) {
+        const low = cheapest(fourth, 3);
+        if (low?.kind === 'bid' && low.level === 1 && lengths[fourth] < 4)
+          return balanced && available(bid(3, 'NT')) ? bid(3, 'NT') : pick(bid(2, fourth));
+        return pick(low ?? safePass());
+      }
+    }
+    if (opening.call.strain !== 'NT' && !major(opening.call.strain)
+      && lengths[opening.call.strain] >= 5 && fitPoints(opening.call.strain) >= 10)
+      return pick(bid(3, opening.call.strain));
+    if (lengths[p.call.strain] >= 4) {
+      const total = fitPoints(p.call.strain) + partnerMinimum();
+      return pick(bid(total >= 25 ? gameLevel(p.call.strain) : total >= 23 ? 3 : 2, p.call.strain));
+    }
+    const enemyNatural = all.filter(entry => sideOf(entry.seat) !== sideOf(obs.seat) && entry.call.strain !== 'NT');
+    if (hcp >= 13 && balanced && enemyNatural.every(entry => hasStopper(entry.call.strain))) return pick(bid(3, 'NT'));
+    if (hcp >= 10 && balanced && enemyNatural.every(entry => hasStopper(entry.call.strain))) return pick(bid(2, 'NT'));
+    if (hcp >= 10) {
+      const fourth = sorted.find(suit => suit !== response.call.strain && suit !== p.call.strain
+        && suit !== opening.call.strain && lengths[suit] >= 4 && cheapest(suit, 2));
+      if (fourth) return pick(cheapest(fourth, 2) ?? safePass());
+      if (hcp === 10 && available(bid(1, 'NT'))) return bid(1, 'NT');
+      if (hcp >= 11 && available(bid(2, 'NT'))) return bid(2, 'NT');
+    }
+    const longEscape = sorted.find(suit => suit !== response.call.strain && suit !== p.call.strain
+      && suit !== opening.call.strain && lengths[suit] >= 6 && cheapest(suit, 2));
+    if (longEscape && lengths[opening.call.strain as Suit] <= 1 && hcp >= 6)
+      return pick(cheapest(longEscape, 2) ?? safePass());
+    if (lengths[response.call.strain] >= 6) return pick(bid(hcp >= 10 ? 3 : 2, response.call.strain));
+    if (opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 4)
+      return pick(bid(2, opening.call.strain));
+    if (hcp >= 6 && enemyNatural.every(entry => hasStopper(entry.call.strain))) return pick(bid(1, 'NT'));
+  }
+  // The two-level second minor promises only four cards. Prefer a real
+  // six-card response or the original five-card minor to a six-card fit.
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3
+    && p.call.level === 2 && p.call.strain !== 'NT' && !major(p.call.strain)
+    && p.call.strain !== opening.call.strain && p.call.strain !== response.call.strain
+    && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) < 8) {
+    if (hcp >= 13) {
+      const fourth = SUITS.find(suit => !us.some(entry => entry.call.strain === suit));
+      if (fourth) return pick(cheapest(fourth, 3) ?? safePass());
+    }
+    if (lengths[response.call.strain as Suit] >= 6)
+      return pick(bid(hcp >= 10 ? 3 : 2, response.call.strain));
+    const escapeMajor = sorted.find(suit => major(suit) && suit !== response.call.strain
+      && suit !== opening.call.strain && lengths[suit] >= 5 && cheapest(suit, 2)
+      && (passedBefore(obs.auction, obs.seat, opening.index)
+        || hcp >= 10 || us.some(entry => entry.call.strain === suit)));
+    if (escapeMajor && hcp >= 6) return pick(cheapest(escapeMajor, 2) ?? safePass());
+    if (hcp >= 10) return pick(bid(2, 'NT'));
+    if (opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 2)
+      return pick(cheapest(opening.call.strain, 2) ?? safePass());
+  }
+  // A one-over-one response has no upper limit. After a minimum original-
+  // suit rebid, responder still has to invite, reach game, or escape a
+  // singleton with an actual long suit. The opener's minimum is not zero.
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3
+    && p.call.strain === opening.call.strain && p.call.strain !== 'NT') {
+    if (balanced && hcp >= 13) return pick(bid(3, 'NT'));
+    if (balanced && hcp >= 11) return pick(bid(2, 'NT'));
+    if (lengths[response.call.strain as Suit] >= 6 && lengths[p.call.strain] <= 2)
+      return pick(bid(hcp >= 13 && major(response.call.strain) ? 4 : hcp >= 10 ? 3 : 2, response.call.strain));
+    const ownSecond = sorted.find(suit => suit !== opening.call.strain && suit !== response.call.strain
+      && lengths[suit] >= (hcp >= 10 && major(suit) ? 4 : 5) && cheapest(suit, 3));
+    if (hcp >= 10 && ownSecond) return pick(cheapest(ownSecond, 3) ?? safePass());
+    if (lengths[p.call.strain] <= 1) {
+      if (ownSecond) return pick(cheapest(ownSecond, 3) ?? safePass());
+      if (lengths[response.call.strain as Suit] >= 6) return pick(cheapest(response.call.strain, 2) ?? safePass());
+    }
+    const publicFit = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8;
+    if (publicFit && fitPoints(p.call.strain) >= 10) {
+      const total = fitPoints(p.call.strain) + partnerMinimum();
+      return pick(bid(total >= (major(p.call.strain) ? 25 : 29) ? gameLevel(p.call.strain) : 3, p.call.strain));
+    }
+  }
+  if (system === 'sayc' && naturalOpening && !isOpener && own.length >= 2 && p.call.level <= 2
+    && p.call.strain !== 'NT' && hcp >= 11 && hcp <= 12 && !gameForcing
+    && !sorted.some(suit => lengths[suit] + partnerTrumpMinimum(suit) >= 8
+      && us.some(entry => entry.seat === partnerOf(obs.seat) && entry.call.strain === suit
+        && !isArtificialBidAt(obs.auction, entry.index, system)))
+    && available(bid(2, 'NT'))) return bid(2, 'NT');
+  // Strong unbalanced one-over-one hands use fourth-suit forcing rather
+  // than disappearing into Pass after opener describes the second suit.
+  if (system === 'sayc' && responseToNaturalOneLevel && us.length === 3 && hcp >= 13
+    && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain && p.call.strain !== response.call.strain) {
+    const fourth = SUITS.find(suit => !us.some(entry => entry.call.strain === suit));
+    if (fourth && cheapest(fourth, 3)) return pick(cheapest(fourth, 3) ?? safePass());
+  }
+  // Opener's simple raise of responder's major shows a four-card fit. Responder
+  // can therefore place game from the public 12-point opening minimum.
+  if (obs.seat === responder && system === 'sayc' && response?.seat === obs.seat
+    && response.call.level === 1 && major(response.call.strain) && us.length === 3
+    && p.call.level === 2 && p.call.strain === response.call.strain) {
+    if (lengths[response.call.strain] + partnerTrumpMinimum(response.call.strain) < 8) return safePass();
+    const total = supportTotal(response.call.strain);
+    if (total >= 33 && canAskKeycards(response.call.strain)) return pick(bid(4, 'NT'));
+    if (total >= 25) return pick(bid(4, response.call.strain));
+    if (total >= 23) return pick(bid(3, response.call.strain));
+    return safePass();
+  }
+  // A SAYC two-level new-suit response shows at least 10 HCP. After opener
+  // supports that suit, responder with 12+ balanced values has a public game.
+  if (obs.seat === responder && system === 'sayc' && response?.seat === obs.seat
+    && response.call.level === 2 && response.call.strain !== 'NT' && us.length === 3
+    && p.call.strain === response.call.strain && p.call.level === 3) {
+    if (balanced && hcp >= 12) return pick(bid(3, 'NT'), bid(5, response.call.strain));
+    const total = supportTotal(response.call.strain);
+    if (total >= 29) return pick(bid(5, response.call.strain));
+    return safePass();
+  }
+  if (isOpener && own.length === 1) {
+    if (system === 'sayc' && response?.call.level === 2 && response.call.strain !== 'NT'
+      && response.call.strain !== opening.call.strain && passedBefore(obs.auction, response.seat, opening.index)
+      && balanced && lengths[response.call.strain] < (major(response.call.strain) ? 3 : 4)) {
+      if (hcp >= 18) return pick(bid(3, 'NT'));
+      if (hcp >= 12 && hcp <= 14) return pick(bid(2, 'NT'));
+    }
+    if (!major(opening.call.strain) && opening.call.strain !== 'NT' && p.call.strain === opening.call.strain
+      && p.call.level === 2 && hcp >= 16)
+      return pick(bid(fitPoints(opening.call.strain) + partnerMinimum() >= 29 ? 5 : 3, opening.call.strain));
+    if (major(opening.call.strain) && p.call.strain === opening.call.strain && p.call.level === 3)
+      return fitPoints(opening.call.strain) + partnerMinimum() >= 25 ? pick(bid(4, p.call.strain)) : safePass();
+    if (major(p.call.strain) && lengths[p.call.strain] >= (p.call.level === 1 ? 4 : 3)) {
+      const total = fitPoints(p.call.strain, p.call.level === 1 ? 4 : 3);
+      return pick(bid(total >= 19 ? 4 : total >= 16 ? 3 : 2, p.call.strain));
+    }
+    if (system === 'sayc' && p.call.level === 1 && major(p.call.strain) && balanced && hcp <= 14
+      && !naturalMajorOrder.some(suit => suit !== opening.call.strain && suit !== p.call.strain
+        && lengths[suit] >= 4 && available(bid(1, suit))))
+      return pick(bid(1, 'NT'));
+    if (p.call.strain === 'NT' && p.call.level === 2)
+      return hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 ? pick(bid(3, 'NT')) : safePass();
+    if (p.call.level === 1 && p.call.strain !== 'NT') {
+      const majorSuit = naturalMajorOrder.find(s => lengths[s] >= 4 && available(bid(1, s)));
+      if (hcp >= 19 && !major(opening.call.strain) && opening.call.strain !== 'NT'
+        && lengths[opening.call.strain] >= 6 && SUITS.filter(suit => suit !== opening.call.strain).every(hasStopper)
+        && available(bid(3, 'NT'))) return bid(3, 'NT');
+      if (balanced && hcp >= 18) return pick(bid(2, 'NT'));
+      if (hcp >= 19 && opening.call.strain !== 'NT' && lengths[opening.call.strain] >= 4) {
+        const second = sorted.find(suit => suit !== opening.call.strain && suit !== p.call.strain && lengths[suit] >= 4
+          && cheapest(suit, 2));
+        const low = second ? cheapest(second, 2) : undefined;
+        if (low?.kind === 'bid' && available(bid(low.level + 1, low.strain))) return bid(low.level + 1, low.strain);
+      }
+      if (majorSuit) return bid(1, majorSuit);
+      if (balanced) return pick(bid(1, 'NT'));
+      const responseBid = response?.call;
+      const second = sorted.find(s => {
+        if (s === opening.call.strain || lengths[s] < 4 || !available(bid(2, s))) return false;
+        const reverse = responseBid?.level === 1 && bidValue(bid(1, s)) > bidValue(opening.call);
+        return !reverse || hcp >= 17;
+      });
+      if (second && bidValue(bid(1, second)) > bidValue(opening.call)) return bid(2, second);
+      if (lengths[opening.call.strain as Suit] >= 6 && hcp >= 16) return pick(bid(hcp >= 19 && major(opening.call.strain) ? 4 : 3, opening.call.strain));
+      if (second) return bid(2, second);
+      if (lengths[opening.call.strain as Suit] >= 6) return pick(bid(2, opening.call.strain));
+      if (lengths[opening.call.strain as Suit] >= 5) return pick(bid(2, opening.call.strain));
+      return pick(bid(1, 'NT'));
+    }
+  }
+  // Invitation windows depend on their public source: ordinary11-12 accepts
+  // at14, while semiNT followed by a minor description uses10-12 and needs15.
+  if (system === 'sayc' && isOpener && p.call.level === 2 && p.call.strain === 'NT') {
+    const ownMajor = sorted.find(suit => major(suit) && lengths[suit] >= 6);
+    if (ownMajor && lengths[ownMajor] + partnerTrumpMinimum(ownMajor) >= 8 && supportTotal(ownMajor) >= 25)
+      return pick(bid(4, ownMajor));
+    if (hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25) return pick(bid(3, 'NT'));
+  }
+  if (system === 'sayc' && isOpener && p.call.level === 3 && major(p.call.strain)
+    && response?.call.level === 1 && response.call.strain === p.call.strain
+    && own.some(entry => entry.call.level === 1 && entry.call.strain === 'NT')
+    && lengths[p.call.strain] >= 2 && hcp >= 14) return pick(bid(4, p.call.strain));
+  if (system === 'sayc' && !isOpener && own.length === 2 && us.length === 5 && p.call.strain === 'NT'
+    && own[1].call.strain !== 'NT' && new Set(us.slice(0, 4).map(entry => entry.call.strain)).size === 4
+    && hcp >= 13) return pick(bid(3, 'NT'));
+  if (system === 'sayc' && !isOpener && own.length === 2 && us.length === 5
+    && own[1].call.strain !== 'NT' && new Set(us.slice(0, 4).map(entry => entry.call.strain)).size === 4
+    && hcp >= 13 && !atGame(p.call)) return closeGame();
+  if (system === 'sayc' && isOpener && own.length >= 2 && p.call.strain === 'NT' && p.call.level === 1
+    && opening.call.level === 1 && opening.call.strain !== 'NT' && hcp >= 18)
+    return pick(bid(hcp >= 19 ? 3 : 2, 'NT'));
+  // A reverse is 17+ and the one-round response may still be a minimum.
+  // With 19+ the opener must show the extras instead of hiding them in Pass.
+  if (system === 'sayc' && isOpener && own.length === 2 && own[1].call.level === 2
+    && own[1].call.strain !== 'NT' && own[1].call.strain !== opening.call.strain
+    && bidValue(bid(1, own[1].call.strain)) > bidValue(opening.call)
+    && response?.call.level === 1 && p.call.level <= 2 && hcp >= 19) {
+    if (p.call.strain !== 'NT' && lengths[p.call.strain] >= 3 && major(p.call.strain)) return pick(bid(4, p.call.strain));
+    return pick(bid(3, 'NT'), cheapest(opening.call.strain, 3) ?? safePass());
+  }
+  // A simple natural continuation evaluates public minimums, never actual partner HCP.
+  if (system === 'sayc' && isOpener && opening.call.level === 1 && major(opening.call.strain)
+    && response?.call.level === 1 && response.call.strain === 'NT' && own.length >= 2
+    && p.call.level === 3 && p.call.strain !== 'NT' && p.call.strain !== opening.call.strain
+    && hcp >= 17 && SUITS.filter(suit => suit !== p.call.strain).every(hasStopper))
+    return pick(bid(3, 'NT'));
+  if (system === 'sayc' && isOpener && opening.call.level === 1 && major(opening.call.strain)
+    && response?.call.level === 1 && response.call.strain === 'NT' && us.length === 4
+    && us[2].call.level === 2 && us[2].call.strain !== opening.call.strain
+    && p.call.level === 2 && p.call.strain === opening.call.strain) {
+    if (hcp >= 18 && SUITS.filter(suit => suit !== opening.call.strain).every(hasStopper)) return pick(bid(2, 'NT'));
+    if (hcp >= 17 && lengths[opening.call.strain] >= 6) return pick(bid(3, opening.call.strain));
+    return safePass();
+  }
+  const partnerMin = partnerMinimum();
+  if (p.call.strain !== 'NT' && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+    && fitPoints(p.call.strain) + partnerMin >= (major(p.call.strain) ? 25 : 29)) return pick(bid(gameLevel(p.call.strain), p.call.strain));
+  if (balanced && hcp + partnerHcpMinimum() >= 25) return pick(bid(3, 'NT'));
+  return safePass();
+  };
+  const result = decide();
+  if (result.kind === 'pass' && p && last && p.index === last.index && p.call.strain !== 'NT' && !atGame(p.call)
+    && own.length >= 2 && hcp <= 16 && !semantics.mustBid && semantics.forcing !== 'game'
+    && !isArtificialBidAt(obs.auction, p.index, system) && !publicCallMeaningAt(obs.auction, p.index, system).invitation) {
+    const previous = own.at(-1)!;
+    if (previous.call.strain !== 'NT' && previous.call.strain !== p.call.strain && lengths[p.call.strain] <= 1
+      && us.some(entry => entry.seat === p.seat && entry.index < previous.index && entry.call.strain === p.call.strain)
+      && !analyzeAuctionSemantics(obs.auction.slice(0, previous.index), obs.seat, system).mustBid
+      && !obs.auction.slice(previous.index + 1).some(entry => sideOf(entry.seat) !== sideOf(obs.seat)
+        && entry.call.kind === 'bid')) return PASS;
+  }
+  // All exits, including direct competitive returns, obey the same current
+  // public contract. A rejected candidate cannot bypass its support cap or
+  // publish a sixth card just because an earlier branch returned directly.
+  const continuation = (): Call | undefined => {
+    const partnerAction = obs.auction.findLastIndex(entry => entry.seat === partnerOf(obs.seat)
+      && entry.call.kind !== 'pass');
+    if (partnerAction >= 0 && classifyDoubleAt(obs.auction, partnerAction, system) === 'penalty'
+      && !obs.auction.slice(partnerAction + 1).some(entry => entry.call.kind === 'bid')) return undefined;
+    const valid = (call: Call | undefined): call is Call => !!call && available(call) && candidateValid!(call);
+    if (naturalOpening && isOpener && own.length === 1 && opening.call.level === 1
+      && opening.call.strain !== 'NT' && last && last.call.level <= 2 && hcp >= 12) {
+      const newMajor = naturalMajorOrder.find(suit => suit !== opening.call.strain
+        && lengths[suit] >= 4 && !enemyShownSuits.includes(suit) && valid(bid(1, suit)));
+      if (newMajor) return bid(1, newMajor);
+    }
+    if (naturalOpening && isOpener && opening.call.strain !== 'NT'
+      && hcp >= 12 && p && (partnerPublic.hcpRange?.min ?? 0) >= 6
+      && lengths[opening.call.strain] >= 7 && reasonablePreemptSuit(opening.call.strain)) {
+      const repeat = cheapest(opening.call.strain, 3); if (valid(repeat)) return repeat;
+    }
+    if (!p && last && sideOf(last.seat) !== sideOf(obs.seat) && last.call.level <= 2 && hcp >= 12) {
+      const ownMajor = own.findLast(entry => major(entry.call.strain)
+        && !isArtificialBidAt(obs.auction, entry.index, system));
+      if (ownMajor && lengths[ownMajor.call.strain as Suit] >= 6
+        && obs.hand.filter(card => card.suit === ownMajor.call.strain && card.rank >= 10).length >= 3) {
+        const repeat = cheapest(ownMajor.call.strain, 2); if (valid(repeat)) return repeat;
+      }
+    }
+    const completedAnswer = p && ['stayman-answer', 'stayman-denial', 'transfer-acceptance']
+      .includes(publicCallMeaningAt(obs.auction, p.index, system).role);
+    if (!p && partnerHasAction && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25) {
+      const description = sorted.filter(suit => lengths[suit] >= 4 && !enemyShownSuits.includes(suit))
+        .map(suit => cheapest(suit, 4)).find(call => valid(call)
+          && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).artificial);
+      if (description) return description;
+    }
+    if (!p || isArtificialBidAt(obs.auction, p.index, system) && !completedAnswer
+      || semantics.mustBid && !completedAnswer) return undefined;
+    const majorGame = gameSuitOrder.find(suit => major(suit) && partnerTrumpMinimum(suit) > 0
+      && lengths[suit] + partnerTrumpMinimum(suit) >= 8 && supportTotal(suit) >= 25
+      && valid(bid(4, suit))) ?? gameSuitOrder.find(suit => major(suit) && lengths[suit] >= 8
+      && supportTotal(suit) >= 25 && valid(bid(4, suit)));
+    if (majorGame) return bid(4, majorGame);
+    if (p.call.strain !== 'NT' && p.index === last?.index && !atGame(p.call)) {
+      const currentLength = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain);
+      const preference = sorted.filter(suit => suit !== p.call.strain && partnerTrumpMinimum(suit) > 0
+        && lengths[suit] >= 2 && lengths[suit] + partnerTrumpMinimum(suit) >= 7
+        && lengths[suit] + partnerTrumpMinimum(suit) > currentLength)
+        .map(suit => cheapest(suit, 3)).find(call => valid(call)
+          && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'natural-preference');
+      if (preference) return preference;
+    }
+
+    if (atGame(p.call) && p.call.strain !== 'NT' && lengths[p.call.strain] === 0) {
+      const source = sorted.filter(suit => suit !== p.call.strain && lengths[suit] >= 8
+        && obs.hand.filter(card => card.suit === suit && card.rank >= 11).length >= 3)
+        .map(suit => cheapest(suit, 5)).find(valid);
+      if (source) return source;
+    }
+    if (p.call.strain !== 'NT' && major(p.call.strain) && p.call.level === 1
+      && lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain) >= 8
+      && obs.auction.some((entry, index) => entry.seat === obs.seat && classifyDoubleAt(obs.auction, index, system) === 'negative')) {
+      const raise = bid(2, p.call.strain); if (valid(raise)) return raise;
+    }
+    if (atGame(p.call)) return undefined;
+    if (!own.length && hcp >= 13 && p.call.level <= 3) {
+      const naturalMajor = naturalMajorOrder.map(suit => cheapest(suit, 3)).find(call => valid(call)
+        && call.kind === 'bid' && call.strain !== 'NT'
+        && lengths[call.strain] >= 5 && call.strain !== p.call.strain
+        && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'natural-response');
+      if (naturalMajor) return naturalMajor;
+    }
+    const minorGame = sorted.find(suit => !major(suit) && partnerTrumpMinimum(suit) > 0
+      && lengths[suit] + partnerTrumpMinimum(suit) >= 8 && supportTotal(suit) >= 29
+      && valid(bid(5, suit)));
+    if (minorGame) return bid(5, minorGame);
+    if (!own.length && p.call.strain !== 'NT' && p.call.level <= 2 && lengths[p.call.strain] <= 1
+      && obs.auction.some((entry, index) => entry.seat === obs.seat && classifyDoubleAt(obs.auction, index, system) === 'negative')) {
+      const natural = sorted.filter(suit => suit !== p.call.strain && !enemyShownSuits.includes(suit) && lengths[suit] >= 5)
+        .map(suit => cheapest(suit, 2)).find(call => valid(call)
+          && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).artificial);
+      if (natural) return natural;
+    }
+    const longMajorGame = naturalMajorOrder.find(suit => lengths[suit] >= 6 && reasonablePreemptSuit(suit)
+      && hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && valid(bid(4, suit))
+      && (own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system))
+        || hcp >= 17 && obs.auction.some((entry, index) => entry.seat === obs.seat && isTakeoutDoubleAt(obs.auction, index))));
+    if (longMajorGame) return bid(4, longMajorGame);
+    const strongInvitation = (['C', 'D'] as Suit[]).map(suit => bid(4, suit)).find(call => {
+      if (!valid(call)) return false;
+      const meaning = publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system);
+      return meaning.role === 'stronger-minor-invitation' && lengths[call.strain as Suit]
+        + partnerTrumpMinimum(call.strain as Suit) >= 8;
+    });
+    if (strongInvitation) return strongInvitation;
+    if (!naturalOpening && own.length === 1 && hcp >= 8 && p.call.level === 1
+      && own[0].call.strain !== 'NT' && lengths[own[0].call.strain] >= 6
+      && !isArtificialBidAt(obs.auction, own[0].index, system)) {
+      const repeat = cheapest(own[0].call.strain, 2); if (valid(repeat)) return repeat;
+    }
+    if (naturalOpening && isOpener && own.length >= 2 && opening.call.strain !== 'NT'
+      && !ntShapeSuitable && sorted.filter(suit => lengths[suit] >= 5).length >= 2 && hcp >= 17) {
+      const originalLong = own.filter(entry => entry.call.strain !== 'NT'
+        && !isArtificialBidAt(obs.auction, entry.index, system))
+        .sort((a, b) => lengths[b.call.strain as Suit] - lengths[a.call.strain as Suit]);
+      const describe = originalLong.map(entry => cheapest(entry.call.strain, 4)).find(valid);
+      if (describe) return describe;
+    }
+    if (naturalOpening && isOpener && own.length === 1 && response?.call.level === 1
+      && major(response.call.strain) && lengths[response.call.strain] >= 4
+      && lengths[response.call.strain] + partnerTrumpMinimum(response.call.strain) >= 8) {
+      const raise = cheapest(response.call.strain, 2); if (valid(raise)) return raise;
+    }
+    if (p.call.strain !== 'NT' && lengths[p.call.strain] <= 1) {
+      const current = lengths[p.call.strain] + partnerTrumpMinimum(p.call.strain);
+      const escape = sorted.map(suit => ({ suit, call: cheapest(suit, 4) })).find(({ suit, call }) =>
+        suit !== p.call.strain && lengths[suit] >= 6 && (lengths[suit] > current
+          || lengths[p.call.strain as Suit] === 0 && hcp >= 13 && lengths[suit] >= current - 1)
+        && (own.some(entry => entry.call.strain === suit && !isArtificialBidAt(obs.auction, entry.index, system))
+          || hcp >= 13 && reasonablePreemptSuit(suit))
+        && valid(call));
+      if (escape) return escape.call;
+    }
+    const stopped = enemyShownSuits.every(suit => hasStopper(suit)
+      || partnerPublic.stopperSources.some(source => source.suit === suit));
+    if (hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25) {
+      const description = sorted.filter(suit => suit !== p.call.strain && !enemyShownSuits.includes(suit)
+        && lengths[suit] >= 4).map(suit => cheapest(suit, 4)).find(call => valid(call)
+          && !publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).artificial);
+      if (description) return description;
+    }
+    if (naturalOpening && !isOpener && own.length === 1 && opening.call.level === 1
+      && (opening.call.strain === 'C' || opening.call.strain === 'D') && response?.call.level === 1
+      && response.call.strain === 'S' && p.index === last?.index && p.call.level === 2
+      && (p.call.strain === 'C' || p.call.strain === 'D') && hcp >= 6 && hcp <= 9 && lengths.S >= 5) {
+      const escape = sorted.filter(suit => !major(suit) && lengths[suit] >= 6).map(suit => bid(3, suit))
+        .find(call => valid(call) && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'weak-minor-escape');
+      if (escape) return escape;
+      if (valid(bid(2, 'S'))) return bid(2, 'S');
+    }
+    if (completedAnswer && hcp >= 8 && hcp <= 9 && lengths[longest] <= 4 && valid(bid(2, 'NT')))
+      return bid(2, 'NT');
+    if ((ntShapeSuitable || completedAnswer) && stopped) {
+      if (hcp + (partnerPublic.hcpRange?.min ?? 0) >= 25 && valid(bid(3, 'NT'))) return bid(3, 'NT');
+      if (naturalOpening && !isOpener && own.length && hcp >= 8) {
+        const nt = [bid(1, 'NT'), bid(2, 'NT')].find(valid); if (nt) return nt;
+      }
+      if (naturalOpening && isOpener && hcp >= 18 && valid(bid(2, 'NT'))) return bid(2, 'NT');
+    }
+    if (naturalOpening && !isOpener && own.length <= 1 && hcp >= 10 && enemyShownSuits.length
+      && !obs.auction.some(entry => entry.seat === obs.seat && entry.call.kind === 'redouble')) {
+      const cue = enemyShownSuits.map(suit => cheapest(suit, 3)).find(call => valid(call)
+        && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call }], obs.auction.length, system).role === 'cue');
+      if (cue) return cue;
+    }
+    return undefined;
+  };
+  if (result.kind === 'pass' && preserveCompetitivePass) return PASS;
+  if (result.kind === 'pass' && semantics.mustBid
+    && !(hcp <= 3 && publicCallMeaningAt([...obs.auction, { seat: obs.seat, call: PASS }], obs.auction.length, system).role === 'strong-club-negative-pass')) return forcedFallback();
+  if (result.kind === 'pass' || !candidateValid(result)) return continuation() ?? (candidateValid(result) ? result : safePass());
+  return result;
+}
+
+/** Descriptions are based on public calls; they never reveal actual strength. */
+export function describeCall(auction: AuctionEntry[], seat: Seat, call: Call, system: BiddingSystem): string {
+  // Public roles are bound to this exact prefix, never to subsequent bids or
+  // the actor's hidden hand. Retain detailed conventional answers below.
+  const publicMeaning = publicCallMeaningAt([...auction, { seat, call }], auction.length, system);
+  // A later natural enemy bid may occupy the original transfer acceptance.
+  // Use the contextual cancellation/competitive acceptance, not the old 2H/2S instruction.
+  if (publicInterruptedTransferBefore(auction, seat, system) && publicMeaning.description)
+    return publicMeaning.description;
+  const unanswered = entries(auction).findLast(entry => entry.seat === partnerOf(seat)
+    && publicNoTrumpQuestionAt(auction, entry.index, system)?.platform.seat === seat
+    && !auction.slice(entry.index + 1).some(after => after.seat === seat && after.call.kind === 'bid'));
+  const question = unanswered && publicNoTrumpQuestionAt(auction, unanswered.index, system);
+  if (question && call.kind === 'bid' && !publicInterruptedStaymanBefore(auction, seat, system)) {
+    const responseLevel = question.kind === 'weak-minor-relay' ? 3 : question.request.call.level;
+    const responseSuits: Strain[] = question.kind === 'stayman' ? ['D', 'H', 'S'] : [question.target!];
+    if (call.level !== responseLevel || !responseSuits.includes(call.strain))
+      return `非约定${question.kind === 'stayman' ? 'Stayman' : question.kind === 'transfer' ? '转移' : '弱低花接力'}答叫${call.level}${call.strain}：人工询问尚未回答，不能解释为普通自然无将或新套；${question.kind === 'transfer' ? '本卡未约定超接受；' : ''}应先按约定作出${responseLevel}${responseSuits.join('/')}回答`;
+  }
+  if (publicMeaning.description) {
+    const semantics = analyzeAuctionSemantics(auction, seat, system);
+    const reverseAnswer = publicMeaning.role === 'natural-nt' && semantics.convention === 'reverse';
+    const preferred = publicMeaning.suitMinimum === 2 && publicMeaning.role === 'natural-preference';
+    const side = entries(auction).filter(entry => sideOf(entry.seat) === sideOf(seat));
+    const semiReply = side.length === 2 && side[0].seat === seat && side[0].call.level === 1
+      && major(side[0].call.strain) && side[1].call.level === 1 && side[1].call.strain === 'NT'
+      && !passedBefore(auction, side[1].seat, side[0].index);
+    return `${publicMeaning.description}${reverseAnswer ? '；这是同伴逆叫后的自然回答，保留同伴已示17+，不套用一阶低花后的直接NT应叫范围' : ''}${preferred ? '；最低偏好可仅两张，也可有更多支持，不能理解为恰好两张' : ''}${publicMeaning.invitation && !semiReply && !semantics.mustBid ? '；此前没有继续叫牌义务，此邀请为自主描述' : ''}${publicMeaning.role === 'natural-nt' && publicMeaning.forcing === 'game' && call.kind === 'bid' && !atGame(call) ? '；既有进局逼叫继续，到局前双方不得Pass' : ''}`;
+  }
+  if (call.kind === 'pass') {
+    const status = auctionStatus(auction); const lastBid = status.lastBid;
+    if (!lastBid) return '不叫：没有达到当前体系的一阶开叫或阻击开叫条件';
+    if (lastBid.call.kind !== 'bid') return '不叫：当前没有自然定约需要继续竞争';
+    const lastIndex = auction.findLastIndex(entry => entry === lastBid);
+    const forcing = analyzeAuctionSemantics(auction, seat, system).mustBid;
+    const ourArtificialContract = sideOf(lastBid.seat) === sideOf(seat)
+      && isArtificialBidAt(auction, lastIndex, system);
+    if (forcing || ourArtificialContract) return '不叫不符合当前逼叫状态；本叫品应保持禁用，人工询问或转移不能作为最终定约';
+    const doubled = status.doubled === 2 ? '再加倍后的' : status.doubled === 1 ? '被加倍的' : '';
+    if (sideOf(lastBid.seat) === sideOf(seat)) {
+      const owner = lastBid.seat === seat ? '自己' : '搭档';
+      const ended = auctionStatus([...auction, { seat, call }]).ended;
+      return `不叫：当前没有继续叫牌义务，${ended ? '接受' : '暂时接受'}${owner}${doubled}${lastBid.call.level}${lastBid.call.strain}；${ended ? '连续三次Pass，叫牌结束' : '对手仍可继续叫牌'}`;
+    }
+    const ownSideHasBid = auction.some(entry => sideOf(entry.seat) === sideOf(seat) && entry.call.kind === 'bid');
+    return ownSideHasBid ? `不叫：暂不继续本方叫牌或加倍，让对手${doubled}${lastBid.call.level}${lastBid.call.strain}保持为当前定约`
+      : `不叫：放弃在对手${doubled}${lastBid.call.level}${lastBid.call.strain}之后争叫、加倍或牺牲`;
+  }
+  if (call.kind === 'double') {
+    const bidEntries = entries(auction); const lastBid = bidEntries.at(-1);
+    const ourBids = bidEntries.filter(entry => sideOf(entry.seat) === sideOf(seat));
+    const ourBid = ourBids.at(-1);
+    if (system === 'sayc' && lastBid && sideOf(lastBid.seat) !== sideOf(seat)) {
+      const role = classifyDoubleAt([...auction, { seat, call }], auction.length, system);
+      if (role === 'lead-directing' && lastBid.call.strain === 'NT') return `人工${lastBid.call.level}NT问叫上的加倍：有首攻指示意图，但本卡未约定此无将人工叫品上的具体首攻方向；不能当成自然无将惩罚或技术性加倍`;
+      if (role === 'lead-directing') return `人工叫品${lastBid.call.level}${lastBid.call.strain}上的首攻指示加倍：显示所叫花色的防守兴趣；不是负加倍，也不要求搭档选未叫花色`;
+      if (role === 'two-suit-strength') return '对Michaels或Unusual 2NT的实力加倍：10+ HCP，表示有惩罚意愿并保留后续判断';
+      if (role === 'negative') {
+        const unbid = SUITS.filter(suit => !bidEntries.some(entry => entry.call.strain === suit));
+        const unbidMajors = unbid.filter(major);
+        const promise = unbid.length === 2 && (unbidMajors.length === 2 || unbidMajors.length === 0)
+          ? `未叫的${unbid.join('、')}各4+张`
+          : unbidMajors.length === 1 ? `未叫高花${unbidMajors[0]}4+张，不额外保证未叫低花四张`
+            : '未叫高花通常4+张，结合已叫花色确定要求';
+        return `修正SAYC负加倍：${promise}，使用至敌方2♠争叫；要求开叫人描述，但普通答叫不自动继续逼叫`;
+      }
+      if (role === 'penalty' && lastBid.call.strain === 'NT') return bidEntries.length === 1 && lastBid.call.level === 1
+        ? '对自然1NT开叫的惩罚性加倍：15+ HCP且至少3个快速赢墩；点力达到15本身不足以自动加倍，不表示未叫花色'
+        : `对自然${lastBid.call.level}NT的惩罚性加倍：要求足够防守赢墩；无将定约不按将牌长度判断，也不重新解释为负加倍`;
+      if (role === 'penalty') return `惩罚性加倍：针对对手的${lastBid.call.level}${lastBid.call.strain}，要求相应将牌质量和防守实力${auction.some(entry => sideOf(entry.seat) === sideOf(seat) && entry.call.kind === 'redouble') ? '；本方实力再加倍后的后续竞争加倍不重新解释为负加倍' : '；当前自然定约上的加倍不自动表示未叫花色'}`;
+      if (isTakeoutDoubleAt([...auction, { seat, call }], auction.length)) return 'SAYC技术性加倍：要求搭档选未叫花色；强牌随后再叫长套';
+      if (!ourBid) return lastBid.call.strain === 'NT'
+        ? '惩罚性加倍：对方自然无将定约，要求足够防守实力'
+        : '惩罚性加倍：当前不是本体系的技术性加倍位置，要求敌方将牌质量和防守实力';
+      const firstBid = bidEntries[0];
+      const conventionalTwoSuiter = firstBid && sideOf(firstBid.seat) === sideOf(seat)
+        && lastBid.index === firstBid.index + 1 && lastBid.call.level === 2
+        && (lastBid.call.strain === firstBid.call.strain || lastBid.call.strain === 'NT');
+      if (conventionalTwoSuiter) return '对Michaels或Unusual 2NT的实力加倍：10+ HCP，表示有惩罚意愿并保留后续判断';
+      const negativeDouble = ourBids.length === 1 && ourBid.seat === partnerOf(seat)
+        && ourBid.index === firstBid?.index && lastBid.index === ourBid.index + 1
+        && auction.length === ourBid.index + 2 && lastBid.call.level <= 2
+        && lastBid.call.strain !== 'NT' && lastBid.call.strain !== ourBid.call.strain;
+      if (negativeDouble) return 'SAYC负加倍：通常表示未叫高花，使用至敌方2♠争叫';
+      return '惩罚性加倍：本方已参与竞争；要求有敌方将牌长度和质量、足够防守墩，并结合局况保守使用';
+    }
+    return lastBid ? `加倍：当前体系未把此处定义为人工技术性或负加倍，按对${lastBid.call.level}${lastBid.call.strain}的惩罚性加倍处理` : '加倍：当前没有可加倍的敌方定约';
+  }
+  if (call.kind === 'redouble') return system === 'sayc' ? '再加倍：通常表示10+ HCP和实力，准备惩罚对手或寻找更好定约' : '再加倍：表示实力并要求搭档按当前体系继续描述';
+  const all = entries(auction); const us = all.filter(e => sideOf(e.seat) === sideOf(seat)); const opening = us[0];
+  const lastOpponent = [...all].reverse().find(entry => sideOf(entry.seat) !== sideOf(seat));
+  const genuine = !!opening && opening.index === all[0]?.index;
+  const clean = genuine && !intervened(auction, seat, opening.index);
+  const own = us.filter(entry => entry.seat === seat);
+  const partner = [...us].reverse().find(entry => entry.seat === partnerOf(seat));
+  const following = [...auction, { seat, call }];
+  const fourNt = [...us].reverse().find(entry => entry.call.level === 4 && entry.call.strain === 'NT');
+  const trump = fourNt ? keycardTrump(us.filter(entry => entry.index < fourNt.index), system, fourNt.seat, auction) : undefined;
+  const ownLast = own.at(-1);
+  const immediateDouble = genuine && opening.call.level === 1 && auction[opening.index + 1]?.call.kind === 'double'
+    && auction.length === opening.index + 2 && seat !== opening.seat;
+  const enemyBase = all[0];
+  const initialOvercall = all[1];
+  if (system === 'sayc' && enemyBase?.call.level === 1 && enemyBase.call.strain !== 'NT'
+    && sideOf(enemyBase.seat) !== sideOf(seat) && initialOvercall && initialOvercall.call.strain !== 'NT'
+    && initialOvercall.call.strain !== enemyBase.call.strain
+    && sideOf(initialOvercall.seat) === sideOf(seat) && call.strain === initialOvercall.call.strain
+    && us.length >= 3 && ownLast?.call.strain === enemyBase.call.strain)
+    return `支持性扣叫后回到争叫套${call.strain}：原扣叫已显示10+ HCP及通常3+张支持；本次是选择将牌或加叫，不承诺自己的五张新套`;
+  if (genuine && opening?.call.level === 1 && major(opening.call.strain)
+    && us[1]?.seat === seat && us[1].call.level === 1 && us[1].call.strain === 'NT'
+    && us[2]?.seat === opening.seat && us[2].call.strain === opening.call.strain
+    && call.strain === opening.call.strain && us.length === 3)
+    return atGame(call)
+      ? `半逼叫1NT后选择${call.level}${call.strain}成局：接受开叫人原套再叫所示实力或凭本手实力到局；可仅两张支持六张原套，不额外承诺三张支持，原则上止叫`
+      : call.level === 3
+      ? '半逼叫1NT后对原高花再叫的邀请：通常10–12 HCP，可仅两张支持；原套通常六张但有五张例外，不能直接宣称已确定八张配合'
+      : '半逼叫1NT后回到原高花：弱牌偏好或选择部分定约，可仅两张；不额外承诺三张支持';
+  if (system === 'sayc' && immediateDouble && call.strain !== 'NT' && call.strain !== opening.call.strain) {
+    if (call.level === 1) return `本方一阶开叫遭敌方技术性加倍后的自然新花色应叫：6+ HCP、4+张${call.strain}；${passedBefore(auction, seat, opening.index) ? '已Pass手牌限制实力，通常不逼叫' : '未Pass手牌逼叫一轮'}`;
+    const previous = all.at(-1)!.call;
+    const jump = bidValue(call) - bidValue(previous) > 5;
+    return `本方一阶开叫遭敌方技术性加倍后的${jump ? '弱跳移叫' : '二阶自然新花色应叫'}：通常6–10 HCP及6+张${call.strain}，好五张套可作自然应叫；自然不逼叫，不是加倍方的应叫，也不是无干扰二盖一进局逼叫`;
+  }
+  if (genuine && opening?.call.level === 1 && opening.call.strain !== 'NT' && us.length === 3
+    && us[1]?.seat === seat && us[1].call.level === 1 && major(us[1].call.strain)
+    && us[2].call.level === 2 && us[2].call.strain === us[1].call.strain && call.strain === us[1].call.strain) {
+    const supportMinimum = naturalSuitMinimum(auction, opening.seat, call.strain as Suit, system);
+    return lastOpponent && lastOpponent.index > us[2].index && call.level === 3
+      ? `敌方继续叫牌后的${call.strain}竞争性加叫：沿用已确认配合，争取三阶部分定约；不自动表示10–12支持点邀请，不逼叫`
+      : call.level === 3 ? `对开叫人${supportMinimum >= 4 ? '四' : '三'}张支持的${call.strain}邀请：通常10–12支持点；${supportMinimum >= 4 ? '已确认至少八张配合' : '本手需五张该高花才能确认八张配合'}，不额外表示六张自己的套`
+      : `在开叫人${supportMinimum >= 4 ? '四' : '三'}张支持后选择${call.level}${call.strain}：${supportMinimum >= 4 ? '已确认高花配合' : '开叫人竞争加叫可仅三张，本手五张才能确认八张配合'}；成局或部分定约按先前实力决定`;
+  }
+  if (genuine && opening?.call.level === 1 && us[1]?.call.level === 1 && major(us[1].call.strain)
+    && us[2]?.seat === seat && us[2].call.level === 2 && us[2].call.strain === us[1].call.strain
+    && us[3]?.call.level === 3 && us[3].call.strain === us[1].call.strain && call.level === 4 && call.strain === us[1].call.strain)
+    return '接受应叫高花的三阶邀请：开叫人持四张支持及足够调整点，选择高花成局；不是新花色显示';
+  if (system === 'sayc' && genuine && us.length === 1 && opening.seat === partnerOf(seat)
+    && opening.call.level === 1 && opening.call.strain !== 'NT' && call.strain !== 'NT'
+    && call.strain !== opening.call.strain && lastOpponent && lastOpponent.index > opening.index
+    && call.strain !== lastOpponent.call.strain && bidValue(call) - bidValue(lastOpponent.call) <= 5) {
+    const alreadyPassed = passedBefore(auction, seat, opening.index);
+    const fiveSpades = !major(opening.call.strain) && lastOpponent.call.strain === 'H' && call.strain === 'S';
+    return `开叫方在争叫后${call.level === 1 ? '一阶' : `自然${call.level}阶`}新花色应叫：${call.level === 1 ? '6+' : '10+'} HCP、通常${call.level === 1 && !fiveSpades ? '4' : '5'}+张${call.strain}；${alreadyPassed ? '过手牌限制实力，通常不逼叫' : '逼叫一轮，开叫人不能无故Pass'}，不是另一方的争叫后应叫`;
+  }
+  // Jacoby shortness remains artificial after the response; the major fit
+  // is already agreed and side-suit replies must not become new natural suits.
+  if (clean && opening?.call.level === 1 && major(opening.call.strain)
+    && us[1]?.call.level === 2 && us[1].call.strain === 'NT') {
+    const agreed = opening.call.strain;
+    if (us.length === 2 && seat === opening.seat) {
+      if (call.level === 3 && call.strain !== 'NT' && call.strain !== agreed)
+        return `Jacoby 2NT后的短门答叫：${call.strain}单张或缺门；既定将牌为${agreed}，不承诺所叫花色长度，进局逼叫继续`;
+      if (call.strain === agreed && call.level === 3) return `Jacoby 2NT后的额外实力答叫：无短门，通常18+ HCP；${agreed}为将牌，保留满贯空间`;
+      if (call.strain === agreed && call.level === 4) return `Jacoby 2NT后的最低限答叫：无短门、额外实力较少，选择4${agreed}成局`;
+    }
+    if (us.length >= 3 && call.strain === agreed && call.level === 4)
+      return `Jacoby 2NT后选择4${agreed}成局：此前已约定${agreed}为将牌，当前不继续满贯探索`;
+  }
+  const keyAnswer = fourNt ? us.find(entry => entry.index > fourNt.index && entry.seat !== fourNt.seat && entry.call.level === 5 && entry.call.strain !== 'NT') : undefined;
+  // Asking, answering and signing off are distinct roles; a five-level
+  // natural signoff after an answer is never Stayman or another keycard reply.
+  if (trump && fourNt) {
+    if (partner?.index === fourNt.index && call.level === 5 && call.strain !== 'NT') {
+      return call.strain === 'C' ? 'RKCB 1430答叫：1或4个关键张'
+        : call.strain === 'D' ? 'RKCB 1430答叫：0或3个关键张'
+          : call.strain === 'H' ? 'RKCB 1430答叫：2或5个关键张，无将牌Q'
+            : 'RKCB 1430答叫：2或5个关键张，有将牌Q';
+    }
+    const queenAsk = keyAnswer && fourNt.seat === seat && partner?.index === keyAnswer.index
+      && !!safeQueenInquiry(keyAnswer.call, trump) && sameCall(call, safeQueenInquiry(keyAnswer.call, trump)!);
+    if (queenAsk) return `RKCB后的将牌Q询问：对${keyAnswer.call.strain === 'C' ? '5♣' : '5♦'}使用最低可叫的非将牌位置；保留5${trump}安全止叫，无Q回到5${trump}，有Q显示六阶将牌或其下的旁门K`;
+    const queenResponse = keyAnswer && ownLast?.index === keyAnswer.index && partner
+      && !!safeQueenInquiry(keyAnswer.call, trump) && sameCall(partner.call, safeQueenInquiry(keyAnswer.call, trump)!);
+    if (queenResponse && call.strain === trump) return call.level === 5
+      ? `将牌Q答叫：否认Q，回到5${trump}止叫；不是新的自然长套或关键张回答`
+      : partner && bidValue(partner.call) >= bidValue(bid(5, trump))
+        ? `将牌Q答叫：回到最低可叫的6${trump}；五阶将牌已被问叫越过，此回答不能单独区分有Q与无Q`
+        : `将牌Q答叫：有Q，叫6${trump}；没有在其下可描述的旁门K`;
+    if (queenResponse && call.level === 6) return `将牌Q答叫：有将牌Q，同时显示${call.strain}K；既定将牌仍是${trump}`;
+    if (call.level === 5 && call.strain === 'NT' && fourNt.seat === seat && partner?.index === keyAnswer?.index) return `RKCB后的5NT问K：确认五个关键张及将牌Q齐全后，询问旁门K；${trump}K已计入关键张`;
+    if (partner?.call.level === 5 && partner.call.strain === 'NT' && partner.seat === fourNt.seat && call.level === 6 && call.strain !== 'NT') return call.strain === trump
+      ? `5NT问K答叫：回到6${trump}，没有在六阶将牌以下可安全显示的旁门K`
+      : `5NT问K答叫：显示最低可安全描述的${call.strain}K；将牌仍是${trump}，不表示接受大满贯或保证十三墩`;
+    if (fourNt.seat === seat && keyAnswer && call.strain === trump && call.level >= 5) return `RKCB后的${call.level}${trump}签约：按关键张及将牌Q回答选择定约；不再表示新花色或额外套长`;
+  }
+  if (call.level === 4 && call.strain === 'NT') {
+    const fit = keycardTrump(us, system, seat, auction);
+    if (fit) return `RKCB 1430关键张问叫：已约定${fit}为将牌，询问四个A及${fit}K；5♣=1/4、5♦=0/3、5♥=2/5无Q、5♠=2/5有Q`;
+    if (us.some(entry => isNaturalNoTrumpAt(auction, entry.index, system))) return '自然无将中的定量4NT：邀请满贯，可按已公开的无将范围接受或Pass；不是RKCB';
+    return '非体系4NT：尚未约定将牌，也没有自然无将定量背景；不应把它解释为RKCB，手动选择不承诺关键张问叫';
+  }
+  if (genuine && opening.call.level === 2 && opening.call.strain === 'C' && system !== 'precision') {
+    if (us.length === 1 && seat !== opening.seat && call.level === 2 && call.strain === 'D') return '强2♣后的2♦等待应叫：人工逼叫，不承诺方块长度，也不等于弱牌';
+    if (us.length === 2 && seat === opening.seat && call.strain === 'NT') return call.level === 2
+      ? '强2♣后的2NT再叫：22–24 HCP均型；2♦等待应叫不算方块套'
+      : '强2♣后的3NT再叫：25+ HCP均型，选择成局定约';
+    if (us.length === 3 && seat !== opening.seat && call.level === 3 && call.strain === 'C' && major(us[2].call.strain)) return system === 'sayc'
+      ? '强2♣后的第二次负应叫3♣：人工示弱，0–3 HCP；不承诺梅花套或梅花配合，逼叫一轮'
+      : '强2♣后的第二次负应叫3♣：人工示弱；不承诺梅花套或梅花配合，逼叫一轮';
+    if (system === 'sayc' && us.length === 3 && seat !== opening.seat && call.level === 3
+      && ((us[2].call.strain === 'C' && call.strain === 'D') || (us[2].call.strain === 'D' && call.strain === 'NT')))
+      return '强2♣后三阶低花再叫的第二次负应叫：0–3 HCP，人工示弱并逼叫一轮；不显示方块长套或自然无将成局实力';
+    if (system === 'sayc' && us.length === 3 && seat !== opening.seat && us[1]?.call.level === 2
+      && us[1].call.strain === 'D' && us[2].call.strain !== 'NT' && call.strain !== 'NT' && call.strain !== us[2].call.strain)
+      return `强2♣等待后自然${call.level}${call.strain}正应：5+张自己的套，不是0–3 HCP的人工二次负应叫；进局逼叫继续，本轮固定负应叫为${major(us[2].call.strain) ? '3♣' : us[2].call.strain === 'C' ? '3♦' : '3NT'}，不因实际手牌而改变`;
+    if (us.length === 2 && seat === opening.seat && call.strain !== 'NT') return `强2♣后的自然${call.level}${call.strain}再叫：${major(call.strain) ? '显示5+张高花套' : '通常5+张低花；强4-4-4-1手牌没有五张套时允许自然四张低花，不把四张高花伪报为五张'}，逼叫一轮；尚未解除强开叫的应叫义务`;
+  }
+  const ntOpening = genuine ? opening.call.strain === 'NT' ? opening
+    : opening.call.level === 2 && opening.call.strain === 'C' && us[2]?.call.strain === 'NT' ? us[2] : undefined : undefined;
+  const ntUs = ntOpening ? us.slice(us.indexOf(ntOpening)) : [];
+  const ntResponse = ntUs[1];
+  const ntConventionsAvailable = ntOpening && !auction.slice(ntOpening.index + 1)
+    .some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.kind === 'bid');
+  if (ntConventionsAvailable && ntOpening && ntOpening.call.level <= 3) {
+    const base = ntOpening.call.level + 1;
+    if (ntUs.length === 1 && seat !== ntOpening.seat && call.level === base) {
+      if (call.strain === 'C') return 'Stayman：人工询问四张高花，不承诺梅花长度；逼叫一轮';
+      if (call.strain === 'D' || call.strain === 'H') return `Jacoby转移：5+张${call.strain === 'D' ? '红心' : '黑桃'}，要求接受转移；不承诺所叫花色长度`;
+    }
+    if (ntUs.length === 2 && seat === ntOpening.seat && ntResponse) {
+      if (ntResponse.call.strain === 'C' && ntResponse.call.level === base) {
+        if (call.level === base && call.strain === 'D') return 'Stayman答叫：否认四张高花；人工回答，不承诺方块长度';
+        if (call.level === base && major(call.strain)) return `Stayman答叫：4+张${call.strain}；人工询问的自然高花回答，不承诺五张套`;
+        return `非约定Stayman答叫${call.level}${call.strain}：本卡要求${base}D、${base}H或${base}S回答；不能用自然成局说明代替尚未回答的人工询问`;
+      }
+      if (ntResponse.call.level === base && (ntResponse.call.strain === 'D' || ntResponse.call.strain === 'H')) {
+        const target = ntResponse.call.strain === 'D' ? 'H' : 'S';
+        if (call.level === base && call.strain === target) return `Jacoby转移接受：按要求叫${call.level}${call.strain}，通常只保证2+张支持；不表示自己持五张或六张套`;
+        return `非约定转移答叫${call.level}${call.strain}：本卡要求接受到${base}${target}；此处未约定超接受或其他答叫的点力、长度或满贯含义，不能直接当成自然六张套`;
+      }
+    }
+    if (ntUs.length === 3 && seat !== ntOpening.seat && ntResponse?.call.level === base
+      && (ntResponse.call.strain === 'D' || ntResponse.call.strain === 'H')) {
+      const target = ntResponse.call.strain === 'D' ? 'H' : 'S';
+      if (major(call.strain) && call.strain !== target && call.level >= 3)
+        return `转移后自然第二高花${call.level}${call.strain}：5+张${call.strain}及此前转移所示的5+张${target}，显示双高花并建立进局逼叫；不是弱牌逃叫，也不把转移接受当成同伴五张套`;
+      if (call.strain === 'NT' && call.level === 3) return `转移后的3NT：5+张${target}及成局实力，让无将开叫人有3+张支持时选择4${target}`;
+      if (call.strain === 'NT' && call.level === 2) return `转移后的2NT：5+张${target}及邀请实力，不是20–21点的无将开叫`;
+      if (call.strain === target && call.level === 3) return `转移后的3${target}：6+张长高花，邀请进局`;
+      if (call.strain === target && call.level === 4) return `转移后的4${target}：6+张长高花及成局实力，签约止叫`;
+    }
+    if (ntUs.length >= 4 && seat === ntOpening.seat && (partner?.call.level === 2 || partner?.call.level === 3) && partner.call.strain === 'NT'
+      && ntResponse && (ntResponse.call.strain === 'D' || ntResponse.call.strain === 'H')
+      && call.level === 4 && call.strain === (ntResponse.call.strain === 'D' ? 'H' : 'S')) return `转移后由${partner.call.level}NT改叫4${call.strain}：3+张支持搭档已示的五张高花，${partner.call.level === 2 ? '接受邀请并' : ''}选择已知八张配合；不额外承诺六张套`;
+    if (ntOpening.call.level === 1 && ntUs.length === 3 && seat !== ntOpening.seat && ntResponse?.call.strain === 'C'
+      && ntResponse.call.level === base && ntUs[2].call.level === base
+      && major(ntUs[2].call.strain) && major(call.strain) && call.strain !== ntUs[2].call.strain)
+      return bidValue(call) - bidValue(all.at(-1)!.call) <= 5
+        ? `Stayman答叫后另一高花${call.level}${call.strain}邀请：4+张所叫高花，仍寻找同伴四张配合；不是五张新套或Jacoby转移，未建立进局逼叫`
+        : `Stayman答叫后另一高花${call.level}${call.strain}：本卡仅约定最低合法阶数的四张高花邀请；此跳级续叫未约定固定长度或点力，不能自动当作五张自然新套`;
+  }
+  if (clean && us.length === 3 && seat !== opening.seat && call.level >= 2 && call.strain !== 'NT'
+    && new Set([...us.map(entry => entry.call.strain), call.strain]).size === 4
+    && us.every(entry => entry.call.strain !== 'NT')
+    && isArtificialBidAt(following, auction.length, system)) return `第四花色逼叫：人工询问止张、支持或额外牌型，不承诺所叫花色长度；至少逼叫一轮${analyzeAuctionSemantics(auction, seat, system).forcing === 'game' ? '，原有进局逼叫继续' : '，本叫品本身不等于此前已建立二盖一逼局'}`;
+  if (system === 'sayc' && clean && us.length === 3 && seat !== opening.seat
+    && opening.call.level === 1 && opening.call.strain === 'C'
+    && us[1].call.level === 1 && us[1].call.strain === 'D'
+    && us[2].call.level === 1 && us[2].call.strain === 'H' && call.level === 1 && call.strain === 'S')
+    return `一阶第四花色1S为自然黑桃：4+张，不是人工止张询问；${passedBefore(auction, seat, opening.index) ? '已Pass手牌通常不逼叫' : '未Pass手牌逼叫一轮，要求开叫人继续描述'}`;
+  if (system === 'sayc' && genuine && opening.call.strain === 'NT' && lastOpponent
+    && lastOpponent.index > opening.index && us.length === 1 && seat !== opening.seat
+    && call.strain === lastOpponent.call.strain) return '无将开叫受争叫后的逼局扣叫：10+ HCP，询问四张高花及敌套止张；不承诺敌方花色长度，要求继续描述';
+  if (system === 'sayc' && genuine && opening.call.strain === 'NT' && us[1]
+    && all.some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.index < us[1].index && entry.call.strain === us[1].call.strain)
+    && seat === opening.seat && call.strain !== 'NT' && major(call.strain))
+    return `无将竞争扣叫后的高花答叫：4+张${call.strain}；继续寻找高花配合，不承诺五张套`;
+  if (clean && system !== 'sayc' && us.length === 3 && opening.call.level === 1 && !major(opening.call.strain)
+    && us[1].call.level === 1 && major(us[1].call.strain) && us[2].call.strain === 'NT' && us[2].call.level === 1
+    && call.level === 2 && (call.strain === 'C' || call.strain === 'D') && call.strain !== opening.call.strain) return '新低花逼叫：人工询问高花支持或另一高花；不承诺新低花长度';
+  if (genuine && opening.call.level === 2 && opening.call.strain !== 'C' && opening.call.strain !== 'NT') {
+    if (us.length === 1 && seat !== opening.seat && call.level === 2 && call.strain === 'NT') return '弱二后的2NT特征问叫：通常15+ HCP，逼叫一轮；询问最高限及旁门A/K，不是自然均型定量叫';
+    if (us.length === 2 && seat === opening.seat && us[1].call.strain === 'NT' && us[1].call.level === 2) return call.strain === opening.call.strain
+      ? '弱二特征问叫答叫：最低限或没有可显示的旁门A/K，回到原长套；不增加套长承诺'
+      : `弱二特征问叫答叫：最高限并显示${call.strain}A或K；不承诺旁门四张套`;
+    if (us.length === 1 && seat !== opening.seat && call.strain !== 'NT' && call.strain !== opening.call.strain) return '弱二后的新花色应叫：13+ HCP、5+张自然套，逼叫一轮；有争叫时仍不得无故Pass';
+    if (seat === opening.seat && call.strain === opening.call.strain && us.length === 2
+      && us[1].call.strain === opening.call.strain)
+      return `弱二普通加叫后的${call.level}${call.strain}选择：原弱二仍为6+张；同伴加叫是竞争性或延长阻击、不构成正常邀请，本次不应解释为接受限制性邀请；不逼叫`;
+  }
+  if (genuine && system === 'sayc' && us.length === 1 && opening?.seat === partnerOf(seat) && opening.call.level === 3
+    && opening.call.strain !== 'NT' && call.strain !== 'NT' && call.strain !== opening.call.strain) return '同伴三阶阻击后的新花色：15+ HCP、5+张，逼叫一轮；阻击方必须描述配合或回叫原套';
+  if (genuine && opening?.call.level === 2 && opening.call.strain !== 'NT' && opening.call.strain !== 'C'
+    && us.length === 1 && opening.seat !== seat && call.level === 3 && call.strain === opening.call.strain)
+    return '弱二后的三阶加叫：通常3+张支持，竞争性或阻击性延长；不逼叫，也不是正常的一阶开叫后限制性邀请';
+  if (system === 'sayc' && !genuine && us.length === 1 && opening?.seat === partnerOf(seat)
+    && opening.call.strain !== 'NT' && call.strain === opening.call.strain && call.level > opening.call.level
+    && enemyBase?.call.level === 1 && enemyBase.call.strain !== 'NT'
+    && !auction.some((entry, index) => sideOf(entry.seat) === sideOf(seat) && isTakeoutDoubleAt(auction, index))
+    && bidValue(opening.call) - bidValue(all.findLast(entry => entry.index < opening.index)!.call) > 5)
+    return `弱跳争叫后的${call.level}${call.strain}加叫：按同伴阻击长套及支持延长阻击或选择定约；不逼叫，不是普通开叫后的限制性邀请`;
+  if (genuine && system === 'sayc' && opening?.seat === seat && opening.call.level === 3 && us[1]?.call.strain !== 'NT'
+    && us[1]?.call.strain !== opening.call.strain && call.level === 4 && call.strain === opening.call.strain) return '三阶阻击方对新花色逼叫的最低再叫：无应叫花色配合，回到原长套';
+  if (genuine && system === 'sayc' && opening?.seat !== seat && opening?.call.level === 3
+    && us[1]?.seat === seat && us[1].call.strain === call.strain && major(call.strain) && call.level === 4)
+    return '三阶阻击后的强应叫人继续选择自己的高花成局：原新花色应叫已显示实力；不是对同伴阻击低花的加叫';
+  if (system === 'sayc' && us.length === 1 && opening?.seat === partnerOf(seat) && opening.call.level === 1
+    && lastOpponent?.call.level === 3 && lastOpponent.index > opening.index) {
+    if (call.level === 3 && call.strain === 'NT') return '三阶阻击后的自然3NT：12+ HCP、均型或半均型，并有敌方花色止张；进局逼叫';
+    if (call.strain === lastOpponent.call.strain) return '三阶阻击后的逼叫扣叫：有进局实力，要求开叫人继续描述牌情';
+  }
+  if (system === 'sayc' && opening?.seat === seat && opening.call.level === 1 && (opening.call.strain === 'C' || opening.call.strain === 'D')
+    && us[1]?.call.level === 3 && us[1].call.strain === 'NT' && call.level === 4 && call.strain === opening.call.strain) return '三阶阻击后3NT应叫之上的自然低花满贯尝试：16+ HCP、6+张开叫低花';
+  const competitiveOpening = all[0];
+  const partnerConvention = all.length === 2 && all[1]?.seat === partnerOf(seat)
+    && all[1].index === all[0].index + 1 ? all[1] : undefined;
+  if (system === 'sayc' && competitiveOpening && partnerConvention
+    && sideOf(competitiveOpening.seat) !== sideOf(seat)
+    && competitiveOpening.call.level === 1 && competitiveOpening.call.strain !== 'NT'
+    && partnerConvention.call.level === 2) {
+    const michaels = partnerConvention.call.strain === competitiveOpening.call.strain;
+    if (michaels && !major(competitiveOpening.call.strain) && major(call.strain)) return 'Michaels应叫：选择同伴已显示的高花；人工扣叫被加倍后仍不得Pass';
+    if (michaels && major(competitiveOpening.call.strain)) {
+      const shownMajor = competitiveOpening.call.strain === 'H' ? 'S' : 'H';
+      if (call.strain === shownMajor) return 'Michaels应叫：选择同伴已显示的另一高花；人工扣叫被加倍后仍不得Pass';
+      if (call.strain === 'NT') return 'Michaels 2NT询问：没有三张另一高花，要求同伴说明未明确的低花；人工扣叫被加倍后仍不得Pass';
+    }
+    if (partnerConvention.call.strain === 'NT') {
+      const shown = SUITS.filter(suit => suit !== competitiveOpening.call.strain).slice(0, 2);
+      if (call.strain !== 'NT' && shown.includes(call.strain)) return 'Unusual 2NT应叫：在同伴显示的两门最低未叫花色中作出选择；人工2NT被加倍后仍不得Pass';
+    }
+  }
+  const partnerDouble = auction.findLast((entry, index) => entry.seat === partnerOf(seat) && isTakeoutDoubleAt(auction, index));
+  const ownDouble = auction.findLast((entry, index) => entry.seat === seat && isTakeoutDoubleAt(auction, index));
+  const enemyOpening = all[0] && sideOf(all[0].seat) !== sideOf(seat) ? all[0] : undefined;
+  const balancingTakeout = enemyOpening?.call.level === 1 && !!ownDouble
+    && auction.indexOf(ownDouble) > enemyOpening.index + 2
+    && auction.slice(enemyOpening.index + 1, auction.indexOf(ownDouble)).every(entry => entry.call.kind === 'pass');
+  const takeoutMinimum = balancingTakeout ? '9+' : enemyOpening?.call.level && enemyOpening.call.level >= 3 ? '15+'
+    : enemyOpening?.call.level === 2 ? '13+' : '12+';
+  const negativeResponse = genuine && opening?.seat === seat && opening.call.level === 1
+    && opening.call.strain !== 'NT' && us.length === 1
+    && auction[opening.index + 1]?.call.kind === 'bid' && (auction[opening.index + 1].call as Bid).strain !== 'NT'
+    && (auction[opening.index + 1].call as Bid).level <= 2
+    && auction[opening.index + 2]?.seat === partnerOf(seat)
+    && auction[opening.index + 2]?.call.kind === 'double'
+    && classifyDoubleAt(auction, opening.index + 2, system) === 'negative';
+  if (system === 'sayc' && negativeResponse && call.strain !== 'NT') {
+    const jump = bidValue(call) - bidValue(all.at(-1)!.call) > 5;
+    if (jump && call.strain === opening.call.strain)
+      return `负加倍初答中的原套强跳再叫：16–20 HCP、6+张${call.strain}，邀请或直接选择成局；不是最低回套，不因负加倍本身把普通一轮逼叫继续算到下一轮`;
+    if (jump && major(call.strain))
+      return atGame(call)
+        ? `负加倍后的高花成局答叫：4+张${call.strain}支持同伴已询问的未叫高花；按已确认配合的调整支持点选择成局，不机械套用三阶邀请的16–18点范围`
+        : `负加倍后的高花强跳答叫：16–18调整支持点、4+张${call.strain}，支持同伴已询问的未叫高花；短门及额外将牌可增值，不要求原始HCP达到16，不是自己的六张原套，也不是最低答叫`;
+    if (major(call.strain) && call.strain !== opening.call.strain)
+      return `负加倍后的高花答叫：4+张${call.strain}；展示同伴询问的未叫高花，阶数区别最低限与额外实力，不保证五张套`;
+    return call.strain === opening.call.strain
+      ? `负加倍后再叫开叫套${call.strain}：未找到合适高花或无将；最低回叫不额外保证六张套`
+      : `负加倍后自然第二套${call.strain}：通常4+张，继续描述牌型；不是五张高花争叫`;
+  }
+  const currentConvention = analyzeAuctionSemantics(auction, seat, system).convention;
+  if (system === 'sayc' && currentConvention === 'michaels-inquiry' && (call.strain === 'C' || call.strain === 'D'))
+    return `Michaels 2NT询问后的低花答叫：显示5+张${call.strain}及此前已示的5+张另一高花；自然回答未明确低花，不是首次争叫或未约定的晚期新套，已履行本轮答叫义务`;
+  if (system === 'sayc' && analyzeAuctionSemantics(following, partnerOf(seat), system).convention === 'overcall-cue'
+    && call.strain === enemyOpening?.call.strain)
+    return '自然争叫后的支持性扣叫：通常10+ HCP及3+张争叫套支持，人工逼叫一轮；敌方再加叫后仍可使用，不承诺敌方花色长度';
+  if (system === 'sayc' && (currentConvention === 'weak-jump-inquiry'
+    || analyzeAuctionSemantics(following, partnerOf(seat), system).convention === 'weak-jump-inquiry'))
+    return us.length === 1 && call.strain === 'NT' ? '弱跳争叫后2NT特征问叫：人工逼叫一轮，询问高低限及旁门A/K；不保证敌方花色止张'
+      : us.length === 2 ? call.strain === us[0].call.strain ? '弱跳争叫后2NT问叫的最低回套：5–8 HCP，未显示旁门特征；回到原六张长套'
+        : '弱跳争叫后2NT问叫的特征答叫：9–11 HCP及所叫旁门A/K；不保证该旁门四张或五张长度'
+      : '弱跳争叫特征问叫后的定约选择：结合已公开高低限与六张原套；不将特征花色当成长套';
+  if (system === 'sayc' && currentConvention === 'unusual-advance' && call.strain !== 'NT')
+    return 'Unusual 2NT应叫：选择同伴公开的双低花之一，通常只需三张支持；不是五张自然争叫';
+  if (system === 'sayc' && currentConvention === 'overcall-cue' && call.strain !== 'NT') {
+    const low = Array.from({ length: 7 }, (_, n) => bid(n + 1, call.strain))
+      .find(candidate => bidValue(candidate) > bidValue(all.at(-1)!.call));
+    return call.strain === us[0]?.call.strain
+      ? `支持性扣叫后回到自然争叫套：原争叫5+张；${call.level === low?.level ? '空间抬高后的最便宜回套，履行本轮答叫义务，不额外表示实力，也不额外保证六张' : '最低回叫不额外保证六张，跳回叫表示额外实力'}`
+      : `支持性扣叫后描述自然第二套${call.strain}：通常4+张，原争叫套仍为5+张；不是首次五张争叫`;
+  }
+  if (system === 'sayc' && genuine && opening?.call.level === 1 && opening.call.strain !== 'NT'
+    && opening.seat === seat && call.strain === 'NT'
+    && auction.some(entry => entry.seat === partnerOf(seat) && entry.call.kind === 'double')) {
+    const inferred = noTrumpRangeAt(following, auction.length, system);
+    if (inferred) return `负加倍后的自然无将答叫：${inferred.min}–${inferred.max} HCP，均型或适合无将且敌方花色有止张；${call.level === 3 ? '结合负加倍公开实力及可兑现长套赢墩选择成局，不机械套用安静无将跳再叫范围' : inferred.min < 18 && call.level === 2 ? '被迫在二阶回答，不是18–19点的跳再叫' : '阶数结合可用空间描述实力'}`;
+  }
+  if (system === 'sayc' && enemyOpening && ownDouble && own.length === 0 && call.strain === 'NT') {
+    if (call.level === 3 && partner?.call.strain === 'NT' && !isArtificialBidAt(auction, partner.index, system))
+      return `技术性加倍后选择3NT：接受同伴自然无将应叫所示的邀请或成局实力；按原技术X范围结合联手点力与可兑现赢墩判断，不额外承诺18+ HCP或均型，可依赖同伴已公开的敌套止张`;
+    const beforePartner = partner && all.findLast(entry => entry.index < partner.index);
+    if (call.level === 3 && partner && partner.call.strain !== 'NT' && beforePartner
+      && !isArtificialBidAt(auction, partner.index, system)
+      && bidValue(partner.call) - bidValue(beforePartner.call) > 5)
+      return `技术性加倍后接受同伴自然跳应叫邀请，选择3NT：同伴通常9–11 HCP；结合原技术X实力、敌套止张及可兑现赢墩判断，不额外承诺18+ HCP或均型，不是独立的强牌无将再叫`;
+    if (currentConvention === 'takeout-cue' || partner && isArtificialBidAt(auction, partner.index, system)
+      && analyzeAuctionSemantics(auction, seat, system).mustBid)
+      return `技术性加倍后回答同伴人工扣叫的自然${call.level}NT：适合无将且敌套有止张；原${balancingTakeout ? '平衡位' : ''}技术X通常${takeoutMinimum} HCP，被迫答叫不自动显示18–20或21–22，也不额外承诺18+，本卡未进一步划分此答叫的点力范围`;
+    const inferred = noTrumpRangeAt(following, auction.length, system);
+    return `技术性加倍后的强牌无将再叫：${inferred ? `${inferred.min}–${inferred.max}` : '18+'} HCP，均型且敌方花色有止张；不是开叫无将范围`;
+  }
+  if (system === 'sayc' && enemyOpening && ownDouble && own.length === 0 && call.strain !== 'NT') {
+    if (auction.slice(auction.indexOf(ownDouble) + 1).some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.kind === 'redouble'))
+      return `技术性加倍遭实力再加倍后的${call.level}${call.strain}逃叫：自然选择可用花色，通常4+张；不逼叫，不自动表示17+强牌再叫`;
+    if (currentConvention === 'takeout-cue' && call.strain !== enemyOpening.call.strain)
+      return `技术性加倍后回答同伴的强扣叫：选择自然未叫套${call.strain}，受空间影响可仅三张，并不额外保证四张或五张；原${balancingTakeout ? '平衡位' : ''}技术X通常${takeoutMinimum} HCP，此处被迫描述不额外表示17+，也不承诺同伴有四张${call.strain}支持；普通一轮逼叫已作答`;
+    if (call.strain === enemyOpening.call.strain) return '技术性加倍方再扣敌方花色：人工强牌再叫，要求同伴继续描述；不承诺所叫敌方花色长度';
+    if (call.strain === partner?.call.strain) return `技术性加倍方加叫同伴的${call.strain}：通常4+张支持；阶数区别最低限、邀请与成局，不是应叫人的首次应叫`;
+    if (major(call.strain) && atGame(call) && partner?.call.strain === 'NT'
+      && !isArtificialBidAt(auction, partner.index, system))
+      return `技术性加倍后选择自己的长高花${call.level}${call.strain}成局：结合原技术X、同伴自然无将的公开点力及长套赢墩判断，不统一要求本手17+ HCP；同伴无将未保证三张高花支持，是否八张配合仍须结合公开最低长度判断`;
+    if (partner && !isArtificialBidAt(auction, partner.index, system)
+      && bidValue(partner.call) - bidValue(all.findLast(entry => entry.index < partner.index)!.call) > 5)
+      return `技术性加倍后回应同伴的跳应叫邀请：自然描述4+张${call.strain}，按原技术X范围及同伴邀请实力判断；不额外承诺17+ HCP或五张长套，不自动建立进局逼叫`;
+    return `先技术性加倍后自由再叫新套${call.strain}：17+ HCP、5+张自然长套，显示强牌；16点好六张套先直接自然争叫，不混入此公开强牌范围`;
+  }
+  if (system === 'sayc' && enemyOpening && partnerDouble && own.length === 0) {
+    if (call.strain === enemyOpening.call.strain) return '技术性加倍后的扣叫应叫：12+ HCP，人工逼叫一轮；要求加倍方继续描述，不承诺敌方花色套';
+    if (call.strain === 'NT') return call.level === 1 ? '技术性加倍后的1NT应叫：6–10 HCP均型，敌方花色有止张；不逼叫'
+      : call.level === 2 ? '技术性加倍后的2NT应叫：11–12 HCP均型且有止张，邀请进局' : '技术性加倍后的3NT应叫：13–15 HCP均型且有止张，选择成局';
+    const low = Array.from({ length: 7 }, (_, n) => bid(n + 1, call.strain)).find(candidate => bidValue(candidate) > bidValue(all.at(-1)!.call));
+    const naturalChoice = all.some(entry => sideOf(entry.seat) !== sideOf(seat)
+      && entry.call.strain === call.strain && !isArtificialBidAt(auction, entry.index, system))
+      ? '自然可用花色；对手此前虽叫过该套，此延后答叫不自动作为人工扣叫'
+      : '未叫花色';
+    const suitsBeforeDouble = new Set(all.filter(entry => entry.index < auction.indexOf(partnerDouble)
+      && sideOf(entry.seat) !== sideOf(seat) && entry.call.strain !== 'NT'
+      && !isArtificialBidAt(auction, entry.index, system)).map(entry => entry.call.strain));
+    if (suitsBeforeDouble.size === 3 && !suitsBeforeDouble.has(call.strain)
+      && call.level === low?.level && analyzeAuctionSemantics(auction, seat, system).mustBid)
+      return `对手已公开三门花色后的技术性加倍最低应叫${call.level}${call.strain}：被迫选择唯一未叫花色；不保证四张，也不保证点力，不能把此受限选择当作正常四张自然新套或邀请`;
+    if (!analyzeAuctionSemantics(auction, seat, system).mustBid && call.level === low?.level)
+      return `技术性加倍后对手继续叫牌时的自由${call.level}${call.strain}应叫：通常6+ HCP及4+张${naturalChoice}；本可Pass，不能当作0点被迫应叫，不逼叫`;
+    if (call.level >= 4) return call.level === low?.level
+      ? `高阶技术性加倍后的最低${call.level}${call.strain}应叫：选择自己的${naturalChoice}（通常4+张）；${atGame(call) ? '已达到成局阶数' : '受对手阻击抬高，仍可低于成局'}，受空间影响的被迫最低应叫不保证点力`
+      : `高阶技术性加倍后的跳应叫${call.level}${call.strain}：最低可叫${low?.level}${call.strain}仍有空间，本次显示额外实力及4+张${naturalChoice}；通常9–11点以上，按支持点、套质与成局阶数判断，不能当作零点的被迫最低应叫`;
+    return call.level === low?.level ? `技术性加倍后的最低花色应叫：通常0–8 HCP，尽量选择四张${naturalChoice}；被迫应叫不保证点力`
+      : `技术性加倍后的跳应叫：通常9–11 HCP、4+张${naturalChoice}，邀请进局`;
+  }
+  if (system === 'sayc' && enemyOpening && !genuine && opening?.seat === partnerOf(seat)
+    && opening.call.strain !== 'NT' && opening.call.strain !== enemyOpening.call.strain
+    && us.length === 1 && call.strain === enemyOpening.call.strain) return '自然争叫后的支持性扣叫：10+ HCP、3+张支持争叫花色，逼叫一轮；不承诺所扣敌方花色长度';
+  if (system === 'sayc' && !genuine && opening?.call.strain === 'NT'
+    && (opening.call.level === 1 || (opening.call.level === 2 && enemyOpening && enemyOpening.call.level >= 2))
+    && !auction.slice(opening.index + 1).some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.kind === 'bid')) {
+    const base = opening.call.level + 1;
+    const ntLabel = `${opening.call.level}NT`;
+    if (opening.call.level === 1 && us.length === 3 && seat !== opening.seat
+      && us[1].call.level === base && us[1].call.strain === 'C'
+      && us[2].call.level === base && major(us[2].call.strain)
+      && major(call.strain) && call.strain !== us[2].call.strain)
+      return bidValue(call) - bidValue(all.at(-1)!.call) <= 5
+        ? `${ntLabel}争叫的Stayman答叫后另一高花${call.level}${call.strain}邀请：4+张所叫高花，继续寻找四张配合；不是五张新套或转移，未建立进局逼叫`
+        : `${ntLabel}争叫的Stayman答叫后跳级另一高花：本卡未约定固定长度或点力，不能当作五张自然新套`;
+    if (us.length === 3 && seat !== opening.seat && us[1].call.level === base
+      && (us[1].call.strain === 'D' || us[1].call.strain === 'H')
+      && major(call.strain) && call.strain !== (us[1].call.strain === 'D' ? 'H' : 'S') && call.level >= 3)
+      return `${ntLabel}争叫的转移后自然第二高花${call.level}${call.strain}：5+张${call.strain}及已示的5+张${us[1].call.strain === 'D' ? 'H' : 'S'}，双高花进局逼叫；不是弱牌逃叫`;
+    if (us.length >= 4 && seat === opening.seat && us[1]?.call.level === base
+      && (us[1].call.strain === 'D' || us[1].call.strain === 'H')
+      && partner?.call.strain === 'NT' && (partner.call.level === 2 || partner.call.level === 3)
+      && call.level === 4 && call.strain === (us[1].call.strain === 'D' ? 'H' : 'S'))
+      return `${ntLabel}争叫后的转移进局选择：3+张支持搭档已示的五张高花；${partner.call.level === 2 ? '接受邀请，' : ''}选择已知八张配合，不额外承诺自己的六张套`;
+    if (us.length === 1 && seat !== opening.seat) {
+      if (call.level === base && call.strain === 'C') return `${ntLabel}争叫后的Stayman：至少一门四张高花，逼叫一轮；不是自然梅花逃叫`;
+      if (call.level === base && (call.strain === 'D' || call.strain === 'H')) return `${ntLabel}争叫后的Jacoby转移：5+张${call.strain === 'D' ? '红心' : '黑桃'}，要求同伴接受转移；不承诺所叫花色长度`;
+      if (base === 2 && call.level === 2 && call.strain === 'S') return '1NT争叫后的低花逃叫：要求3♣，随后可Pass或改3♦；人工接力，不是自然黑桃';
+      if (call.strain === 'NT') {
+        const ntRange = noTrumpRangeAt(auction, opening.index, system);
+        const minimum = ntRange?.min ?? 15;
+        return call.level === 2 ? `${ntLabel}争叫后的自然2NT：通常${23 - minimum}–${24 - minimum} HCP，按已公开${ntRange ? `${ntRange.min}–${ntRange.max}` : '15–18'}点范围邀请成局`
+          : call.level === 3 ? `${ntLabel}争叫后的自然3NT：通常${25 - minimum}+ HCP，按已公开无将范围选择成局`
+            : `${ntLabel}争叫后的自然${call.level}NT：按已公开无将范围${call.level >= 6 ? '选择无将满贯定约' : '邀请大满贯'}；不按3NT成局应叫解释`;
+      }
+    }
+    if (us.length === 2 && seat === opening.seat) {
+      const request = us[1].call;
+      if (request.level === base && request.strain === 'C') return call.level === base && call.strain === 'D'
+        ? `${ntLabel}争叫后的Stayman答叫：否认四张高花；方块为人工回答`
+        : call.level === base && major(call.strain) ? `${ntLabel}争叫后的Stayman答叫：4+张${call.strain}，继续寻找高花配合`
+          : `非约定Stayman答叫${call.level}${call.strain}：${ntLabel}争叫后须用${base}D、${base}H或${base}S回答；未约定其他答叫的长度或点力`;
+      if (request.level === base && (request.strain === 'D' || request.strain === 'H')) return call.level === base && call.strain === (request.strain === 'D' ? 'H' : 'S')
+        ? `${ntLabel}争叫后的Jacoby转移接受：不额外承诺三张支持或六张长套`
+        : `非约定转移答叫${call.level}${call.strain}：${ntLabel}争叫后须接受到${base}${request.strain === 'D' ? 'H' : 'S'}；未约定超接受或其他答叫的点力、长度`;
+      if (base === 2 && request.level === 2 && request.strain === 'S') return call.level === 3 && call.strain === 'C'
+        ? '低花逃叫接力的3♣答叫：不保证梅花长度，允许同伴Pass或改3♦'
+        : `非约定低花逃叫接力答叫${call.level}${call.strain}：本卡要求3♣，未约定其他答叫的点力或长度`;
+    }
+  }
+  if (system === 'sayc' && !genuine && opening?.call.strain === 'NT'
+    && us[1]?.call.level === 2 && us[1].call.strain === 'S'
+    && us[2]?.call.level === 3 && us[2].call.strain === 'C'
+    && us.length === 3 && us[1].seat === seat && call.level === 3 && call.strain === 'D')
+    return '低花逃叫接力后的3♦改叫：自然方块长套，选择部分定约、不逼叫；3♣接力已经回答，不再保留人工应叫义务';
+  if (system === 'sayc' && all.length === 1 && enemyOpening && auction.length === enemyOpening.index + 3
+    && auction.slice(enemyOpening.index + 1).every(entry => entry.call.kind === 'pass') && call.strain === 'NT' && call.level === 1) return '平衡位1NT：11–14 HCP均型，敌方开叫花色有止张；不是直接15–18点的1NT争叫';
+  const opposingOpening = all.length === 1 && sideOf(all[0].seat) !== sideOf(seat)
+    && auction.length === all[0].index + 1 ? all[0] : undefined;
+  if (system === 'sayc' && opposingOpening?.call.level === 1 && opposingOpening.call.strain === 'NT'
+    && call.level === 2 && call.strain === 'NT') return '对1NT的双低花争叫：5+张梅花及5+张方块，人工叫品；不是自然无将';
+  if (system === 'sayc' && opposingOpening && opposingOpening.call.level >= 2 && opposingOpening.call.level <= 3
+    && call.strain === 'NT') return `对阻击的自然${call.level}NT争叫：15–18 HCP、均型及敌方花色止张；后续Stayman和高花转移继续使用`;
+  if (system === 'sayc' && opposingOpening && opposingOpening.call.level >= 2 && opposingOpening.call.level <= 3
+    && opposingOpening.call.strain !== 'NT' && call.strain !== 'NT' && call.strain !== opposingOpening.call.strain
+    && bidValue(call) - bidValue(opposingOpening.call) <= 5)
+    return `对阻击的首次自然${call.level}${call.strain}非跳争叫：5+张可用花色；二阶通常10–16 HCP，更高阶需要足够实力和套质；六张以上好长套可按套质与可兑现赢墩酌减点力；不是尚未约定的晚期续叫`;
+  if (system === 'sayc' && opposingOpening?.call.level === 1 && opposingOpening.call.strain !== 'NT') {
+    if (call.level === 2 && call.strain === opposingOpening.call.strain) return major(call.strain)
+      ? 'Michaels扣叫：5+张另一高花及5+张未明确低花'
+      : 'Michaels扣叫：两门高花各5+张';
+    if (call.level === 2 && call.strain === 'NT') return 'Unusual 2NT：两门最低未叫花色各5+张';
+    const naturalLevel = call.strain !== 'NT' && bidValue(bid(1, call.strain)) > bidValue(opposingOpening.call) ? 1 : 2;
+    if (call.strain !== 'NT' && call.level > naturalLevel) return 'SAYC弱跳争叫：按同阶阻击开叫的牌力、长度与花色质量处理';
+    if (call.strain === 'NT') return 'SAYC 1NT争叫：15–18 HCP均型，并有开叫花色止张';
+    return naturalLevel === 1 ? 'SAYC一阶自然争叫：5+张，通常8–16 HCP；六张以上好长套可按套质与可兑现赢墩酌减点力' : 'SAYC二阶自然争叫：5+张，通常10–16 HCP；六张以上好长套可按套质与可兑现赢墩酌减点力；不是强2♣开叫';
+  }
+  if (system === 'sayc' && enemyOpening && call.strain !== 'NT'
+    && auction.every(entry => sideOf(entry.seat) !== sideOf(seat) || entry.call.kind === 'pass')
+    && !all.some(entry => entry.call.strain === call.strain && !isArtificialBidAt(auction, entry.index, system))) {
+    const lastNaturalBid = all.at(-1)!;
+    const cheapest = Array.from({ length: 7 }, (_, n) => bid(n + 1, call.strain))
+      .find(candidate => bidValue(candidate) > bidValue(lastNaturalBid.call));
+    const balancing = auction.length === lastNaturalBid.index + 3
+      && auction.slice(lastNaturalBid.index + 1).every(entry => entry.call.kind === 'pass');
+    return call.level === cheapest?.level
+      ? `${balancing ? '平衡位' : '敌方开叫或应叫之后的'}首次${call.level === 1 ? '一阶' : `${call.level}阶`}自然争叫：5+张${call.strain}；${call.level === 1 ? '直接位通常8–16 HCP' : '直接位通常10–16 HCP及较好套'}${balancing ? '，平衡位可适当减低点力要求' : ''}；六张以上好长套可按套质与可兑现赢墩酌减点力；本方此前仅Pass，不是已有本方自然叫牌后的晚期续叫`
+      : `首次自然跳争叫${call.level}${call.strain}：按同阶阻击开叫的弱牌点力、长度和套质处理；不是未约定的后续新花色`;
+  }
+  if (opening?.call.level === 1 && major(opening.call.strain) && call.level === 2 && call.strain === opening.call.strain
+    && us.length >= 3 && us[1]?.seat === seat && us[1].call.level === 1
+    && us[2].call.level === 2 && us[2].call.strain !== opening.call.strain) return 'SAYC回叫开叫高花的弱牌偏好或支持：可仅两张，也可有三张或更多支持；两张时可选择5-2配合止叫，三张以上与公开五张高花构成八张配合，不自动宣称恰好两张';
+  if (system === 'sayc' && opening?.call.level === 1 && major(opening.call.strain) && us.length === 3
+    && us[1]?.seat === seat && us[1].call.level === 2 && us[1].call.strain !== 'NT'
+    && us[2].seat === opening.seat && us[2].call.level <= 3 && us[2].call.strain !== opening.call.strain
+    && call.strain === opening.call.strain) return call.level === 4
+      ? '选择开叫高花为将牌：应叫人3+张支持与开叫人5+张构成至少8张配合；按SAYC二盖一后的公开点力下限叫到成局'
+      : '回到开叫高花：3+张支持构成至少8张配合，优先于对开叫人第二套的三张支持';
+  if (!all.length) {
+    if (system === 'sayc' && call.level === 3 && call.strain === 'NT') return 'SAYC 3NT开叫：25–27 HCP均型';
+    if (call.strain !== 'NT' && call.level === 3) return system === 'sayc' ? '三阶阻击开叫：通常5–10 HCP、7+张且套质合格' : '三阶阻击开叫：通常弱牌、7+张长套';
+    if (call.strain !== 'NT' && call.level === 4) return system === 'sayc' ? '四阶阻击开叫：通常5–10 HCP、8+张长套' : '四阶阻击开叫：通常弱牌、8+张长套';
+    if (call.level >= 3) return `${call.level}${call.strain}不是当前体系定义的常规开叫；手动选择不承诺精确点力或牌型`;
+    if (system === 'precision') return call.strain === 'C' && call.level === 1 ? '强梅花，16+ HCP，人为逼叫' : call.strain === 'NT' ? call.level === 1 ? '13–15 HCP 均型，无5张高花' : '22–23 HCP 均型' : call.level === 1 && major(call.strain) ? '11–15 HCP，5+张高花' : call.level === 1 ? '11–15 HCP，2+张方块' : call.strain === 'C' ? '11–15，6+梅花或5梅花＋4张高花' : call.strain === 'D' ? '11–15，短方块指定牌型' : '6–10 HCP，6+张弱二';
+    return call.strain === 'NT' ? call.level === 1 ? '15–17 HCP均型；自然1NT开叫' : '20–21 HCP均型；自然2NT开叫' : call.level === 2 && call.strain === 'C' ? '22+ HCP强2♣；人工逼叫，2♦为等待应叫' : call.level === 2 ? system === 'sayc' ? '5–11 HCP、通常6+张且套质合格的弱二开叫' : '6–10 HCP、6+张的弱二开叫' : call.level === 1 ? major(call.strain) ? system === 'sayc' ? '自然一阶高花开叫：5+张，通常13–21 HCP；12 HCP须满足Rule of 20' : '自然一阶高花开叫：5+张，约12–21 HCP' : system === 'sayc' ? `自然一阶${call.strain}开叫：通常3+张、13–21 HCP；12 HCP须满足Rule of 20` : `自然一阶${call.strain}开叫：通常3+张、约12–21 HCP` : '自然阻击开叫';
+  }
+  if (opening && clean) {
+    const base = opening.call.level + 1;
+    if (opening.call.strain === 'NT' && us.length === 1) {
+      if (call.level === base && call.strain === 'C') return 'Stayman，问4张高花';
+      if (call.level === base && call.strain === 'D') return 'Jacoby转移，5+张红心';
+      if (call.level === base && call.strain === 'H') return 'Jacoby转移，5+张黑桃';
+      if (call.strain === 'NT') return call.level === 2 ? '1NT后的自然2NT邀请：8–9 HCP均型；不逼叫'
+        : `自然${call.level}NT：根据已公开的无将范围选择${call.level >= 6 ? '无将满贯定约' : call.level === 5 ? '大满贯邀请' : '无将成局'}；${call.level === 5 ? '至少逼到6NT，低限六阶、高限接受七阶，不允许Pass停在5NT' : '原则上止叫'}`;
+    }
+    if (us.length === 1 && system === 'precision' && opening.call.strain === 'C' && opening.call.level === 1) return call.strain === 'D' && call.level === 1 ? '0–7 HCP，强梅花负应叫' : '8+ HCP，强梅花正应叫，进局逼叫';
+    if (opening.call.level === 1 && major(opening.call.strain) && us.length === 1 && call.strain === 'NT' && call.level === 2) return 'Jacoby 2NT：4+张高花支持、13+调整支持点，进局逼叫';
+    if (opening.call.level === 1 && major(opening.call.strain) && us.length === 1 && call.strain === 'NT' && call.level === 1 && system === 'sayc') return passedBefore(auction, seat, opening.index)
+      ? '已Pass手的自然1NT应叫：5–12 HCP，限制性、不逼叫；不是未Pass手的半逼叫义务'
+      : 'SAYC＋2/1半逼叫1NT：5–12 HCP；均型最低限开叫人可以Pass；12–16且无合法四张第二套或六张原套再叫时也可停叫，不虚报三张低花或不足实力的逆叫';
+    if (opening.call.level === 1 && major(opening.call.strain) && us.length === 1 && call.strain === 'NT' && call.level === 1 && system === 'two-over-one') return passedBefore(auction, seat, opening.index) ? 'Pass过的手牌，1NT不逼叫' : '2/1半逼叫1NT：5–12 HCP；均型最低限开叫人可Pass；12–16且无合法四张第二套或六张原套再叫时也可停叫，不虚报三张低花或不足实力的逆叫';
+    if (us.length === 1 && (system === 'two-over-one' || system === 'sayc') && twoOverOne(opening, { seat, call, index: auction.length }, auction)) return `二盖一：13+ HCP、${call.strain === 'C' ? '3' : call.strain === 'D' ? '4' : '5'}+张${call.strain}，未Pass且无干扰，建立进局逼叫；本方到局前不得Pass`;
+    if (us.length === 1 && opening.call.level === 1 && call.strain !== 'NT') {
+      if (call.strain === opening.call.strain) return call.level === 2 ? `简单加叫：通常6–9${major(call.strain) ? '支持点，3+张支持开叫花色' : '点，通常4+张自然低花支持或偏好；开叫仅保证三张时，确认八张配合需5+张支持，未确认前不计短门点'}；不逼叫`
+        : call.level === 3 ? `限制性跳加叫：通常10–12支持点，${major(call.strain) ? '3+张支持' : '通常5+张支持以确认八张低花配合'}；邀请进局`
+          : call.level === gameLevel(call.strain) ? `封局加叫：确认${major(call.strain) ? '至少3张' : '通常5张'}支持并直接叫到成局；原则上止叫，不是满贯邀请`
+            : `非常规跳加叫至${call.level}${call.strain}：不属于本体系的标准响应；手动选择不承诺固定点力范围`;
+      if (call.level === 1) return `一盖一自然应叫：6+ HCP、4+张${call.strain}；${passedBefore(auction, seat, opening.index) ? '已Pass的应叫人限制牌力，通常不逼叫' : '逼叫一轮'}`;
+      if (system === 'sayc' && call.level === 2) return `二阶新花色自然应叫：10+ HCP、通常4+张${call.strain}；${passedBefore(auction, seat, opening.index) ? '过手牌限制实力，通常不逼叫，不是二盖一进局逼叫' : '逼叫一轮'}`;
+    }
+    if (us.length === 1 && opening.call.level === 1 && (opening.call.strain === 'C' || opening.call.strain === 'D') && call.strain === 'NT') {
+      if (call.level === 1) return '自然1NT应叫：通常6–10 HCP，通常均型或半均型，也可用不够二盖一进局逼叫实力的长低花牌作限制性描述；否认可在一阶叫出的四张高花，不逼叫';
+      if (call.level === 2 && system === 'sayc') return '修正SAYC自然2NT应叫：11–12 HCP均型、无可在一阶应叫的四张高花，邀请进局、不逼叫；5-3-3-2即使有五张开叫低花支持也优先定量描述，本卡不采用倒置低花加叫';
+      if (call.level === 3 && system === 'sayc') return '修正SAYC自然3NT应叫：13+ HCP均型，通常13–15、无四张高花；更强而无合适真实新套时也可直接成局，原则上止叫；5-3-3-2即使有5张开叫低花支持仍优先定量NT，本卡不采用倒置低花加叫';
+    }
+    if (opening.seat === seat && us.length === 2 && opening.call.strain !== 'NT') {
+      const response = us[1].call;
+      if (call.strain === 'NT') {
+        if (call.level === 1) return system === 'sayc' ? '开叫人自然1NT再叫：12–14 HCP均型（12点须符合Rule of 20），限制性再叫' : '开叫人最低限自然1NT再叫：均型，限制性范围';
+        if (call.level === 2 && us[1] && twoOverOne(opening, us[1], auction)) return '二盖一进局逼叫中的自然2NT再叫：均型，12–21 HCP的未细分范围；并不额外承诺18–19点，进局逼叫继续';
+        if (system === 'sayc' && response.level === 2 && response.strain !== 'NT'
+          && response.strain !== opening.call.strain && passedBefore(auction, us[1].seat, opening.index)) {
+          if (call.level === 2) return '已Pass应叫人自然二阶新套后的最低2NT再叫：12–14 HCP均型、无合适花色配合；受叫牌空间抬高，不是18–19点跳再叫，自然限制性且不逼叫';
+          if (call.level === 3) return '已Pass应叫人自然二阶新套后的3NT再叫：15–21 HCP均型或适合无将，结合应叫人已示10+实力及止张选择成局；此前已显示的更高点力下限仍保留，不是最低2NT的12–14范围';
+        }
+        if (call.level === 2) return system === 'sayc' ? '开叫人跳再叫2NT：18–19 HCP均型；邀请搭档判断进局或满贯' : '开叫人自然2NT再叫：显示额外点力和均型牌';
+        if (call.level === 3 && response.strain === 'NT') return '开叫人接受自然无将应叫，选择3NT成局；不表示花色支持张数';
+      }
+      if (call.strain === opening.call.strain && response.strain === opening.call.strain) return `开叫人对同伴加叫的${call.level}${call.strain}再叫：已找到花色配合；${atGame(call) ? '接受邀请或直接选择成局' : '显示额外实力，邀请进局'}，不额外承诺六张套`;
+      if (call.strain === opening.call.strain && major(call.strain) && call.level === 4)
+        return `开叫人原高花${call.level}${call.strain}直接成局：通常6+张、较长或有足够套质及实力；原则上止叫，不是三阶邀请，不承诺同伴已经支持该套`;
+      if (opening.call.level === 2 && opening.call.strain !== 'C' && call.strain === opening.call.strain)
+        return `弱二后回到原套${call.level}${call.strain}：维持弱二已示的6+张，不降为五张例外；履行新套应叫的一轮义务，未建立新的进局逼叫`;
+      if (call.strain === opening.call.strain) return twoOverOne(opening, us[1], auction)
+        ? major(call.strain) ? `二盖一逼局中的原高花再叫：保证开叫时的5+张，不额外保证六张；进局逼叫继续`
+          : `二盖一逼局中的原低花再叫：自然强调开叫低花；进局逼叫继续，不是高花五张套`
+        : publicMeaning.description ?? `开叫人自然再叫原花色${call.strain}：保留此前公开套长；${analyzeAuctionSemantics(auction, seat, system).mustBid ? '履行本轮应叫义务，不自动延续一轮逼叫' : '自然选择再叫，不建立新的逼叫'}`;
+      if (call.strain === response.strain) {
+        if (twoOverOne(opening, us[1], auction) && major(response.strain)) return call.level === 3
+          ? '二盖一后的慢到局加叫：3+张支持、15+ HCP，保留满贯探索空间；进局逼叫继续'
+          : '二盖一后的快到局加叫：3+张支持、最低限12–14 HCP，选择高花成局；额外实力较少';
+        return `开叫人支持应叫花色：${response.level === 1 ? '4' : opening.call.level === 2 && opening.call.strain !== 'C' || major(response.strain) ? '3' : '4'}+张支持；${opening.call.level === 2 && opening.call.strain !== 'C' ? '同伴正应已示五张自然套，三张支持可确认八张配合；' : ''}阶数表示最低限、邀请或进局实力${analyzeAuctionSemantics(following, partnerOf(seat), system).forcing === 'game' && !atGame(call) ? '；原有进局逼叫仍继续，双方到局前不得Pass' : ''}`;
+      }
+      if (call.level >= 2 && !atGame(call) && call.strain !== 'NT' && response.level === 1
+        && bidValue(call) - bidValue(response) > 5) return `开叫人强跳移叫：通常19+ HCP、4+张${call.strain}；原高花5+张，原低花4+张且可与第二套等长；建立进局逼叫，不能Pass在此部分定约`;
+      if (call.level === 2 && call.strain !== 'NT' && response.level === 1
+        && bidValue(bid(1, call.strain)) > bidValue(opening.call)) return `开叫人逆叫：17+ HCP、4+张${call.strain}，原花色通常更长；强4-4-4-1手牌可两套等长，逼叫一轮`;
+      if (call.strain !== 'NT') return system === 'sayc' && major(opening.call.strain) && response.level === 1 && response.strain === 'NT'
+        ? `开叫人自然再叫第二套${call.strain}：4+张；显示5+张开叫高花和4+张第二套；${passedBefore(auction, us[1].seat, opening.index) ? '已Pass手的1NT不逼叫，本次为自主自然描述' : '履行半逼叫1NT后的牌型描述'}，不是强制应叫1NT下的三张低花兜底`
+        : `开叫人自然再叫第二套${call.strain}：通常4+张；进一步描述牌型${analyzeAuctionSemantics(following, partnerOf(seat), system).forcing === 'game' && !atGame(call) ? '；原有进局逼叫仍继续，双方到局前不得Pass' : ''}`;
+    }
+    if (system === 'precision' && opening.call.level === 2 && opening.call.strain === 'C' && us.length === 1 && call.level === 2 && call.strain === 'D') return '精确2♣后2♦问高花';
+    if (system === 'precision' && opening.call.level === 2 && opening.call.strain === 'D' && us.length === 1 && call.level === 2 && call.strain === 'NT') return '精确短方块2♦后2NT问牌型';
+  }
+  if (call.level === 4 && call.strain === 'NT') return '已有明确将牌配合则RKCB 1430关键张问叫；无将中为定量邀请';
+  const ownBids = us.filter(entry => entry.seat === seat);
+  const partnerBid = [...us].reverse().find(entry => entry.seat === partnerOf(seat));
+  const forcedBeforeCall = analyzeAuctionSemantics(auction, seat, system).mustBid;
+  const continuesGameForce = analyzeAuctionSemantics(following, partnerOf(seat), system).forcing === 'game' && !atGame(call);
+  const gameReached = atGame(call);
+  if (system === 'sayc' && genuine && opening?.call.level === 1 && opening.call.strain !== 'NT'
+    && us.length === 3 && seat !== opening.seat && us[1].call.level === 1 && us[1].call.strain !== 'NT'
+    && us[2].call.level === 1 && us[2].call.strain === 'NT'
+    && call.level === 2 && (call.strain === 'C' || call.strain === 'D')
+    && call.strain !== us[1].call.strain && call.strain !== opening.call.strain)
+    return `开叫人1NT再叫后的自然弱新低花${call.level}${call.strain}：5+张自己的长套，选择部分定约、不逼叫；本卡未采用新低花逼叫，不能当作人工问高花或第四花色`;
+  const responderLaterNewSuit = system === 'sayc' && genuine && opening?.call.level === 1
+    && opening.call.strain !== 'NT' && opening.seat === partnerOf(seat)
+    && call.level === 3 && call.strain !== 'NT' && call.strain !== opening.call.strain
+    && partnerBid?.seat === opening.seat && partnerBid.index > opening.index
+    && call.strain !== partnerBid.call.strain
+    && !us.some(entry => entry.seat === seat && entry.call.strain === call.strain
+      && !isArtificialBidAt(auction, entry.index, system))
+    && !all.some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.strain === call.strain
+      && !isArtificialBidAt(auction, entry.index, system))
+    && (ownBids.some(entry => entry.call.level === 1 && entry.call.strain !== 'NT')
+      || auction.some((entry, index) => entry.seat === seat && classifyDoubleAt(auction, index, system) === 'negative'));
+  if (responderLaterNewSuit)
+    return `应叫人在开叫人自然再叫后的三阶新套${call.strain}：通常10+ HCP、5+张自然套；${passedBefore(auction, seat, opening.index) ? '已Pass手牌限制实力，不逼叫' : '未Pass手牌逼叫一轮，要求开叫人继续描述'}；六张以上长套可按套质与可兑现赢墩酌减点力，但不能自动认定进局逼叫`;
+  if (system === 'sayc' && analyzeAuctionSemantics(following, partnerOf(seat), system).convention === 'responder-second-suit')
+    return `一盖一后应叫人自然描述第二套${call.strain}：4+张；未Pass的自然新套续叫逼叫一轮，要求开叫人继续描述，不是人工新低花或未约定叫品`;
+  if (genuine && system === 'sayc' && opening?.call.level === 1 && opening.call.strain !== 'NT'
+    && us.length === 3 && seat !== opening.seat && us[1].call.level === 1 && major(us[1].call.strain)
+    && call.strain === us[1].call.strain && bidValue(call) - bidValue(us[2].call) > 5)
+    return call.level === 4 ? `应叫人原高花4${call.strain}直接成局：13+ HCP及6+张自己的长套；不是对低花的加叫，不承诺开叫人高花支持或已知八张配合`
+      : call.level === 3 ? `应叫人原高花3${call.strain}跳再叫：通常10–12 HCP及6+张自己的套，邀请成局；不是支持加叫，不自动建立进局逼叫`
+        : `应叫人原高花${call.level}${call.strain}再叫：自然强调自己的长套；最低再叫不建立新的进局逼叫，不承诺同伴已支持`;
+  if (genuine && opening?.call.level === 2 && opening.call.strain === 'C' && seat === opening.seat
+    && us.length === 4 && secondNegative(us, 3, system) && call.strain === us[2].call.strain)
+    return `强2♣后履行二次负应叫的原套再叫：原${major(call.strain) ? `高花${call.strain}仅保证5+张` : `低花${call.strain}通常5+张，强4-4-4-1例外可仅四张`}；最低限原套再叫解除进局义务，允许同伴Pass；不额外保证六张`;
+  if (genuine && opening?.call.level === 1 && opening.call.strain !== 'NT' && opening.seat === seat
+    && ownBids.length === 1 && call.strain !== 'NT' && call.strain !== opening.call.strain
+    && !us.some(entry => entry.seat === partnerOf(seat) && entry.call.strain === call.strain
+      && !isArtificialBidAt(auction, entry.index, system))
+    && !all.some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.strain === call.strain)) {
+    if (us[1]?.call.level === 1 && call.strain !== us[1].call.strain && !atGame(call)
+      && bidValue(call) - bidValue(all.at(-1)!.call) > 5)
+      return `开叫人在竞争中的强跳移叫：19+ HCP、4+张${call.strain}；原高花5+张，原低花4+张且可等长；建立进局逼叫，不是最低第二套描述`;
+    if (call.level === 2 && call.strain !== us[1]?.call.strain
+      && bidValue(bid(1, call.strain)) > bidValue(opening.call))
+      return `开叫人在竞争中的逆叫：17+ HCP、4+张${call.strain}，原套通常较长；强4-4-4-1手牌允许两套等长，表示额外实力，不是最低第二套，不自动把已Pass同伴当作新进局逼叫的应叫人`;
+    return `开叫人在竞争中自然描述第二套${call.strain}：通常4+张；不是首次五张争叫，阶数结合空间及先前点力描述`;
+  }
+  if (system === 'sayc' && genuine && opening?.call.strain === 'NT' && us.length === 1
+    && seat !== opening.seat && call.level === 2 && call.strain !== 'NT'
+    && lastOpponent && call.strain !== lastOpponent.call.strain
+    && !isArtificialBidAt(following, auction.length, system))
+    return `无将受争叫后的二阶自然新套${call.strain}：5+张自己的长套，竞争性不逼叫；不是无干扰的Stayman或转移，不自动承诺三阶进局逼叫的10+实力`;
+  if (system === 'sayc' && genuine && opening?.call.strain === 'NT' && us.length === 1
+    && seat !== opening.seat && call.level === 3 && call.strain !== 'NT'
+    && analyzeAuctionSemantics(following, partnerOf(seat), system).convention === 'nt-competitive-response'
+    && !isArtificialBidAt(following, auction.length, system))
+    return `无将受争叫后的三阶自然新套${call.strain}：10+ HCP、5+张，建立进局逼叫；不是未约定的后续竞争叫，也不是二阶弱牌逃叫`;
+  if (clean && opening?.call.level === 1 && major(opening.call.strain) && us[1]?.call.level === 1
+    && us[1].call.strain === 'NT' && us.length === 3 && seat !== opening.seat
+    && call.strain !== 'NT' && call.strain !== opening.call.strain && call.strain !== us[2].call.strain)
+    return analyzeAuctionSemantics(auction, seat, system).forcing === 'game'
+      ? `强跳移叫建立逼局后自然描述6+张${call.strain}：进局逼叫继续，不是弱牌止叫`
+      : call.level === 2 ? `半逼叫1NT后的${call.level}${call.strain}改叫：弱牌、通常6+张自己的套，选择部分定约；不逼叫`
+      : bidValue(call) - bidValue(all.at(-1)!.call) > 5
+        ? `半逼叫1NT后的长套跳再叫：通常10–12 HCP及6+张${call.strain}，邀请成局；不是弱牌偏好`
+        : `半逼叫1NT后的${call.level}${call.strain}三阶长套描述：通常6+张，可能在二阶无空间时为弱牌逃叫；不是跳再叫，不自动承诺邀请实力`;
+  if (!genuine && opening && opening.call.strain !== 'NT' && !ownDouble && !partnerDouble
+    && ownBids.length === 0 && call.strain !== 'NT'
+    && call.strain !== opening?.call.strain && call.strain !== all[0]?.call.strain) {
+    const publiclyShown = naturalSuitMinimum(auction, partnerOf(seat), call.strain as Suit, system);
+    if (isArtificialBidAt(auction, opening.index, system) && publiclyShown >= 5)
+      return `对同伴Michaels或双套争叫已示的${call.strain}作出自然选择：通常3+张支持已公开的5+张套；不是自己五张新套的自然应叫，最低选择不额外承诺邀请实力，不逼叫`;
+    return `自然争叫后的新花色应叫：通常8+ HCP、${call.level === 1 ? '4' : '5'}+张；建设性但不逼叫，支持性扣叫才要求争叫人继续`;
+  }
+  if (call.strain === 'NT') {
+    const purpose = currentConvention === 'fourth-suit' ? '自然回答第四花色询问，描述止张及最低限实力；不套用跳再叫点力，也不自动承诺成局邀请'
+      : call.level === 1 ? '部分定约或限制性再叫'
+      : call.level === 2 ? '邀请或额外实力描述'
+        : call.level === 3 ? '选择无将成局并原则上止叫'
+          : call.level === 5 ? '自然大满贯邀请' : call.level >= 6 ? '无将满贯定约' : '满贯定量邀请';
+    const partnerNtStopper = lastOpponent && lastOpponent.call.strain !== 'NT'
+      && publicPlayerConstraints(auction, partnerOf(seat), system).stopperSources
+        .some(source => source.suit === lastOpponent.call.strain);
+    const stopper = lastOpponent ? partnerNtStopper ? '，可依赖同伴自然无将已公开的敌套止张，不额外保证本手也有止张' : '，并保证对手已示花色至少一止张' : '';
+    const inferred = noTrumpRangeAt(following, auction.length, system);
+    const points = inferred ? `${inferred.min}–${inferred.max} HCP；` : '';
+    const reverseContext = currentConvention === 'reverse' && call.level === 2
+      ? '这是逆叫后的自然最低限或邀请性答叫，履行逆叫的一轮应叫义务；不是低花直接2NT的11–12邀请，未采用人工Blackout范围；' : '';
+    return `自然${call.level}NT：${points}${reverseContext}适合无将，可为均型或半均型，也可凭可兑现长套选择实牌定约${stopper}；用途为${purpose}${continuesGameForce ? '，进局逼叫仍未解除' : ''}`;
+  }
+  if (genuine && opening?.call.level === 1 && !major(opening.call.strain) && opening.call.strain !== 'NT'
+    && seat !== opening.seat && us.length === 3 && call.strain === opening.call.strain
+    && us[1].call.strain !== opening.call.strain && us[2].call.strain !== opening.call.strain
+    && call.level === 2)
+    return `回到开叫低花${call.level}${call.strain}的最低偏好或支持：可只有两三张，也可有四张或更多支持；是否确认八张配合按本手与同伴公开长度判断，不能仅凭此叫品认定没有配合${continuesGameForce ? '；进局逼叫继续' : '；最低回套不建立新逼叫，更强手牌须另作强度描述'}`;
+  if (currentConvention === 'fourth-suit' && genuine && opening?.seat === seat
+    && us[1]?.call.strain === call.strain && major(call.strain))
+    return `第四花色询问后的迟到高花支持${call.level}${call.strain}：可仅3张支持同伴的一阶自然高花；这是支持或偏好，不承诺自己的四张第二套，同伴此前仅保证四张时仍不能自动确认八张配合${continuesGameForce ? '；原有进局逼叫继续' : '；已履行本轮询问义务，不自动建立新逼叫'}`;
+  if (system === 'sayc' && genuine && opening?.seat === seat && ownBids.length === 1
+    && partnerBid?.call.level === 1 && major(partnerBid.call.strain) && call.strain === partnerBid.call.strain
+    && !isArtificialBidAt(auction, partnerBid.index, system) && call.level <= 3
+    && lastOpponent && lastOpponent.index > partnerBid.index) {
+    const partnerMinimum = naturalSuitMinimum(auction, partnerOf(seat), call.strain as Suit, system);
+    return `开叫人在敌方继续叫牌后的竞争性高花支持${call.level}${call.strain}：可仅3张支持；同伴公开${partnerMinimum}+张高花，${partnerMinimum >= 5 ? '三张支持可确认八张配合' : '同伴仅示四张时仍可能只有七张配合，不自动认定八张'}；不是自己的自然第二套，不套用安静叫牌的四张支持承诺`;
+  }
+  const partnerSuitBid = [...us].reverse().find(entry => entry.seat === partnerOf(seat)
+    && entry.call.strain === call.strain && !isArtificialBidAt(auction, entry.index, system));
+  if (partnerSuitBid) {
+    // A raise describes the public natural suit, including a return to an
+    // earlier suit. A minimum forced repeat must retain its five-card exception.
+    const partnerNatural = us.filter(entry => entry.seat === partnerOf(seat)
+      && entry.call.strain === call.strain && !isArtificialBidAt(auction, entry.index, system));
+    const firstPartnerSuit = partnerNatural[0];
+    const partnerOpened = opening?.seat === partnerOf(seat) && opening.call.strain === call.strain;
+    let partnerMinimum: number | undefined = naturalSuitMinimum(auction, partnerOf(seat), call.strain as Suit, system) || undefined;
+    let minimumRepeatPreference = false;
+    if (partnerMinimum === undefined && partnerOpened && genuine) partnerMinimum = opening.call.level === 1 ? major(call.strain) ? 5 : 3
+      : opening.call.level === 2 && opening.call.strain !== 'C' ? 6 : opening.call.level === 3 ? 7 : opening.call.level === 4 ? 8 : undefined;
+    else if (partnerMinimum === undefined && !genuine && firstPartnerSuit.index === opening?.index) {
+      const before = entries(auction.slice(0, firstPartnerSuit.index)).at(-1);
+      const jumped = before && bidValue(firstPartnerSuit.call) - bidValue(before.call) > 5;
+      partnerMinimum = jumped ? firstPartnerSuit.call.level === 2 ? 6 : firstPartnerSuit.call.level === 3 ? 7 : 8 : 5;
+    } else if (partnerMinimum === undefined && genuine && opening?.call.level === 2 && opening.call.strain === 'C') partnerMinimum = 5;
+    else if (partnerMinimum === undefined && genuine && opening?.call.strain === 'NT') partnerMinimum = major(call.strain) ? 4 : undefined;
+    else if (partnerMinimum === undefined && genuine && opening?.call.level === 1) partnerMinimum = firstPartnerSuit.call.level === 1 ? 4
+      : opening.seat === firstPartnerSuit.seat && major(opening.call.strain)
+        && us[1]?.call.strain === 'NT' && firstPartnerSuit.call.level === 2 && !major(call.strain) ? 3 : 4;
+    // A free strong new-suit rebid after takeout has its own five-card promise.
+    // A forced cuebid answer or a redouble escape must not inherit that promise.
+    if (system === 'sayc' && partnerDouble && enemyOpening && firstPartnerSuit.call.strain !== enemyOpening.call.strain
+      && auction.indexOf(partnerDouble) < firstPartnerSuit.index
+      && !us.some(entry => entry.seat === partnerOf(seat) && entry.index < firstPartnerSuit.index)
+      && analyzeAuctionSemantics(auction.slice(0, firstPartnerSuit.index), partnerOf(seat), system).convention !== 'takeout-cue'
+      && !auction.slice(auction.indexOf(partnerDouble) + 1, firstPartnerSuit.index)
+        .some(entry => sideOf(entry.seat) !== sideOf(seat) && entry.call.kind === 'redouble'))
+      partnerMinimum = 5;
+    // Jump replies to a negative double, and natural original-suit jumps,
+    // publicly promise six. Minimum answers to a double do not.
+    if (partnerOpened && opening.call.level === 1 && partnerNatural.length > 1) {
+      const before = entries(auction.slice(0, partnerSuitBid.index)).at(-1);
+      const jumped = before && bidValue(partnerSuitBid.call) - bidValue(before.call) > 5;
+      const negative = auction[opening.index + 2]?.call.kind === 'double'
+        && classifyDoubleAt(auction, opening.index + 2, system) === 'negative'
+        && partnerNatural.length === 2;
+      if (jumped) partnerMinimum = Math.max(partnerMinimum ?? 0, 6);
+      else if (!negative && !(us[1] && twoOverOne(opening, us[1], auction))) {
+        if (partnerMinimum === undefined) partnerMinimum = 5;
+        minimumRepeatPreference = partnerMinimum >= 5;
+      }
+    }
+    // A strong jump shift can disclose four cards in the original minor,
+    // including 4-4-4-1; it does not necessarily disclose five.
+    if (partnerOpened && genuine && opening.call.level === 1 && !major(call.strain) && us[1]?.call.level === 1
+      && us.some(entry => entry.seat === opening.seat && entry.call.strain !== call.strain && entry.call.strain !== 'NT'
+        && entry.call.level >= 2 && bidValue(entry.call) - bidValue(entries(auction.slice(0, entry.index)).at(-1)!.call) > 5))
+      partnerMinimum = Math.max(partnerMinimum ?? 0, 4);
+    const support = minimumRepeatPreference
+      ? '支持或偏好同伴反复显示的长套，可仅两三张；普通最低回套仍有五张例外，不自动确认八张配合'
+      : partnerMinimum !== undefined ? `同伴公开${partnerMinimum}+张自然套；确认八张配合时自己只需${Math.max(1, 8 - partnerMinimum)}+张支持，不固定套用高花三张或低花四张`
+        : '选择同伴此前自然花色；此序列未约定固定支持张数，不能自动确认八张配合';
+    const purpose = gameReached ? '叫到成局或更高阶并原则上止叫' : call.level === 3 ? '竞争性或邀请性加叫' : '部分定约加叫';
+    const originallyRaisedPartner = ownBids[0]?.call.strain === opening?.call.strain && ownBids[0]?.seat !== opening?.seat;
+    if (!originallyRaisedPartner && ownBids.some(entry => entry.call.strain === call.strain)) return `自然再叫${call.level}${call.strain}：回到自己已显示的花色；${purpose}${continuesGameForce ? '，进局逼叫仍继续' : ''}`;
+    return `自然支持${call.level}${call.strain}：${support}；${purpose}${continuesGameForce ? '，进局逼叫仍继续' : ''}`;
+  }
+  if (ownBids.some(entry => entry.call.strain === call.strain)) {
+    const ownPriorSuit = ownBids.filter(entry => entry.call.strain === call.strain
+      && !isArtificialBidAt(auction, entry.index, system));
+    if (!ownPriorSuit.length) return `本次${call.level}${call.strain}转为自然花色描述：此前同花色叫品属于人工询问或回答，不承诺该花色长度；不能据此虚构原有五张或六张自然套${continuesGameForce ? '；原有进局逼叫继续' : '；不自动建立新的逼叫'}`;
+    const supported = ownPriorSuit.some(entry => us.some(partnerEntry => partnerEntry.seat !== seat
+      && partnerEntry.index < entry.index && partnerEntry.call.strain === call.strain));
+    const promised = naturalSuitMinimum(following, seat, call.strain as Suit, system);
+    const length = supported ? '此前已确认配合，不额外承诺六张套'
+      : promised === 4 ? ownPriorSuit[0].index === opening?.index && genuine
+        ? '四张原低花的竞争性回套例外，维持4+张承诺；不宣称五张或六张长套'
+        : '维持此前自然第二套的4+张承诺，不因重复叫牌就变成六张原套'
+        : promised >= 6 ? `自然强调自己的${promised}+张长套`
+          : promised === 5 ? '保证之前显示的5+张套，不因最低回叫就额外承诺六张'
+            : '自然强调此前花色；此序列没有足以保证五张或六张的公开长度信息';
+    return `自然再叫${call.level}${call.strain}：${length}；${gameReached ? '叫到成局或满贯并原则上止叫' : continuesGameForce ? '进局逼叫仍继续' : forcedBeforeCall ? '履行本轮应叫义务；未建立持续进局逼叫' : '未建立新的人工逼叫'}`;
+  }
+  if (lastOpponent && call.strain === lastOpponent.call.strain) return `自然体系扣叫${call.level}${call.strain}：所叫花色属于对手，不承诺该花色长度；表示支持搭档或强牌并要求继续描述`;
+  if (lastOpponent) return `${call.level}${call.strain}为本卡未约定的后续竞争新花色：同伴最后叫${partnerBid ? `${partnerBid.call.level}${partnerBid.call.strain}` : '尚无自然花色'}、敌方已叫${lastOpponent.call.level}${lastOpponent.call.strain}之后，此续叫没有固定长度、点力或逼叫约定；不能按首次自然争叫自动承诺五张${continuesGameForce ? '，已建立的进局逼叫仍继续' : forcedBeforeCall ? '，本次履行之前的一轮应叫义务，但不自动建立新逼叫' : ''}`;
+  return `${SYSTEMS[system].short}后续新花色${call.level}${call.strain}：本卡未约定此续叫的固定长度和精确点力；${gameReached ? '选择成局或更高定约' : continuesGameForce ? '已建立的进局逼叫继续' : forcedBeforeCall ? '本次履行一轮应叫义务，不自动继续逼叫' : '不能仅凭新花色认定逼叫'}`;
+}

@@ -1,0 +1,60 @@
+{
+  "verifiedAt": "2026-10-17T04:42:07.679117+00:00",
+  "version": "0.3.7+44",
+  "previousVersion": "0.3.7+43",
+  "previousCandidate": "artifacts/previous-code43",
+  "previousApkSha256": "df98d8aa292bd3833ca2c9da60c7aa3e4980a14c3c44631c3b3a71cb3a2b30b7",
+  "finalApkSha256": "6811670efe387813d506d09ca226e804ad51fac0a8235dec8d6c7e3290ea0021",
+  "bytes": 44476680,
+  "bundle": "index-Bh7mqTwB.js",
+  "desktopDistFilesMatched": 13,
+  "upstreamSourceSnapshotFilesVerified": 254,
+  "runtimeSourceAndDistUnchanged": true,
+  "postSyncDocumentationChanges": [
+    "docs/TEST_REPORT.md"
+  ],
+  "sourceSnapshotSha256": "cf85116bf5c95442bbdc725cd6b85d2fcd4af2142e2dd5c7e227f6528668060b",
+  "upstreamDeliveryVerifierSha256": "6593208e00e0e6ff1693e136329240ad02cfb6ba3e08ea149a4ea6a4dd4ba2c7",
+  "previousV036AnchorsUnchanged": 13,
+  "previousCode43PreservedFilesVerified": 317,
+  "storageKey": "bridgelab.session.v3.6",
+  "libraryDatabase": "bridgelab.library.v3.6",
+  "nativeSourcesAndDependenciesUnchangedFromCode41": true,
+  "controlledVersionMetadataChanges": [
+    {
+      "path": "pubspec.yaml",
+      "change": "Only version metadata 0.3.7+43 -> 0.3.7+44",
+      "previousSha256": "38b4984963374a744a8bab04a53dc1c8d6c2ee349153fd05d6fd5441dd4ef528",
+      "sha256": "5fb69a254becf79ab17e74621591729b0d3818303df0438dbea1e8abe7c2578e"
+    }
+  ],
+  "nativeBinaryEntriesComparedToCode43": [
+    {
+      "path": "classes.dex",
+      "sha256": "d33b83c471efb27a388b90d5fbb76909e5bd22f98551c79a897ddaf6a32b31e4",
+      "code43Sha256": "d33b83c471efb27a388b90d5fbb76909e5bd22f98551c79a897ddaf6a32b31e4",
+      "sameAsCode43": true
+    },
+    {
+      "path": "lib/arm64-v8a/libapp.so",
+      "sha256": "8e07087eea39b4a17cc5f758b9413d4d3e9459d37a6af4d63e0dbf629fd79922",
+      "code43Sha256": "8e07087eea39b4a17cc5f758b9413d4d3e9459d37a6af4d63e0dbf629fd79922",
+      "sameAsCode43": true
+    },
+    {
+      "path": "lib/armeabi-v7a/libapp.so",
+      "sha256": "f50ec81e13a747dc0fe8abfb2818c95bdf7edf9be7b07e41bded918ec97713d7",
+      "code43Sha256": "f50ec81e13a747dc0fe8abfb2818c95bdf7edf9be7b07e41bded918ec97713d7",
+      "sameAsCode43": true
+    },
+    {
+      "path": "lib/x86_64/libapp.so",
+      "sha256": "1c457f55de5f2103e6e4f90d418f3a86dc3b399210956f2edba1e31fc42ad2d9",
+      "code43Sha256": "1c457f55de5f2103e6e4f90d418f3a86dc3b399210956f2edba1e31fc42ad2d9",
+      "sameAsCode43": true
+    }
+  ],
+  "browserVerification": "Fresh code44 double-column tricks display and side-suit horizontal rows, 25-call internal history scrolling and fixed-seat portrait/landscape, file bridge and real code43 SW recovery/offline 52-play replay",
+  "physicalDeviceTested": false,
+  "evidenceBoundary": "Unchanged native source tests reused with a recorded version-metadata exception; new APK signature/assets and fixed-seat browser behavior verified fresh. No physical Android/WebView/document-picker test."
+}

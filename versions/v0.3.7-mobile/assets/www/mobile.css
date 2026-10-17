@@ -1,0 +1,6 @@
+/* Native SafeArea already bounds the WebView. Keep the desktop BBO layout intact. */
+html,body,#root{overscroll-behavior:none}
+body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,a,input,select,summary{-webkit-tap-highlight-color:transparent}
+input,textarea{user-select:text;-webkit-user-select:text}
+@media(pointer:coarse){button,a,summary{touch-action:manipulation}.card:not(:disabled):hover{transform:none}}

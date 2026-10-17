@@ -1,0 +1,24 @@
+name: bridgelab_v03_mobile
+description: "BridgeLab v0.3.7 Android offline wrapper."
+publish_to: 'none'
+version: 0.3.7+44
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.13.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/www/
+    - assets/www/assets/
+    - assets/www/icons/

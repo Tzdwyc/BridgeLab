@@ -1,0 +1,19 @@
+def addMobileMirrors = { repositories ->
+    repositories.maven { url = uri('https://maven.aliyun.com/repository/google') }
+    repositories.maven { url = uri('https://maven.aliyun.com/repository/public') }
+    repositories.maven { url = uri('https://maven.aliyun.com/repository/gradle-plugin') }
+}
+
+beforeSettings { settings ->
+    addMobileMirrors(settings.pluginManagement.repositories)
+    addMobileMirrors(settings.dependencyResolutionManagement.repositories)
+}
+
+allprojects { project ->
+    def redirectGoogle = { repository ->
+        if (repository.name == 'Google') repository.url = uri('https://maven.aliyun.com/repository/google')
+        if (repository.name == 'MavenRepo') repository.url = uri('https://maven.aliyun.com/repository/public')
+    }
+    project.repositories.all(redirectGoogle)
+    project.buildscript.repositories.all(redirectGoogle)
+}

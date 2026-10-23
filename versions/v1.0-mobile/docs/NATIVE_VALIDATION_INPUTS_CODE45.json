@@ -1,0 +1,107 @@
+{
+  "at": "2026-10-23T06:30:41.503469+00:00",
+  "evidence": "Dart format and Flutter analyze passed; 7 Flutter tests passed in the prior packaging attempt; updated version assertion and 8 native-script checks subsequently passed",
+  "nativeCodeChangedSincePassingChecks": false,
+  "files": [
+    {
+      "path": "pubspec.yaml",
+      "sha256": "4295cfdfaa7275a042f43468ef8b5e8339a909c61cdf416d5b637b86ac6a0fab"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "eca2bc6feb3212f0baa2c318e2fb19ce5ca5eb4a27f0f8ba0045e5fbd4490bbe"
+    },
+    {
+      "path": "android\\app\\build.gradle.kts",
+      "sha256": "222cb507a36ea2d48571baa95c967da9fdff7e9e9148673f6e24d7a1c69e0e02"
+    },
+    {
+      "path": "android\\gradle.properties",
+      "sha256": "21f4b8cbe23bf4a1bfe1e9062b583791d7f12229b9e4c42bfc873b04382a49e3"
+    },
+    {
+      "path": "scripts\\verify-native-scripts.mjs",
+      "sha256": "97844de00fbbbc5fac4c0bcf77ac3cc9ab133a9ad51ce0bb0f1111edaf609e82"
+    },
+    {
+      "path": "lib\\diagnostics.dart",
+      "sha256": "df27cabe31d6b6ce1a01d906666d50b825762c6869d6a0789189df9dbf7fc3fd"
+    },
+    {
+      "path": "lib\\local_asset_server.dart",
+      "sha256": "c660be5f7f24fb73ab192e56909b10c3450685070fbbb2a239c95b30922995a0"
+    },
+    {
+      "path": "lib\\main.dart",
+      "sha256": "b40d5bb46a6e2040dce4fcc340003ad31c74d261600457e5342e93c59d907641"
+    },
+    {
+      "path": "lib\\native_files.dart",
+      "sha256": "14e5e22e9da6420eff23f65b0b64b959b4eb2ae1dff1a00dbc0da4138831f860"
+    },
+    {
+      "path": "test\\diagnostics_test.dart",
+      "sha256": "b98c9cfda103654c0a939b41c18804a6191b21f89365bdd8b584135a8aa5e63a"
+    },
+    {
+      "path": "test\\local_asset_server_test.dart",
+      "sha256": "baed45eb6f8958ce228bb0ffc82d19c0c8088200e79d08649885be2dede261b1"
+    },
+    {
+      "path": "test\\native_files_test.dart",
+      "sha256": "4e2304b2d87c8e1b137a8788c8886b8806940881314d6db03e5ad7a4f0d8e85e"
+    },
+    {
+      "path": "android\\app\\src\\main\\AndroidManifest.xml",
+      "sha256": "12b010886a6dd2bf9a225ec99fcfb35678d5c00e89cebdca152e45ff84bec7fe"
+    },
+    {
+      "path": "android\\app\\src\\main\\java\\io\\flutter\\plugins\\GeneratedPluginRegistrant.java",
+      "sha256": "56899edffde7e5d34d6beda7bf8d6a804b0574a78fdd7957e3af9b69da58e75b"
+    },
+    {
+      "path": "android\\app\\src\\main\\kotlin\\cn\\bridgelab\\bridgelab_v03_mobile\\MainActivity.kt",
+      "sha256": "43331958415e17e09834527c9c9debb4700c659a271390f908d28ddc60910d7e"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\drawable\\launch_background.xml",
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml",
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png",
+      "sha256": "b93d1351689d691281d13945919b90b91c658c8c2bf56e357a2a1fa6047a9a05"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png",
+      "sha256": "0dbc5f867423eb397c9643dad1bbe1e2f19ffa70984ed30b5e3cf4dc4d793b4d"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png",
+      "sha256": "aeb6bf9a07dd81848b8620e2b948796c8866351773a4c8e2240f799b57437e53"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png",
+      "sha256": "2c17b2c8544436ca2a331e87ba89090796c2af1c4330899fd40eae9f97eba741"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png",
+      "sha256": "20d6e3af23d76d48b596af40f62d184a245b7f2bf67be96b29b6d1c12501a503"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\values\\styles.xml",
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\values-night\\styles.xml",
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "path": "android\\app\\src\\main\\res\\xml\\network_security_config.xml",
+      "sha256": "70846138bd8381ea3d92ace39ecc7c990d30f14cd95dcd23f5d492fc4636e1d4"
+    }
+  ]
+}

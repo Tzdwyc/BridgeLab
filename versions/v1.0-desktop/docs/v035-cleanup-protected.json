@@ -1,0 +1,522 @@
+[
+  {
+    "path": "versions\\v0.3.3\\src\\main.tsx",
+    "sha256": "72a793dd7dde8abf72934ed9563167898a6ba7c9888a7222c84c89e90228f558"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\core\\auction.ts",
+    "sha256": "020478bc687c4f2ad06c29982371a794a19e5bdd6cd513442faf18d36014be44"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\core\\deal.ts",
+    "sha256": "46d6a21e3d9c6d1bd0515d3100fdc9e93850f851456662fe3dc4b81cff63a2fc"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\core\\game.ts",
+    "sha256": "029debae47385671ba533c4c97013b308cf81d3332a27b763157f5ce8a8bdac5"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\core\\play.ts",
+    "sha256": "0f289637c083adb018f12e071d76c793206a62dbdc1b43c1415456dc4be2c18b"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\core\\types.ts",
+    "sha256": "b0ebffeab9fe51b3a84593367f6edf1b238c02cb885d63b3fb73c81d33a4a1f3"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\core\\scoring.ts",
+    "sha256": "7cb80b21f76c48bdaf3c7dd46ed5e565af6d3e5465389afa76d2585c65804fb4"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\adapter.ts",
+    "sha256": "9aa736432c1961159a64999ef24138aaa99673d04948311e1f8a7ee4d7c50543"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\client.ts",
+    "sha256": "f864134402cca42484e2e1ef50b0899616bbc5852e462bf5575a12089bf346cf"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\dds-module.d.ts",
+    "sha256": "a3cfc0cbeed37cf1fd5350a9a7e8d074bda6a77eea1fbfbdf1a6947b0c9278af"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\engine.ts",
+    "sha256": "aa8627f6a9caec70f6ddadcccff389594bef0364d7ce1cfe5c6729ea9d3c2469"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\model.ts",
+    "sha256": "97cbc0d0323ed73c7dbd4fae26c755d5975ff10bb6aef3dc7f02767a97d0b04e"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\navigation.ts",
+    "sha256": "7e06f2d42eeaffa035f4fa73bfead773ba4d50acf04047036e1ca0ad523a320f"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\persistence.ts",
+    "sha256": "d2f83449b4ba518596d0e6c9065ba1214f306bf0e187330329689047d5ed62fa"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\worker.ts",
+    "sha256": "8f9419235af9f0214c1b78ba9754c8ceedf5e0177fdf66a0024103a8e816ad4d"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\types.ts",
+    "sha256": "eb0f368d2b7661209abf40a06c1e9d0f787cc76cf1802e71e82c2adea85580d5"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\persistence\\session.ts",
+    "sha256": "5a58e492610df94696bf07641e12e25c1e00b83a27f3fd3a00821b1f0664065c"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\controller\\claim.ts",
+    "sha256": "783fcd7f2de5551c9f197ae8f59dd27891b3075eea1614b87723a752c598162f"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\controller\\play-advisor.ts",
+    "sha256": "41cc0bccad12553011b01d98d2590060909a7356d32540dd03c6e09b2cb55eed"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\controller\\robot.ts",
+    "sha256": "78393a15bf99cfe46608e93c0b0b83914dba2bcfd11af793e2ba27ed47f1d48a"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\controller\\store.ts",
+    "sha256": "dbb3d6ed857a569ca2d18e2231757c81813958a54a8a203a285354c5e9cbe249"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\bidding-legacy.ts",
+    "sha256": "fbbdb9309759fb03c4ac56644d279a1bf2ac99e10f0f5e7e190f0036bf1ee899"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\bidding-notices.ts",
+    "sha256": "160015a51ec81f4fddfbfe63f057a78e1932bf711be9268c325907084b1df9b8"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\bidding-semantics.ts",
+    "sha256": "df48f5cfb33b416a0989707e16c65e4e17056caf3b02b3b95637991a213ea0ac"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-advisor-core.ts",
+    "sha256": "db3093f735a58df28de4fd7cae5681897081af9d20e70c9445ee3e8055260999"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-advisor-types.ts",
+    "sha256": "8122ddbd20b64979e885155d5235ce8e0088ad22e369ea4f16a67fef8b20b8e1"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\bidding.ts",
+    "sha256": "ce2aad7a7341067e312056f3b205cac72cd6444cb34613f8a57fd505d84b2c41"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\competition.ts",
+    "sha256": "c0017e70dc415190d7d13d28bb8ebbae102b7a8101fe78493dc0a99e4902346e"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\observation.ts",
+    "sha256": "ac759a3090ab1f12df61293ec53c55cc02f36a8b96c5261648803a6d9c092c6b"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-advisor-client.ts",
+    "sha256": "d73ddbaadd6f06e751e83980d5aa4b8b4976ede30992185130c62246968444b1"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-advisor-worker.ts",
+    "sha256": "122717a0f1074dcb3eaffa21d1b5b74edceb4bea5cb7a86f81c03011a07440fc"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-public-model.ts",
+    "sha256": "8d9fa3c40e01a5c581acb568b9ab35a068e01d0ee10c3fee38c5df10e1b364ee"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-sampler.ts",
+    "sha256": "7fdcb568e8bc095b51cff8116e9a98518b3987fb1517fbaf05d050a6f7d659af"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\play-safety.ts",
+    "sha256": "6023f445aa57cd63104b3bc84fc0400707d690ff13d7660a848846cbe6d197a4"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\playing.ts",
+    "sha256": "79fa07c1476cc1cb2e468395729bf13a88faf28f19817bec2da6b2a22960362a"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\suit-evaluation.ts",
+    "sha256": "3d76edebb4c566ebeca80af1588a605ba7693990cd7ba3d09e9bec66fce15615"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ai\\systems.ts",
+    "sha256": "341427e72e8081f85b7409fefa9a3aded5232a2d93bcbb5e69a56072ab78b2bf"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\AnalysisPage.module.css",
+    "sha256": "9ebc0d8ddba49d5f4caa2d3d1c55c6ea3645b2d2359ab71564e5b4c3592d7f8f"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\AnalysisPage.tsx",
+    "sha256": "5fbe362f9e8f49f7a40b32dbcd9061b8e04c2fb4e89fb00d21e77f8d0e926c79"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\App.module.css",
+    "sha256": "1f15af4905ce82452cda184c151cdddd284daa6b696d51da0ca04360ec61d761"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\App.tsx",
+    "sha256": "e9d8676d0c66384c2a96c197f0f45ca0c3a98d24584455adfceaf81ce9a6927f"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\format.ts",
+    "sha256": "6629e7e05219cb3347065ceb6106440863495763b4318c983c3f21726a21189b"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\SuitGlyph.tsx",
+    "sha256": "ae0306760ff9e5c13663f0bd03975b88b4b835fee46100d2e8f22c873a962462"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\ui\\global.css",
+    "sha256": "b710febd469524314b6a231bbf9292dcfd97f6c7e305b0b54eefa075af66cb60"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\deal-editor\\DealEditorPage.module.css",
+    "sha256": "4a38198b74818604106cfdd387cd03003d04ee5a0d4b424c04474713652b9bb9"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\deal-editor\\DealEditorPage.tsx",
+    "sha256": "a14e89cef5ae1dced63e76ba07ee5ad7b6aaea065a64209791abcb3c268b9ef8"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\deal-editor\\model.ts",
+    "sha256": "e9e9870add1acd6692861e6de32c9cef517d35753bafba551a7bccbf88e8dcb2"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\vendor\\dds.d.mts",
+    "sha256": "e470a35226ec63f30b98b209c164c50eb6d1814a3bc58b9b149ec66ad9a27cb8"
+  },
+  {
+    "path": "versions\\v0.3.3\\src\\analysis\\vendor\\dds.mjs",
+    "sha256": "155a2c0b96b831cadff07179178f55140b10fdd16df8b6885fb507aafb76e070"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\main.tsx",
+    "sha256": "72a793dd7dde8abf72934ed9563167898a6ba7c9888a7222c84c89e90228f558"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\core\\auction.ts",
+    "sha256": "020478bc687c4f2ad06c29982371a794a19e5bdd6cd513442faf18d36014be44"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\core\\deal.ts",
+    "sha256": "46d6a21e3d9c6d1bd0515d3100fdc9e93850f851456662fe3dc4b81cff63a2fc"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\core\\game.ts",
+    "sha256": "029debae47385671ba533c4c97013b308cf81d3332a27b763157f5ce8a8bdac5"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\core\\play.ts",
+    "sha256": "0f289637c083adb018f12e071d76c793206a62dbdc1b43c1415456dc4be2c18b"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\core\\types.ts",
+    "sha256": "b0ebffeab9fe51b3a84593367f6edf1b238c02cb885d63b3fb73c81d33a4a1f3"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\core\\scoring.ts",
+    "sha256": "7cb80b21f76c48bdaf3c7dd46ed5e565af6d3e5465389afa76d2585c65804fb4"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\adapter.ts",
+    "sha256": "9aa736432c1961159a64999ef24138aaa99673d04948311e1f8a7ee4d7c50543"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\client.ts",
+    "sha256": "4d9fcaf845a22e598b0b7779a179adbea5c98d7cf59b2576efb35dd1cc9bbdaa"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\dds-module.d.ts",
+    "sha256": "a3cfc0cbeed37cf1fd5350a9a7e8d074bda6a77eea1fbfbdf1a6947b0c9278af"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\engine.ts",
+    "sha256": "aa8627f6a9caec70f6ddadcccff389594bef0364d7ce1cfe5c6729ea9d3c2469"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\model.ts",
+    "sha256": "97cbc0d0323ed73c7dbd4fae26c755d5975ff10bb6aef3dc7f02767a97d0b04e"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\navigation.ts",
+    "sha256": "7e06f2d42eeaffa035f4fa73bfead773ba4d50acf04047036e1ca0ad523a320f"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\persistence.ts",
+    "sha256": "86d9a906002afe5d890ed2904f40bd6a38f7d0938f9bbec0f7ad25dbfd020a32"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\worker.ts",
+    "sha256": "8f9419235af9f0214c1b78ba9754c8ceedf5e0177fdf66a0024103a8e816ad4d"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\types.ts",
+    "sha256": "eb0f368d2b7661209abf40a06c1e9d0f787cc76cf1802e71e82c2adea85580d5"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\persistence\\session.ts",
+    "sha256": "676922a103dc6c9741803fecc8832d06c2decfc6fee65ceedb2667dc0099331a"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\controller\\claim.ts",
+    "sha256": "783fcd7f2de5551c9f197ae8f59dd27891b3075eea1614b87723a752c598162f"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\controller\\play-advisor.ts",
+    "sha256": "41cc0bccad12553011b01d98d2590060909a7356d32540dd03c6e09b2cb55eed"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\controller\\robot.ts",
+    "sha256": "78393a15bf99cfe46608e93c0b0b83914dba2bcfd11af793e2ba27ed47f1d48a"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\controller\\store.ts",
+    "sha256": "dbb3d6ed857a569ca2d18e2231757c81813958a54a8a203a285354c5e9cbe249"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\bidding-legacy.ts",
+    "sha256": "fbbdb9309759fb03c4ac56644d279a1bf2ac99e10f0f5e7e190f0036bf1ee899"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\bidding-notices.ts",
+    "sha256": "160015a51ec81f4fddfbfe63f057a78e1932bf711be9268c325907084b1df9b8"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\bidding-semantics.ts",
+    "sha256": "138cc295ef1397750f7fff3facc135d793d5d52909f2480404bdf67de75b2b72"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-advisor-core.ts",
+    "sha256": "db3093f735a58df28de4fd7cae5681897081af9d20e70c9445ee3e8055260999"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-advisor-types.ts",
+    "sha256": "8122ddbd20b64979e885155d5235ce8e0088ad22e369ea4f16a67fef8b20b8e1"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\bidding.ts",
+    "sha256": "1280a6ffe8d9fcac00e36519d91c7be43a16d887fd46dbee65b7083a85b895e8"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\competition.ts",
+    "sha256": "d718135d8907c266358caa9d503883855d060ce51554c7f6301a663e66e2d28d"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\observation.ts",
+    "sha256": "ac759a3090ab1f12df61293ec53c55cc02f36a8b96c5261648803a6d9c092c6b"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-advisor-client.ts",
+    "sha256": "d73ddbaadd6f06e751e83980d5aa4b8b4976ede30992185130c62246968444b1"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-advisor-worker.ts",
+    "sha256": "122717a0f1074dcb3eaffa21d1b5b74edceb4bea5cb7a86f81c03011a07440fc"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-public-model.ts",
+    "sha256": "8d9fa3c40e01a5c581acb568b9ab35a068e01d0ee10c3fee38c5df10e1b364ee"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-sampler.ts",
+    "sha256": "7fdcb568e8bc095b51cff8116e9a98518b3987fb1517fbaf05d050a6f7d659af"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\play-safety.ts",
+    "sha256": "6023f445aa57cd63104b3bc84fc0400707d690ff13d7660a848846cbe6d197a4"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\playing.ts",
+    "sha256": "79fa07c1476cc1cb2e468395729bf13a88faf28f19817bec2da6b2a22960362a"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\suit-evaluation.ts",
+    "sha256": "728b5a13aa707c2719e7f3e02b77eaa71951a11e206c20b5437af429d7bab468"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ai\\systems.ts",
+    "sha256": "8959018b7b508ab6c16887382897468b70bcb19262d6872fc15822ca03e71f0f"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\AnalysisPage.module.css",
+    "sha256": "9ebc0d8ddba49d5f4caa2d3d1c55c6ea3645b2d2359ab71564e5b4c3592d7f8f"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\AnalysisPage.tsx",
+    "sha256": "0e46c30d4797b8497b9638a58292b69db72cc38343c4a116a8672e59a3f34e71"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\App.module.css",
+    "sha256": "95078545d6eb5db4424c7b51fd272e1d1491ff5cab404e2d19a0bbaa8ae5dd6c"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\App.tsx",
+    "sha256": "614634ff2a9ae128a9799134070e5706a49df4349677270776800f910e846fbb"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\format.ts",
+    "sha256": "6629e7e05219cb3347065ceb6106440863495763b4318c983c3f21726a21189b"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\SuitGlyph.tsx",
+    "sha256": "ae0306760ff9e5c13663f0bd03975b88b4b835fee46100d2e8f22c873a962462"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\ui\\global.css",
+    "sha256": "b710febd469524314b6a231bbf9292dcfd97f6c7e305b0b54eefa075af66cb60"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\deal-editor\\DealEditorPage.module.css",
+    "sha256": "4a38198b74818604106cfdd387cd03003d04ee5a0d4b424c04474713652b9bb9"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\deal-editor\\DealEditorPage.tsx",
+    "sha256": "a14e89cef5ae1dced63e76ba07ee5ad7b6aaea065a64209791abcb3c268b9ef8"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\deal-editor\\model.ts",
+    "sha256": "f6df4d0fe676ce8cbc3bf69a03f25a4f982ee98b430eb7586e062fb450ea5138"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\vendor\\dds.d.mts",
+    "sha256": "e470a35226ec63f30b98b209c164c50eb6d1814a3bc58b9b149ec66ad9a27cb8"
+  },
+  {
+    "path": "versions\\v0.3.4\\src\\analysis\\vendor\\dds.mjs",
+    "sha256": "155a2c0b96b831cadff07179178f55140b10fdd16df8b6885fb507aafb76e070"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-old-assertions-review-tests.json",
+    "sha256": "06f73d61c8b96f00b85356bcc552506276561d6988acd5025ad1498cf8bba2a5"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-four-minor-contract-tests.json",
+    "sha256": "1bc756e2395c2dd1758f48b169506be538c5a522ee1be6e37d443988c762d8d2"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-recorder.mjs",
+    "sha256": "856d36cdc8974ee7ee22972dfe0a21c11e36bacdd98f1714ea6d7c953a8688ad"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-build.log",
+    "sha256": "476d5cf337b3710ae08b98aafa8feb3c2afc7ca53d0a2ba64c0dd7bc3764563a"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-typecheck.log",
+    "sha256": "e83b425fa148c5cd9b30439576f2b0a21242f0da0d54fc4fa183eb654a503c25"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-precision-prefix-guard-tests.json",
+    "sha256": "0ec994eb052fbf24fa1ebb81c1073ef75bec16c4695ecb3c4bc001dfda1e75c2"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-final-unit.log",
+    "sha256": "77cec8bcdfdfd2548b46387cc8040345d26092c725c8ae3815db9668db85c751"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-e2e.log",
+    "sha256": "9afc92d672489ad245be0d048b4636c21803e6db50af8ad20edf73bc49f123de"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-auctions.json",
+    "sha256": "95f52abbdc28c0372756ef4e2519be635e8234a7e1678e24f2476f2a776d7569"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-observation-identity.json",
+    "sha256": "aca236f7ec0f39f300b9c2f0c530e4bfd7e79e9b5926e7e7b101716c23309af6"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-e2e-results.json",
+    "sha256": "de9ddb371a173e3b5aa020a9d661bb399d3b4eb9cf9e843fc84f87be87b0bf92"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-root-authored.txt",
+    "sha256": "7a96c10e13c9db18b0995e576ae7ffec5aecdff27aa30de44195890da00c49ae"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-competition-authored.txt",
+    "sha256": "0820c0bff32e42c784e4ad4e28495a091a32aa28cdc04fc9301cac1a4ca140b1"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-auctions-root-gpt-review.json",
+    "sha256": "014a180aa9e021d7868f1ac59adeed05ebb6731703b75e6ae5d2e62685514370"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-core-authored.txt",
+    "sha256": "a5560dc1812d929c6e186656a25cb2c2d54d7088b50e968fd9604c3c2833e2c1"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-auctions-core-gpt-review.json",
+    "sha256": "411c3a1674efb9dbfd065c1d4f33bf3908251702d08c4e7a43340f811efc53bb"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-meanings-authored.txt",
+    "sha256": "f550554d6e09fabd71e74c921438a6bf019fbbda6ee6abf377035aba9b06045b"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-auctions-meanings-gpt-review.json",
+    "sha256": "f51560c31dd9acc959cd683c3b4a5ae29da7d925d07ef7ef92e31fd7f29a9aaa"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-final-unit.json",
+    "sha256": "f2d364b0d9e1eef60c76ed47f2bebd3bb993cae80a38ae9aa61bfc2defd2eba8"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-auctions-competition-gpt-review.json",
+    "sha256": "a3ddfb64dbfd3a83fc1b04b00732937f24ec6ee1b811741ea49654e5136bf659"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-gpt-coverage.json",
+    "sha256": "8edef70e8358e9442db92dd901835c9fe04dfa2d0b33f2ce747451123b8fb554"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-gpt-open-findings.json",
+    "sha256": "219d27eaadb3bd2bbd095f1e315ec9088ed8b40b4b04c381b5331191b886696b"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-isolated-systems.log",
+    "sha256": "2458fbb6af7759a03c216eb9e1570f7e7fdcddd4dbfeed3eb223b963ba8c4bde"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-revised-focused.log",
+    "sha256": "222bc46d877237048ef5072de2dbb47ae2e3afd5f87e6cc5e1543fbd665402e0"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-revised-focused.json",
+    "sha256": "df253b6e5f45cc5134d90f626b32a6d0e70c80606de96a137006ca604ac39c3c"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-isolated-systems.json",
+    "sha256": "3135e52c2ae2257d1717aa79c2fea9fd98eb6b33d6dbccee95a3634a145c4be7"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-final-typecheck.log",
+    "sha256": "e83b425fa148c5cd9b30439576f2b0a21242f0da0d54fc4fa183eb654a503c25"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-final-checks.json",
+    "sha256": "7947abb6d3c61a84592b65f69780cc44cb135cba4a0e2514436821d58b8f2f29"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-final-typecheck-result.json",
+    "sha256": "c474b3b53fd2d7ea8c43f728238dc6496e6b773ed7fec40d143998f7c960c24d"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-mobile-web-layout.json",
+    "sha256": "324fba0ccbcef24eb59c2c633ecdc06c1434be10a5032de8aa8cf7de38d46ede"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-mobile-validation.json",
+    "sha256": "5875f50a3a0c7318401d06b213ecba4a84f93e88b01b3b5ffc5534d4a3ea0fb6"
+  },
+  {
+    "path": "versions\\v0.3.4\\artifacts\\v034-release15-mobile-upgrade.json",
+    "sha256": "a6ff78e55eb5780e2b37d53fe32c07f96cf019d8c989b0194bdc36e2b01df263"
+  }
+]

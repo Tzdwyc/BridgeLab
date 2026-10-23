@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "mainBundle": "index-BZeFxYdR.js",
+  "mainBundleSHA256": "d1542e7857f9a307e100da93183535f12ba6c5a758f8f868ea28e289d756a11f",
+  "models": [
+    {
+      "profile": "seed101-epoch08",
+      "weightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+      "publicAndBuiltBytesIdentical": true
+    },
+    {
+      "profile": "original-sl",
+      "weightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+      "publicAndBuiltBytesIdentical": true
+    }
+  ],
+  "defaultProfile": "seed101-epoch08",
+  "rollbackProfile": "original-sl",
+  "trainingRun": false,
+  "scope": "Local application asset verification; runtime evidence is separate"
+}

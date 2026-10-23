@@ -25,3 +25,10 @@
 - `v0.3.7-mobile`：对应的新牌桌安卓工程与APK，版本0.3.7+44；沿用包名、签名、51893来源及v3.6数据格式。
 
 旧条目为历史记录，不保证对应目录仍在本机；当前状态以实际目录和对应版本测试报告为准。
+
+
+## v1.0 应用
+
+- v1.0-desktop：基于v0.3.7界面的桌面v1.0应用，默认端口5200，实际叫牌使用旧seed 101第8轮SL，设置中保留原SL回退；桌面发布包从[GitHub Release](https://github.com/Tzdwyc/BridgeLab/releases/tag/v1.0)下载。
+- v1.0-mobile：同一网页实现的Android 1.0.0（45）安装包，包名、签名和存档格式沿用v0.3.7 APP；APK从[GitHub Release](https://github.com/Tzdwyc/BridgeLab/releases/tag/v1.0)下载。
+- 既有v1.0目录是冻结的研究阶段材料，不被新应用覆盖。v1.0-precision与v1.0-b2研究证据保留原路径。

@@ -1,0 +1,21 @@
+# BridgeLab v1.0
+
+桌面发布包：[BridgeLab-v1.0-desktop.zip](https://github.com/Tzdwyc/BridgeLab/releases/download/v1.0/BridgeLab-v1.0-desktop.zip)。
+
+桌面版基于v0.3.7界面和游戏功能，机器人实际叫牌已切换到获批的旧seed 101第8轮SL权重。主桌、参考桌和叫牌提示共用同一个模型入口；打牌、计分、存档及原有约定说明保持原样。
+
+双击“启动BridgeLab-v1.0.cmd”，或运行npm start后打开http://localhost:5200。运行预构建版本需要本机Node.js 22.12及以上版本。
+
+在“设置”的“叫牌模型”页可选择“第8轮（默认）”或“原SL（回退）”。切换后影响后续叫牌和提示，已有叫牌记录保持原样。展开加载记录可查看实际推理内存的SHA-256和刚执行的机器人叫品。两份模型都随应用提供，可在缓存完成后离线使用。
+
+默认权重SHA-256：41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3。
+
+原SL备份SHA-256：96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f。
+
+叫牌采用与已保存训练评估相同的合法叫品排序：读取当前牌手的手牌和公开拍卖，按所选SL模型输出选取合法叫品。原规则文件没有重写，SL也不保证逐条遵守体系卡；此次接入没有添加规则过滤来改变已批准模型的输出。权重校验失败时会停止该次叫牌，界面可手动重试或切回原SL。
+
+原v0.3.7和研究目录均独立保留。新端口与旧桌面版本隔离，历史牌局可用现有导出、导入功能转移。Android更新包保留原包名、签名和本地存档格式。
+
+从源码构建：npm ci、npm run build。针对模型的验证：npx vitest run tests/sl-v1-integration.test.ts。测试夹具只复制既有456个Dev观察和历史输出，未增加训练数据。
+
+许可证及模型来源见docs/THIRD_PARTY_LICENSES.md、src/ai/neural/NOTICE.md及模型目录中的LICENSE和NOTICE.txt。

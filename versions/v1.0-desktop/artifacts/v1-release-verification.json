@@ -1,0 +1,112 @@
+{
+  "at": "2026-10-23T06:53:40.815846+00:00",
+  "status": "desktop-v1.0-live-and-android-package-complete",
+  "version": "1.0.0",
+  "desktop": {
+    "directory": "F:\\Bridge\\versions\\v1.0-desktop",
+    "url": "http://localhost:5200",
+    "launcher": "F:\\Bridge\\versions\\v1.0-desktop\\启动BridgeLab-v1.0.cmd",
+    "defaultProfile": "seed101-epoch08",
+    "actualBrowserLoadedSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+    "actualBrowserBids": [
+      "N:Pass",
+      "E:1S"
+    ],
+    "browserAppliedBids": 2,
+    "actualBrowserLastAction": 6,
+    "actualBrowserLastSeat": "E",
+    "hintUsesSelectedModel": true,
+    "uiRollbackAndRestoreVerified": true,
+    "browserProof": "F:\\Bridge\\artifacts\\v1.0-sl-release-20261023\\desktop-model-verified.png",
+    "controllerSameExistingPoint": {
+      "pointId": "B1-dev-long-0021-P1",
+      "selected": "2S",
+      "original": "3NT",
+      "restored": "2S"
+    },
+    "strong22PointOpening": "2C",
+    "selectedReplayHits": 401,
+    "originalReplayHits": 370,
+    "correctnessDenominator": 455,
+    "choiceMatchesPerProfile": 456,
+    "evaluationPolicy": "unchanged legal-only ranking; convention files preserved"
+  },
+  "android": {
+    "apk": "F:\\Bridge\\versions\\v1.0-mobile\\release\\BridgeLab-v1.0-mobile-android.apk",
+    "apkSHA256": "602d3f68881084149a00e1da701f4848ef34b7fb3185b0d986d759abec926efd",
+    "apkBytes": 71854732,
+    "applicationId": "cn.bridgelab.v03mobile",
+    "versionName": "1.0.0",
+    "versionCode": 45,
+    "sameApplicationId": true,
+    "sameSigningCertificate": true,
+    "publicCertificateSHA256": "9d05b1c2856f7d46ce1fb07e05c615140cdefdddd24cdf4de9b44c528c074d90",
+    "desktopRuntimeSourceAndMainBundleMatch": true,
+    "mainBundle": "index-BZeFxYdR.js",
+    "mainBundleSHA256": "d1542e7857f9a307e100da93183535f12ba6c5a758f8f868ea28e289d756a11f",
+    "allDistAssetsMatch": true,
+    "storageOrigin": "http://127.0.0.1:51893",
+    "storageKey": "bridgelab.session.v3.6",
+    "physicalDeviceConnected": false,
+    "physicalDeviceInstallAndLaunchVerified": false
+  },
+  "models": [
+    {
+      "profile": "seed101-epoch08",
+      "weightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+      "desktopPublicDistMobileAndAPKIdentical": true
+    },
+    {
+      "profile": "original-sl",
+      "weightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+      "desktopPublicDistMobileAndAPKIdentical": true
+    }
+  ],
+  "checks": {
+    "relevantUnitTestsPassed": 132,
+    "relevantUnitTestsFailed": 0,
+    "typecheckPassed": true,
+    "desktopProductionBuildPassed": true,
+    "flutterAnalyzePassed": true,
+    "flutterTestsPassed": 7,
+    "nativeScriptChecksPassed": 8,
+    "apkCRCVerified": true,
+    "packageSignatureVerified": true,
+    "scope": "Application integration and fixed existing replay only; no expanded rule review"
+  },
+  "preservation": {
+    "at": "2026-10-23T06:53:40.803977+00:00",
+    "protectedOriginalFiles": 162,
+    "oldVersionOrTrainingChanges": 0,
+    "allowedEntryDocumentationChanges": [
+      "README.md",
+      "versions\\README.md"
+    ],
+    "unchangedRuleFileCount": 16,
+    "unchangedCoreFileCount": 6,
+    "sourceRuleHashes": {
+      "src\\ai\\bidding-legacy.ts": "fbbdb9309759fb03c4ac56644d279a1bf2ac99e10f0f5e7e190f0036bf1ee899",
+      "src\\ai\\bidding-notices.ts": "160015a51ec81f4fddfbfe63f057a78e1932bf711be9268c325907084b1df9b8",
+      "src\\ai\\bidding-semantics.ts": "719e040d6faef9f9a0b3c6d3339cefa2decd34d8a2267d9b88add8cc85c24c98",
+      "src\\ai\\bidding.ts": "6df0296d6b29eb9c819ef0e2aba0e0d882faea9fad5bed2e96cb63d126f11445",
+      "src\\ai\\competition.ts": "a004aa87609087eaef19e95b4f20802635e058014f438eeb24941ac8fee8d0b7",
+      "src\\ai\\observation.ts": "ac759a3090ab1f12df61293ec53c55cc02f36a8b96c5261648803a6d9c092c6b",
+      "src\\ai\\play-advisor-client.ts": "d73ddbaadd6f06e751e83980d5aa4b8b4976ede30992185130c62246968444b1",
+      "src\\ai\\play-advisor-core.ts": "db3093f735a58df28de4fd7cae5681897081af9d20e70c9445ee3e8055260999",
+      "src\\ai\\play-advisor-types.ts": "8122ddbd20b64979e885155d5235ce8e0088ad22e369ea4f16a67fef8b20b8e1",
+      "src\\ai\\play-advisor-worker.ts": "122717a0f1074dcb3eaffa21d1b5b74edceb4bea5cb7a86f81c03011a07440fc",
+      "src\\ai\\play-public-model.ts": "8d9fa3c40e01a5c581acb568b9ab35a068e01d0ee10c3fee38c5df10e1b364ee",
+      "src\\ai\\play-safety.ts": "6023f445aa57cd63104b3bc84fc0400707d690ff13d7660a848846cbe6d197a4",
+      "src\\ai\\play-sampler.ts": "7fdcb568e8bc095b51cff8116e9a98518b3987fb1517fbaf05d050a6f7d659af",
+      "src\\ai\\playing.ts": "79fa07c1476cc1cb2e468395729bf13a88faf28f19817bec2da6b2a22960362a",
+      "src\\ai\\suit-evaluation.ts": "728b5a13aa707c2719e7f3e02b77eaa71951a11e206c20b5437af429d7bab468",
+      "src\\ai\\systems.ts": "1c64791296e8db1777884bb52e85a1840fd5afeb07a1dfe1e63c902f764509ab"
+    }
+  },
+  "additionalTrainingRuns": 0,
+  "additionalOptimizerUpdates": 0,
+  "trainingDataChanged": false,
+  "ruleCodeChanged": false,
+  "priorDesktopMobileAndResearchDirectoriesPreserved": true,
+  "knownOriginalSLPositiveDevRegressions": 6
+}

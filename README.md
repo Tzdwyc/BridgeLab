@@ -1,27 +1,11 @@
 # BridgeLab
 
-BridgeLab 是一款本地运行的桥牌练习软件。玩家坐南家，与北家机器人搭档，对阵东西两位机器人；可练习叫牌和打牌、建立自定义牌例，并使用双明手分析室复盘。
+当前应用版本为v1.0。桌面和Android均使用获批的旧seed 101第8轮SL叫牌模型，设置中可切回随包保留的原SL。此次接入没有修改叫牌规则，也没有追加训练。
 
-## 当前版本：v0.3.7
+- 桌面应用：[v1.0-desktop说明](versions/v1.0-desktop/README.md)，也可下载[桌面发布包](https://github.com/Tzdwyc/BridgeLab/releases/download/v1.0/BridgeLab-v1.0-desktop.zip)。双击包内的“启动BridgeLab-v1.0.cmd”，默认打开http://localhost:5200。
+- Android安装包：[BridgeLab-v1.0-mobile-android.apk](https://github.com/Tzdwyc/BridgeLab/releases/download/v1.0/BridgeLab-v1.0-mobile-android.apk)。版本1.0.0（45），沿用旧APP包名和签名。
+- 原v0.3.7桌面与Android版本保留在对应旧目录；原有v1.0、v1.0-precision和v1.0-b2研究目录也独立保留。
 
-本版采用固定单屏牌桌、两步叫牌、分页历史及牌例／分析页签，暂时隐藏精确制入口；保留累计积分和双桌 IMP，电脑端与 Android 均可离线使用。电脑端需要 Node.js 22.12 或更新版本。完整功能、启动、升级、备份和验证边界见 [v0.3.7 使用说明](versions/v0.3.7/README.md)。
+桌面浏览器已验证实际权重加载与叫牌路径；Android已核对安装包内代码、模型、签名与资源一致性，当前未连接真机进行安装启动验证。模型来源和第三方许可证见桌面应用说明。
 
-- [电脑端源码与发布文件](versions/v0.3.7/)
-- [Android 工程、安装包与设备验证说明](versions/v0.3.7-mobile/)
-- [桥牌入门与软件使用指南](docs/桥牌入门与软件使用指南.md)
-- [历史版本目录说明](versions/README.md)
-
-## 快速启动
-
-完整包解压后，在 `versions/v0.3.7` 双击“启动BridgeLab-v0.3.7.cmd”，打开 `http://localhost:5197`。开发者也可安装依赖、构建后运行 `npm start`。也可按使用说明直接运行随版本提供的启动脚本或完整包。Android 用户可安装 [v0.3.7 APK](versions/v0.3.7-mobile/release/BridgeLab-v0.3.7-mobile-android.apk)。
-
-## 当前版本的不足
-
-- Android 安装升级、WebView 和系统文件选择器尚未在真实设备上验证；相关证据来自构建检查和浏览器模拟。
-- 桥牌 AI 的叫牌与打牌能力仍有限，不能替代完整竞赛级桥牌程序或专业教学判断。
-- 本地牌局档案依赖浏览器或应用存储；清除站点数据、禁用存储或卸载应用可能丢失记录，请定期导出备份。
-- 历史版本文档和测试材料保留了各版本的验证范围；不要把旧版报告视为 v0.3.7 的新验证结论。
-
-## 开源许可
-
-BridgeLab 原创项目文件采用 MIT 许可证，详见 [LICENSE](LICENSE)。第三方依赖和资源遵循各自许可，详见 v0.3.7 的第三方许可说明。
+新桌面入口采用独立端口，旧桌面历史记录可通过已有导出、导入功能转移。Android沿用原本地存档格式。项目源码许可见[LICENSE](LICENSE)。

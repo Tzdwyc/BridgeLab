@@ -1,0 +1,8 @@
+{
+  "package": "bridge-dds@1.4.0",
+  "license": "Apache-2.0",
+  "upstream": "https://github.com/bookchris/bridge-dds-js",
+  "originalSha256": "0dbe2aad89b6c7cf588b58d5e40ce088c106c4b9ac2cf0e73ae1021e13ae9d51",
+  "preparedSha256": "155a2c0b96b831cadff07179178f55140b10fdd16df8b6885fb507aafb76e070",
+  "patch": "Expose wasmMemory.buffer.byteLength as getHeapBytes; embedded WASM unchanged"
+}

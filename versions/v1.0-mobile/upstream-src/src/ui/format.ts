@@ -1,0 +1,10 @@
+import { type Call, type Card, type Contract, type Seat, type Strain, type Vulnerability } from '../core/types';
+export const seatName: Record<Seat, string> = { N: '北', E: '东', S: '南', W: '西' };
+export const suitSymbol: Record<Strain, string> = { C: '♣', D: '♦', H: '♥', S: '♠', NT: 'NT' };
+export const suitName = { C: '梅花', D: '方块', H: '红心', S: '黑桃' };
+export const rankLabel = (rank: number): string => ({ 11: 'J', 12: 'Q', 13: 'K', 14: 'A' }[rank] ?? String(rank));
+export const cardLabel = (card: Card): string => `${suitName[card.suit]}${rankLabel(card.rank)}`;
+export const callLabel = (call: Call): string => call.kind === 'bid' ? `${call.level}${suitSymbol[call.strain]}` : call.kind === 'pass' ? 'Pass' : call.kind === 'double' ? 'X' : 'XX';
+export const contractLabel = (contract: Contract | null): string => contract ? `${contract.level}${suitSymbol[contract.strain]}${contract.doubled === 1 ? ' X' : contract.doubled === 2 ? ' XX' : ''}` : '—';
+export const vulnerabilityName: Record<Vulnerability, string> = { None: '双方无局', NS: '南北有局', EW: '东西有局', Both: '双方有局' };
+export const signed = (score: number): string => score > 0 ? `+${score}` : String(score);

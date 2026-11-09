@@ -1,0 +1,7 @@
+BRL pretrained model weights: Apache-2.0.
+Original source: https://github.com/harukaki/brl
+Pinned commit: fdd958ff8adcb44844d70ea2e233bed18d5a7b70
+Paper: A Simple, Solid, and Reproducible Baseline for Bridge Bidding AI, Kita et al., 2024.
+Converted copies: https://github.com/brannondorsey/nickel-bridge
+Pinned converted source: 92a81b5e81cb7aac2eabc147e82f18e0040b512e
+This attribution concerns the BRL weights; it does not assert a license for all Nickel application code.

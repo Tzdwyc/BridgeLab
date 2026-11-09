@@ -1,0 +1,79 @@
+"""Seal the final bounded checks; the external receipt can include package hashes."""
+import hashlib
+import json
+import re
+import sys
+from pathlib import Path
+from zipfile import ZipFile
+
+root = Path(__file__).resolve().parents[1]
+evidence = root / 'artifacts/v325-consistency-20261108'
+mobile = root.parent / 'v3.2.5-mobile'
+read = lambda p: json.loads(p.read_text(encoding='utf-8-sig'))
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+write = lambda p, v: p.write_text(json.dumps(v, ensure_ascii=False, indent=2), encoding='utf-8')
+base = read(evidence / 'BASELINE.json')
+for name, digest in base['files'].items():
+    assert sha(root.parent / 'v3.2.4-desktop' / name) == digest, name
+old_desktop = root.parent / 'v3.2.4-desktop/release/BridgeLab-v3.2.4-desktop.zip'
+old_apk = root.parent / 'v3.2.4-mobile/release/BridgeLab-v3.2.4-mobile-android.apk'
+assert sha(old_desktop) == base['desktopArchiveSHA256']
+assert sha(old_apk) == base['mobileArchiveSHA256']
+units = read(evidence / 'final-unit-results.json')
+assert units['numPassedTests'] == 269 and units['numFailedTests'] == 0
+fixed = read(evidence / 'final-release/fixed33-actual-table.json')
+assert fixed['validExecution'] and fixed['inputsPreserved'] and not fixed['validationFailures']
+assert fixed['actualSingleBidQueriesCompleted'] == 66
+assert fixed['protectedCallRows'] == 18 and fixed['changedCallRows'] == 35
+assert fixed['originalSLRollback']['completedQueries'] == 18
+assert all(r['frozenOriginalCallPreserved'] for r in fixed['originalSLRollback']['rows'])
+ui = read(evidence / 'ui/verification.json')
+delivery = read(root / 'artifacts/delivery-verification-v3.2.5.json')
+assert ui['passed'] and len(ui['results']) == 10
+assert ui['sha256'] == delivery['mainBundleSHA256'] == sha(root / 'dist/assets' / ui['bundle'])
+penalty = read(evidence / 'penalty-gate-live-regression.json')
+assert len(penalty['records']) == 9
+prior = read(evidence / 'before-penalty-alignment/FINAL_ACCEPTANCE.json')
+result = {k: v for k, v in prior.items() if k not in {
+    'desktopPackage', 'androidPackage', 'all9ModelAssets', 'documentationSnapshotNote'}}
+result.update(mainBundle=ui['bundle'], mainBundleSHA256=ui['sha256'],
+              unitTests={'passed': 269, 'failed': 0},
+              fixed33Evidence='artifacts/v325-consistency-20261108/final-release/fixed33-actual-table.json',
+              penaltyEvidence='artifacts/v325-consistency-20261108/penalty-gate-live-regression.json',
+              penaltyActualStoreActions=8, penaltyActualLanActions=8,
+              penaltyOriginalSLStoreActions=1, penaltyShared3NTChecks=14,
+              oldV324SourceFilesVerified=len(base['files']),
+              desktopSourceChanges=delivery['actualSourceChanges'])
+if '--prepackage' in sys.argv:
+    result['status'] = 'checks passed; package hashes pending in external FINAL_ACCEPTANCE.json'
+    write(evidence / 'PREPACKAGE_ACCEPTANCE.json', result)
+    print('Prepackage checks passed: 269 tests, 66 fixed calls, 18 rollback, 10 UI, 17 penalty actions.')
+    raise SystemExit(0)
+
+desktop = read(root / 'release/DESKTOP_PACKAGE_VERIFICATION_v3.2.5.json')
+assert sha(Path(desktop['archive'])) == desktop['sha256']
+apk = mobile / 'release/BridgeLab-v3.2.5-mobile-android.apk'
+validation = read(mobile / 'docs/VALIDATION_v3.2.5.json')
+assert sha(apk) == validation['sha256']
+assert validation['mainBundleHashMatch'] and validation['unchangedDistFileHashesMatch']
+assert validation['desktopMainBundleSha256'] == ui['sha256']
+cert_text = (mobile / 'docs/v325-preparation-20261108/signature-final.txt').read_text(encoding='utf-8-sig')
+certs = re.findall(r'certificate SHA-256 digest:\s*([a-fA-F0-9]{64})', cert_text)
+assert len(certs) == 2 and len(set(s.lower() for s in certs)) == 1
+assert certs[0].lower() == '9d05b1c2856f7d46ce1fb07e05c615140cdefdddd24cdf4de9b44c528c074d90'
+models = []
+with ZipFile(apk) as new, ZipFile(old_apk) as old:
+    for name in sorted(n for n in new.namelist() if n.startswith('assets/flutter_assets/assets/www/models/') and not n.endswith('/')):
+        assert new.read(name) == old.read(name), name
+        models.append({'asset': name, 'sha256': hashlib.sha256(new.read(name)).hexdigest(), 'unchangedFromV324': True})
+assert len(models) == 9
+result.update(desktopPackage=desktop, androidPackage={
+    'apk': str(apk), 'bytes': apk.stat().st_size, 'sha256': sha(apk),
+    'all29DistResourcesMatch': validation['desktopDistFileCount'] == 29,
+    'sameCertificate': True, 'certificateSHA256': certs[0].lower()}, all9ModelAssets=models,
+    documentationSnapshotNote='Final receipt is external to avoid a self-referential package hash. Production source and all executable/model assets match the final build.')
+assert result['androidPackage']['all29DistResourcesMatch']
+write(evidence / 'FINAL_ACCEPTANCE.json', result)
+write(mobile / 'docs/V325_RELEASE_VERIFICATION.json', result)
+print(json.dumps({'desktopSHA256': desktop['sha256'], 'apkSHA256': sha(apk),
+                  'allChecksPassed': True, 'physicalPhoneInstallation': False}))

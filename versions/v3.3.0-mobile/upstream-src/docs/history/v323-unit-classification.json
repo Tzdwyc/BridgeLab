@@ -1,0 +1,26 @@
+{
+  "numTotalTests": 2577,
+  "numPassedTests": 2576,
+  "numFailedTests": 1,
+  "numPendingTests": 0,
+  "success": false,
+  "failures": [
+    {
+      "file": "sl-lookahead-integration.test.ts",
+      "test": "replays winning and losing v16 overrides through the real controller on board 6247",
+      "failure": [
+        "AssertionError: expected -230 to be -200 // Object.is equality\n    at F:\\Bridge\\versions\\v3.2.3-desktop\\tests\\sl-lookahead-integration.test.ts:79:54\n    at file:///F:/Bridge/versions/v3.2.3-desktop/node_modules/@vitest/runner/dist/chunk-hooks.js:752:20"
+      ]
+    }
+  ],
+  "onlyApprovedRetainedLookaheadFailure": true,
+  "old21Disposition": {
+    "incompatiblePrecisionAssertionsCorrected": 18,
+    "weakJumpFeaturePhaseFixed": 1,
+    "competitiveKeycardPhaseFixed": 1,
+    "lookaheadFailurePreserved": 1
+  },
+  "optionalLookaheadSourceUnchanged": true,
+  "strong2cConflictResolvedSeparately": true,
+  "trainingRun": false
+}

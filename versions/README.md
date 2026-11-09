@@ -32,3 +32,10 @@
 - v1.0-desktop：基于v0.3.7界面的桌面v1.0应用，默认端口5200，实际叫牌使用旧seed 101第8轮SL，设置中保留原SL回退；桌面发布包从[GitHub Release](https://github.com/Tzdwyc/BridgeLab/releases/tag/v1.0)下载。
 - v1.0-mobile：同一网页实现的Android 1.0.0（45）安装包，包名、签名和存档格式沿用v0.3.7 APP；APK从[GitHub Release](https://github.com/Tzdwyc/BridgeLab/releases/tag/v1.0)下载。
 - 既有v1.0目录是冻结的研究阶段材料，不被新应用覆盖。v1.0-precision与v1.0-b2研究证据保留原路径。
+
+## 当前正式应用 v3.3.0
+
+- `v3.3.0-desktop`：桌面正式版，提供标准（SAYC）、自然（Natural）和精确（Precise）三套叫牌体系；默认Natural在v3.2.9基础上新增Drury。
+- `v3.3.0-mobile`：对应的Android 3.3.0+70，沿用应用包名和签名。
+- 桌面ZIP与Android APK从[GitHub Release v3.3.0](https://github.com/Tzdwyc/BridgeLab/releases/tag/v3.3.0)下载。功能和保存行为检查已完成；实体手机安装、升级、离线使用及真实设备局域网验证尚未完成。
+- 更早的v3.3.1、v3.3.2等本地目录不是当前首页指定的正式发布版，保留为独立版本材料。

@@ -1,0 +1,113 @@
+{
+  "scope": "Production dist with the previously frozen board940 hands. Same public Drury prefix on two viewports; no new mother deals, play experiment or training. Mobile CSS is the actual override injected for responsive inspection, not a phone installation.",
+  "valid": true,
+  "results": [
+    {
+      "viewport": "desktop",
+      "passed": true,
+      "druryText": "2♣：Drury人工支持询问，不承诺梅花套，10~12个支持点（红心），3张以上红心，逼叫一轮。\n电脑悬停 · 手机长按",
+      "answerText": "4♥：5张以上红心，Drury后回原高花，成局止叫。\n电脑悬停 · 手机长按",
+      "actualCalls": [
+        {
+          "kind": "call",
+          "seat": "N",
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        },
+        {
+          "kind": "call",
+          "seat": "E",
+          "call": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "call",
+          "seat": "S",
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          }
+        }
+      ],
+      "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+      "druryAppliedRoute": "agreement-flow",
+      "storedPlayStrength": "challenge",
+      "settingsChoices": [
+        "标准（SAYC）",
+        "自然（Natural）",
+        "精确（Precise）"
+      ],
+      "engineOptions": [
+        "默认",
+        "备用"
+      ],
+      "noStrengthSelector": true,
+      "noTrainingTermsInVisibleSettings": true,
+      "setupDidNotStartANewDeal": true,
+      "inputHandsUnchanged": true,
+      "browserErrors": []
+    },
+    {
+      "viewport": "phone",
+      "passed": true,
+      "druryText": "2♣：Drury人工支持询问，不承诺梅花套，10~12个支持点（红心），3张以上红心，逼叫一轮。\n电脑悬停 · 手机长按",
+      "answerText": "4♥：5张以上红心，Drury后回原高花，成局止叫。\n电脑悬停 · 手机长按",
+      "actualCalls": [
+        {
+          "kind": "call",
+          "seat": "N",
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        },
+        {
+          "kind": "call",
+          "seat": "E",
+          "call": {
+            "kind": "pass"
+          }
+        },
+        {
+          "kind": "call",
+          "seat": "S",
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          }
+        }
+      ],
+      "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+      "druryAppliedRoute": "agreement-flow",
+      "storedPlayStrength": "challenge",
+      "settingsChoices": [
+        "标准（SAYC）",
+        "自然（Natural）",
+        "精确（Precise）"
+      ],
+      "engineOptions": [
+        "默认",
+        "备用"
+      ],
+      "noStrengthSelector": true,
+      "noTrainingTermsInVisibleSettings": true,
+      "setupDidNotStartANewDeal": true,
+      "inputHandsUnchanged": true,
+      "browserErrors": []
+    }
+  ],
+  "failures": [],
+  "productionBundleSHA256": "71590f79cfd2fa1506fca429b00871d73d8c6dbe817f918c4e1b063fd5391c04",
+  "inputSHA256": "ad091512cf780db8d58b8a8007805c8f431bfa1ffd14d887e8c63790bb41b35b",
+  "mobileCSSSHA256": "611f7e4087c9437a1251e66a6c0991f2a380f41073c7508733318264791bbf7f",
+  "newMotherDeals": 0,
+  "training": 0,
+  "wholeBoardPerformanceClaim": false
+}

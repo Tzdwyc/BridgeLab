@@ -1,0 +1,11 @@
+import {type AuctionEntry,type Call,type Strain,type Suit,SEATS} from '../src/core/types';
+import {legalCalls} from '../src/core/auction';
+import {type BiddingObservation} from '../src/ai/observation';
+import {publicCallMeaningAt} from '../src/ai/bidding-semantics';
+export const call=(s:string):Call=>s==='P'?{kind:'pass'}:s==='X'?{kind:'double'}:s==='XX'?{kind:'redouble'}:{kind:'bid',level:Number(s[0]),strain:s.slice(1) as Strain};
+export const auction=(s:string):AuctionEntry[]=>s?s.split(' ').map((s,i)=>({seat:SEATS[i%4],call:call(s)})):[];
+export const hand=(h:Record<Suit,string>)=>Object.entries(h).flatMap(([s,rs])=>[...rs].map(r=>({suit:s as Suit,rank:'23456789TJQKA'.indexOf(r)+2,id:s+r})));
+export const obs=(a:string,h:Record<Suit,string>):BiddingObservation=>{const aa=auction(a),seat=SEATS[aa.length%4];return {phase:'auction',board:1,seat,actingSeat:seat,vulnerability:'None',auction:aa,hand:hand(h),legalCalls:legalCalls(aa,seat)};};
+export const meaning=(a:string,c:string)=>{const aa=auction(a);return publicCallMeaningAt([...aa,{seat:SEATS[aa.length%4],call:call(c)}],aa.length,'precision');};
+export const allCalls:Call[]=['P','X','XX',...Array.from({length:7},(_,i)=>['C','D','H','S','NT'].map(s=>`${i+1}${s}`)).flat()].map(call);
+export const text=(c:Call)=>c.kind==='bid'?`${c.level}${c.strain}`:c.kind==='pass'?'P':c.kind==='double'?'X':'XX';

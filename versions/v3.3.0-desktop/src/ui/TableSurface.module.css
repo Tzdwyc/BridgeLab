@@ -1,0 +1,207 @@
+.surface { display:grid; grid-template-columns:minmax(0,7fr) minmax(300px,3fr); grid-template-rows:minmax(0,1fr) auto; gap:0 20px; min-width:0; min-height:0; height:100%; }
+.felt { grid-column:1; grid-row:1; display:grid; grid-template-columns:minmax(82px,1fr) minmax(120px,1.2fr) minmax(82px,1fr); grid-template-rows:auto auto minmax(0,1fr); gap:12px 8px; min-width:0; padding:14px 18px 20px; border-radius:24px 24px 0 0; border:1px solid #456252; border-bottom:0; background:radial-gradient(ellipse at 50% 35%,#205341,#123a2f 80%); color:#f5f1e8; box-shadow:inset 0 0 50px #061c191f; }
+.summary { grid-column:1/-1; display:flex; align-items:center; justify-content:space-between; gap:8px; color:#e2e9df; font-size:.875rem; }
+.north { grid-column:1/-1; grid-row:2; justify-self:center; max-width:100%; }
+.west { grid-column:1; grid-row:3; align-self:center; min-width:0; }
+.east { grid-column:3; grid-row:3; align-self:center; min-width:0; }
+.center { grid-column:2; grid-row:3; display:flex; align-items:center; justify-content:center; min-width:0; }
+.south { grid-column:1; grid-row:2; background:#123a2f; color:#f5f1e8; border:1px solid #456252; border-top:0; border-radius:0 0 24px 24px; padding:10px 18px 18px; min-width:0; }
+.panel { grid-column:2; grid-row:1/3; display:flex; flex-direction:column; gap:14px; min-width:0; min-height:0; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; }
+.station { display:flex; flex-direction:column; align-items:center; gap:9px; min-width:0; border-radius:12px; }
+.stationName { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; min-height:32px; font-size:.875rem; }
+.stationName strong { font-weight:600; }.detail { color:#c2d3c4; font-size:.8125rem; }.turn { color:#edc775; }
+.callChip { display:inline-flex; align-items:center; justify-content:center; min-height:24px; padding:2px 6px; color:#2a3f31; background:#fffdf6; border:1px solid #d8d4c8; border-radius:5px; font-size:.875rem; box-shadow:0 2px 4px #00191020; }
+.seatDisc { display:grid; place-items:center; width:30px; height:30px; border:1px solid #86a28c; background:#0e3029; border-radius:50%; font-weight:600; }
+.seatDisc[data-vulnerable] { border-color:#f0988b; color:#ffb2a7; }.activeStation .seatDisc { outline:3px solid #d2ad5d80; border-color:#f3ce80; }.activeStation .stationName { color:#ffe1a3; }
+.hand { width:100%; min-width:0; }.cards { display:flex; align-items:start; justify-content:center; gap:0; padding:3px 3px 5px; min-width:0; }
+.cards > .card { margin-left:clamp(-27px,-1.8vw,-12px); }.cards > .card:first-child { margin-left:0; }
+.card { position:relative; width:58px; height:82px; flex:0 0 58px; border:1px solid #d5d1c6; border-radius:7px; padding:0; text-align:left; background:#fffdf6; color:#202c29; box-shadow:0 2px 5px #081b2724; transition:transform .15s,border-color .15s; }
+.card[data-suit=H],.card[data-suit=D] { color:#b52835; }.card :global(svg) { color:inherit; min-width:0; min-height:0; }
+.card:disabled { opacity:1; cursor:default; }.card.unplayable { background:#deded4; filter:saturate(.55); }.card.unplayable .pip { opacity:.5; }
+.card:not(:disabled):hover,.card:not(:disabled):focus-visible { transform:translateY(-6px); border-color:#d6b56d; outline:2px solid #e1bb6c; outline-offset:1px; z-index:2; }
+.corner { position:absolute; top:5px; left:5px; display:flex; flex-direction:column; align-items:center; gap:2px; font:600 19px/1 var(--font-card,Georgia,serif); }.corner :global(svg) { width:13px; height:15px; fill:currentColor; }.corner b { font-weight:650; }
+.pip { position:absolute; left:56%; top:58%; transform:translate(-50%,-50%); }.pip :global(svg) { width:29px; height:32px; fill:currentColor; }
+.bottom { position:absolute; bottom:4px; right:5px; transform:rotate(180deg); font:600 14px var(--font-card,Georgia,serif); }.suggested { outline:3px solid #e7c271; outline-offset:1px; }
+.handMeta { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; font-size:.8125rem; line-height:1.5; color:#d2dfd0; margin-top:3px; }
+.sideHand { max-width:210px; }.sideHand .cards { display:flex; flex-direction:column; align-items:stretch; gap:5px; }.suitRow { display:grid; grid-template-columns:repeat(min(var(--suit-count),9), minmax(0,1fr)); width:100%; padding-right:20px; row-gap:4px; box-sizing:border-box; }.sideHand .card { width:41px; height:53px; min-width:0; }.sideHand .corner { font-size:15px; top:3px; left:3px; gap:1px; }.sideHand .corner :global(svg) { width:11px; height:12px; }.sideHand .pip { left:70%; top:68%; }.sideHand .pip :global(svg) { width:15px; height:17px; }.sideHand .bottom { display:none; }.sideHand .handMeta { font-size:.8125rem; }
+.hiddenHand { display:flex; flex-direction:column; align-items:center; gap:5px; color:#c2d3c4; font-size:.8125rem; }.backs { display:flex; padding-right:16px; }.backs i { display:block; width:25px; height:35px; border:2px solid #e4e1d3; border-radius:4px; margin-right:-15px; background:repeating-linear-gradient(45deg,#36594a 0 3px,#547261 3px 5px); }
+.currentTrick { display:flex; align-items:center; flex-direction:column; width:100%; }.trickLabel { font-size:.8125rem; color:#d5dfce; margin-bottom:9px; }.trickCards { width:184px; height:191px; position:relative; }.trickCards>div:not(.emptyTrick) { position:absolute; animation:dealCard .18s ease-out; }.playedN { top:0; left:64px; }.playedE { right:0; top:55px; }.playedS { bottom:0; left:64px; }.playedW { left:0; top:55px; }.tableCard { width:56px; height:78px; }.emptyTrick { position:absolute; inset:0; display:grid; place-items:center; text-align:center; color:#adc6b6; font-size:.875rem; }
+:global(html[data-card-theme=four-color]) .card[data-suit=C] { color:#08754d; }:global(html[data-card-theme=four-color]) .card[data-suit=D] { color:#1c65b1; }
+@keyframes dealCard { from { opacity:.3; transform:translateY(-9px) scale(.96); } to { opacity:1; transform:none; } }
+@media(max-width:700px) and (orientation:portrait) {
+ .south .pip { display:none; }
+ .surface[data-phase=auction] .north .station { flex-direction:column; }
+ .surface { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto auto; min-height:0; gap:0; }.felt { padding:10px 9px 14px; grid-template-columns:minmax(66px,1fr) minmax(94px,1fr) minmax(66px,1fr); grid-template-rows:auto auto minmax(0,1fr); min-height:0; gap:8px 3px; }.summary { font-size:.8125rem; }.north { max-width:100%; }.south { grid-column:1; grid-row:2; padding:4px 4px 7px; }.panel { grid-column:1; grid-row:3; padding-top:7px; gap:5px; max-height:245px; }.cards { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:5px 2px; padding:3px 0 5px; max-width:385px; margin:auto; }.cards>.card { margin:0; width:100%; height:48px; min-width:0; }.corner { font-size:17px; left:4px; top:4px; }.corner :global(svg) { width:12px; height:14px; }.pip :global(svg) { width:22px; height:24px; }.bottom { display:none; }.north .cards { max-width:335px; }.north .cards>.card { height:40px; }.north .corner { font-size:15px; }.stationName { gap:4px; min-height:26px; font-size:.8125rem; }.station { gap:4px; }.detail { font-size:.8125rem; }.west .stationName,.east .stationName { flex-direction:column; }.sideHand .cards { display:flex; gap:4px; }.sideHand .card { width:33px; height:43px; }.sideHand .corner { font-size:13px; left:2px; top:2px; }.sideHand .corner :global(svg) { width:10px; height:11px; }.sideHand .pip { display:none; }.sideHand .suitRow { grid-template-columns:repeat(min(var(--suit-count),4),minmax(0,1fr)); padding-right:15px; min-width:0; }.trickCards { width:102px; height:142px; }.tableCard { width:35px; height:53px; }.tableCard .corner { font-size:14px; left:3px; top:3px; }.tableCard .corner :global(svg) { width:10px; height:12px; }.tableCard .pip { display:none; }.playedN,.playedS { left:34px; }.playedE,.playedW { top:44px; }.handMeta { gap:6px; margin-top:0; }.backs { padding-right:12px; }.backs i { width:20px; height:29px; margin-right:-12px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .surface { grid-template-columns:minmax(0,1fr) minmax(340px,.8fr); grid-template-rows:minmax(0,1fr) auto; min-height:0; gap:0 12px; }.felt { padding:6px 9px 8px; grid-template-rows:auto auto minmax(0,1fr); min-height:0; grid-template-columns:minmax(72px,1fr) minmax(100px,1fr) minmax(72px,1fr); gap:4px; border-radius:16px 16px 0 0; }.south { padding:5px 7px 8px; border-radius:0 0 16px 16px; }.station { gap:3px; }.stationName { min-height:26px; font-size:.8125rem; }.seatDisc { width:25px; height:25px; }.detail { display:none; }.summary { font-size:.8125rem; }.cards>.card { width:38px; flex-basis:38px; height:52px; margin-left:-11px; }.cards>.card:first-child { margin-left:0; }.corner { font-size:15px; left:3px; top:3px; gap:1px; }.corner :global(svg) { width:10px; height:12px; }.pip :global(svg) { width:19px; height:21px; }.bottom { display:none; }.north .cards>.card { width:30px; flex-basis:30px; height:43px; margin-left:-9px; }.north .cards>.card:first-child { margin-left:0; }.north .corner { font-size:13px; }.north .pip { display:none; }.sideHand .card { width:31px; height:32px; }.sideHand .cards { gap:3px; }.sideHand .corner { font-size:12px; gap:0; top:1px; left:2px; }.sideHand .corner :global(svg) { width:9px; height:10px; }.sideHand .pip { display:none; }.suitRow { padding-right:16px; }.handMeta { font-size:.8125rem; margin-top:0; }.hiddenHand { flex-direction:row; }.backs { display:none; }.trickCards { width:109px; height:112px; }.tableCard { width:34px; height:48px; }.tableCard .corner { font-size:13px; }.tableCard .pip { display:none; }.playedN,.playedS { left:37px; }.playedE,.playedW { top:32px; }.trickLabel { margin-bottom:3px; }.panel { gap:8px; }
+}
+@media(max-width:700px) and (orientation:portrait) {
+ .surface[data-phase=auction] .felt { grid-template-rows:auto minmax(0,1fr); padding:6px 9px; gap:4px; }
+ .surface[data-phase=auction] .north { grid-column:2; grid-row:2; align-self:center; }
+ .surface[data-phase=auction] .west { grid-column:1; grid-row:2; }
+ .surface[data-phase=auction] .east { grid-column:3; grid-row:2; }
+ .surface[data-phase=auction] .center,.surface[data-phase=auction] .backs { display:none; }
+ .surface[data-phase=auction] .west .stationName,.surface[data-phase=auction] .east .stationName { flex-direction:row; }
+ .surface[data-phase=auction] .detail { display:none; }
+ .surface[data-phase=auction] .stationName:has(.callChip)>strong { display:none; }
+ .surface[data-phase=play] .panel,.surface[data-phase=complete] .panel,.surface[data-phase=passedOut] .panel { max-height:48px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .surface[data-phase=auction] .felt { grid-template-rows:auto minmax(0,1fr); }
+ .surface[data-phase=auction] .north { grid-column:2; grid-row:2; align-self:start; }
+ .surface[data-phase=auction] .west { grid-row:2; }.surface[data-phase=auction] .east { grid-row:2; }
+ .surface[data-phase=auction] .center { grid-row:2; align-self:end; padding-bottom:7px; }
+ .surface[data-phase=auction] .center strong { font-size:1rem; }
+ .surface[data-phase=auction] .center p,.surface[data-phase=auction] .center span { display:none; }
+}
+/* Public hands must fit their own grid tracks, including four-suit side dummies. */
+@media(max-width:700px) and (orientation:portrait) {
+ .north { width:100%; }.north .station:has(.hiddenHand) { flex-direction:row; gap:6px; }
+ .hiddenHand { flex-direction:row; }.hiddenHand .backs { display:none; }
+ .west .stationName,.east .stationName { flex-direction:row; gap:3px; }.west .detail,.east .detail { display:none; }
+ .sideHand .card { height:31px; }.sideHand .corner { font-size:12px; gap:0; }.sideHand .corner :global(svg) { height:10px; width:9px; }.sideHand .cards { gap:3px; }.sideHand .handMeta { display:none; }
+ .north .cards { display:flex; justify-content:center; gap:0; width:100%; max-width:100%; }.north .cards>.card { width:35px; flex:0 0 35px; height:45px; margin-left:-12px; }.north .cards>.card:first-child { margin-left:0; }.north .pip { display:none; }.north .handMeta { font-size:.75rem; }.north .corner { font-size:14px; left:3px; top:3px; }
+ .trickCards { height:112px; }.playedE,.playedW { top:30px; }.tableCard { height:46px; }
+ .felt:has(.north .hand) .trickCards { height:85px; }.felt:has(.north .hand) .playedE,.felt:has(.north .hand) .playedW { top:22px; }.felt:has(.north .hand) .tableCard { height:43px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .south .station { flex-direction:row; gap:5px; }.south .stationName { width:29px; flex:0 0 29px; }.south .stationName>strong,.south .stationName>.detail,.south .stationName>.turn { display:none; }.south .hand { flex:1; }.south .handMeta { display:none; }.south { padding:4px 7px 5px; }.south .cards>.card { height:48px; }.south .cards { padding:2px 1px 3px; }
+ .felt:has(.sideHand) .east,.felt:has(.sideHand) .west { grid-row:2/4; align-self:center; }.felt:has(.sideHand) .north { grid-column:2; grid-row:2; }.felt:has(.sideHand) .north .station { flex-direction:row; }.felt:has(.sideHand) .north .stationName>strong,.felt:has(.sideHand) .north .hiddenHand { display:none; }.felt:has(.sideHand) .center { align-self:end; }
+ .sideHand .card { height:26px; }.sideHand .corner { font-size:11px; line-height:1; gap:0; }.sideHand .corner :global(svg) { width:9px; height:10px; }.sideHand .handMeta { display:none; }.sideHand .cards { gap:3px; }.west .stationName,.east .stationName { gap:3px; }
+ .north:has(.hand) { width:100%; }.north .station:has(.hand) { flex-direction:row; gap:5px; }.north .station:has(.hand) .stationName { width:28px; flex:0 0 28px; }.north .station:has(.hand) .stationName>strong,.north .station:has(.hand) .stationName>.detail,.north .station:has(.hand) .stationName>.turn,.north .handMeta { display:none; }.north .hand { flex:1; }.north .cards>.card { height:38px; }.north .cards { padding:1px; }
+ .felt:has(.north .hand) .trickCards { height:84px; }.felt:has(.north .hand) .playedE,.felt:has(.north .hand) .playedW { top:23px; }.felt:has(.north .hand) .tableCard { height:41px; }
+}
+@media(min-width:1100px) and (min-height:600px) {
+ .south .cards>.card { width:68px; flex-basis:68px; height:96px; margin-left:-20px; }
+ .south .cards>.card:first-child { margin-left:0; }.south .corner { font-size:22px; left:6px; top:6px; }.south .corner :global(svg) { width:16px; height:18px; }.south .pip :global(svg) { width:34px; height:38px; }
+}
+/* Short native WebViews use two safe hand rows rather than squeezing thirteen corners. */
+@media(max-width:700px) and (max-height:500px) and (orientation:landscape) {
+ .surface { grid-template-columns:minmax(0,1fr) 280px; gap:0 8px; }
+ .felt { grid-template-columns:minmax(48px,1fr) minmax(58px,1fr) minmax(48px,1fr); padding:3px 4px; gap:3px; }
+ .felt:has(.east .sideHand) { grid-template-columns:42px minmax(58px,1fr) 112px; }.felt:has(.west .sideHand) { grid-template-columns:112px minmax(58px,1fr) 42px; }
+ .summary { font-size:.75rem; gap:3px; }.stationName { font-size:.75rem; gap:2px; }.seatDisc { width:23px; height:23px; }
+ .south { padding:3px 4px; }.south .station { gap:3px; }.south .stationName { width:25px; flex-basis:25px; }
+ .south .cards { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px 2px; padding:1px 0; }.south .cards>.card { width:100%; height:36px; min-width:0; margin:0; flex:none; }.south .corner { font-size:14px; top:2px; left:2px; }.south .corner :global(svg) { width:10px; height:11px; }.south .pip { display:none; }
+ .sideHand .suitRow { grid-template-columns:repeat(min(var(--suit-count),6),minmax(0,1fr)); padding-right:11px; row-gap:2px; }.sideHand .cards { gap:2px; padding:0; }.sideHand .card { width:26px; height:20px; }.sideHand .corner { font-size:10px; left:1px; top:1px; }.sideHand .corner :global(svg) { width:8px; height:9px; }
+ .north .station:has(.hand) { gap:3px; }.north .station:has(.hand) .stationName { width:24px; flex-basis:24px; }.north .cards { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px 1px; }.north .cards>.card { width:100%; height:29px; margin:0; min-width:0; }.north .corner { font-size:11px; top:1px; left:1px; }.north .corner :global(svg) { width:8px; height:9px; }
+ .trickCards { width:66px; height:76px; }.tableCard { width:25px; height:35px; }.tableCard .corner { font-size:11px; left:2px; top:2px; }.tableCard .corner :global(svg) { width:8px; height:9px; }.playedN,.playedS { left:21px; }.playedE,.playedW { top:21px; }.trickLabel { font-size:.6875rem; margin-bottom:2px; white-space:nowrap; }
+ .felt:has(.north .hand) .trickCards { height:57px; }.felt:has(.north .hand) .tableCard { height:32px; }.felt:has(.north .hand) .playedE,.felt:has(.north .hand) .playedW { top:14px; }
+}
+@media(max-width:700px) and (max-height:700px) and (orientation:portrait) {
+ .surface[data-phase=auction] .hiddenHand { display:none; }
+}
+@media(prefers-reduced-motion:reduce) { .card { transition:none; }.trickCards>div:not(.emptyTrick) { animation:none; } }
+:global(html[data-motion=off]) .card { transition:none; }:global(html[data-motion=off]) .trickCards>div:not(.emptyTrick) { animation:none; }
+
+/* v3.1.1: persistent auction, ordinary player row, explicit grouped dummy. */
+.rail { grid-column:2; grid-row:1/3; display:flex; flex-direction:column; gap:14px; min-width:0; min-height:0; overflow:hidden; }
+.score { flex:0 0 auto; min-width:0; }
+.rail[data-score] .panel { flex:0 0 auto; overflow:visible; }
+.rail .panel { display:flex; flex-direction:column; gap:14px; min-width:0; min-height:0; flex:1; overflow:auto; }
+.auctionHistory { flex:0 0 clamp(110px,29vh,260px); min-width:0; min-height:0; overflow:hidden; }
+.playerHand { --hand-card-width:58px; --hand-card-height:82px; --hand-card-overlap:20px; --hand-corner-size:19px; }
+.playerHand .cards { display:flex; flex-wrap:nowrap; justify-content:center; gap:0; width:100%; max-width:none; padding:3px 0 5px; }
+.playerHand .cards>.card { width:var(--hand-card-width); height:var(--hand-card-height); flex:0 0 var(--hand-card-width); min-width:0; margin:0 0 0 min(calc(-1 * var(--hand-card-overlap)),calc((100% - var(--hand-card-width)) / max(1,var(--card-count) - 1) - var(--hand-card-width))); }
+.playerHand .cards>.card:first-child { margin-left:0; }.playerHand .corner { font-size:var(--hand-corner-size); left:3px; top:4px; }
+.dummyHand { --dummy-card-width:41px; --dummy-card-height:53px; --dummy-corner-size:15px; }
+.north:has(.dummyHand) { width:min(100%,640px); }
+.dummyHand .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px 8px; width:100%; max-width:none; padding:2px 0; }
+.dummyHand .suitRow { display:flex; flex-wrap:nowrap; justify-content:center; gap:0; min-width:0; width:100%; padding:0; }
+.dummyHand .suitRow[data-long] { grid-column:1/-1; }
+.dummyHand .suitRow>.card { width:var(--dummy-card-width); height:var(--dummy-card-height); flex:0 0 var(--dummy-card-width); min-width:0; margin:0 0 0 min(-15px,calc((100% - var(--dummy-card-width)) / max(1,var(--suit-count) - 1) - var(--dummy-card-width))); }
+.dummyHand .suitRow>.card:first-child { margin-left:0; }.dummyHand .corner { font-size:var(--dummy-corner-size); left:2px; top:2px; gap:0; }.dummyHand .corner :global(svg) { width:11px; height:12px; }.dummyHand .pip,.dummyHand .bottom { display:none; }
+.voidSuit { display:flex; align-items:center; justify-content:center; gap:4px; font-size:.75rem; min-height:14px; color:#c4d3bf; }.voidSuit :global(svg) { width:11px; height:12px; min-width:0; min-height:0; }
+.sideHand .cards { display:flex; flex-direction:column; gap:4px; }.sideHand .suitRow { display:grid; grid-template-columns:repeat(min(var(--suit-count),9),minmax(0,1fr)); padding-right:20px; row-gap:3px; }.sideHand .suitRow>.card { margin:0; }.sideHand .suitRow[data-empty] { display:none; }
+@media(min-width:1100px) and (min-height:600px) { .playerHand { --hand-card-width:68px; --hand-card-height:96px; --hand-card-overlap:20px; --hand-corner-size:22px; }.playerHand .cards { width:min(100%,calc(var(--card-count) * 48px + 20px)); margin:auto; }.playerHand .corner { left:6px; top:6px; } }
+@media(max-width:700px) and (orientation:portrait) {
+ .rail { grid-column:1; grid-row:3; gap:5px; max-height:48px; }.rail .panel { gap:5px; padding-top:7px; max-height:48px; }
+ .surface:has(.auctionHistory) { grid-template-rows:minmax(52px,1fr) clamp(94px,16dvh,150px) auto auto; }
+ .surface:has(.auctionHistory) .rail { display:contents; }.surface:has(.auctionHistory) .felt { grid-row:1; border-radius:24px 24px 0 0; }.surface:has(.auctionHistory) .auctionHistory { grid-column:1; grid-row:2; min-height:0; background:#fffdf6; border-left:1px solid #456252; border-right:1px solid #456252; }.surface:has(.auctionHistory) .south { grid-row:3; }.surface:has(.auctionHistory) .panel { grid-column:1; grid-row:4; max-height:205px; padding-top:6px; }
+ .playerHand { --hand-card-width:44px; --hand-card-height:62px; --hand-card-overlap:18px; --hand-corner-size:16px; }.playerHand .cards { display:flex; gap:0; max-width:none; }.playerHand .corner :global(svg) { width:12px; height:14px; }.playerHand .pip { display:none; }
+ .dummyHand { --dummy-card-width:33px; --dummy-card-height:36px; --dummy-corner-size:13px; }.dummyHand .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; }.dummyHand .suitRow>.card { margin-left:min(-12px,calc((100% - var(--dummy-card-width)) / max(1,var(--suit-count) - 1) - var(--dummy-card-width))); }.dummyHand .suitRow>.card:first-child { margin-left:0; }
+ .sideHand { --dummy-card-height:31px; --dummy-corner-size:12px; }.sideHand .cards { display:flex; gap:3px; }.sideHand .suitRow { display:grid; grid-template-columns:repeat(min(var(--suit-count),4),minmax(0,1fr)); padding-right:15px; row-gap:3px; }.sideHand .suitRow>.card { margin:0; }.sideHand .corner :global(svg) { width:9px; height:10px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .rail { gap:8px; }.rail .panel { padding:0; max-height:none; gap:8px; }
+ .surface:has(.auctionHistory) { grid-template-rows:minmax(44px,1fr) 78px auto; }.surface:has(.auctionHistory) .rail { display:contents; }.surface:has(.auctionHistory) .felt { grid-row:1; }.surface:has(.auctionHistory) .auctionHistory { grid-column:1; grid-row:2; min-height:0; background:#fffdf6; border-left:1px solid #456252; border-right:1px solid #456252; }.surface:has(.auctionHistory) .south { grid-row:3; }.surface:has(.auctionHistory) .panel { grid-column:2; grid-row:1/4; max-height:none; }
+ .surface[data-phase=auction] .center { display:none; }.surface[data-phase=auction] .north { align-self:center; }.surface[data-phase=auction] .hiddenHand { display:none; }
+ .playerHand { --hand-card-width:38px; --hand-card-height:48px; --hand-card-overlap:11px; --hand-corner-size:15px; }.playerHand .cards { display:flex; padding:2px 0 3px; }.playerHand .corner :global(svg) { width:10px; height:12px; }.playerHand .pip { display:none; }
+ .dummyHand { --dummy-card-width:30px; --dummy-card-height:29px; --dummy-corner-size:11px; }.dummyHand .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:3px; }.dummyHand .suitRow>.card { margin-left:min(-12px,calc((100% - var(--dummy-card-width)) / max(1,var(--suit-count) - 1) - var(--dummy-card-width))); }.dummyHand .suitRow>.card:first-child { margin-left:0; }.dummyHand .corner :global(svg) { width:9px; height:10px; }
+ .sideHand { --dummy-card-width:31px; --dummy-card-height:26px; --dummy-corner-size:11px; }.sideHand .cards { display:flex; gap:3px; }.sideHand .suitRow { display:grid; padding-right:16px; }.sideHand .suitRow>.card { margin:0; }
+}
+@media(max-width:700px) and (max-height:500px) and (orientation:landscape) {
+ .playerHand { --hand-card-width:34px; --hand-card-height:48px; --hand-card-overlap:11px; --hand-corner-size:13px; }.playerHand .cards { display:flex; gap:0; }.playerHand .corner { left:2px; top:3px; }
+ .dummyHand { --dummy-card-width:26px; --dummy-card-height:26px; --dummy-corner-size:11px; }.dummyHand .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:3px; }.dummyHand .corner { left:1px; top:1px; }.dummyHand .corner :global(svg) { width:8px; height:9px; }
+ .sideHand { --dummy-card-height:20px; --dummy-corner-size:10px; }.sideHand .cards { display:flex; gap:2px; }.sideHand .suitRow { display:grid; grid-template-columns:repeat(min(var(--suit-count),6),minmax(0,1fr)); padding-right:11px; row-gap:2px; }.sideHand .suitRow>.card { margin:0; }
+}
+
+@media(max-width:700px) and (max-height:500px) and (orientation:landscape) { .playerHand { --hand-card-width:38px; --hand-corner-size:15px; } }
+
+@media(max-height:500px) and (orientation:landscape) { .south .stationName>.callChip { display:none; } }
+
+/* v3.1.2: real-table dummy, four suit columns with vertical overlapping cards. */
+.dummyHand { --dummy-card-width:41px; --dummy-card-height:53px; --dummy-corner-size:15px; --dummy-stack-step:20px; --dummy-stack-cap:220px; --dummy-column-gap:10px; }
+.north .station:has(.dummyHand) { flex-direction:row; gap:10px; }.north .station:has(.dummyHand) .stationName { flex:0 0 64px; flex-direction:column; }.north .dummyHand .handMeta { display:none; }
+.dummyHand .cards { display:grid; grid-template-columns:repeat(4,minmax(0,var(--dummy-card-width))); align-items:start; justify-content:center; gap:var(--dummy-column-gap); width:100%; max-width:none; max-height:var(--dummy-stack-cap); overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; overscroll-behavior:contain; padding:3px 2px 5px; }
+.dummyHand .suitRow { display:flex; flex-direction:column; flex-wrap:nowrap; align-items:center; justify-content:flex-start; gap:0; grid-column:auto; width:100%; min-width:0; height:max-content; padding:0; }
+.dummyHand .suitRow[data-long],.dummyHand .suitRow[data-empty] { display:flex; grid-column:auto; }
+.dummyHand .suitRow[data-empty] { position:sticky; top:0; }
+.dummyHand .suitRow>.card { width:var(--dummy-card-width); height:var(--dummy-card-height); flex:none; margin:calc(var(--dummy-stack-step) - var(--dummy-card-height)) 0 0; }
+.dummyHand .suitRow>.card:first-child { margin:0; }
+.dummyHand .corner { flex-direction:row; align-items:center; gap:2px; left:2px; top:2px; font-size:var(--dummy-corner-size); line-height:1; white-space:nowrap; }.dummyHand .corner :global(svg) { width:11px; height:12px; }
+.dummyHand .voidSuit { display:flex; flex-direction:column; gap:3px; min-height:var(--dummy-card-height); padding:3px 0; color:#d7e1cd; }
+.sideHand { max-width:none; --dummy-column-gap:4px; }.sideHand .cards { display:grid; }.sideHand .suitRow { display:flex; padding:0; }.sideHand .suitRow>.card { margin:calc(var(--dummy-stack-step) - var(--dummy-card-height)) 0 0; }.sideHand .suitRow>.card:first-child { margin:0; }
+@media(max-width:700px) and (orientation:portrait) {
+ .dummyHand { --dummy-card-width:38px; --dummy-card-height:46px; --dummy-corner-size:14px; --dummy-stack-step:18px; --dummy-stack-cap:140px; --dummy-column-gap:7px; }
+ .north .station:has(.dummyHand) { flex-direction:row; gap:5px; }.north .station:has(.dummyHand) .stationName { flex:0 0 38px; flex-direction:column; }.north .station:has(.dummyHand) .stationName>strong { display:block; font-size:.75rem; }.north .station:has(.dummyHand) .stationName>.turn { display:block; }
+ .sideHand { --dummy-card-width:24px; --dummy-card-height:34px; --dummy-corner-size:10px; --dummy-stack-step:14px; --dummy-column-gap:2px; }.sideHand .corner { gap:1px; left:1px; top:1px; }.sideHand .corner :global(svg) { width:8px; height:9px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .dummyHand { --dummy-card-width:34px; --dummy-card-height:42px; --dummy-corner-size:12px; --dummy-stack-step:16px; --dummy-stack-cap:110px; --dummy-column-gap:5px; }
+ .north .station:has(.dummyHand) { gap:5px; }.north .station:has(.dummyHand) .stationName { flex:0 0 28px; }.dummyHand .corner :global(svg) { width:9px; height:10px; }
+ .sideHand { --dummy-card-width:28px; --dummy-card-height:34px; --dummy-corner-size:11px; --dummy-stack-step:14px; --dummy-column-gap:2px; }.sideHand .corner { gap:1px; left:1px; top:1px; }.sideHand .corner :global(svg) { width:8px; height:9px; }
+}
+@media(max-width:700px) and (max-height:500px) and (orientation:landscape) {
+ .dummyHand { --dummy-card-width:32px; --dummy-card-height:34px; --dummy-corner-size:12px; --dummy-stack-step:14px; --dummy-stack-cap:94px; --dummy-column-gap:4px; }
+ .dummyHand .corner { gap:1px; left:1px; top:1px; }.dummyHand .corner :global(svg) { width:9px; height:10px; }
+ .sideHand { --dummy-card-width:24px; --dummy-card-height:30px; --dummy-corner-size:10px; --dummy-stack-step:13px; --dummy-column-gap:2px; }
+ .sideHand .corner :global(svg) { width:8px; height:9px; }
+ .felt:has(.north .dummyHand) .trickCards { height:50px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .surface:has(.south .dummyHand) .north .station { flex-direction:row; gap:5px; }
+ .surface:has(.south .dummyHand) .north .hiddenHand { display:none; }
+ .south:has(.dummyHand) .stationName>strong,.north .station:has(.dummyHand) .stationName>strong { display:block; font-size:0; white-space:nowrap; }
+ .south:has(.dummyHand) .stationName>strong::after,.north .station:has(.dummyHand) .stationName>strong::after { content:'明手'; font-size:.75rem; }
+}
+/* Completed-trick meters and compact review controls stay outside the felt. */
+.center { min-height:0; }
+.currentTrick { min-height:0; max-height:100%; }
+.trickCards { flex-shrink:1; min-height:43px; }
+/* Phone summaries share the existing score slot below the player's hand. */
+@media(max-width:700px) and (orientation:portrait), (max-height:500px) and (orientation:landscape) {
+ .surface [data-card-count],.surface [data-contract-summary] { display:none; }
+ .summary:has(>[data-contract-summary]) { display:none; }
+ .hiddenHand:has(>[data-card-count]) { gap:0; }
+ .station:has(.dummyHand) .detail { display:block; }
+ .handMeta>span:has(>[data-card-count]:only-child) { display:none; }
+ .surface:has(.score) { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto auto; gap:0; }
+ .surface:has(.score) .rail { grid-column:1; grid-row:3; max-height:none; gap:5px; padding-top:5px; }
+ .surface:has(.score) .rail .panel { padding:0; max-height:none; }
+ .surface:has(.score) .south { grid-column:1; grid-row:2; }
+}
+@media(max-width:700px) and (orientation:portrait) {
+ .rail[data-score] { max-height:none; gap:5px; padding-top:5px; }
+ .rail[data-score] .panel { max-height:none; padding:0; }
+}
+@media(max-width:700px) and (max-height:700px) and (orientation:portrait) {
+ .surface:has(.score) .north .dummyHand { --dummy-stack-cap:90px; }
+ .surface:has(.score) .currentTrick { height:100%; }
+ .surface:has(.score) .trickCards .playedE,.surface:has(.score) .trickCards .playedW { top:max(0px,calc((100% - 43px) / 2)); }
+}
+@media(max-width:700px) and (orientation:portrait) {
+ .surface:has(.score) { grid-template-rows:minmax(min-content,1fr) auto auto; }
+ .surface:has(.score) .felt { grid-template-rows:auto auto minmax(min-content,1fr); }
+}

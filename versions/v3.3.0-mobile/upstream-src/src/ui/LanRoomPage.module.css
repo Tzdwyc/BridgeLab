@@ -1,0 +1,154 @@
+.page { width:min(100%,1480px); min-height:0; height:100%; margin:0 auto; padding:16px 20px 28px; overflow:auto; display:flex; flex-direction:column; gap:18px; color:var(--ink,#203b32); overscroll-behavior:contain; }
+.page * { box-sizing:border-box; }
+.page h1,.page h2,.page p { margin:0; }
+.topline,.actions,.boardMeta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.topline h1 { font-size:clamp(25px,3vw,36px); font-weight:600; letter-spacing:-.03em; line-height:1.35; }
+.kicker { display:block; font-size:calc(12px * var(--text-scale,1)); letter-spacing:.09em; color:var(--muted,#6c7c70); margin-bottom:5px!important; }
+.badge { flex:none; border:1px solid #d4d9cf; border-radius:30px; padding:7px 13px; background:#eeeee5; color:#76694f; font-size:calc(13px * var(--text-scale,1)); }
+.badge[data-connected=true] { background:#e6eee4; border-color:#bdd0bd; color:#245c42; }
+.panel { min-width:0; padding:18px 20px; border:1px solid var(--line,#d8dfd4); border-radius:14px; background:var(--paper,#fffdf6); }
+.panel h2 { font-size:calc(18px * var(--text-scale,1)); font-weight:600; margin-bottom:12px; }
+.panel p { font-size:calc(14px * var(--text-scale,1)); line-height:1.7; color:var(--muted,#627568); margin:8px 0; }
+.panel summary { cursor:pointer; font-weight:600; min-height:32px; line-height:1.6; }
+.panel details[open]>summary { margin-bottom:14px; }
+.page button:not([data-card]),.page input:not([type=radio]) { min-height:44px; border:1px solid var(--line,#d2dbcf); border-radius:9px; background:#fafbf5; color:var(--ink,#254536); padding:8px 13px; font:inherit; font-size:calc(14px * var(--text-scale,1)); }
+.page button:not([data-card]) { cursor:pointer; transition:background .15s,border-color .15s; }
+.page button:not([data-card]):hover:not(:disabled) { background:#eaf1e5; border-color:#77967d; }
+.page button:not([data-card]):focus-visible,.page input:focus-visible { outline:3px solid #bf9c5677; outline-offset:2px; }
+.page button:not([data-card]):disabled { opacity:.45; cursor:default; }
+.page button.primary { background:var(--green,#174936); color:#fffdf6; border-color:var(--green,#174936); font-weight:600; }
+.page button.primary:hover:not(:disabled) { background:#24614a; }
+.page button[aria-pressed=true] { background:#e3eddc; border-color:#64856b; color:#173e2e; box-shadow:inset 0 0 0 1px #64856b; }
+.error,.pause { padding:11px 15px; border:1px solid #e0c3b4; border-radius:9px; color:#8c3e32; background:#fbefe6; font-size:calc(14px * var(--text-scale,1)); line-height:1.6; }
+.actions { justify-content:flex-start; margin-top:12px; }
+.seatChoice { display:flex; flex-wrap:wrap; gap:9px; border:0; margin:0 0 16px; padding:0; }
+.seatChoice legend { margin-bottom:10px; font-size:calc(13px * var(--text-scale,1)); color:var(--muted,#607266); }
+.seatChoice label { display:flex; align-items:center; justify-content:center; gap:8px; min-height:48px; min-width:90px; padding:10px 16px; border:1px solid var(--line,#d8dfd3); border-radius:10px; cursor:pointer; font-size:calc(15px * var(--text-scale,1)); }
+.seatChoice label:has(input:checked) { border-color:#456f53; background:#e9f0e2; color:#214d35; box-shadow:inset 0 0 0 1px #456f53; }
+.seatChoice input { accent-color:var(--green,#24533b); width:17px; height:17px; margin:0; }
+.joinForm { display:grid; grid-template-columns:minmax(160px,1.3fr) minmax(110px,1fr) auto; gap:12px; align-items:end; margin-top:20px; padding-top:18px; border-top:1px solid var(--line,#d8dfd4); }
+.joinForm label { display:grid; gap:8px; min-width:0; font-size:calc(14px * var(--text-scale,1)); font-weight:600; }
+.joinForm input { width:100%; }
+.confirmRobots { margin-top:14px; padding:14px 16px; border:1px solid #d4c396; background:#f8f2e4; border-radius:10px; }
+.seats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; padding:0; margin:20px 0; list-style:none; }
+.seats li { display:flex; flex-direction:column; gap:12px; min-height:108px; border:1px solid var(--line,#d7dfd2); background:#f8faf3; border-radius:12px; padding:17px; }
+.seats li[data-mine=true] { background:#e8f0e0; border-color:#69886d; }
+.seats li[data-status=empty] { border-style:dashed; background:transparent; }
+.seats li[data-status=disconnected] { border-color:#d3b18d; background:#fbf2e7; }
+.seats li strong { font-size:calc(18px * var(--text-scale,1)); font-weight:600; }
+.seats li span { font-size:calc(13px * var(--text-scale,1)); color:var(--muted,#6c7d6c); }
+.inviteFields { display:grid; gap:10px; min-width:0; flex:1; }
+.inviteFields>div { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+.inviteFields>div>span { color:var(--muted,#6f7c70); font-size:calc(13px * var(--text-scale,1)); min-width:58px; }
+.inviteFields strong { font-size:calc(18px * var(--text-scale,1)); font-weight:600; letter-spacing:.03em; user-select:all; overflow-wrap:anywhere; }
+.inviteFields button { margin-left:6px; }
+.roomInfo>p { margin:0 0 3px; color:var(--ink,#254536); font-weight:600; }
+.roomInfo>small { display:block; margin-bottom:12px; font-size:calc(12px * var(--text-scale,1)); color:var(--muted,#6c7d6c); overflow-wrap:anywhere; }
+.roomInfo details:not([open])>summary { margin:0; min-height:24px; }
+.tableWrap { width:100%; min-width:0; flex:1 0 auto; }
+.tableCenter { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; width:100%; min-width:0; }
+.feltSummary { width:100%; min-width:0; }.feltHeading { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.feltSummary[data-playing] .feltHeading { font-size:.75rem; gap:5px; }.feltHeading>span { white-space:nowrap; }
+.liveTable[data-phase=play] [data-testid=current-trick]>span { display:none; }
+@media(max-height:500px) and (orientation:landscape) { .liveTable[data-phase=play] [data-testid=current-trick]>span { display:block; } }
+.contract { display:inline-flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:5px; color:#183e31; background:#f9f3df; border-radius:7px; padding:6px 10px; font-size:calc(14px * var(--text-scale,1)); text-align:center; }
+.centerMark { min-height:130px; display:grid; align-content:center; justify-items:center; gap:8px; text-align:center; color:#d5e2d3; }
+.centerMark>span { font-size:calc(58px * var(--text-scale,1)); line-height:1; color:#80a58d; }
+.centerMark p { font-size:calc(13px * var(--text-scale,1)); line-height:1.6; }
+.turnPanel { padding:3px 2px 5px; }
+.turnPanel h2 { font-size:calc(21px * var(--text-scale,1)); font-weight:600; line-height:1.45; margin:4px 0 8px; }
+.turnPanel p { color:var(--muted,#63786a); font-size:calc(14px * var(--text-scale,1)); }
+.turnPanel .kicker { font-size:calc(11px * var(--text-scale,1)); }
+.callRow { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:5px; margin:8px 0; }
+.callRow button { padding-inline:3px!important; }
+.auctionHistory { max-height:300px; overflow:auto; margin-top:10px; }
+.auctionHistory table { width:100%; table-layout:fixed; border-collapse:collapse; text-align:center; font-variant-numeric:tabular-nums; }
+.auctionHistory :is(th,td) { padding:9px 4px; border-bottom:1px solid var(--line,#d6dfd1); font-size:calc(15px * var(--text-scale,1)); }
+.auctionHistory th { position:sticky; top:0; background:var(--paper,#fffdf6); font-size:calc(13px * var(--text-scale,1)); color:var(--muted,#677a69); }
+.lastTrick { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.lastTrick>span { display:inline-flex; align-items:center; gap:6px; font-size:calc(14px * var(--text-scale,1)); }
+.panel .score { color:var(--green,#1c533b); font-size:calc(29px * var(--text-scale,1)); font-weight:600; font-variant-numeric:tabular-nums; }
+.score small { font-size:calc(14px * var(--text-scale,1)); font-weight:400; }
+.page[data-started=true] { gap:12px; }
+.page[data-started=true]>.topline h1 { font-size:calc(24px * var(--text-scale,1)); }
+.page[data-started=true]>.topline .kicker { display:none; }
+.page[data-started=true] .roomInfo { padding:10px 15px; }
+.page[data-started=true] .roomInfo>p { display:inline; font-size:calc(13px * var(--text-scale,1)); }
+.page[data-started=true] .roomInfo>small { display:inline; margin-left:12px; font-size:calc(11px * var(--text-scale,1)); }
+.page[data-started=true] .roomInfo>details { margin-top:5px; font-size:calc(12px * var(--text-scale,1)); }
+@media(max-width:700px) {
+ .page { padding:12px 10px 24px; gap:14px; }.panel { padding:15px; }.topline h1 { font-size:calc(26px * var(--text-scale,1)); }.badge { font-size:calc(12px * var(--text-scale,1)); padding:6px 10px; }
+ .seats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:16px 0; }.seats li { padding:14px; min-height:92px; }.seats li strong { font-size:calc(16px * var(--text-scale,1)); }
+ .joinForm { grid-template-columns:1fr; gap:13px; }.seatChoice { gap:6px; }.seatChoice label { min-width:64px; flex:1; padding:9px; }
+ .inviteFields strong { font-size:calc(16px * var(--text-scale,1)); }.roomInfo>small { font-size:calc(11px * var(--text-scale,1)); }.page[data-started=true] .roomInfo>small { display:block; margin:3px 0 0; }
+ .turnPanel { padding:0 2px; }.turnPanel h2 { font-size:calc(18px * var(--text-scale,1)); margin:1px 0 6px; }.tableCenter { gap:7px; }.contract { padding:4px 6px; font-size:calc(12px * var(--text-scale,1)); }.centerMark { min-height:100px; }.centerMark>span { font-size:calc(39px * var(--text-scale,1)); }
+ .callRow { gap:4px; margin:6px 0; }.callRow button { min-height:44px!important; }.auctionHistory { max-height:220px; }.auctionHistory :is(th,td) { padding:7px 3px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .page { padding:8px 12px 20px; gap:8px; }.page[data-started=true]>.topline h1 { font-size:calc(19px * var(--text-scale,1)); }.page[data-started=true]>.topline .badge { padding:4px 9px; }.page[data-started=true] .roomInfo { padding:7px 11px; }
+ .tableCenter { gap:4px; }.centerMark { min-height:70px; }.centerMark>span { font-size:calc(32px * var(--text-scale,1)); }.centerMark p { font-size:calc(12px * var(--text-scale,1)); }.turnPanel h2 { font-size:calc(17px * var(--text-scale,1)); }.panel { padding:12px; }.callRow { gap:4px; margin:5px 0; }.auctionHistory { max-height:160px; }
+}
+@media(prefers-reduced-motion:reduce) { .page button { transition:none; } }
+
+/* A compact live-table shell keeps the hand and legal bidding controls in view. */
+.liveTable { height:100%; min-height:0; }
+@media(max-width:700px) and (orientation:portrait) {
+ .page[data-started=true] { position:relative; display:grid; grid-template-rows:36px minmax(0,1fr); height:100%; overflow:hidden; padding:5px 7px 7px; gap:4px; }
+ .page[data-started=true]>.topline { grid-row:1; flex-wrap:nowrap; min-height:36px; padding-right:210px; }.page[data-started=true]>.topline h1 { font-size:calc(19px * var(--text-scale,1)); white-space:nowrap; }.page[data-started=true]>.topline .badge { display:none; }
+ .page[data-started=true]>.roomInfo { position:absolute; right:7px; top:2px; z-index:12; padding:0; border:0; background:transparent; width:auto; }
+ .page[data-started=true] .roomInfo details { margin:0; }.page[data-started=true] .roomInfo details>summary { min-height:40px; padding:7px 5px; line-height:26px; font-size:calc(12px * var(--text-scale,1)); white-space:nowrap; }
+ .page[data-started=true] .roomInfo details[open] { position:absolute; top:0; right:0; width:min(350px,calc(100vw - 20px)); max-height:85dvh; overflow:auto; padding:12px 15px 18px; background:var(--paper); border:1px solid var(--line); border-radius:12px; box-shadow:0 14px 45px #143c3233; }
+ .page[data-started=true] .roomInfo details[open]>small { display:block; color:var(--muted); font-size:calc(12px * var(--text-scale,1)); line-height:1.6; overflow-wrap:anywhere; margin-bottom:15px; }
+ .tableWrap { grid-row:2; min-height:0; overflow:hidden; }.liveTable { height:100%; }.liveTable>aside { gap:4px; padding-top:5px; }
+ .liveTable .turnPanel { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); padding:0; }
+ .bidder { padding:5px 7px; border-radius:10px; }.bidder h2 { display:none; }.bidder .callRow { margin:3px 0; gap:4px; }.bidder .callRow button { min-height:44px; padding-block:5px; font-size:calc(14px * var(--text-scale,1)); }
+ .historyPanel { padding:0 10px; border-radius:9px; }.historyPanel>summary { min-height:34px; line-height:34px; font-size:calc(13px * var(--text-scale,1)); }.historyPanel[open] { position:absolute; right:8px; bottom:8px; left:8px; max-height:60%; overflow:auto; z-index:11; padding:10px 13px; box-shadow:0 8px 25px #163c3240; }.historyPanel .auctionHistory { max-height:220px; }
+ .liveTable[data-phase=play]>aside>.panel:not(.historyPanel) { padding:6px 10px; }.liveTable[data-phase=play] .lastTrick { gap:8px; }.liveTable[data-phase=play] .panel>summary { min-height:34px; line-height:34px; font-size:calc(13px * var(--text-scale,1)); }
+ .leaveConfirm { position:absolute; top:70px; left:12px; right:12px; z-index:25; box-shadow:0 0 0 100vmax #102c2588; }.page[data-started=true]>.pause,.page[data-started=true]>.error { position:absolute; top:44px; left:13px; right:13px; z-index:20; padding:9px 12px; font-size:calc(13px * var(--text-scale,1)); }
+ .page[data-started=true]>.panel:not(.roomInfo):not(.leaveConfirm) { position:absolute; inset:55px 12px auto; z-index:24; box-shadow:0 0 0 100vmax #102c2588; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .page[data-started=true] { position:relative; display:grid; grid-template-rows:32px minmax(0,1fr); padding:4px 8px 6px; gap:3px; overflow:hidden; }.page[data-started=true]>.topline { min-height:32px; }.tableWrap { min-height:0; overflow:hidden; }
+ .page[data-started=true]>.roomInfo { position:absolute; top:1px; right:8px; padding:0; background:transparent; border:0; z-index:12; }.page[data-started=true] .roomInfo details { margin:0; }.page[data-started=true] .roomInfo details>summary { min-height:32px; padding:3px 7px; font-size:calc(12px * var(--text-scale,1)); line-height:26px; }.page[data-started=true]>.topline .badge { margin-right:240px; }
+ .page[data-started=true] .roomInfo details[open] { position:absolute; top:0; right:0; width:380px; max-height:86dvh; overflow:auto; background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 16px; box-shadow:0 12px 40px #163c3240; }.roomInfo details[open]>small { display:block; overflow-wrap:anywhere; font-size:calc(12px * var(--text-scale,1)); color:var(--muted); }
+ .liveTable>aside { gap:5px; }.turnPanel h2 { margin:0; font-size:calc(15px * var(--text-scale,1)); }.turnPanel>.kicker { display:none; }.bidder { padding:5px 7px; }.bidder h2 { display:none; }.bidder .callRow { margin:3px 0; }.historyPanel { padding:0 10px; }.historyPanel>summary { min-height:32px; line-height:32px; font-size:calc(13px * var(--text-scale,1)); }.historyPanel[open] { position:absolute; right:8px; top:40px; bottom:8px; width:36%; z-index:20; background:var(--paper); padding:12px; overflow:auto; }
+ .leaveConfirm { position:absolute; top:40px; left:20%; right:20%; z-index:25; box-shadow:0 0 0 100vmax #102c2588; }
+}
+
+.lastTrickDetails { margin-top:12px; padding-top:10px; border-top:1px solid var(--line); }
+.liveTable[data-phase=complete]>aside,.liveTable[data-phase=passedOut]>aside { max-height:none; }
+@media(max-width:700px) and (orientation:portrait) {
+ .page[data-started=true][data-phase=complete],.page[data-started=true][data-phase=passedOut] { display:flex; overflow:auto; }
+ .page[data-phase=complete] .tableWrap,.page[data-phase=passedOut] .tableWrap { min-height:590px; overflow:visible; flex:none; }
+ .page[data-phase=complete] .liveTable,.page[data-phase=passedOut] .liveTable { height:auto; min-height:590px; }
+}
+
+/* v3.1.1: complete auction history is a permanent table slot, not a disclosure. */
+/* The application main pane owns phone scrolling, with navigation kept visible. */
+@media(max-width:700px) and (orientation:portrait), (max-height:500px) and (orientation:landscape) {
+ .page[data-started=true] { height:auto; min-height:100%; flex-shrink:0; overflow:visible; }
+ .page[data-started=true] .tableWrap { min-height:420px; overflow:visible; }
+ .page[data-started=true] .liveTable { min-height:420px; }
+ .liveTable[data-phase=play] [data-testid=current-trick]>span { display:block; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+ .page[data-started=true] .tableWrap,.page[data-started=true] .liveTable { min-height:310px; }
+}
+.liveHistory { display:flex; flex-direction:column; min-width:0; min-height:0; height:100%; background:var(--paper); color:var(--ink); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+@media(max-width:700px) and (orientation:portrait) {
+ .page[data-started=true][data-phase=play] .tableWrap,.page[data-started=true][data-phase=play] .liveTable { min-height:480px; }
+}
+.liveHistoryHeading { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:7px 11px; flex:none; border-bottom:1px solid var(--line); }
+.liveHistoryHeading h2 { margin:0; font-size:1rem; font-weight:600; line-height:1.4; }.liveHistoryHeading>span { font-size:.8125rem; color:var(--muted); white-space:nowrap; }
+.liveHistory .auctionHistory { flex:1; min-height:0; max-height:none; width:100%; margin:0; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; }
+.liveHistory .auctionHistory :is(th,td) { padding:5px 3px; font-size:.9375rem; line-height:1.4; }
+.liveHistory .auctionHistory th { font-size:.8125rem; z-index:1; }.liveHistory .auctionHistory p { font-size:.8125rem; padding:8px; }
+@media(max-width:700px) and (orientation:portrait) { .liveHistoryHeading { padding:4px 8px; }.liveHistoryHeading h2 { font-size:.875rem; }.liveHistoryHeading>span { font-size:.8125rem; }.liveHistory .auctionHistory :is(th,td) { padding:3px; font-size:.875rem; }.liveHistory .auctionHistory th { font-size:.8125rem; } }
+@media(max-height:500px) and (orientation:landscape) { .liveHistoryHeading { padding:4px 8px; }.liveHistoryHeading h2 { font-size:.875rem; }.liveHistoryHeading>span { display:none; }.liveHistory .auctionHistory :is(th,td) { padding:3px; font-size:.875rem; } }
+@media(max-width:700px) and (max-height:500px) and (orientation:landscape) {
+ .bidder .levelChoices { grid-auto-flow:row; grid-auto-columns:auto; grid-template-columns:repeat(4,minmax(0,1fr)); }
+ .liveTable .turnPanel { height:28px; padding:0 2px; }.liveTable .turnPanel h2 { margin:0; line-height:28px; }
+}
+
+.bidWithNotice { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+.historyCallWithNotice { display:flex; flex-direction:column; align-items:center; min-width:0; }

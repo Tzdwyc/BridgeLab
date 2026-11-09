@@ -1,0 +1,125 @@
+{
+  "source": "versions/v3.2.9-desktop/src/ai",
+  "baselineSystem": "sayc",
+  "shared": [
+    "core/*",
+    "neural/browser-model singleton"
+  ],
+  "files": [
+    {
+      "file": "bid-strategy.ts",
+      "sourceSHA256": "a3bcfa4139533280d23515b76450f368fbff633af77facc7777c4a846c6093a0",
+      "frozenSHA256": "6a75ba652cdd65c93ba1f649a505d76df886db282c3459078f0f353f15ee0567",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "bidding.ts",
+      "sourceSHA256": "68507b80ea30428ddf063f14d1ebc68273e7636dcbefe878591b3b5050d626e9",
+      "frozenSHA256": "e26af187372ae36a3ccb75fd12fa8edab30b8debd8026c5dc628734761fa9fb7",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "bidding-semantics.ts",
+      "sourceSHA256": "33300c9761e21ac503061df1eadadee6c00b3ea875d08ec11feb1e7e845a3721",
+      "frozenSHA256": "7bff4a841b86cfb4a61a61bee8b6f033dd3dd6823d5701b1e2f4bb8c81ddc196",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "constrained-sl.ts",
+      "sourceSHA256": "47c27c76ab4212677c9922cb85b7da6e4aa9468a1d4a5dc49ed48f4f657788cc",
+      "frozenSHA256": "2b55e74aefb9c157861dfb03b74f2647f9afb9ee6619d6248e05e2061c6e29f8",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "bidding-presentation.ts",
+      "sourceSHA256": "8783788bae656f23c6324b54e395d5d831c771c22f05a93451da5121718bfdd5",
+      "frozenSHA256": "14c0694f7bb9106f6180706e4c95da52402e6c7511ca883d60773c81738fb4dd",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "observation.ts",
+      "sourceSHA256": "ac759a3090ab1f12df61293ec53c55cc02f36a8b96c5261648803a6d9c092c6b",
+      "frozenSHA256": "98e801d24604a89546478a5bb84af2b60bdd5f106df73347481cb55cba99476e",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "systems.ts",
+      "sourceSHA256": "e31ed325f47a6db2393008b47233c4d42a37dbbaa18137b9b43140e33d863b64",
+      "frozenSHA256": "e31ed325f47a6db2393008b47233c4d42a37dbbaa18137b9b43140e33d863b64",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "precision.ts",
+      "sourceSHA256": "d5c922da20537ad428c7edc5e6cd7871c001a3bcb12ae4eb4c3801d4dbdb29a5",
+      "frozenSHA256": "7f233c63093ccf21fa72cb405350688dcc8b1e0af9697efa6f4876cf0174db37",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "neural/browser-model.ts",
+      "sourceSHA256": "89c5ff154635281695078a718585b87106a7bbbee43fba5643c73f730e618a11",
+      "frozenSHA256": "d67aa0f1bb8270262ac09b1b4602354c0b366c10ad30e8d6d70c1d2ebe865f8a",
+      "transformation": "shared-singleton bridge with frozen SAYC penalty"
+    },
+    {
+      "file": "neural/index.ts",
+      "sourceSHA256": "3d6dbc0589005727db00f438c43d5a2c3d1b6d1d8116b7c462eb0f03d8bf36c5",
+      "frozenSHA256": "3d6dbc0589005727db00f438c43d5a2c3d1b6d1d8116b7c462eb0f03d8bf36c5",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "approved-bidding-flow.ts",
+      "sourceSHA256": "019af5c5ccdd843da8682b16331e8186c3d1f3a7a34f51b139a140be28f7683f",
+      "frozenSHA256": "ecd20a0faa20af71ce4257fd1a7d879570e8e033221982ff332dd0d41202969c",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "bidding-consistency.ts",
+      "sourceSHA256": "c7434f88ed8ee7effbbf0a8371bf053fb8072a7958423f6f0d9dc227a0431790",
+      "frozenSHA256": "3b7291b2f076eda5696d87ec52269bb3563ab9fef624fba53a69104699b4174d",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "bidding-legacy.ts",
+      "sourceSHA256": "fbbdb9309759fb03c4ac56644d279a1bf2ac99e10f0f5e7e190f0036bf1ee899",
+      "frozenSHA256": "502eb208788b7bbb95498aed4c42b4e546bd5b6cac7e6c733a4f39ffa0137aac",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "suit-evaluation.ts",
+      "sourceSHA256": "728b5a13aa707c2719e7f3e02b77eaa71951a11e206c20b5437af429d7bab468",
+      "frozenSHA256": "d2c82c7d6114cdf5094f242873ab91f4ef76ae389d55591adc5e1c1c07693c5e",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "competition.ts",
+      "sourceSHA256": "51cb2f9d54d88e542f4e20fb7a67bdd7af11435ce43cf1dac2fd66b5d5da84e1",
+      "frozenSHA256": "0c17cfb8269cf71ddef3da976611b4c3508c1976b4c256559c3187ed8abbcc3c",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "bidding-meaning-format.ts",
+      "sourceSHA256": "1f127bf43477ec0e58483b83bb210c3c41fb82ad7f494aedf58c8e339eaca1ea",
+      "frozenSHA256": "6a6903c3107808f59c30b888f62454eeb019fbd9289e44831ed61dbeaec8d7f4",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "penalty-doubles.ts",
+      "sourceSHA256": "25497aa6579bef7f162f023a6fb583c81c9a3e639703beace7599fec0652875c",
+      "frozenSHA256": "39efb8bab2794cfe7a3a8ca28324918b7a9b408192f14023de3690e05e6dc33c",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "competitive-cue-fit.ts",
+      "sourceSHA256": "facddcf1c820e5f7b88c902b46809cfd647932c9f398843923eba8917382802f",
+      "frozenSHA256": "248bb3a5c993a9e9716c35b060b59d7d285470b8ce29b20e75fc4a44f674a6f8",
+      "transformation": "only outward relative imports gain one parent level"
+    },
+    {
+      "file": "neural/sha256.ts",
+      "sourceSHA256": "839bdc6b633b8f6a079e4f25afd8c9d7c173d0b455f20e78e09b798bd2e0806f",
+      "frozenSHA256": "839bdc6b633b8f6a079e4f25afd8c9d7c173d0b455f20e78e09b798bd2e0806f",
+      "transformation": "only outward relative imports gain one parent level"
+    }
+  ],
+  "verification": "python artifacts/v330-systems-drury-20261109/verify-natural-freeze.py"
+}

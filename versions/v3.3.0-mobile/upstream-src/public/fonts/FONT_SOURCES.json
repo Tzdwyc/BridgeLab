@@ -1,0 +1,39 @@
+[
+  {
+    "file": "SourceHanSansCN-VF.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/Variable/WOFF2/OTF/Subset/SourceHanSansCN-VF.otf.woff2",
+    "bytes": 7995716,
+    "unpackedSfntBytes": 15636088,
+    "sha256": "7087698d52240614659957608d8c4ad446759aee3208409dc9f566412e7af8f4"
+  },
+  {
+    "file": "InterVariable.woff2",
+    "url": "https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/InterVariable.woff2",
+    "bytes": 352240,
+    "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+  },
+  {
+    "file": "SourceSerif4-Roman.woff2",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/release/WOFF2/VAR/SourceSerif4Variable-Roman.otf.woff2",
+    "bytes": 426716,
+    "sha256": "f146ee102dddcc5bc7a2cf4af5bcf129832195941b92bd0a512626f390688c1e"
+  },
+  {
+    "file": "LICENSE-SourceHanSans.txt",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/master/LICENSE.txt",
+    "bytes": 4463,
+    "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+  },
+  {
+    "file": "LICENSE-Inter.txt",
+    "url": "https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt",
+    "bytes": 4380,
+    "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+  },
+  {
+    "file": "LICENSE-SourceSerif.md",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-serif/main/LICENSE.md",
+    "bytes": 4492,
+    "sha256": "75784a295293a8992f5a8d99210566e0064a012e6dab6731305e3787f15896c7"
+  }
+]

@@ -1,0 +1,30 @@
+.trickScore { display:flex; flex-direction:column; gap:8px; min-width:0; width:100%; box-sizing:border-box; padding:10px 12px 12px; border:1px solid var(--line,#d5dece); border-radius:12px; background:var(--paper,#fffdf6); color:#304c3c; }
+.scoreHeader { display:flex; align-items:center; justify-content:space-between; gap:8px 12px; flex-wrap:wrap; }
+.scoreContract { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.scoreContract strong { font-size:1rem; font-weight:650; line-height:1.3; }
+.scoreContract>span { font-size:.75rem; }
+.scoreTargetCaption { font-size:.8125rem; font-weight:600; color:#6a552d; white-space:nowrap; }
+.scoreOutcome { display:flex; flex-direction:column; align-items:flex-end; gap:1px; margin-left:auto; color:#425c4a; font-size:.8125rem; line-height:1.35; }
+.scoreOutcome small { color:#6a785d; font-size:.6875rem; }
+.compactOutcome { display:none; }
+.scoreSides { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.scoreSide { display:flex; align-items:center; gap:7px; font-size:.8125rem; line-height:1.2; }
+.scoreSide[data-side=NS] { color:#2c6b52; }
+.scoreSide[data-side=EW] { color:#86651f; }
+.scoreSide strong { font-size:1rem; font-variant-numeric:tabular-nums; }
+.scoreSide small { margin-left:4px; font-size:.6875rem; color:#687766; }
+.scoreTrack { position:relative; display:grid; grid-template-columns:repeat(13,minmax(0,1fr)); gap:2px; height:22px; }
+.scoreSegment { min-width:0; border-radius:3px; background:#e1e7dc; }
+.scoreSegment[data-side=NS] { background:#438568; }
+.scoreSegment[data-side=EW] { background:#c5a04c; }
+.scoreTarget { position:absolute; top:-3px; bottom:-3px; width:2px; transform:translateX(-50%); border-radius:2px; background:#725620; box-shadow:0 0 0 1px var(--paper,#fffdf6); }
+@media(max-width:700px) and (orientation:portrait), (max-height:500px) and (orientation:landscape) {
+ .trickScore { gap:7px; padding:8px 10px 10px; border-radius:9px; }
+ .scoreHeader { gap:5px 10px; }
+ .scoreContract strong { font-size:.9375rem; }
+ .scoreContract>span { font-size:.75rem; }
+ .scoreTargetCaption,.scoreOutcome,.scoreSide { font-size:.75rem; }
+ .scoreTrack { height:24px; }
+ .fullOutcome { display:none; }
+ .compactOutcome { display:inline; }
+}

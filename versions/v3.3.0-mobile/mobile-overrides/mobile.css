@@ -1,0 +1,23 @@
+/* Native SafeArea bounds the WebView; only the middle pane may scroll. */
+html,body,#root{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
+[data-testid="app"]{height:100dvh;min-height:0;overflow:hidden}
+[data-testid="app"]>header,[data-testid="app"]>nav,[data-testid="app"]>[role="status"]{flex-shrink:0}
+[data-testid="app"]>main{flex:1 1 0;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain}
+/* Keep the fitted live table and its existing inner scroll areas intact. */
+[data-testid="app"]>main[class*="_tableMain_"]{overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain}
+/* Workbench pages share main's scroller instead of nesting full-height pages. */
+[data-testid="app"]>main:not([class*="_tableMain_"])>*{height:auto;min-height:100%;overflow:visible}
+/* Analysis reserves its replay row above the main navigation. */
+[data-testid="app"]>main[class*="_analysisMain_"]{overflow:hidden}
+[data-testid="app"]>main[class*="_analysisMain_"]>[data-testid="analysis-page"]{height:100%;min-height:0;overflow:auto}
+[data-testid="app"]>main[class*="_analysisMain_"]>[data-testid="analysis-page"][data-entry="review"]{overflow:hidden}
+body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,a,input,select,summary{-webkit-tap-highlight-color:transparent}
+input,textarea{user-select:text;-webkit-user-select:text}
+@media(pointer:coarse){button,a,summary{touch-action:manipulation}.card:not(:disabled):hover{transform:none}}
+
+/* Phone review controls must remain inside the scrolling pane, below the score. */
+@media(max-width:700px) and (orientation:portrait),(max-height:500px) and (orientation:landscape){
+[data-testid="app"]>main:has(section[aria-label="四方桥牌桌"]>aside[data-score="true"]){padding-bottom:32px}
+[data-testid="app"]>main section[aria-label="四方桥牌桌"]>aside[data-score="true"]{overflow:visible}
+}

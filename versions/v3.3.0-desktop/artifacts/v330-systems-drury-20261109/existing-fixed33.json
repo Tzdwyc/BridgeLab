@@ -1,0 +1,8307 @@
+{
+  "source": "../v3.2.8-desktop/artifacts/v328-hints-and-cue-20261108/fixed33-final-002/fixed33-actual-table.json",
+  "sourceSHA256": "0f3d99d25e73bd7ed71971b6167b8b99ec01beb441c1e3cb585b43c318c6be15",
+  "rows": [
+    {
+      "pointId": "B1-dev-competition-0011-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1136,
+        "seat": "E",
+        "actingSeat": "E",
+        "vulnerability": "Both",
+        "auction": [
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "S4",
+            "suit": "S",
+            "rank": 4
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          },
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "D10",
+            "suit": "D",
+            "rank": 10
+          },
+          {
+            "id": "D5",
+            "suit": "D",
+            "rank": 5
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "C10",
+            "suit": "C",
+            "rank": 10
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          },
+          {
+            "kind": "double"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0021-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1084,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "EW",
+        "auction": [
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "H11",
+            "suit": "H",
+            "rank": 11
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "C4",
+            "suit": "C",
+            "rank": 4
+          },
+          {
+            "id": "C9",
+            "suit": "C",
+            "rank": 9
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0028-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1091,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "None",
+        "auction": [
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "D4",
+            "suit": "D",
+            "rank": 4
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "S7",
+            "suit": "S",
+            "rank": 7
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0040-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1103,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "Both",
+        "auction": [
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "C5",
+            "suit": "C",
+            "rank": 5
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "C9",
+            "suit": "C",
+            "rank": 9
+          },
+          {
+            "id": "C4",
+            "suit": "C",
+            "rank": 4
+          },
+          {
+            "id": "S4",
+            "suit": "S",
+            "rank": 4
+          },
+          {
+            "id": "D7",
+            "suit": "D",
+            "rank": 7
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0022-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1022,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "Both",
+        "auction": [
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S8",
+            "suit": "S",
+            "rank": 8
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "D9",
+            "suit": "D",
+            "rank": 9
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "D4",
+            "suit": "D",
+            "rank": 4
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "C9",
+            "suit": "C",
+            "rank": 9
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0037-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1037,
+        "seat": "E",
+        "actingSeat": "E",
+        "vulnerability": "Both",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "D4",
+            "suit": "D",
+            "rank": 4
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "C9",
+            "suit": "C",
+            "rank": 9
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0039-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1039,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "Both",
+        "auction": [],
+        "hand": [
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "H11",
+            "suit": "H",
+            "rank": 11
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "D9",
+            "suit": "D",
+            "rank": 9
+          },
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "C9",
+            "suit": "C",
+            "rank": 9
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0055-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1055,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "Both",
+        "auction": [],
+        "hand": [
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "C7",
+            "suit": "C",
+            "rank": 7
+          },
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "D10",
+            "suit": "D",
+            "rank": 10
+          },
+          {
+            "id": "S4",
+            "suit": "S",
+            "rank": 4
+          },
+          {
+            "id": "S7",
+            "suit": "S",
+            "rank": 7
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0056-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1056,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "Both",
+        "auction": [],
+        "hand": [
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          },
+          {
+            "id": "D5",
+            "suit": "D",
+            "rank": 5
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0002-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1065,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "EW",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "S7",
+            "suit": "S",
+            "rank": 7
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          },
+          {
+            "id": "D2",
+            "suit": "D",
+            "rank": 2
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C4",
+            "suit": "C",
+            "rank": 4
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0018-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1081,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "EW",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "H4",
+            "suit": "H",
+            "rank": 4
+          },
+          {
+            "id": "S4",
+            "suit": "S",
+            "rank": 4
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "S8",
+            "suit": "S",
+            "rank": 8
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "S7",
+            "suit": "S",
+            "rank": 7
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0046-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1109,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 5,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H11",
+            "suit": "H",
+            "rank": 11
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "C5",
+            "suit": "C",
+            "rank": 5
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0049-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1112,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 5,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "D7",
+            "suit": "D",
+            "rank": 7
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "C7",
+            "suit": "C",
+            "rank": 7
+          },
+          {
+            "id": "C2",
+            "suit": "C",
+            "rank": 2
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0051-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1114,
+        "seat": "E",
+        "actingSeat": "E",
+        "vulnerability": "EW",
+        "auction": [
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-slam-0046-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1221,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H11",
+            "suit": "H",
+            "rank": 11
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "C4",
+            "suit": "C",
+            "rank": 4
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "C2",
+            "suit": "C",
+            "rank": 2
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-slam-0050-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1225,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "EW",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-slam-0050-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1225,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "EW",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 5,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 5,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-competition-0035-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1160,
+        "seat": "E",
+        "actingSeat": "E",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "double"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "D8",
+            "suit": "D",
+            "rank": 8
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "C6",
+            "suit": "C",
+            "rank": 6
+          },
+          {
+            "id": "C7",
+            "suit": "C",
+            "rank": 7
+          },
+          {
+            "id": "C8",
+            "suit": "C",
+            "rank": 8
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0027-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1090,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "None",
+        "auction": [
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "H11",
+            "suit": "H",
+            "rank": 11
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "C6",
+            "suit": "C",
+            "rank": 6
+          },
+          {
+            "id": "C2",
+            "suit": "C",
+            "rank": 2
+          },
+          {
+            "id": "H2",
+            "suit": "H",
+            "rank": 2
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0030-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1093,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C10",
+            "suit": "C",
+            "rank": 10
+          },
+          {
+            "id": "D8",
+            "suit": "D",
+            "rank": 8
+          },
+          {
+            "id": "C6",
+            "suit": "C",
+            "rank": 6
+          },
+          {
+            "id": "C7",
+            "suit": "C",
+            "rank": 7
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0048-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1111,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "C8",
+            "suit": "C",
+            "rank": 8
+          },
+          {
+            "id": "H11",
+            "suit": "H",
+            "rank": 11
+          },
+          {
+            "id": "H4",
+            "suit": "H",
+            "rank": 4
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "S8",
+            "suit": "S",
+            "rank": 8
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-long-0062-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1125,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "D"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "S"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "S7",
+            "suit": "S",
+            "rank": 7
+          },
+          {
+            "id": "S4",
+            "suit": "S",
+            "rank": 4
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "H2",
+            "suit": "H",
+            "rank": 2
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "D5",
+            "suit": "D",
+            "rank": 5
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-slam-0014-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1189,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 1,
+              "strain": "C"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 4,
+              "strain": "NT"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "C2",
+            "suit": "C",
+            "rank": 2
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "C7",
+            "suit": "C",
+            "rank": 7
+          },
+          {
+            "id": "C4",
+            "suit": "C",
+            "rank": 4
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0047-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1047,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "H"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "D8",
+            "suit": "D",
+            "rank": 8
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "C8",
+            "suit": "C",
+            "rank": 8
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "C9",
+            "suit": "C",
+            "rank": 9
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "S8",
+            "suit": "S",
+            "rank": 8
+          },
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          },
+          {
+            "kind": "double"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-competition-0017-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1142,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "H4",
+            "suit": "H",
+            "rank": 4
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "D4",
+            "suit": "D",
+            "rank": 4
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D2",
+            "suit": "D",
+            "rank": 2
+          },
+          {
+            "id": "C10",
+            "suit": "C",
+            "rank": 10
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-competition-0017-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1142,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "NS",
+        "auction": [
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S8",
+            "suit": "S",
+            "rank": 8
+          },
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          },
+          {
+            "id": "H2",
+            "suit": "H",
+            "rank": 2
+          },
+          {
+            "id": "D9",
+            "suit": "D",
+            "rank": 9
+          },
+          {
+            "id": "D5",
+            "suit": "D",
+            "rank": 5
+          },
+          {
+            "id": "D10",
+            "suit": "D",
+            "rank": 10
+          },
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "C13",
+            "suit": "C",
+            "rank": 13
+          },
+          {
+            "id": "C2",
+            "suit": "C",
+            "rank": 2
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "C8",
+            "suit": "C",
+            "rank": 8
+          },
+          {
+            "id": "C7",
+            "suit": "C",
+            "rank": 7
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-competition-0024-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1149,
+        "seat": "E",
+        "actingSeat": "E",
+        "vulnerability": "Both",
+        "auction": [
+          {
+            "seat": "N",
+            "call": {
+              "kind": "bid",
+              "level": 2,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "E",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "S",
+            "call": {
+              "kind": "bid",
+              "level": 3,
+              "strain": "H"
+            }
+          },
+          {
+            "seat": "W",
+            "call": {
+              "kind": "pass"
+            }
+          },
+          {
+            "seat": "N",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "S12",
+            "suit": "S",
+            "rank": 12
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "S6",
+            "suit": "S",
+            "rank": 6
+          },
+          {
+            "id": "S4",
+            "suit": "S",
+            "rank": 4
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "D10",
+            "suit": "D",
+            "rank": 10
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "D9",
+            "suit": "D",
+            "rank": 9
+          },
+          {
+            "id": "D2",
+            "suit": "D",
+            "rank": 2
+          },
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          },
+          {
+            "kind": "double"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0004-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1004,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "EW",
+        "auction": [],
+        "hand": [
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "C5",
+            "suit": "C",
+            "rank": 5
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "C3",
+            "suit": "C",
+            "rank": 3
+          },
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "D8",
+            "suit": "D",
+            "rank": 8
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          },
+          {
+            "id": "C2",
+            "suit": "C",
+            "rank": 2
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0006-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1006,
+        "seat": "E",
+        "actingSeat": "E",
+        "vulnerability": "Both",
+        "auction": [],
+        "hand": [
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "S8",
+            "suit": "S",
+            "rank": 8
+          },
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "D11",
+            "suit": "D",
+            "rank": 11
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "D9",
+            "suit": "D",
+            "rank": 9
+          },
+          {
+            "id": "D12",
+            "suit": "D",
+            "rank": 12
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          },
+          {
+            "id": "D8",
+            "suit": "D",
+            "rank": 8
+          },
+          {
+            "id": "C5",
+            "suit": "C",
+            "rank": 5
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0008-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1008,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "Both",
+        "auction": [],
+        "hand": [
+          {
+            "id": "D3",
+            "suit": "D",
+            "rank": 3
+          },
+          {
+            "id": "C10",
+            "suit": "C",
+            "rank": 10
+          },
+          {
+            "id": "C11",
+            "suit": "C",
+            "rank": 11
+          },
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "D13",
+            "suit": "D",
+            "rank": 13
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "D6",
+            "suit": "D",
+            "rank": 6
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "C12",
+            "suit": "C",
+            "rank": 12
+          },
+          {
+            "id": "S11",
+            "suit": "S",
+            "rank": 11
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0049-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1049,
+        "seat": "N",
+        "actingSeat": "N",
+        "vulnerability": "EW",
+        "auction": [],
+        "hand": [
+          {
+            "id": "S5",
+            "suit": "S",
+            "rank": 5
+          },
+          {
+            "id": "H5",
+            "suit": "H",
+            "rank": 5
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "S13",
+            "suit": "S",
+            "rank": 13
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "H2",
+            "suit": "H",
+            "rank": 2
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "H12",
+            "suit": "H",
+            "rank": 12
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H14",
+            "suit": "H",
+            "rank": 14
+          },
+          {
+            "id": "S2",
+            "suit": "S",
+            "rank": 2
+          },
+          {
+            "id": "D10",
+            "suit": "D",
+            "rank": 10
+          },
+          {
+            "id": "S7",
+            "suit": "S",
+            "rank": 7
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0047-P1",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1047,
+        "seat": "S",
+        "actingSeat": "S",
+        "vulnerability": "NS",
+        "auction": [],
+        "hand": [
+          {
+            "id": "D2",
+            "suit": "D",
+            "rank": 2
+          },
+          {
+            "id": "D4",
+            "suit": "D",
+            "rank": 4
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          },
+          {
+            "id": "D5",
+            "suit": "D",
+            "rank": 5
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "H9",
+            "suit": "H",
+            "rank": 9
+          },
+          {
+            "id": "C14",
+            "suit": "C",
+            "rank": 14
+          },
+          {
+            "id": "H6",
+            "suit": "H",
+            "rank": 6
+          },
+          {
+            "id": "D7",
+            "suit": "D",
+            "rank": 7
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    },
+    {
+      "pointId": "B1-dev-ordinary-0059-P2",
+      "system": "sayc",
+      "frozenObservation": {
+        "board": 1059,
+        "seat": "W",
+        "actingSeat": "W",
+        "vulnerability": "None",
+        "auction": [
+          {
+            "seat": "S",
+            "call": {
+              "kind": "pass"
+            }
+          }
+        ],
+        "hand": [
+          {
+            "id": "H2",
+            "suit": "H",
+            "rank": 2
+          },
+          {
+            "id": "S10",
+            "suit": "S",
+            "rank": 10
+          },
+          {
+            "id": "S3",
+            "suit": "S",
+            "rank": 3
+          },
+          {
+            "id": "H10",
+            "suit": "H",
+            "rank": 10
+          },
+          {
+            "id": "C10",
+            "suit": "C",
+            "rank": 10
+          },
+          {
+            "id": "H7",
+            "suit": "H",
+            "rank": 7
+          },
+          {
+            "id": "S9",
+            "suit": "S",
+            "rank": 9
+          },
+          {
+            "id": "H13",
+            "suit": "H",
+            "rank": 13
+          },
+          {
+            "id": "S14",
+            "suit": "S",
+            "rank": 14
+          },
+          {
+            "id": "H8",
+            "suit": "H",
+            "rank": 8
+          },
+          {
+            "id": "H3",
+            "suit": "H",
+            "rank": 3
+          },
+          {
+            "id": "H4",
+            "suit": "H",
+            "rank": 4
+          },
+          {
+            "id": "D14",
+            "suit": "D",
+            "rank": 14
+          }
+        ],
+        "phase": "auction",
+        "legalCalls": [
+          {
+            "kind": "pass"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 1,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 5,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "C"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "D"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "H"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "S"
+          },
+          {
+            "kind": "bid",
+            "level": 7,
+            "strain": "NT"
+          }
+        ]
+      }
+    }
+  ]
+}

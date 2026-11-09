@@ -1,0 +1,39 @@
+{
+  "version": "3.3.0",
+  "valid": true,
+  "naturalBaseline": "v3.2.9 default sayc hybrid plus Drury only",
+  "focusedTests": {
+    "passed": 196,
+    "failed": 0,
+    "packagedBaselineTestsPassed": 34
+  },
+  "sourceVerificationSHA256": "f6dcf71b048d695877cc71b743de394d7b8c3035d8abde274c1cfa8067de2dee",
+  "actualUI": {
+    "passed": 2,
+    "bundleSHA256": "71590f79cfd2fa1506fca429b00871d73d8c6dbe817f918c4e1b063fd5391c04",
+    "reportSHA256": "f8179f5550af05dce4c9634749d861088f5fd9f7cd4cea8d6867c44799350ab1"
+  },
+  "desktop": {
+    "version": "3.3.0",
+    "archive": "F:\\Bridge\\versions\\v3.3.0-desktop\\release\\BridgeLab-v3.3.0-desktop.zip",
+    "bytes": 81166935,
+    "files": 707,
+    "crcVerified": true,
+    "allFileHashesVerified": true,
+    "sha256": "6cb47ed32af73fd878d6ad4c32850ec8510725db61fc2112e29ac4cd2fa6aed2"
+  },
+  "android": {
+    "path": "F:\\Bridge\\versions\\v3.3.0-mobile\\release\\BridgeLab-v3.3.0-mobile-android.apk",
+    "sha256": "803debe10e44a679f9fdf468b5c1e3d2369efcd6e5801b6c82f2167034941dc1",
+    "versionCode": 70,
+    "allDistBytesVerified": true,
+    "upgradeIdentityVerified": true
+  },
+  "training": 0,
+  "newMotherDeals": 0,
+  "defaultPlayStrength": "challenge",
+  "originalSLRollbackPreserved": true,
+  "deviceInstallationVerified": false,
+  "realDeviceLANVerified": false,
+  "scope": "Feature and preservation checks only; no new claim of overall bidding performance."
+}

@@ -1,0 +1,59 @@
+import assert from 'node:assert/strict';
+import { registerHooks } from 'node:module';
+import { chromium, expect } from '@playwright/test';
+
+registerHooks({ resolve(specifier, context, next) {
+  try { return next(specifier, context); }
+  catch (error) {
+    if (error.code === 'ERR_MODULE_NOT_FOUND' && specifier.startsWith('.') && !/\.[a-z]+$/i.test(specifier)) return next(specifier + '.ts', context);
+    throw error;
+  }
+} });
+const { newGame } = await import('../src/core/game.ts');
+const { actionToCall } = await import('../src/ai/neural/index.ts');
+const url = process.env.BRIDGELAB_TEST_APP_URL ?? 'http://127.0.0.1:5202';
+const browser = await chromium.launch({ executablePath: process.env.BRIDGELAB_TEST_EDGE ?? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' });
+const storageKey = 'bridgelab.session.v3.6';
+const prefix = [0, 8, 0, 10, 0, 14, 0];
+const deal = newGame(1367, 'BridgeLab-lookahead-paired-value-eval-only-20261104-v1/1367');
+const actions = prefix.map((action, index) => ({ kind: 'call', seat: ['S', 'W', 'N', 'E'][index % 4], call: actionToCall(action) }));
+const saved = { version: 1, current: { board: 1, seed: deal.seed, actions,
+  customSetup: { dealer: deal.dealer, vulnerability: deal.vulnerability, hands: deal.initialHands } },
+  undo: [], history: [], delay: 0, biddingSystem: 'two-over-one', gameSystem: 'two-over-one', playStrength: 'basic' };
+
+try {
+  for (const enabled of [false, true]) {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, serviceWorkers: 'block' });
+    try {
+      const page = await context.newPage();
+      let assetLoads = 0;
+      page.on('request', request => { if (request.url().endsWith('/paired-value-v16.json')) assetLoads++; });
+      await page.addInitScript(({ key, file }) => {
+        if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(file));
+      }, { key: storageKey, file: saved });
+      await page.goto(`${url}/#/home`);
+      await page.getByRole('button', { name: '设置', exact: true }).click();
+      const dialog = page.getByRole('dialog', { name: '游戏设置' });
+      const toggle = dialog.getByRole('checkbox', { name: '叫牌前瞻（试用）' });
+      for (let i = 0; i < 8 && !await toggle.isVisible(); i++) {
+        await dialog.getByRole('button', { name: '下一页游戏设置' }).click();
+      }
+      await expect(toggle).not.toBeChecked();
+      if (enabled) await toggle.check();
+      await dialog.getByRole('button', { name: '关闭', exact: true }).click();
+      await page.evaluate(() => { location.hash = '/table'; });
+      const appliedCall = () => page.evaluate(({ key, i }) => JSON.parse(localStorage.getItem(key)).current.actions[i], { key: storageKey, i: prefix.length });
+      await expect.poll(appliedCall).toMatchObject({ kind: 'call', seat: 'E', call: actionToCall(enabled ? 17 : 32) });
+      const savedAction = await appliedCall();
+      if (enabled) {
+        assert.equal(assetLoads, 1);
+        assert.deepEqual(savedAction.robotBid.baselineCall, actionToCall(32));
+        assert.match(savedAction.robotBid.reason, /IMP/);
+      } else {
+        assert.equal(assetLoads, 0);
+        assert.equal(savedAction.robotBid, undefined);
+      }
+      console.log(JSON.stringify({ enabled, assetLoads, applied: savedAction }));
+    } finally { await context.close(); }
+  }
+} finally { await browser.close(); }

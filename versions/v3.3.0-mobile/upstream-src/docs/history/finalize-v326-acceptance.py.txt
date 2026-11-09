@@ -1,0 +1,113 @@
+"""Verify the bounded three-flow delivery and seal its external receipts."""
+import hashlib
+import json
+import sys
+from pathlib import Path
+from zipfile import ZipFile
+
+root = Path(__file__).resolve().parents[1]
+folder = root / 'artifacts/v326-three-flows-20261108'
+mobile = root.parent / 'v3.2.6-mobile'
+read = lambda p: json.loads(p.read_text(encoding='utf-8-sig'))
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+write = lambda p, v: p.write_text(json.dumps(v, ensure_ascii=False, indent=2), encoding='utf-8')
+baseline = read(folder / 'BASELINE.json')
+for name, digest in baseline['files'].items():
+    assert sha(root.parent / 'v3.2.5-desktop' / name) == digest, name
+old_zip = root.parent / 'v3.2.5-desktop/release/BridgeLab-v3.2.5-desktop.zip'
+old_apk = root.parent / 'v3.2.5-mobile/release/BridgeLab-v3.2.5-mobile-android.apk'
+assert sha(old_zip) == baseline['desktopArchiveSHA256']
+assert sha(old_apk) == baseline['mobileArchiveSHA256']
+unit = read(folder / 'final-unit-results.json')
+assert unit['numPassedTests'] == 337 and unit['numFailedTests'] == 0
+actual = read(folder / 'actual-table-002.json')
+assert actual['validExecution'] and actual['inputsPreserved'] and actual['sourceStableDuringRun']
+assert actual['training'] == actual['newMotherDeals'] == actual['playAdvisorCalls'] == actual['ddsCalls'] == 0
+assert actual['completedTargetQueries'] == actual['completedLanActualPollQueries'] == 10
+assert len(actual['rows']) == 40 and len(actual['controls']) == 11
+targets = [r for r in actual['rows'] if r['group'] == 'five-frozen-targets']
+assert len(targets) == 10
+for row in targets + actual['lanRows']:
+    assert row['actualName'] == row['expected'] and row['publicMeaning']['defined']
+    assert row['qualification']['allowed'] and row['actualApplyActionAccepted']
+for name, digest in actual['sourceHashes'].items():
+    assert sha(root / name) == digest, name
+fixed = read(folder / 'fixed33-final/fixed33-actual-table.json')
+prior = read(root / 'artifacts/v325-consistency-20261108/final-release/fixed33-actual-table.json')
+old_rows = {(r['pointId'], r['system']): r for r in prior['rows']}
+changes = [{'pointId': r['pointId'], 'system': r['system'],
+            'before': old_rows[r['pointId'], r['system']]['newCallName'], 'after': r['newCallName']}
+           for r in fixed['rows'] if r['newCall'] != old_rows[r['pointId'], r['system']]['newCall']]
+assert changes == [{'pointId': 'B1-dev-long-0040-P1', 'system': 'two-over-one', 'before': '2S', 'after': '3C'}]
+assert fixed['validExecution'] and fixed['actualSingleBidQueriesCompleted'] == 66
+assert fixed['protectedCallRows'] == fixed['originalSLRollback']['completedQueries'] == 18
+assert all(r['frozenOriginalCallPreserved'] for r in fixed['originalSLRollback']['rows'])
+assert not [r for r in fixed['rows'] if not r['protectedStyleOrRetainedCall'] and r['unresolvedReasons']]
+inherited = read(folder / 'inherited-test-comparison.json')
+assert inherited['sameSixInheritedFailures'] and not inherited['newFailures']
+boundary = read(folder / 'qualification-boundary-summary.json')
+unqualified = [r for r in actual['rows'] if not r['qualification']['allowed']]
+assert len(unqualified) == 4 and all(r['group'] != 'five-frozen-targets' for r in unqualified)
+ui = read(folder / 'ui-final/verification.json')
+delivery = read(root / 'artifacts/delivery-verification-v3.2.6.json')
+assert ui['passed'] and len(ui['results']) == 20
+assert ui['sha256'] == delivery['mainBundleSHA256'] == sha(root / 'dist/assets' / ui['bundle'])
+bundle_time = (root / 'dist/assets' / ui['bundle']).stat().st_mtime
+assert all((root / name).stat().st_mtime <= bundle_time for name in delivery['actualSourceChanges'])
+result = {
+    'version': '3.2.6', 'androidVersionCode': 66, 'baseVersion': '3.2.5',
+    'status': 'five approved positions resolved; auxiliary boundaries explicitly retained',
+    'trainingRun': False, 'newMotherDealPerformanceCohort': False,
+    'mainBundle': ui['bundle'], 'mainBundleSHA256': ui['sha256'],
+    'unitTests': {'passed': 337, 'failed': 0, 'files': 17},
+    'inheritedLegacyTextAssertions': {'sameFailuresAsV325': 6, 'newFailures': 0},
+    'targetPositions': 5, 'actualTargetControllerCalls': 10, 'actualTargetLanPollCalls': 10,
+    'actualPrimaryControllerCalls': 40, 'actualControlCalls': 11,
+    'actualPrimaryQualified': 36,
+    'auxiliaryUnresolved': [{k: r[k] for k in ['id', 'system', 'actualName', 'notes', 'qualification']}
+                            for r in unqualified],
+    'fixed33': {'actualCalls': 66, 'changesFromV325': changes,
+                'protectedRowsUnchanged': 18, 'originalSLRollbackMatched': 18,
+                'remainingNonDeferredQualificationFailures': 0},
+    'productionPhoneViewportChecks': 20,
+    'defaultModel': 'seed101-epoch08', 'rollbackModel': 'original-sl',
+    'lookaheadDisabled': True, 'sourceChanges': delivery['actualSourceChanges'],
+    'sourceSHA256': delivery['sourceSHA256'],
+    'oldV325SourceAndPackagesPreserved': True,
+    'physicalPhoneInstallation': False, 'emulatorInstallation': False,
+    'realMultiDeviceLanValidation': False,
+    'actualEvidence': 'actual-table-002.json',
+    'qualificationBoundaries': 'qualification-boundary-summary.json',
+    'wholeBoardPerformanceClaim': False,
+}
+if '--prepackage' in sys.argv:
+    result['packageHashes'] = 'Pending in external FINAL_ACCEPTANCE.json'
+    write(folder / 'PREPACKAGE_ACCEPTANCE.json', result)
+    print('Prepackage verification passed: 337 tests; 20 target actions; 66 fixed calls and 18 rollback; 20 UI checks.')
+    raise SystemExit(0)
+desktop = read(root / 'release/DESKTOP_PACKAGE_VERIFICATION_v3.2.6.json')
+assert sha(Path(desktop['archive'])) == desktop['sha256']
+validation = read(mobile / 'docs/VALIDATION_v3.2.6.json')
+upgrade = read(mobile / 'docs/UPGRADE_SIGNATURE_VALIDATION_v3.2.6.json')
+apk = mobile / 'release/BridgeLab-v3.2.6-mobile-android.apk'
+assert sha(apk) == validation['sha256'] == upgrade['current']['sha256']
+assert validation['mainBundleHashMatch'] and validation['unchangedDistFileHashesMatch']
+assert validation['desktopMainBundleSha256'] == ui['sha256']
+assert validation['desktopDistFileCount'] == 29 and upgrade['samePublicCertificate']
+assert upgrade['current']['versionCode'] == 66 and upgrade['previous']['versionCode'] == 65
+models = []
+with ZipFile(apk) as new, ZipFile(old_apk) as old:
+    for name in sorted(n for n in new.namelist() if n.startswith('assets/flutter_assets/assets/www/models/') and not n.endswith('/')):
+        assert new.read(name) == old.read(name), name
+        models.append({'asset': name, 'sha256': hashlib.sha256(new.read(name)).hexdigest(), 'unchangedFromV325': True})
+assert len(models) == 9
+result.update(desktopPackage=desktop, androidPackage={
+    'apk': str(apk), 'bytes': apk.stat().st_size, 'sha256': sha(apk),
+    'all29DistResourcesMatch': True, 'sameApplicationId': upgrade['sameApplicationId'],
+    'sameCertificate': True, 'certificateSHA256': upgrade['current']['publicCertificateSha256']},
+    all9ModelAssets=models,
+    documentationSnapshotNote='Package hashes are sealed in this external receipt. Final code and all executable/model assets match the build; later verification scripts/prose do not change the executable.')
+write(folder / 'FINAL_ACCEPTANCE.json', result)
+write(mobile / 'docs/V326_RELEASE_VERIFICATION.json', result)
+print(json.dumps({'allChecksPassed': True, 'desktopSHA256': desktop['sha256'], 'apkSHA256': sha(apk),
+                  'auxiliaryUnresolvedRows': 4, 'physicalPhoneInstallation': False}))

@@ -1,0 +1,166 @@
+"""Seal only v329 current-table display recovery; never builds or runs deals.
+
+Before packaging: python scripts/finalize-v329-acceptance.py --prepackage
+After ZIP/APK/signature reports: python scripts/finalize-v329-acceptance.py
+Use --ui/--tests for an exact newer report; there is no latest-passing fallback.
+FINAL_ACCEPTANCE.json remains outside the ZIP and is never overwritten.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+from pathlib import Path, PurePosixPath
+from zipfile import ZipFile
+
+root = Path(__file__).resolve().parents[1]
+evidence = root / 'artifacts/v329-history-display-20261108'
+mobile = root.parent / 'v3.3.0-mobile'
+old = root.parent / 'v3.2.8-desktop'
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--tests', default=str(evidence / 'display-regression-tests.json'))
+parser.add_argument('--ui', default=str(evidence / 'production-recovery-001.json'))
+parser.add_argument('--prepackage', action='store_true')
+parser.add_argument('--check-only', action='store_true')
+parser.add_argument('--output', type=Path)
+args = parser.parse_args()
+read = lambda p: json.loads(Path(p).read_text(encoding='utf-8-sig'))
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
+def sha(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for chunk in iter(lambda: stream.read(1048576), b''): digest.update(chunk)
+    return digest.hexdigest()
+
+
+def encoded_hash(value):
+    return hashlib.sha256(json.dumps(value, ensure_ascii=False, separators=(',', ':')).encode('utf-8')).hexdigest()
+
+
+def main():
+    output = (args.output or evidence / ('PREPACKAGE_ACCEPTANCE.json' if args.prepackage else 'FINAL_ACCEPTANCE.json')).resolve()
+    require(args.check_only or not output.exists(), f'Preserve existing receipt: {output}')
+    baseline = read(evidence / 'BASELINE.json')
+    old_tree = {p.relative_to(old).as_posix(): sha(p) for name in ['src', 'public'] for p in (old / name).rglob('*') if p.is_file()}
+    require(old_tree == baseline['files'], 'Old v328 source/public changed')
+    old_zip = old / 'release/BridgeLab-v3.2.8-desktop.zip'
+    old_apk = root.parent / 'v3.2.8-mobile/release/BridgeLab-v3.2.8-mobile-android.apk'
+    require(sha(old_zip) == baseline['desktopArchiveSHA256'] and sha(old_apk) == baseline['mobileArchiveSHA256'], 'Old packages changed')
+    current = {p.relative_to(root).as_posix(): sha(p) for name in ['src', 'public'] for p in (root / name).rglob('*') if p.is_file()}
+    changed = sorted(p for p, digest in current.items() if baseline['files'].get(p) != digest)
+    allowed = ['src/ai/historical-bidding-presentation.ts', 'src/ui/App.tsx']
+    require(set(current) == set(baseline['files']) and changed == allowed, 'Only the two display source files may change')
+    delivery = read(root / 'artifacts/delivery-verification-v3.3.0.json')
+    require(delivery['version'] == '3.3.0' and delivery['actualSourceChanges'] == changed, 'Delivery source ledger mismatch')
+    require(delivery['sourceSHA256'] == {p: current[p] for p in changed}, 'Final source hash mismatch')
+    require(read(root / 'package.json')['version'] == '3.3.0', 'Desktop version mismatch')
+    tests = read(args.tests)
+    require(tests['numTotalTests'] == tests['numPassedTests'] == 46 and tests['numFailedTests'] == 0
+            and tests.get('numPendingTests', 0) == 0 and tests.get('success') is True, 'Existing 46-test regression failed')
+    ui = read(args.ui)
+    require(ui.get('schema') == 'v329-current-table-recovery-production-v1' and ui.get('valid') is True
+            and ui['totalCases'] == ui['passedCases'] == len(ui['results']) == 5 and not ui['failures'], 'Five current recovery UI cases failed')
+    require(ui['newActions'] == ui['newMotherDeals'] == 0 and ui['distPreserved'] and ui['oldFilesUnchanged'], 'UI scope or preserved bytes changed')
+    captured = read(ui['inputPath'])
+    require(captured['input']['sourceBoard'] == 540 and sha(ui['inputPath']) == ui['inputSHA256'], 'UI did not use the original board540 evidence')
+    record = captured['record']
+    actions = record['actions'][:1]
+    require(len(actions) == 1 and actions[0]['call'] == {'kind': 'bid', 'level': 1, 'strain': 'H'}, 'The existing action is not the same first 1H')
+    input_hash = encoded_hash({key: actions if key == 'actions' else record[key] for key in ['board', 'seed', 'customSetup', 'actions']})
+    require(ui['inputHash'] == input_hash and ui['oneHActionSHA256'] == encoded_hash(actions)
+            and ui['setupSHA256'] == encoded_hash(record['customSetup']), 'Frozen 1H input hash mismatch')
+    expected_cases = {
+        'original-existing-v2.4': ('sayc', 'sayc-v2.4', 'sayc', 'sayc'),
+        'same-session-missing-agreement-version': ('sayc', None, 'sayc', 'sayc'),
+        'same-session-old-v2.3': ('sayc', 'sayc-v2.3', 'sayc', 'sayc'),
+        'same-session-missing-both-board-fields': (None, None, 'sayc', 'sayc'),
+        'same-session-missing-board-fields-and-gameSystem': (None, None, None, 'natural-lite'),
+    }
+    require({r['name'] for r in ui['results']} == set(expected_cases), 'Recovery metadata cases changed')
+    for row in ui['results']:
+        system, agreement, game_system, resolved = expected_cases[row['name']]
+        require(row['inputMetadata'] == {'biddingSystem': system, 'agreementVersion': agreement, 'gameSystem': game_system}
+                and row['expectedSystem'] == resolved, 'Recovery changed metadata or falsely relabeled the existing system')
+        require(row['passed'] and row['actualActions'] == row['actionsBefore'] == row['actionsAfter'] == 1
+                and row['actionsAndSetupUnchanged'] and row['inputHash'] == input_hash, 'Recovery generated or changed an action/input')
+        require(row['text'] == row['expected'] and '原约定含义未记录' not in row['text'], 'Live call still swallowed by generic historical fallback')
+        if resolved == 'sayc':
+            require('12~21个大牌点' in row['text'] and '5张以上红心' in row['text'], 'Recovered 1H promise incorrect')
+        else:
+            require('旧版简化自然制' in row['text'], 'Legacy system was falsely promoted to SAYC')
+    bundle = root / 'dist/assets' / delivery['mainBundle']
+    require(ui['productionBundleSHA256'] == ui['distAssetSHA256'] == delivery['mainBundleSHA256'] == sha(bundle), 'UI used a different production bundle')
+    require(ui['distIndexSHA256'] == sha(root / 'dist/index.html'), 'UI used a different page')
+    require(all((root / p).stat().st_mtime <= bundle.stat().st_mtime for p in changed), 'Build predates display source')
+    models = [p for p in (root / 'public/models').rglob('*') if p.is_file()]
+    require(len(models) == 9 and all(p.read_bytes() == (root / 'dist/models' / p.relative_to(root / 'public/models')).read_bytes() for p in models), 'Default/rollback model assets changed in dist')
+    result = {'version': '3.3.0', 'androidVersionCode': 69, 'baseVersion': '3.2.8',
+              'verifiedAtUTC': datetime.now(timezone.utc).isoformat(), 'sourceChanges': changed,
+              'oldV328SourcePublicAndPackagesPreserved': True, 'modelAndBiddingLogicUnchanged': True,
+              'existingTestsPassed': 46, 'currentRecoveryMetadataCasesPassed': 5,
+              'existingActionCountPerCase': 1, 'fixedInputSHA256': input_hash, 'newActions': 0,
+              'newMotherDeals': 0, 'training': 0, 'mainBundleSHA256': sha(bundle),
+              'sourceSHA256': {p: current[p] for p in changed},
+              'evidenceSHA256': {'tests': sha(args.tests), 'ui': sha(args.ui), 'baseline': sha(evidence / 'BASELINE.json')},
+              'scope': 'Current and future-call display only. Original board540 first 1H with five metadata restorations; no archive cohort or whole-board replay.',
+              'physicalPhoneInstallationVerified': False, 'realMultiDeviceLanVerified': False}
+    if not args.prepackage:
+        archive = root / 'release/BridgeLab-v3.3.0-desktop.zip'
+        package_receipt = read(root / 'release/DESKTOP_PACKAGE_VERIFICATION_v3.3.0.json')
+        require(sha(archive) == package_receipt['sha256'], 'ZIP hash mismatch')
+        prefix = 'BridgeLab-v3.3.0/'
+        with ZipFile(archive) as package:
+            require(package.testzip() is None, 'ZIP CRC failure')
+            manifest = read_manifest = json.loads(package.read(prefix + 'release-manifest.json'))
+            require(manifest['version'] == '3.3.0', 'ZIP version mismatch')
+            require(not any(PurePosixPath(n).name == 'FINAL_ACCEPTANCE.json' for n in package.namelist()), 'Final receipt must stay outside ZIP')
+            for row in read_manifest['files']:
+                relative = PurePosixPath(row['path'])
+                require(not relative.is_absolute() and '..' not in relative.parts and (root / str(relative)).resolve() != output,
+                        'Unsafe or self-referential manifest path')
+                content = package.read(prefix + str(relative))
+                require(len(content) == row['bytes'] and hashlib.sha256(content).hexdigest() == row['sha256'] == sha(root / str(relative)), 'ZIP/local file mismatch: ' + str(relative))
+            require(set(package.namelist()) == {prefix + row['path'] for row in manifest['files']} | {prefix + 'release-manifest.json'}, 'Unmanifested ZIP content')
+        apk = mobile / 'release/BridgeLab-v3.3.0-mobile-android.apk'
+        validation = read(mobile / 'docs/VALIDATION_v3.3.0.json')
+        upgrade = read(mobile / 'docs/UPGRADE_SIGNATURE_VALIDATION_v3.3.0.json')
+        require(sha(apk) == validation['sha256'] == upgrade['current']['sha256'] and sha(old_apk) == upgrade['previous']['sha256'], 'APK/signature report hash mismatch')
+        require(upgrade['current']['versionName'] == '3.3.0' and upgrade['current']['versionCode'] == 69
+                and upgrade['previous']['versionName'] == '3.2.8' and upgrade['previous']['versionCode'] == 68
+                and upgrade['current']['applicationId'] == upgrade['previous']['applicationId'] == 'cn.bridgelab.v03mobile'
+                and upgrade['current']['publicCertificateSha256'] == upgrade['previous']['publicCertificateSha256']
+                and upgrade['sameApplicationId'] and upgrade['samePublicCertificate'], 'Upgrade identity/signature/version mismatch')
+        www = 'assets/flutter_assets/assets/www/'
+        dist = [p for p in (root / 'dist').rglob('*') if p.is_file()]
+        require(len(dist) == validation['desktopDistFileCount'] == 29, 'Expected the same 29 dist resources')
+        with ZipFile(apk) as package, ZipFile(old_apk) as previous:
+            for path in dist:
+                relative = path.relative_to(root / 'dist').as_posix()
+                expected = path.read_bytes()
+                if relative == 'index.html': expected = expected.decode('utf-8-sig').replace('</head>', '  <link rel="stylesheet" href="./mobile.css"></head>').encode('utf-8')
+                require(package.read(www + relative) == expected, 'APK resource mismatch: ' + relative)
+            require(package.read(www + 'mobile.css') == (mobile / 'mobile-overrides/mobile.css').read_bytes(), 'APK mobile CSS mismatch')
+            for path in models:
+                relative = path.relative_to(root / 'public').as_posix()
+                require(package.read(www + relative) == path.read_bytes() == previous.read(www + relative), 'APK default/rollback asset changed: ' + relative)
+        result.update(desktopPackageSHA256=sha(archive), androidPackageSHA256=sha(apk),
+                      androidCertificateSHA256=upgrade['current']['publicCertificateSha256'],
+                      apkDistResourcesCompared=29, unchangedApkModelAssets=9, packageChecksComplete=True)
+    else:
+        result['packageChecksComplete'] = False
+        result['status'] = 'Source/test/current-UI gates passed; package and signature verification pending'
+    if not args.check_only:
+        with output.open('x', encoding='utf-8') as stream: json.dump(result, stream, ensure_ascii=False, indent=2)
+    print(json.dumps({'accepted': True, 'packageChecksComplete': not args.prepackage, 'receipt': str(output), 'written': not args.check_only}))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (ValueError, AssertionError, KeyError, FileNotFoundError) as error:
+        raise SystemExit(f'Acceptance NOT sealed: {error}') from error

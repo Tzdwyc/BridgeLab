@@ -1,0 +1,521 @@
+"""Fail-closed v3.2.8 acceptance receipt; never builds, trains or selects bids.
+
+Pass exact final evidence paths. Failed/interrupted generations are never
+searched around or overwritten. The default FINAL_ACCEPTANCE.json is excluded
+by package-release.py; final package hashes are written only outside the ZIP.
+
+Example (paths are relative to this desktop root):
+  python scripts/finalize-v328-acceptance.py --units <final-directed-tests.json>
+    --cue <cue-actual-table.json> --fixed <fixed33-actual-table.json>
+    --audit <presentation-audit-interval-final.json> --ten-dir <ten-board-final>
+    --ui <production-ui/verification.json> --presentation-summary <summary.json>
+Use --prepackage to verify non-package evidence before packaging, then run
+without it after ZIP/APK/signature reports exist. No permissive latest fallback.
+"""
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import re
+import shutil
+import subprocess
+from zipfile import ZipFile
+
+
+VERSION = '3.2.8'
+BASE_VERSION = '3.2.7'
+CODE = 68
+MODEL_HASHES = {
+    'seed101-epoch08': '41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3',
+    'original-sl': '96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f',
+}
+TEXT_SOURCES = {
+    'src/ai/bidding-presentation.ts', 'src/ai/bidding-meaning-format.ts',
+    'src/ai/historical-bidding-presentation.ts',
+}
+CRITICAL_PRESENTATION = TEXT_SOURCES | {'src/ai/bidding-semantics.ts'}
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
+def read(path):
+    require(path.is_file(), f'Missing required evidence: {path}')
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def sha(path):
+    digest = hashlib.sha256()
+    with path.open('rb') as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def blob_sha(value):
+    return hashlib.sha256(value).hexdigest()
+
+
+def interval(value, label):
+    if value is None:
+        return
+    low, high = value.get('min'), value.get('max')
+    require(type(low) is int and type(high) is int and 0 <= low <= high <= 40,
+            f'Invalid canonical interval, not repairable by hiding it: {label}: {value}')
+
+
+def meaning_ok(meaning, label):
+    require(meaning.get('defined') is True, f'Undefined final public meaning: {label}')
+    interval(meaning.get('hcpRange'), label + '/HCP')
+    interval(meaning.get('supportRange'), label + '/support')
+
+
+def under(root, value):
+    path = Path(value)
+    path = (path if path.is_absolute() else root / path).resolve()
+    require(path.is_relative_to(root.resolve()), f'Expected path inside desktop workspace: {path}')
+    return path
+
+
+def source_hashes(root, hashes, label, excluded=frozenset()):
+    require(isinstance(hashes, dict) and hashes, f'Missing source hashes: {label}')
+    for relative, digest in hashes.items():
+        if relative in excluded:
+            continue
+        require(sha(under(root, relative)) == digest.lower(), f'Stale source/input hash: {label}: {relative}')
+
+
+def current_source_closure(root, delivery, baseline):
+    require(delivery.get('version') == VERSION, 'Wrong delivery version')
+    require(delivery.get('defaultProfile') == 'seed101-epoch08'
+            and delivery.get('rollbackProfile') == 'original-sl', 'Model routes changed')
+    require(delivery.get('trainingRun') is False and delivery.get('lookaheadDisabled') is True
+            and delivery.get('playEngineChanged') is False, 'Training/lookahead/play boundary changed')
+    source_hashes(root, delivery['sourceSHA256'], 'delivery changed sources')
+    allowed = {
+        'src/ai/bidding-consistency.ts', 'src/ai/bidding-semantics.ts',
+        'src/ai/bidding-presentation.ts', 'src/ai/bidding-meaning-format.ts',
+        'src/ai/historical-bidding-presentation.ts', 'src/analysis/model.ts',
+        'src/analysis/navigation.ts', 'src/analysis/persistence.ts',
+        'src/ui/App.tsx', 'src/ui/AnalysisPage.tsx', 'src/ui/MatchPages.tsx',
+        'src/ui/LanRoomPage.tsx', 'src/ui/LanRoomPage.module.css',
+        'src/ui/CallNoticeCards.tsx', 'src/ui/CallNoticeCards.module.css',
+    }
+    current = {p.relative_to(root).as_posix(): sha(p) for name in ['src', 'public']
+               for p in (root / name).rglob('*') if p.is_file()}
+    require(set(baseline['files']) <= set(current), 'A baseline production/public file was removed')
+    changed = {p for p, digest in current.items() if baseline['files'].get(p) != digest}
+    require(changed <= allowed and changed == set(delivery['actualSourceChanges'])
+            == set(delivery['sourceSHA256']), 'Delivery source-change ledger incomplete or outside approved scope')
+    require(delivery.get('allPublicAssetsUnchanged') is True, 'Public asset change reported')
+    for relative, digest in baseline['files'].items():
+        if relative.startswith(('public/', 'src/ai/neural/', 'src/ai/play-', 'src/ai/playing',
+                                'src/core/', 'src/controller/', 'src/analysis/engine',
+                                'src/analysis/vendor/')):
+            require(sha(root / relative) == digest, f'Unapproved model/play/core change: {relative}')
+    for profile, expected in MODEL_HASHES.items():
+        for tree in ['public', 'dist']:
+            require(sha(root / tree / 'models/sl' / profile / 'sl.bin') == expected,
+                    f'Wrong {profile} weights in {tree}')
+        require(sha(root / 'public/models/sl' / profile / 'sl.json')
+                == sha(root / 'dist/models/sl' / profile / 'sl.json'), 'Model manifest differs')
+
+
+def unit_checks(path, root, delivery):
+    report = read(path)
+    require(report.get('success') is True and report.get('numFailedTests') == 0
+            and report.get('numFailedTestSuites') == 0 and report.get('numPassedTests', 0) > 0,
+            f'Final test report is not accepted: {path}')
+    allowed_opt_in = {'v325-fixed33.test.ts', 'v325-protocol-table.test.ts',
+                      'v328-cue-flows-live.test.ts', 'v328-fixed33.test.ts',
+                      'v328-presentation-audit.test.ts'}
+    skips = []
+    for file in report['testResults']:
+        for test in file['assertionResults']:
+            require(test['status'] != 'failed' and not test.get('failureMessages'), 'Retained unit failure')
+            if test['status'] != 'passed':
+                require(Path(file['name']).name in allowed_opt_in
+                        and test['status'] in {'skipped', 'pending'}, f'Unapproved skipped test: {file["name"]}')
+                skips.append({'file': Path(file['name']).name, 'title': test['title']})
+    end_ms = max(file.get('endTime', 0) for file in report['testResults'])
+    for relative in delivery['actualSourceChanges']:
+        require((root / relative).stat().st_mtime * 1000 <= end_ms + 2000,
+                f'Unit report predates final source: {relative}')
+    return {'passed': report['numPassedTests'], 'failed': 0,
+            'files': len(report['testResults']), 'separatelyVerifiedOptInSkips': skips}
+
+
+def cue_checks(path, root, recheck_path=None):
+    report = read(path)
+    require(report.get('validExecution') is True and not report.get('fatalError')
+            and not report.get('failures'), '71-action cue report is not accepted')
+    require(report['actualActions'] == 71 and report['completedControllerQueries'] == 44
+            and report['completedLanActualPollQueries'] == 6
+            and report['completedApprovedFixQueries'] == 4, 'Wrong cue action coverage')
+    require(report.get('inputsPreserved') and report.get('sourceStableDuringRun'), 'Cue execution drift')
+    require(all(report.get(key) == 0 for key in ['training', 'newMotherDeals', 'playAdvisorCalls', 'ddsCalls']),
+            'Cue scope exceeded')
+    source_hashes(root, report['inputHashes'], 'cue frozen inputs')
+    stale_text = [p for p, digest in report['sourceHashes'].items() if sha(root / p) != digest]
+    require(set(stale_text) <= TEXT_SOURCES, f'Cue decision source changed: {stale_text}')
+    all_rows = report['rows'] + report['lanRows']
+    for i, row in enumerate(all_rows):
+        label = f'cue/{i}/{row["id"]}/{row["system"]}'
+        meaning_ok(row['publicMeaning'], label)
+        require(row.get('qualification', {}).get('allowed') is True and not row.get('violations'), label)
+        require(all(row.get(key) is True for key in ['actualApplyActionAccepted', 'frozenPublicObservationEqual',
+                    'engineIntegrityPassed', 'engineReplayPassed']), f'Cue action not committed/replayed: {label}')
+    if stale_text:
+        require(recheck_path is not None, 'Cue has old formatter hashes: rerun final cue evidence or pass --cue-hint-recheck')
+        review = read(recheck_path)
+        require(review.get('sourceEvidenceSHA256') == sha(path) and review.get('passed') is True,
+                'Cue annotation recheck is not tied to the original actual evidence')
+        source_hashes(root, review['sourceHashes'], 'cue final annotation recheck')
+        require(len(review['rows']) == len(all_rows), 'Incomplete cue annotation recheck')
+        for old, new in zip(all_rows, review['rows']):
+            require(all(new.get(key) == old.get(key) for key in ['id', 'system', 'actual']), 'Cue recheck changed a decision')
+            require(new.get('originalNotes') == old.get('notes') and new.get('passed') is True,
+                    'Cue original note lost or final annotation failed')
+    return {'actualActions': 71, 'controllerCalls': 44, 'lanActualPolls': 6,
+            'formatterRefreshEvidence': str(recheck_path) if stale_text else None}
+
+
+def fixed_checks(path, root, previous_root):
+    fixed = read(path)
+    require(fixed.get('validExecution') and not fixed.get('fatalError') and not fixed.get('validationFailures'),
+            'Fixed-33 execution failed')
+    require(fixed['fixedContexts'] == 33 and fixed['actualSingleBidQueriesCompleted'] == 66
+            and len(fixed['rows']) == 66, 'Fixed-33 coverage incomplete')
+    require(fixed.get('inputsPreserved') and fixed.get('decisionSourcesPreserved'), 'Fixed-33 drift')
+    source_hashes(root, fixed['decisionSourceHashes'], 'fixed-33 final decision sources')
+    source_hashes(root, fixed['inputHashes'], 'fixed-33 frozen inputs')
+    old = read(previous_root / 'artifacts/v327-two-fixes-20261108/fixed33-final/fixed33-actual-table.json')
+    old_rows = {(r['pointId'], r['system']): r for r in old['rows']}
+    differences = []
+    for row in fixed['rows']:
+        key = row['pointId'], row['system']
+        require(row.get('actualApplyActionAccepted') and row.get('engineIntegrityPassed')
+                and row.get('engineReplayPassed'), f'Fixed row not actually committed: {key}')
+        if row['newCall'] != old_rows[key]['newCall']:
+            differences.append({'pointId': key[0], 'system': key[1],
+                                'before': old_rows[key]['newCallName'], 'after': row['newCallName']})
+            require(row.get('resourcePromiseCorrectionOfFormerlyRetainedCall') is True
+                    and row.get('qualification', {}).get('allowed') is True,
+                    f'Unaccounted fixed-33 call change from v327: {key}')
+    require(differences == fixed.get('resourcePromiseCorrections'), 'Fixed-33 change ledger mismatch')
+    require(all(r['pointId'] == 'B1-dev-competition-0024-P2' and r['before'] == '3S'
+                and r['after'] == 'Pass' for r in differences), 'Unapproved new fixed-33 difference')
+    require(fixed['protectedCallRows'] + len(differences) == 18, 'Protected original boundary not accounted for')
+    rollback = fixed['originalSLRollback']
+    require(rollback['completedQueries'] == 18 and len(rollback['rows']) == 18
+            and all(r.get('frozenOriginalCallPreserved') for r in rollback['rows']), 'Original SL rollback changed')
+    require(all(r['trace']['profileId'] == 'original-sl' and r['trace']['route'] == 'sl-legal'
+                and r['trace']['loadedWeightsSHA256'] == MODEL_HASHES['original-sl'] for r in rollback['rows']),
+            'Fixed-33 rollback did not actually use the frozen original model route')
+    return {'actualCalls': 66, 'originalSLRollbackCalls': 18, 'resourceCorrections': differences,
+            'retainedBoundaryRows': fixed['protectedCallRows'],
+            'boundaryNote': 'Retained style rows are preserved, not promoted to universal bidding qualification.'}
+
+
+def audit_checks(path, summary_path, root):
+    report, summary = read(path), read(summary_path)
+    require(report['records'] == 8232 and report['declaredRoleCount'] == 86
+            and report['availableDefinedRoleCount'] == 84 and not report['failures'], 'Final role audit failed/incomplete')
+    require(report['naturalRecords'] == 912 and report['precisionRecords'] == 16, 'Wrong frozen presentation corpus')
+    require(report['inputsPreserved'] and report['selectionCalls'] == report['newMotherDeals']
+            == report['training'] == report['dds'] == 0, 'Presentation audit changed scope/inputs')
+    source_hashes(root, report['inputs'], 'presentation audit inputs')
+    require(summary.get('finalAuditSHA256') == sha(path), 'Presentation summary is not bound to exact audit bytes')
+    for relative in CRITICAL_PRESENTATION - {'src/ai/historical-bidding-presentation.ts'}:
+        require(summary['hashes'].get(relative) == sha(root / relative), f'Stale formatter audit source: {relative}')
+    for row in report['representativeRows']:
+        if row.get('available') and row['meaning'].get('defined'):
+            meaning_ok(row['meaning'], 'presentation representative')
+    require(report['maxCharacters'] <= 140, 'Final compact explanation length regressed')
+    require({r['role'] for r in report['uncoveredRoles']} == {'unknown', 'unmapped-stayman-major'},
+            'New implemented-role coverage gap')
+    return {'publicChecks': 8232, 'definedImplementedRoles': 84, 'declaredRoles': 86,
+            'undefinedBoundaryRoles': report['uncoveredRoles'], 'maxCharacters': report['maxCharacters']}
+
+
+def ten_checks(directory, root, canonical_manifest, meaning_path=None, ui_path=None):
+    summary = read(directory / 'ten-board-summary.json')
+    frozen = read(canonical_manifest)
+    local_inputs = read(directory / 'ten-board-inputs.json')
+    require(summary['completed'] == summary['total'] == 10 and not summary['issues'] and not summary['errors'],
+            'Final ten-board generation has incomplete boards, hint/obligation issues or errors')
+    acceptance = read(directory / 'ten-board-acceptance.json')
+    require(acceptance.get('validWithinScope') is True, 'Ten-board final acceptance is not explicitly accepted')
+    require(summary['inputSourcePreserved'] and local_inputs['inputs'] == frozen['inputs'], 'Ten mother inputs changed')
+    require(len(frozen['inputs']) == 10 and local_inputs['strength'] == frozen['strength'] == 'challenge'
+            and local_inputs['slProfile'] == frozen['slProfile'] == 'seed101-epoch08', 'Ten-board profile/strength changed')
+    require(sha(Path(frozen['source'])) == frozen['sourceSHA256'] == local_inputs['sourceSHA256'], 'Original mother source changed')
+    for key in ['sourceHashesBefore', 'sourceHashesAfter']:
+        source_hashes(root, summary[key], 'ten-board frozen decision source', TEXT_SOURCES)
+    decision_before = {p: v for p, v in summary['sourceHashesBefore'].items() if p not in TEXT_SOURCES}
+    decision_after = {p: v for p, v in summary['sourceHashesAfter'].items() if p not in TEXT_SOURCES}
+    require(decision_before == decision_after, 'Ten-board decision source changed during actual play')
+    bids, actions, warnings, engines = {}, 0, 0, Counter()
+    for ordinal, original in enumerate(frozen['inputs'], 1):
+        board = read(directory / f'ten-board-{ordinal:02d}.json')
+        require(board['input'] == original and board['completed'] is True and board['phase'] == 'complete', 'Wrong/incomplete board')
+        require(board['completedTricks'] == 13 and board.get('claim') is None and not board['issues'], 'Not 13 actual unclaimed tricks')
+        require(board['strength'] == 'challenge', 'Challenge play strength changed')
+        for key in ['sourceHashesBefore', 'sourceHashesAfter']:
+            source_hashes(root, board[key], f'board {ordinal} decision source', TEXT_SOURCES)
+        require(board['record']['actions'] == [s['action'] for s in board['steps']], 'Recorded action history differs from actual steps')
+        recorded_hands = board['record']['customSetup']['hands']
+        require(all({c['id'] for c in recorded_hands[seat]} == {c['id'] for c in original['hands'][seat]}
+                    for seat in ['N', 'E', 'S', 'W']), 'Actual record did not use the frozen mother holding')
+        plays = [s for s in board['steps'] if s['kind'] == 'play']
+        require(len(plays) == 52 and len({s['action']['cardId'] for s in plays}) == 52, 'Not 52 unique actual card plays')
+        for step in plays:
+            legal = {c['id'] for c in step['observation']['legalCards']}
+            require(step['action']['cardId'] in legal, 'Actual card play was not legal in its public observation')
+        for step in [s for s in board['steps'] if s['kind'] == 'bid']:
+            label = f'board {ordinal}/action {step["actionIndex"]}'
+            require(step['action']['call'] in step['observation']['legalCalls'], f'Illegal actual call: {label}')
+            require(step.get('qualification', {}).get('allowed') is True and not step.get('promiseViolations')
+                    and not step.get('warning'), f'Unqualified actual bid/obligation failure: {label}')
+            meaning_ok(step['publicMeaning'], label)
+            require(step.get('candidateHistoryEqual') is True, f'Live candidate/history mismatch: {label}')
+            bids[ordinal, step['actionIndex']] = step
+        actions += len(board['steps'])
+        warnings += len(board.get('warnings', []))
+        engines.update(board.get('playEngines', {}))
+    review = read(meaning_path or directory / 'ten-board-final-meaning-review.json')
+    hover = read(ui_path or directory / 'ten-board-ui-hint-audit.json')
+    require(review.get('sourceStableDuringReview') is True and not review['unqualified'], 'Final per-call meaning review failed')
+    require(len(review['rows']) == len(bids), 'Final meaning review misses actual calls')
+    require(not hover['mismatches'] and not hover['errors'] and hover['checks'] == len(hover['results']), 'Final real UI hover audit failed')
+    for report, label in [(review, 'final ten meaning'), (hover, 'final ten UI')]:
+        for key in ['sourceHashesBefore', 'sourceHashesAfter']:
+            source_hashes(root, report[key], label)
+        require(report['sourceHashesBefore'] == report['sourceHashesAfter'], f'Source drift during {label}')
+    final_hints = {}
+    for row in review['rows']:
+        key = row['ordinal'], row['actionIndex']
+        require(key in bids, 'Meaning review refers to a nonexistent actual call')
+        old = bids[key]
+        require(row['observation'] == old['observation'] and row['actualCall'] == old['action']['call']
+                and row['originalLiveHint'] == old['candidateHint'], 'Annotation review rewrote an actual decision or original text')
+        meaning_ok(row['finalPublicMeaning'], f'final annotation {key}')
+        require(row['finalQualification']['allowed'] is True, 'Final annotation has an obligation/resource problem')
+        final_hints[key] = row['finalHint']
+    histories, candidates = set(), set()
+    for row in hover['results']:
+        key = row['ordinal'], row['actionIndex']
+        require(row.get('equal') is True and row['expected'] == final_hints.get(key), 'UI hint not tied to final annotation')
+        if row['kind'] == 'actual-auction-history-tooltip': histories.add(key)
+        elif row['kind'] == 'actual-south-candidate-tooltip': candidates.add(key)
+        else: raise ValueError(f'Unknown UI hint audit surface: {row["kind"]}')
+    require(histories == set(bids), 'Missing actual history tooltip check')
+    require(candidates == {k for k, step in bids.items() if step['observation']['seat'] == 'S'}, 'Missing actual South candidate tooltip check')
+    return {'completedBoards': 10, 'actualCards': 520, 'actualTricks': 130,
+            'actualBids': len(bids), 'actualActions': actions, 'finalObligationAndHintIssues': 0,
+            'finalHistoryTooltipChecks': len(histories), 'finalSouthCandidateTooltipChecks': len(candidates),
+            'playEngines': dict(engines), 'retainedPlayWarningObservations': warnings,
+            'annotationCorrectionsAfterPlay': len(review['changedTexts']),
+            'formatterChangedDuringPlay': [p for p in TEXT_SOURCES
+                if summary['sourceHashesBefore'].get(p) != summary['sourceHashesAfter'].get(p)],
+            'textBoundary': 'Original live text retained; final annotation and real-UI recheck are separate from frozen actual decisions. No replayed decisions or new mother games.',
+            'playingBoundary': 'Actual legal play includes recorded sampled-DDS and safety results; no all-DDS or strength-performance claim.'}
+
+
+def production_ui_checks(path, root, mobile, delivery):
+    report = read(path)
+    require(report.get('passed') is True and not report.get('error') and len(report['rows']) == 6,
+            'Production UI verification failed/incomplete')
+    bundle_hash = delivery['mainBundleSHA256']
+    require(report['mainBundleSHA256'] == report['expectedMainBundleSHA256'] == bundle_hash,
+            'Production UI used an old bundle')
+    require(sha(root / 'dist/assets' / delivery['mainBundle']) == bundle_hash, 'Final bundle mismatch')
+    require(report['mobileOverrideSHA256'] == sha(mobile / 'mobile-overrides/mobile.css'), 'Mobile CSS UI proof is stale')
+    for relative in delivery['actualSourceChanges']:
+        require((root / relative).stat().st_mtime <= (root / 'dist/assets' / delivery['mainBundle']).stat().st_mtime,
+                f'Build predates source: {relative}')
+    require({(r['system'], r['viewport']) for r in report['rows']}
+            == {(s, v) for s in ['sayc', 'two-over-one', 'precision'] for v in ['phone', 'desktop']}, 'Missing system/viewport UI proof')
+    for row in report['rows']:
+        require(row['archivePreserved'] and row['analysisRoundTrip'], 'History/export/import UI flow failed')
+        require(set(row['surfaces']) == {'candidate', 'live', 'history', 'analysisSelected', 'analysisHover', 'analysisReimport'}
+                and all(value == row['expected'] for value in row['surfaces'].values()), 'Production surfaces disagree')
+        require(all(p['hash'] == bundle_hash for p in row['proofs']) and len(row['proofs']) >= 3, 'Missing production script proofs')
+        for name in ['localCandidate', 'localHistoryMissingMetadata', 'lanCandidate', 'lanHistory']:
+            card = row['stop'][name]
+            require(card['bounds']['width'] >= 35 and card['bounds']['height'] >= 16
+                    and card['css']['fontSize'] >= 12 and card['css']['display'] != 'none'
+                    and card['css']['visibility'] != 'hidden', f'STOP not readable: {name}')
+            require(card['bounds']['x'] >= card['container']['x'] - 1
+                    and card['bounds']['x'] + card['bounds']['width'] <= card['container']['x'] + card['container']['width'] + 1,
+                    f'STOP outside its call cell: {name}')
+        require(row['stop']['localForcedNonJump'] is True and row['stop']['lanForcedNonJump'] is True, 'Nonjump falsely labeled STOP')
+        require(all(Path(p).is_file() for p in row['screenshots']), 'Missing actual UI screenshot')
+    return {'systemsAndViewports': 6, 'surfacesPerSystemViewport': 6, 'stopChecked': True,
+            'mainBundleSHA256': bundle_hash,
+            'lanBoundary': 'Production private component harness, not network transport or physical-device validation.'}
+
+
+def android_tool(name, override):
+    if override:
+        require(Path(override).is_file(), f'Missing Android tool: {override}')
+        return str(Path(override).resolve())
+    found = shutil.which(name)
+    if found: return found
+    sdk = Path(os.environ.get('ANDROID_HOME') or os.environ.get('ANDROID_SDK_ROOT')
+               or str(Path(os.environ.get('LOCALAPPDATA', '')) / 'Android/Sdk'))
+    tools = sdk / 'build-tools'
+    for directory in sorted(tools.glob('*'), key=lambda p: tuple(int(x) for x in re.findall(r'\d+', p.name)), reverse=True):
+        for suffix in ('.bat', '.exe', ''):
+            candidate = directory / (name + suffix)
+            if candidate.is_file(): return str(candidate)
+    raise ValueError(f'Android {name} is required for actual APK verification; pass --{name}')
+
+
+def apk_identity(apk, apksigner, aapt):
+    verify = subprocess.run([apksigner, 'verify', '--verbose', '--print-certs', str(apk)],
+                            capture_output=True, text=True, encoding='utf-8', errors='replace', check=True).stdout
+    certificate = re.search(r'certificate SHA-256 digest:\s*([0-9a-fA-F]{64})', verify)
+    require(certificate is not None, 'Verified APK certificate digest missing')
+    badging = subprocess.run([aapt, 'dump', 'badging', str(apk)], capture_output=True,
+                             text=True, encoding='utf-8', errors='replace', check=True).stdout
+    package = re.search(r"package: name='([^']+)' versionCode='(\d+)' versionName='([^']+)'", badging)
+    require(package is not None, 'APK package identity missing')
+    return {'sha256': sha(apk), 'applicationId': package[1], 'versionCode': int(package[2]),
+            'versionName': package[3], 'publicCertificateSha256': certificate[1].lower()}
+
+
+def packages(root, mobile, old_apk, output, delivery, args):
+    archive = root / 'release' / f'BridgeLab-v{VERSION}-desktop.zip'
+    desktop = read(root / 'release' / f'DESKTOP_PACKAGE_VERIFICATION_v{VERSION}.json')
+    require(desktop['sha256'] == sha(archive) and desktop['crcVerified'] and desktop['allFileHashesVerified'], 'ZIP receipt mismatch')
+    prefix = f'BridgeLab-v{VERSION}/'
+    with ZipFile(archive) as package:
+        require(package.testzip() is None, 'ZIP CRC failure')
+        names = package.namelist()
+        require(not any(PurePosixPath(p).name == 'FINAL_ACCEPTANCE.json' for p in names), 'Self-referential final receipt in ZIP')
+        manifest = json.loads(package.read(prefix + 'release-manifest.json'))
+        require(manifest['version'] == VERSION, 'Wrong ZIP manifest version')
+        require(len({r['path'] for r in manifest['files']}) == len(manifest['files']), 'Duplicate manifest entries')
+        for row in manifest['files']:
+            relative = PurePosixPath(row['path'])
+            require(not relative.is_absolute() and '..' not in relative.parts, 'Unsafe archive manifest path')
+            require(under(root, str(relative)) != output.resolve(), 'Final receipt path was already packaged')
+            content = package.read(prefix + str(relative))
+            require(len(content) == row['bytes'] and blob_sha(content) == row['sha256'], f'ZIP manifest entry mismatch: {relative}')
+            require(sha(root / str(relative)) == row['sha256'], f'Packaged file changed after sealing: {relative}')
+        require(set(names) == {prefix + r['path'] for r in manifest['files']} | {prefix + 'release-manifest.json'}, 'Unmanifested ZIP content')
+    apk = mobile / 'release' / f'BridgeLab-v{VERSION}-mobile-android.apk'
+    validation = read(mobile / 'docs' / f'VALIDATION_v{VERSION}.json')
+    upgrade = read(mobile / 'docs' / f'UPGRADE_SIGNATURE_VALIDATION_v{VERSION}.json')
+    require(sha(apk) == validation['sha256'] == upgrade['current']['sha256'], 'APK receipt mismatch')
+    apksigner, aapt = android_tool('apksigner', args.apksigner), android_tool('aapt', args.aapt)
+    current, previous = apk_identity(apk, apksigner, aapt), apk_identity(old_apk, apksigner, aapt)
+    require(current['versionName'] == VERSION and current['versionCode'] == CODE, 'Wrong APK version/name/code')
+    require(previous['versionName'] == BASE_VERSION and previous['versionCode'] == 67, 'Wrong previous APK identity')
+    require(current['applicationId'] == previous['applicationId'] == 'cn.bridgelab.v03mobile'
+            and current['publicCertificateSha256'] == previous['publicCertificateSha256'], 'Upgrade identity/certificate changed')
+    require(current == {k: upgrade['current'][k] for k in current}, 'Signature report differs from actual APK')
+    require(previous == {k: upgrade['previous'][k] for k in previous}, 'Previous APK signature report is stale')
+    www = 'assets/flutter_assets/assets/www/'
+    dist_files = [p for p in (root / 'dist').rglob('*') if p.is_file()]
+    with ZipFile(apk) as package, ZipFile(old_apk) as old:
+        for path in dist_files:
+            relative = path.relative_to(root / 'dist').as_posix()
+            expected = path.read_bytes()
+            if relative == 'index.html':
+                expected = expected.decode('utf-8-sig').replace('</head>', '  <link rel="stylesheet" href="./mobile.css"></head>').encode('utf-8')
+            require(package.read(www + relative) == expected, f'APK asset differs from final desktop dist: {relative}')
+        require(package.read(www + 'mobile.css') == (mobile / 'mobile-overrides/mobile.css').read_bytes(), 'Wrong APK mobile CSS')
+        sync = json.loads(package.read(www + 'mobile-build.json'))
+        require(sync['desktopVersion'] == VERSION and sync['desktopMainBundle'] == delivery['mainBundle'], 'Wrong embedded desktop build')
+        require(len(sync['desktopDistFiles']) == len(dist_files), 'Mobile dist manifest incomplete')
+        for row in sync['desktopDistFiles']:
+            require(sha(root / 'dist' / row['path']) == row['sha256'], f'Stale mobile dist manifest: {row["path"]}')
+        for row in sync['sourceSnapshotFiles']:
+            require(sha(root / row['path']) == row['sha256']
+                    == sha(mobile / 'upstream-src' / row['path']), f'Mobile source snapshot differs: {row["path"]}')
+        models = sorted(name for name in package.namelist() if name.startswith(www + 'models/') and not name.endswith('/'))
+        require(models == sorted(name for name in old.namelist() if name.startswith(www + 'models/') and not name.endswith('/'))
+                and len(models) == 9, 'Model asset set changed')
+        require(all(package.read(name) == old.read(name) for name in models), 'APK model/rollback bytes changed')
+    return {'desktop': {'path': str(archive), 'sha256': sha(archive), 'manifestFiles': len(manifest['files'])},
+            'android': {'path': str(apk), **current, 'allDistResourcesCompared': len(dist_files), 'unchangedModelAssets': 9,
+                        'samePublicCertificate': True, 'sameApplicationId': True}}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument('--evidence-dir', default='artifacts/v328-hints-and-cue-20261108')
+    for flag in ['units', 'cue', 'fixed', 'audit', 'ten-dir', 'ui', 'presentation-summary']:
+        parser.add_argument('--' + flag, required=True, help='Exact final accepted evidence path relative to desktop root')
+    parser.add_argument('--cue-hint-recheck', help='Explicit annotation refresh if only cue formatter hashes differ')
+    parser.add_argument('--ten-meaning-review')
+    parser.add_argument('--ten-ui-review')
+    parser.add_argument('--output', help='New receipt path; must remain outside desktop ZIP manifest')
+    parser.add_argument('--prepackage', action='store_true')
+    parser.add_argument('--check-only', action='store_true', help='Validate without writing a receipt')
+    parser.add_argument('--apksigner')
+    parser.add_argument('--aapt')
+    args = parser.parse_args()
+    root = args.root.resolve()
+    evidence = under(root, args.evidence_dir)
+    output = under(root, args.output) if args.output else evidence / ('PREPACKAGE_ACCEPTANCE.json' if args.prepackage else 'FINAL_ACCEPTANCE.json')
+    require(not output.exists() or args.check_only, f'Preserve completed receipt: {output}')
+    baseline = read(evidence / 'BASELINE.json')
+    previous_root, mobile = root.parent / f'v{BASE_VERSION}-desktop', root.parent / f'v{VERSION}-mobile'
+    old_apk = root.parent / f'v{BASE_VERSION}-mobile/release/BridgeLab-v{BASE_VERSION}-mobile-android.apk'
+    require(read(root / 'package.json')['version'] == VERSION, 'Wrong desktop version')
+    require(re.search(r'^version:\s*3\.2\.8\+68\s*$', (mobile / 'pubspec.yaml').read_text(), re.M), 'Wrong mobile pubspec version')
+    require(baseline['sourceVersion'] == BASE_VERSION and baseline['targetVersion'] == VERSION, 'Wrong baseline')
+    for relative, digest in baseline['files'].items():
+        require(sha(previous_root / relative) == digest, f'Old v327 source/public changed: {relative}')
+    old_tree = {p.relative_to(previous_root).as_posix() for name in ['src', 'public'] for p in (previous_root / name).rglob('*') if p.is_file()}
+    require(old_tree == set(baseline['files']), 'Old source/public file set changed')
+    require(sha(previous_root / 'release' / f'BridgeLab-v{BASE_VERSION}-desktop.zip') == baseline['desktopArchiveSHA256']
+            and sha(old_apk) == baseline['mobileArchiveSHA256'], 'Old ZIP/APK changed')
+    delivery = read(root / f'artifacts/delivery-verification-v{VERSION}.json')
+    current_source_closure(root, delivery, baseline)
+    supplied = {name: under(root, getattr(args, name.replace('-', '_'))) for name in
+                ['units', 'cue', 'fixed', 'audit', 'ten-dir', 'ui', 'presentation-summary']}
+    receipt = {'version': VERSION, 'baseVersion': BASE_VERSION, 'androidVersionCode': CODE,
+               'acceptedAtUTC': datetime.now(timezone.utc).isoformat(), 'status': 'all required final acceptance gates passed',
+               'oldV327SourcePublicAndArchivesPreserved': True, 'modelWeightsAndRollbackUnchanged': True,
+               'units': unit_checks(supplied['units'], root, delivery),
+               'cue': cue_checks(supplied['cue'], root, under(root, args.cue_hint_recheck) if args.cue_hint_recheck else None),
+               'fixed33': fixed_checks(supplied['fixed'], root, previous_root),
+               'presentation': audit_checks(supplied['audit'], supplied['presentation-summary'], root),
+               'tenBoardExperience': ten_checks(supplied['ten-dir'], root, evidence / 'ten-board-inputs.json',
+                   under(root, args.ten_meaning_review) if args.ten_meaning_review else None,
+                   under(root, args.ten_ui_review) if args.ten_ui_review else None),
+               'productionUI': production_ui_checks(supplied['ui'], root, mobile, delivery),
+               'evidenceSHA256': {name: sha(path) for name, path in supplied.items() if path.is_file()},
+               'sourceSHA256': delivery['sourceSHA256'],
+               'training': 0, 'newMotherDealPerformanceCohort': False,
+               'physicalPhoneInstallationVerified': False, 'realMultiDeviceLanVerified': False,
+               'wholeBoardPerformanceClaim': False}
+    if not args.prepackage:
+        receipt['packages'] = packages(root, mobile, old_apk, output, delivery, args)
+    else:
+        receipt['status'] = 'non-package final gates passed; package and actual APK signature checks pending'
+    if not args.check_only:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        with output.open('x', encoding='utf-8') as stream:
+            json.dump(receipt, stream, ensure_ascii=False, indent=2)
+    print(json.dumps({'accepted': True, 'packageChecksIncluded': not args.prepackage,
+                      'receipt': str(output), 'written': not args.check_only}, ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (ValueError, KeyError, FileNotFoundError, subprocess.CalledProcessError) as error:
+        raise SystemExit(f'Acceptance NOT sealed: {error}') from error

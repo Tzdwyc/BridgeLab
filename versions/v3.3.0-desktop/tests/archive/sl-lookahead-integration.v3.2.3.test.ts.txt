@@ -1,0 +1,97 @@
+import { afterAll, beforeAll, expect, it, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { getSLModelState, setLookaheadEnabled, suggestSLBid } from '../src/ai/neural/browser-model';
+import { actionToCall } from '../src/ai/neural';
+import { LOOKAHEAD_SHA256 } from '../src/ai/neural/lookahead';
+import { observe } from '../src/ai/observation';
+import { chooseCard } from '../src/ai/playing';
+import { robotStepWithAdvisor } from '../src/controller/robot';
+import { applyCall, newGame, playCard, replay, toRecord } from '../src/core/game';
+import type { GameState } from '../src/core/types';
+
+const storage = new Map<string, string>();
+const readAsset = async (input: RequestInfo | URL) => {
+  const path = new URL(String(input), 'http://localhost/').pathname;
+  return new Response(new Uint8Array(readFileSync(new URL('../public' + path, import.meta.url))));
+};
+const fetchAsset = vi.fn(readAsset);
+const advisor = { advise: vi.fn(async () => { throw new Error('叫牌时不应请求出牌建议'); }) };
+
+beforeAll(() => {
+  vi.stubGlobal('localStorage', { getItem: (key: string) => storage.get(key) ?? null,
+    setItem: (key: string, value: string) => { storage.set(key, value); } });
+  vi.stubGlobal('fetch', fetchAsset);
+});
+afterAll(() => { vi.unstubAllGlobals(); });
+
+function position(board: number, confirm: boolean, prefix: number[]) {
+  const batch = confirm ? 'confirmation' : 'eval-only';
+  let game = newGame(board, `BridgeLab-lookahead-paired-value-${batch}-20261104-v1/${board}`);
+  for (const action of prefix) game = applyCall(game, game.turn, actionToCall(action));
+  return game;
+}
+
+// Change one decision at the real controller and freeze the rest to the original evaluation policy.
+async function finish(game: GameState) {
+  while (game.phase === 'auction') {
+    const obs = observe(game);
+    if (obs.phase !== 'auction') throw new Error('expected auction');
+    game = applyCall(game, game.turn, (await suggestSLBid(obs)).call);
+  }
+  while (game.phase === 'play') {
+    const obs = observe(game);
+    if (obs.phase !== 'play') throw new Error('expected play');
+    game = playCard(game, game.turn, chooseCard(obs, 'two-over-one'));
+  }
+  return game;
+}
+
+it('is off by default, keeps other modes on the baseline, and only loads the head when eligible', async () => {
+  const game = position(1367, false, [0, 8, 0, 10, 0, 14, 0]);
+  expect(getSLModelState().lookaheadEnabled).toBe(false);
+  const baseline = await robotStepWithAdvisor(game, 'two-over-one', 'basic', advisor, true);
+  expect(baseline.game.auction.at(-1)?.call).toEqual(actionToCall(32));
+  setLookaheadEnabled(true);
+  for (const [system, strength, freePlay] of [['two-over-one', 'basic', false], ['sayc', 'basic', true],
+    ['two-over-one', 'challenge', true]] as const) {
+    const step = await robotStepWithAdvisor(game, system, strength, advisor, freePlay);
+    expect(step.game.auction.at(-1)?.call).toEqual(actionToCall(32));
+  }
+  expect(fetchAsset.mock.calls.some(([url]) => String(url).endsWith('paired-value-v16.json'))).toBe(false);
+  setLookaheadEnabled(false);
+});
+
+it.each([
+  { board: 1367, confirm: false, prefix: [0, 8, 0, 10, 0, 14, 0], base: 32, choice: 17, before: 200, after: -630 },
+  { board: 6247, confirm: true, prefix: [0, 5, 0, 6, 0, 12, 0], base: 22, choice: 15, before: -1440, after: -200 },
+])('replays winning and losing v16 overrides through the real controller on board $board', async row => {
+  const game = position(row.board, row.confirm, row.prefix);
+  setLookaheadEnabled(false);
+  const base = await robotStepWithAdvisor(game, 'two-over-one', 'basic', advisor, true);
+  expect(base.game.auction.at(-1)?.call).toEqual(actionToCall(row.base));
+  setLookaheadEnabled(true);
+  const trial = await robotStepWithAdvisor(game, 'two-over-one', 'basic', advisor, true);
+  expect(trial.game.auction.at(-1)?.call).toEqual(actionToCall(row.choice));
+  expect(getSLModelState().lastBid).toMatchObject({ route: 'lookahead-v16', lookaheadSHA256: LOOKAHEAD_SHA256 });
+  const note = { baselineCall: actionToCall(row.base), reason: expect.stringContaining('IMP') };
+  expect(replay(toRecord(trial.game)).actions.at(-1)).toMatchObject({ robotBid: note });
+  expect((await finish(base.game)).result?.scoreNS).toBe(row.before);
+  expect((await finish(trial.game)).result?.scoreNS).toBe(row.after);
+  expect(advisor.advise).not.toHaveBeenCalled();
+  setLookaheadEnabled(false);
+});
+
+it('falls back to the eighth-round call if the optional head fails its checksum', async () => {
+  vi.resetModules();
+  vi.stubGlobal('fetch', async (input: RequestInfo | URL) => String(input).endsWith('paired-value-v16.json')
+    ? new Response('{}') : readAsset(input));
+  const model = await import('../src/ai/neural/browser-model');
+  model.setLookaheadEnabled(true);
+  const observation = observe(position(1367, false, [0, 8, 0, 10, 0, 14, 0]));
+  if (observation.phase !== 'auction') throw new Error('expected auction');
+  const result = await model.suggestSLBid(observation, { system: 'two-over-one', allowLookahead: true });
+  expect(result.trace.route).toBe('sl-legal');
+  expect(result.call).toEqual(actionToCall(32));
+  expect(model.getSLModelState().lookaheadError).toContain('第8轮首选');
+  model.setLookaheadEnabled(false);
+});

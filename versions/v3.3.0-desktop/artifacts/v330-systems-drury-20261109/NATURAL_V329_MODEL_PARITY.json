@@ -1,0 +1,3923 @@
+{
+  "input": "artifacts/v330-systems-drury-20261109/existing-fixed33.json",
+  "contexts": 33,
+  "profiles": 2,
+  "newMotherDeals": 0,
+  "training": 0,
+  "results": [
+    {
+      "pointId": "B1-dev-competition-0011-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "pass"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1136,
+          "seat": "E",
+          "historyLength": 10,
+          "action": 0,
+          "rawTopAction": 14,
+          "call": {
+            "kind": "pass"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          "reason": "consistency:competitive-support"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "pass"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1136,
+          "seat": "E",
+          "historyLength": 10,
+          "action": 0,
+          "rawTopAction": 14,
+          "call": {
+            "kind": "pass"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          "reason": "consistency:competitive-support"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0021-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1084,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 13,
+          "rawTopAction": 11,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          "reason": "consistency:natural-second-suit-length"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1084,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 13,
+          "rawTopAction": 11,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          "reason": "consistency:natural-second-suit-length"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0028-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1091,
+          "seat": "N",
+          "historyLength": 6,
+          "action": 17,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "reason": "consistency:minor-game-public-fit"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1091,
+          "seat": "N",
+          "historyLength": 6,
+          "action": 17,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "reason": "consistency:minor-game-public-fit"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0040-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1103,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 13,
+          "rawTopAction": 11,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1103,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 13,
+          "rawTopAction": 11,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0022-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1022,
+          "seat": "S",
+          "historyLength": 1,
+          "action": 11,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "reason": "consistency:three-level-major-length"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1022,
+          "seat": "S",
+          "historyLength": 1,
+          "action": 11,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "reason": "consistency:three-level-major-length"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0037-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1037,
+          "seat": "E",
+          "historyLength": 1,
+          "action": 12,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1037,
+          "seat": "E",
+          "historyLength": 1,
+          "action": 12,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0039-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1039,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1039,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0055-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1055,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 6,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1055,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 6,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0056-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1056,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1056,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "reason": "consistency:strong-opening-resources"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0002-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1065,
+          "seat": "N",
+          "historyLength": 4,
+          "action": 10,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1065,
+          "seat": "N",
+          "historyLength": 4,
+          "action": 10,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0018-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1081,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 25,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1081,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 25,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0046-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1109,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 32,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1109,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 32,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0049-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1112,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 32,
+          "rawTopAction": 26,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1112,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 32,
+          "rawTopAction": 26,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0051-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1114,
+          "seat": "E",
+          "historyLength": 4,
+          "action": 10,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1114,
+          "seat": "E",
+          "historyLength": 4,
+          "action": 10,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0046-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1221,
+          "seat": "S",
+          "historyLength": 10,
+          "action": 24,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1221,
+          "seat": "S",
+          "historyLength": 10,
+          "action": 24,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0050-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 24,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 24,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0050-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 12,
+          "action": 28,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 12,
+          "action": 28,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "reason": "consistency:pending-exact-answer"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0035-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1160,
+          "seat": "E",
+          "historyLength": 6,
+          "action": 17,
+          "rawTopAction": 17,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1160,
+          "seat": "E",
+          "historyLength": 6,
+          "action": 17,
+          "rawTopAction": 17,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0027-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1090,
+          "seat": "W",
+          "historyLength": 10,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1090,
+          "seat": "W",
+          "historyLength": 10,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0030-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1093,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1093,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0048-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1111,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1111,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0062-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1125,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 17,
+          "rawTopAction": 13,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "reason": "consistency:long-minor-invitation"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1125,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 17,
+          "rawTopAction": 13,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "reason": "consistency:long-minor-invitation"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0014-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1189,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 32,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1189,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 32,
+          "rawTopAction": 32,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0047-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0017-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "W",
+          "historyLength": 2,
+          "action": 10,
+          "rawTopAction": 10,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "W",
+          "historyLength": 2,
+          "action": 10,
+          "rawTopAction": 10,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0017-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "N",
+          "historyLength": 3,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "N",
+          "historyLength": 3,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0024-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "pass"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1149,
+          "seat": "E",
+          "historyLength": 5,
+          "action": 0,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "pass"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "reason": "consistency:natural-overcall-resources"
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "pass"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "agreement-flow",
+          "board": 1149,
+          "seat": "E",
+          "historyLength": 5,
+          "action": 0,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "pass"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "reason": "consistency:natural-overcall-resources"
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0004-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1004,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1004,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0006-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1006,
+          "seat": "E",
+          "historyLength": 0,
+          "action": 4,
+          "rawTopAction": 4,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1006,
+          "seat": "E",
+          "historyLength": 0,
+          "action": 4,
+          "rawTopAction": 4,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0008-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1008,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1008,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0049-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1049,
+          "seat": "N",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1049,
+          "seat": "N",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0047-P1",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0059-P2",
+      "profile": "seed101-epoch08",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1059,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "seed101-epoch08",
+          "loadedWeightsSHA256": "41556ff0f83ced20eeea66a853b87269f3de0ac62b1aca75abce4bf9a63275e3",
+          "route": "sl-legal",
+          "board": 1059,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0011-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1136,
+          "seat": "E",
+          "historyLength": 10,
+          "action": 14,
+          "rawTopAction": 14,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1136,
+          "seat": "E",
+          "historyLength": 10,
+          "action": 14,
+          "rawTopAction": 14,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0021-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1084,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 17,
+          "rawTopAction": 17,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1084,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 17,
+          "rawTopAction": 17,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0028-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1091,
+          "seat": "N",
+          "historyLength": 6,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1091,
+          "seat": "N",
+          "historyLength": 6,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0040-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1103,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 17,
+          "rawTopAction": 17,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1103,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 17,
+          "rawTopAction": 17,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0022-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1022,
+          "seat": "S",
+          "historyLength": 1,
+          "action": 16,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1022,
+          "seat": "S",
+          "historyLength": 1,
+          "action": 16,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0037-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1037,
+          "seat": "E",
+          "historyLength": 1,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1037,
+          "seat": "E",
+          "historyLength": 1,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0039-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1039,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1039,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0055-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1055,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1055,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0056-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1056,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 1,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1056,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 1,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0002-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1065,
+          "seat": "N",
+          "historyLength": 4,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1065,
+          "seat": "N",
+          "historyLength": 4,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0018-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1081,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1081,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0046-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1109,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 31,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1109,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 31,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0049-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1112,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 31,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1112,
+          "seat": "W",
+          "historyLength": 8,
+          "action": 31,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0051-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1114,
+          "seat": "E",
+          "historyLength": 4,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1114,
+          "seat": "E",
+          "historyLength": 4,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0046-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1221,
+          "seat": "S",
+          "historyLength": 10,
+          "action": 25,
+          "rawTopAction": 25,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1221,
+          "seat": "S",
+          "historyLength": 10,
+          "action": 25,
+          "rawTopAction": 25,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0050-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 25,
+          "rawTopAction": 25,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 8,
+          "action": 25,
+          "rawTopAction": 25,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0050-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 12,
+          "action": 31,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 6,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1225,
+          "seat": "N",
+          "historyLength": 12,
+          "action": 31,
+          "rawTopAction": 31,
+          "call": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 6,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0035-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1160,
+          "seat": "E",
+          "historyLength": 6,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1160,
+          "seat": "E",
+          "historyLength": 6,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0027-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1090,
+          "seat": "W",
+          "historyLength": 10,
+          "action": 22,
+          "rawTopAction": 22,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1090,
+          "seat": "W",
+          "historyLength": 10,
+          "action": 22,
+          "rawTopAction": 22,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0030-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1093,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 4,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1093,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 21,
+          "rawTopAction": 21,
+          "call": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 4,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0048-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1111,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 16,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1111,
+          "seat": "S",
+          "historyLength": 8,
+          "action": 16,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-long-0062-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1125,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 13,
+          "rawTopAction": 13,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1125,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 13,
+          "rawTopAction": 13,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-slam-0014-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1189,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 5,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1189,
+          "seat": "S",
+          "historyLength": 6,
+          "action": 24,
+          "rawTopAction": 24,
+          "call": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 5,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0047-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0017-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "W",
+          "historyLength": 2,
+          "action": 10,
+          "rawTopAction": 10,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "W",
+          "historyLength": 2,
+          "action": 10,
+          "rawTopAction": 10,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0017-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "N",
+          "historyLength": 3,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1142,
+          "seat": "N",
+          "historyLength": 3,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-competition-0024-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1149,
+          "seat": "E",
+          "historyLength": 5,
+          "action": 16,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "S"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1149,
+          "seat": "E",
+          "historyLength": 5,
+          "action": 16,
+          "rawTopAction": 16,
+          "call": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 3,
+            "strain": "S"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0004-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1004,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1004,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 3,
+          "rawTopAction": 3,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0006-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1006,
+          "seat": "E",
+          "historyLength": 0,
+          "action": 4,
+          "rawTopAction": 4,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "D"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1006,
+          "seat": "E",
+          "historyLength": 0,
+          "action": 4,
+          "rawTopAction": 4,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "D"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0008-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1008,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "NT"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1008,
+          "seat": "W",
+          "historyLength": 0,
+          "action": 12,
+          "rawTopAction": 12,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "NT"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0049-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1049,
+          "seat": "N",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "C"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1049,
+          "seat": "N",
+          "historyLength": 0,
+          "action": 8,
+          "rawTopAction": 8,
+          "call": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 2,
+            "strain": "C"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0047-P1",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1047,
+          "seat": "S",
+          "historyLength": 0,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    },
+    {
+      "pointId": "B1-dev-ordinary-0059-P2",
+      "profile": "original-sl",
+      "old": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1059,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "current": {
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "H"
+        },
+        "trace": {
+          "profileId": "original-sl",
+          "loadedWeightsSHA256": "96cc4c3c993d168657e216b8b3bf3ebb681493b965dd6c908ecdee14d45b375f",
+          "route": "sl-legal",
+          "board": 1059,
+          "seat": "W",
+          "historyLength": 1,
+          "action": 5,
+          "rawTopAction": 5,
+          "call": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          },
+          "baselineCall": {
+            "kind": "bid",
+            "level": 1,
+            "strain": "H"
+          }
+        }
+      },
+      "equal": true
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "files": [
+    {
+      "path": "tests/fixtures/v329/src/ai/bid-strategy.ts",
+      "source": "../v3.2.9-desktop/src/ai/bid-strategy.ts",
+      "sha256": "a3bcfa4139533280d23515b76450f368fbff633af77facc7777c4a846c6093a0"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/bidding.ts",
+      "source": "../v3.2.9-desktop/src/ai/bidding.ts",
+      "sha256": "68507b80ea30428ddf063f14d1ebc68273e7636dcbefe878591b3b5050d626e9"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/bidding-semantics.ts",
+      "source": "../v3.2.9-desktop/src/ai/bidding-semantics.ts",
+      "sha256": "33300c9761e21ac503061df1eadadee6c00b3ea875d08ec11feb1e7e845a3721"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/constrained-sl.ts",
+      "source": "../v3.2.9-desktop/src/ai/constrained-sl.ts",
+      "sha256": "47c27c76ab4212677c9922cb85b7da6e4aa9468a1d4a5dc49ed48f4f657788cc"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/bidding-presentation.ts",
+      "source": "../v3.2.9-desktop/src/ai/bidding-presentation.ts",
+      "sha256": "8783788bae656f23c6324b54e395d5d831c771c22f05a93451da5121718bfdd5"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/observation.ts",
+      "source": "../v3.2.9-desktop/src/ai/observation.ts",
+      "sha256": "ac759a3090ab1f12df61293ec53c55cc02f36a8b96c5261648803a6d9c092c6b"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/systems.ts",
+      "source": "../v3.2.9-desktop/src/ai/systems.ts",
+      "sha256": "e31ed325f47a6db2393008b47233c4d42a37dbbaa18137b9b43140e33d863b64"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/precision.ts",
+      "source": "../v3.2.9-desktop/src/ai/precision.ts",
+      "sha256": "d5c922da20537ad428c7edc5e6cd7871c001a3bcb12ae4eb4c3801d4dbdb29a5"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/neural/browser-model.ts",
+      "source": "../v3.2.9-desktop/src/ai/neural/browser-model.ts",
+      "sha256": "89c5ff154635281695078a718585b87106a7bbbee43fba5643c73f730e618a11"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/neural/index.ts",
+      "source": "../v3.2.9-desktop/src/ai/neural/index.ts",
+      "sha256": "3d6dbc0589005727db00f438c43d5a2c3d1b6d1d8116b7c462eb0f03d8bf36c5"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/approved-bidding-flow.ts",
+      "source": "../v3.2.9-desktop/src/ai/approved-bidding-flow.ts",
+      "sha256": "019af5c5ccdd843da8682b16331e8186c3d1f3a7a34f51b139a140be28f7683f"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/bidding-consistency.ts",
+      "source": "../v3.2.9-desktop/src/ai/bidding-consistency.ts",
+      "sha256": "c7434f88ed8ee7effbbf0a8371bf053fb8072a7958423f6f0d9dc227a0431790"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/bidding-legacy.ts",
+      "source": "../v3.2.9-desktop/src/ai/bidding-legacy.ts",
+      "sha256": "fbbdb9309759fb03c4ac56644d279a1bf2ac99e10f0f5e7e190f0036bf1ee899"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/suit-evaluation.ts",
+      "source": "../v3.2.9-desktop/src/ai/suit-evaluation.ts",
+      "sha256": "728b5a13aa707c2719e7f3e02b77eaa71951a11e206c20b5437af429d7bab468"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/competition.ts",
+      "source": "../v3.2.9-desktop/src/ai/competition.ts",
+      "sha256": "51cb2f9d54d88e542f4e20fb7a67bdd7af11435ce43cf1dac2fd66b5d5da84e1"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/bidding-meaning-format.ts",
+      "source": "../v3.2.9-desktop/src/ai/bidding-meaning-format.ts",
+      "sha256": "1f127bf43477ec0e58483b83bb210c3c41fb82ad7f494aedf58c8e339eaca1ea"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/penalty-doubles.ts",
+      "source": "../v3.2.9-desktop/src/ai/penalty-doubles.ts",
+      "sha256": "25497aa6579bef7f162f023a6fb583c81c9a3e639703beace7599fec0652875c"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/competitive-cue-fit.ts",
+      "source": "../v3.2.9-desktop/src/ai/competitive-cue-fit.ts",
+      "sha256": "facddcf1c820e5f7b88c902b46809cfd647932c9f398843923eba8917382802f"
+    },
+    {
+      "path": "tests/fixtures/v329/src/ai/neural/sha256.ts",
+      "source": "../v3.2.9-desktop/src/ai/neural/sha256.ts",
+      "sha256": "839bdc6b633b8f6a079e4f25afd8c9d7c173d0b455f20e78e09b798bd2e0806f"
+    },
+    {
+      "path": "tests/fixtures/v329/src/core/auction.ts",
+      "source": "../v3.2.9-desktop/src/core/auction.ts",
+      "sha256": "020478bc687c4f2ad06c29982371a794a19e5bdd6cd513442faf18d36014be44"
+    },
+    {
+      "path": "tests/fixtures/v329/src/core/deal.ts",
+      "source": "../v3.2.9-desktop/src/core/deal.ts",
+      "sha256": "46d6a21e3d9c6d1bd0515d3100fdc9e93850f851456662fe3dc4b81cff63a2fc"
+    },
+    {
+      "path": "tests/fixtures/v329/src/core/game.ts",
+      "source": "../v3.2.9-desktop/src/core/game.ts",
+      "sha256": "885e3ff355fc6ffb322ad5de4d7afd11b10807323a3dd7368122e3f7fe24b728"
+    },
+    {
+      "path": "tests/fixtures/v329/src/core/play.ts",
+      "source": "../v3.2.9-desktop/src/core/play.ts",
+      "sha256": "0f289637c083adb018f12e071d76c793206a62dbdc1b43c1415456dc4be2c18b"
+    },
+    {
+      "path": "tests/fixtures/v329/src/core/scoring.ts",
+      "source": "../v3.2.9-desktop/src/core/scoring.ts",
+      "sha256": "7cb80b21f76c48bdaf3c7dd46ed5e565af6d3e5465389afa76d2585c65804fb4"
+    },
+    {
+      "path": "tests/fixtures/v329/src/core/types.ts",
+      "source": "../v3.2.9-desktop/src/core/types.ts",
+      "sha256": "8a0327c9862fdbaca6a5184854fc545b3e3856740b1a372af718ef5332465bf3"
+    }
+  ],
+  "reason": "Unmodified independent v329 default code for self-contained package tests; not used in production."
+}

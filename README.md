@@ -1,11 +1,13 @@
 # BridgeLab
 
-当前应用版本为v1.0。桌面和Android均使用获批的旧seed 101第8轮SL叫牌模型，设置中可切回随包保留的原SL。此次接入没有修改叫牌规则，也没有追加训练。
+当前版本为v3.3.0。默认使用自然（Natural）：沿用v3.2.9已调通的默认叫牌，仅新增Drury。标准（SAYC）独立采用标准应叫与问A约定；精确（Precise）保持原有体系。
 
-- 桌面应用：[v1.0-desktop说明](versions/v1.0-desktop/README.md)，也可下载[桌面发布包](https://github.com/Tzdwyc/BridgeLab/releases/download/v1.0/BridgeLab-v1.0-desktop.zip)。双击包内的“启动BridgeLab-v1.0.cmd”，默认打开http://localhost:5200。
-- Android安装包：[BridgeLab-v1.0-mobile-android.apk](https://github.com/Tzdwyc/BridgeLab/releases/download/v1.0/BridgeLab-v1.0-mobile-android.apk)。版本1.0.0（45），沿用旧APP包名和签名。
-- 原v0.3.7桌面与Android版本保留在对应旧目录；原有v1.0、v1.0-precision和v1.0-b2研究目录也独立保留。
+- [桌面安装包](https://github.com/Tzdwyc/BridgeLab/releases/download/v3.3.0/BridgeLab-v3.3.0-desktop.zip)：关闭旧入口，解压后启动“启动BridgeLab-v3.3.0.cmd”。
+- [Android安装包](https://github.com/Tzdwyc/BridgeLab/releases/download/v3.3.0/BridgeLab-v3.3.0-mobile-android.apk)：3.3.0+70，同包名、同签名升级。
+- [版本说明](versions/v3.3.0-desktop/docs/V330_CHANGES.md)。
+- [最终核验记录](versions/v3.3.0-desktop/artifacts/v330-systems-drury-20261109/FINAL_ACCEPTANCE.json)。
+- [桥牌入门与软件使用指南](docs/桥牌入门与软件使用指南.md)；项目采用[MIT许可证](LICENSE)。
 
-桌面浏览器已验证实际权重加载与叫牌路径；Android已核对安装包内代码、模型、签名与资源一致性，当前未连接真机进行安装启动验证。模型来源和第三方许可证见桌面应用说明。
+196项相关回归通过；既有33个位置、默认和备用两档共66组选叫与旧默认档一致。桌面及手机布局验证Drury实际落桌与提示；两端资源及APP升级签名一致。打牌固定采用原“挑战”配置，不再提供强度选项。旧默认设置自动转入Natural，迁移前保留原始存档备份。
 
-新桌面入口采用独立端口，旧桌面历史记录可通过已有导出、导入功能转移。Android沿用原本地存档格式。项目源码许可见[LICENSE](LICENSE)。
+未新增母牌或训练。v3.2.9源码及安装包保留；本轮未进行实体手机安装或真实设备局域网验证。

@@ -1,0 +1,14 @@
+import {describe,it,expect} from 'vitest';
+import {chooseBid,describeCall} from '../src/ai/bidding';
+import {publicCallMeaningAt,publicPlayerConstraints,analyzeAuctionSemantics,noTrumpRangeAt} from '../src/ai/bidding-semantics';
+import {assessCandidates} from '../src/ai/constrained-sl';
+import {legalCalls} from '../src/core/auction';
+import {type AuctionEntry,type Call,type Seat,type Strain,type Suit,SEATS} from '../src/core/types';
+import {type BiddingObservation} from '../src/ai/observation';
+export const call=(s:string):Call=>s==='P'?{kind:'pass'}:s==='X'?{kind:'double'}:s==='XX'?{kind:'redouble'}:{kind:'bid',level:Number(s[0]),strain:s.slice(1) as Strain};
+export const auction=(s:string):AuctionEntry[]=>s?s.split(' ').map((s,i)=>({seat:SEATS[i%4],call:call(s)})):[];
+export const hand=(h:Record<Suit,string>)=>Object.entries(h).flatMap(([s,rs])=>[...rs].map(r=>({suit:s as Suit,rank:'23456789TJQKA'.indexOf(r)+2,id:s+r})));
+export const obs=(a:string,h:Record<Suit,string>):BiddingObservation=>{const aa=auction(a),seat=SEATS[aa.length%4];return {phase:'auction',board:1,seat,actingSeat:seat,vulnerability:'None',auction:aa,hand:hand(h),legalCalls:legalCalls(aa,seat)};};
+export const meaning=(a:string,c:string)=>{const aa=auction(a);return publicCallMeaningAt([...aa,{seat:SEATS[aa.length%4],call:call(c)}],aa.length,'precision');};
+it('probe',()=>{for(const [a,c] of [['','1C'],['','1D'],['1C P','1H'],['1C P','1NT'],['1C P 1D P','1H'],['1C P 1D P','1NT'],['1D P 1H P','1NT'],['1D P 1S P','2H'],['1NT P','2C'],['1NT P 2C P 2H P','2S'],['1NT P 2D P 2H P','2NT'],['2C P 2D P','3C'],['2D P 2NT P','3H']]) console.log(a,c,JSON.stringify(meaning(a,c)));
+for(const h of [{S:'AKJ2',H:'Q832',D:'2',C:'K873'},{S:'AKJ2',H:'Q83',D:'2',C:'K8732'}]){const o=obs('',h);console.log('OPEN',h,chooseBid(o,'precision'),assessCandidates(o,'precision').filter(c=>c.allowed).map(c=>c.call));}expect(true).toBe(true);});

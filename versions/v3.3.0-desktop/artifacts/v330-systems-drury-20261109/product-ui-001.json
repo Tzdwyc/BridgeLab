@@ -1,0 +1,18 @@
+{
+  "scope": "Production dist with the previously frozen board940 hands. Same public Drury prefix on two viewports; no new mother deals, play experiment or training. Mobile CSS is the actual override injected for responsive inspection, not a phone installation.",
+  "valid": false,
+  "results": [],
+  "failures": [
+    {
+      "viewport": "desktop",
+      "error": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '◇ 提示', exact: true })\u001b[22m\n",
+      "stack": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '◇ 提示', exact: true })\u001b[22m\n\n    at F:\\Bridge\\versions\\v3.3.0-desktop\\artifacts\\v330-systems-drury-20261109\\verify-product-ui.mjs:46:87"
+    }
+  ],
+  "productionBundleSHA256": "71590f79cfd2fa1506fca429b00871d73d8c6dbe817f918c4e1b063fd5391c04",
+  "inputSHA256": "ad091512cf780db8d58b8a8007805c8f431bfa1ffd14d887e8c63790bb41b35b",
+  "mobileCSSSHA256": "611f7e4087c9437a1251e66a6c0991f2a380f41073c7508733318264791bbf7f",
+  "newMotherDeals": 0,
+  "training": 0,
+  "wholeBoardPerformanceClaim": false
+}

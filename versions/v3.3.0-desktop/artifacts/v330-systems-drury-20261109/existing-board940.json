@@ -1,0 +1,638 @@
+{
+  "source": "F:\\Bridge\\versions\\v3.2.8-desktop\\artifacts\\v328-hints-and-cue-20261108\\ten-board-final-003\\ten-board-03.json",
+  "sourceSHA256": "50ee677d014290cf98ab307972271a7ee828261260259f932673e4d7bcb77af2",
+  "record": {
+    "board": 1,
+    "seed": "custom:ten-board-row-400-board-940",
+    "actions": [
+      {
+        "kind": "call",
+        "seat": "N",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "E",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "S",
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "C"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "W",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "N",
+        "call": {
+          "kind": "bid",
+          "level": 1,
+          "strain": "NT"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "E",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "S",
+        "call": {
+          "kind": "bid",
+          "level": 2,
+          "strain": "H"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "W",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "N",
+        "call": {
+          "kind": "bid",
+          "level": 3,
+          "strain": "NT"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "E",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "S",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "call",
+        "seat": "W",
+        "call": {
+          "kind": "pass"
+        }
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "H14"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "H3"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "H2"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "H6"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "D4"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "D10"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "D13"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "D14"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "C12"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "C8"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "C2"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "C3"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "C5"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "C10"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "C13"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "C4"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "H13"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "H10"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "H7"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "H4"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "H11"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "S5"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "H12"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "D2"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "C11"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "S2"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "C9"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "C6"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "S11"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "S3"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "S14"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "S6"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "H9"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "S8"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "S7"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "D5"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "H8"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "S9"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "D3"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "S4"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "C14"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "D7"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "C7"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "D8"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "H5"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "D11"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "D6"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "S10"
+      },
+      {
+        "kind": "play",
+        "seat": "S",
+        "cardId": "S12"
+      },
+      {
+        "kind": "play",
+        "seat": "W",
+        "cardId": "S13"
+      },
+      {
+        "kind": "play",
+        "seat": "N",
+        "cardId": "D9"
+      },
+      {
+        "kind": "play",
+        "seat": "E",
+        "cardId": "D12"
+      }
+    ],
+    "customSetup": {
+      "dealer": "N",
+      "vulnerability": "Both",
+      "hands": {
+        "N": [
+          {
+            "suit": "S",
+            "rank": 11,
+            "id": "S11"
+          },
+          {
+            "suit": "S",
+            "rank": 7,
+            "id": "S7"
+          },
+          {
+            "suit": "H",
+            "rank": 12,
+            "id": "H12"
+          },
+          {
+            "suit": "H",
+            "rank": 7,
+            "id": "H7"
+          },
+          {
+            "suit": "H",
+            "rank": 6,
+            "id": "H6"
+          },
+          {
+            "suit": "D",
+            "rank": 14,
+            "id": "D14"
+          },
+          {
+            "suit": "D",
+            "rank": 9,
+            "id": "D9"
+          },
+          {
+            "suit": "D",
+            "rank": 6,
+            "id": "D6"
+          },
+          {
+            "suit": "D",
+            "rank": 3,
+            "id": "D3"
+          },
+          {
+            "suit": "C",
+            "rank": 12,
+            "id": "C12"
+          },
+          {
+            "suit": "C",
+            "rank": 11,
+            "id": "C11"
+          },
+          {
+            "suit": "C",
+            "rank": 7,
+            "id": "C7"
+          },
+          {
+            "suit": "C",
+            "rank": 5,
+            "id": "C5"
+          }
+        ],
+        "E": [
+          {
+            "suit": "S",
+            "rank": 10,
+            "id": "S10"
+          },
+          {
+            "suit": "S",
+            "rank": 4,
+            "id": "S4"
+          },
+          {
+            "suit": "S",
+            "rank": 3,
+            "id": "S3"
+          },
+          {
+            "suit": "S",
+            "rank": 2,
+            "id": "S2"
+          },
+          {
+            "suit": "H",
+            "rank": 14,
+            "id": "H14"
+          },
+          {
+            "suit": "H",
+            "rank": 4,
+            "id": "H4"
+          },
+          {
+            "suit": "D",
+            "rank": 12,
+            "id": "D12"
+          },
+          {
+            "suit": "D",
+            "rank": 8,
+            "id": "D8"
+          },
+          {
+            "suit": "D",
+            "rank": 5,
+            "id": "D5"
+          },
+          {
+            "suit": "D",
+            "rank": 4,
+            "id": "D4"
+          },
+          {
+            "suit": "D",
+            "rank": 2,
+            "id": "D2"
+          },
+          {
+            "suit": "C",
+            "rank": 10,
+            "id": "C10"
+          },
+          {
+            "suit": "C",
+            "rank": 8,
+            "id": "C8"
+          }
+        ],
+        "S": [
+          {
+            "suit": "S",
+            "rank": 14,
+            "id": "S14"
+          },
+          {
+            "suit": "S",
+            "rank": 12,
+            "id": "S12"
+          },
+          {
+            "suit": "H",
+            "rank": 13,
+            "id": "H13"
+          },
+          {
+            "suit": "H",
+            "rank": 11,
+            "id": "H11"
+          },
+          {
+            "suit": "H",
+            "rank": 9,
+            "id": "H9"
+          },
+          {
+            "suit": "H",
+            "rank": 8,
+            "id": "H8"
+          },
+          {
+            "suit": "H",
+            "rank": 5,
+            "id": "H5"
+          },
+          {
+            "suit": "H",
+            "rank": 3,
+            "id": "H3"
+          },
+          {
+            "suit": "D",
+            "rank": 10,
+            "id": "D10"
+          },
+          {
+            "suit": "C",
+            "rank": 14,
+            "id": "C14"
+          },
+          {
+            "suit": "C",
+            "rank": 13,
+            "id": "C13"
+          },
+          {
+            "suit": "C",
+            "rank": 9,
+            "id": "C9"
+          },
+          {
+            "suit": "C",
+            "rank": 2,
+            "id": "C2"
+          }
+        ],
+        "W": [
+          {
+            "suit": "S",
+            "rank": 13,
+            "id": "S13"
+          },
+          {
+            "suit": "S",
+            "rank": 9,
+            "id": "S9"
+          },
+          {
+            "suit": "S",
+            "rank": 8,
+            "id": "S8"
+          },
+          {
+            "suit": "S",
+            "rank": 6,
+            "id": "S6"
+          },
+          {
+            "suit": "S",
+            "rank": 5,
+            "id": "S5"
+          },
+          {
+            "suit": "H",
+            "rank": 10,
+            "id": "H10"
+          },
+          {
+            "suit": "H",
+            "rank": 2,
+            "id": "H2"
+          },
+          {
+            "suit": "D",
+            "rank": 13,
+            "id": "D13"
+          },
+          {
+            "suit": "D",
+            "rank": 11,
+            "id": "D11"
+          },
+          {
+            "suit": "D",
+            "rank": 7,
+            "id": "D7"
+          },
+          {
+            "suit": "C",
+            "rank": 6,
+            "id": "C6"
+          },
+          {
+            "suit": "C",
+            "rank": 4,
+            "id": "C4"
+          },
+          {
+            "suit": "C",
+            "rank": 3,
+            "id": "C3"
+          }
+        ]
+      }
+    },
+    "biddingSystem": "precision",
+    "agreementVersion": "precision-v3.1-natural-continuation"
+  }
+}

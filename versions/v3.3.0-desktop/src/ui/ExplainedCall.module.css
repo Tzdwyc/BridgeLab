@@ -1,0 +1,4 @@
+.host { display:flex; align-items:stretch; justify-content:center; min-width:0; }
+.tooltip { position:fixed; z-index:300; width:min(320px,calc(100vw - 32px)); transform:translateX(-50%); padding:12px 14px; border:1px solid #78957f; border-radius:10px; background:#173e32; color:#f7f7ec; box-shadow:0 8px 28px #0a241b55; font-size:.875rem; line-height:1.6; text-align:left; pointer-events:none; }
+.tooltip[data-above=true] { transform:translate(-50%,-100%); }
+.tooltip small { display:block; margin-top:5px; font-size:.75rem; color:#c0d3bf; }
